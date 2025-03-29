@@ -24,6 +24,7 @@ public class Main extends javax.swing.JFrame {
         History = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(1300, 720));
         getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.LINE_AXIS));
 
         menu.setBackground(new java.awt.Color(204, 0, 204));
