@@ -1,11 +1,20 @@
 
 package Frames;
 
+import javax.swing.ImageIcon;
+
 
 public class Main extends javax.swing.JFrame {
 
     public Main() {
         initComponents();
+        
+        ImageIcon Mainicon = new ImageIcon ("hare.png");
+        setIconImage(Mainicon.getImage());
+        setTitle("HazeByte");
+        setResizable(false);
+        
+        //Open Games Menu after startup
         Home_BTMouseClicked(null);
       
     }
@@ -20,6 +29,7 @@ public class Main extends javax.swing.JFrame {
         Option_BT = new javax.swing.JLabel();
         History_BT = new javax.swing.JLabel();
         Info_BT = new javax.swing.JLabel();
+        line = new javax.swing.JPanel();
         layers = new javax.swing.JLayeredPane();
         Info = new javax.swing.JPanel();
         Option = new javax.swing.JPanel();
@@ -34,7 +44,6 @@ public class Main extends javax.swing.JFrame {
         getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.LINE_AXIS));
 
         menu.setBackground(new java.awt.Color(24, 23, 23));
-        menu.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 1, true));
 
         Home_BT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/home.png"))); // NOI18N
         Home_BT.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -64,18 +73,33 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
+        line.setBackground(new java.awt.Color(51, 51, 51));
+        line.setPreferredSize(new java.awt.Dimension(1, 0));
+
+        javax.swing.GroupLayout lineLayout = new javax.swing.GroupLayout(line);
+        line.setLayout(lineLayout);
+        lineLayout.setHorizontalGroup(
+            lineLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1, Short.MAX_VALUE)
+        );
+        lineLayout.setVerticalGroup(
+            lineLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout menuLayout = new javax.swing.GroupLayout(menu);
         menu.setLayout(menuLayout);
         menuLayout.setHorizontalGroup(
             menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(menuLayout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(History_BT)
+                    .addComponent(Info_BT)
                     .addComponent(Option_BT)
-                    .addComponent(Home_BT)
-                    .addComponent(Info_BT))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(Home_BT))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(line, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         menuLayout.setVerticalGroup(
             menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -86,9 +110,13 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(Option_BT)
                 .addGap(30, 30, 30)
                 .addComponent(History_BT)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 116, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 106, Short.MAX_VALUE)
                 .addComponent(Info_BT)
                 .addGap(14, 14, 14))
+            .addGroup(menuLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(line, javax.swing.GroupLayout.DEFAULT_SIZE, 356, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         getContentPane().add(menu);
@@ -244,6 +272,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollBar jScrollBar1;
     private javax.swing.JLayeredPane layers;
+    private javax.swing.JPanel line;
     private javax.swing.JPanel menu;
     // End of variables declaration//GEN-END:variables
 }
