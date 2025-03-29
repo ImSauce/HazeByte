@@ -412,6 +412,7 @@ public class Main extends javax.swing.JFrame {
 
     private void Info_BTMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Info_BTMouseExited
         InfoPN.setBackground(new java.awt.Color(24,23,23));
+        
     }//GEN-LAST:event_Info_BTMouseExited
     //----------------MENU BUTTONS -------------//
     
