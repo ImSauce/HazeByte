@@ -1,5 +1,5 @@
 
-package hazebyte;
+package Frames;
 
 
 public class Main extends javax.swing.JFrame {

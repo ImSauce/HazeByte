@@ -1,5 +1,7 @@
 
-package hazebyte;
+package Classes;
+
+import Frames.Main;
 
 
 public class Run {
