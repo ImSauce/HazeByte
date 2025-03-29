@@ -14,6 +14,7 @@ public class tite {
     public static void main(String args[]) {
          
         System.out.println("Meme");
+        System.out.println("DFIHDASIOFHSDAUFGSDIFGADIPFAD");
         UIcolors color = new UIcolors();
         color.UIcolor();
        
