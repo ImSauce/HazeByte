@@ -5,6 +5,8 @@ package hazebyte;
 public class Run {
     
      public static void main(String args[]) {
+         
+         System.out.println("hello world");
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -33,6 +35,8 @@ public class Run {
             public void run() {
                 new Main().setVisible(true);
             }
+            
+            
         });
     }
     
