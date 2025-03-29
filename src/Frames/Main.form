@@ -149,6 +149,7 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/Images/home.png"/>
                 </Property>
+                <Property name="toolTipText" type="java.lang.String" value="Games"/>
               </Properties>
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="Home_BTMouseClicked"/>
@@ -196,6 +197,7 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/Images/customize.png"/>
                 </Property>
+                <Property name="toolTipText" type="java.lang.String" value="Options"/>
               </Properties>
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="Option_BTMouseClicked"/>
@@ -243,6 +245,7 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/Images/history.png"/>
                 </Property>
+                <Property name="toolTipText" type="java.lang.String" value="Transaction History"/>
               </Properties>
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="History_BTMouseClicked"/>
@@ -290,6 +293,7 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/Images/info.png"/>
                 </Property>
+                <Property name="toolTipText" type="java.lang.String" value="Developer Info"/>
               </Properties>
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="Info_BTMouseClicked"/>

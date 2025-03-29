@@ -73,6 +73,7 @@ public class Main extends javax.swing.JFrame {
         HomePN.setAAA_roundTopRight(20);
 
         Home_BT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/home.png"))); // NOI18N
+        Home_BT.setToolTipText("Games");
         Home_BT.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 Home_BTMouseClicked(evt);
@@ -110,6 +111,7 @@ public class Main extends javax.swing.JFrame {
         OptionPN.setAAA_roundTopRight(20);
 
         Option_BT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/customize.png"))); // NOI18N
+        Option_BT.setToolTipText("Options");
         Option_BT.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 Option_BTMouseClicked(evt);
@@ -147,6 +149,7 @@ public class Main extends javax.swing.JFrame {
         HistoryPN.setAAA_roundTopRight(20);
 
         History_BT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/history.png"))); // NOI18N
+        History_BT.setToolTipText("Transaction History");
         History_BT.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 History_BTMouseClicked(evt);
@@ -184,6 +187,7 @@ public class Main extends javax.swing.JFrame {
         InfoPN.setAAA_roundTopRight(20);
 
         Info_BT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/info.png"))); // NOI18N
+        Info_BT.setToolTipText("Developer Info");
         Info_BT.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 Info_BTMouseClicked(evt);
