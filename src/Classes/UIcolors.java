@@ -48,7 +48,7 @@ public class UIcolors {
 
         UIManager.put("ScrollBar.trackArc", 999);
 
-        UIManager.put("Table.background", new ColorUIResource(20,20,20)); // Dark gray background
+        UIManager.put("Table.background", new ColorUIResource(24,23,23)); // Dark gray background
         UIManager.put("Table.foreground", new ColorUIResource(Color.WHITE)); // White foreground
         UIManager.put("Table.selectionBackground", new ColorUIResource(80, 80, 80)); // Medium gray selection background
         UIManager.put("Table.selectionForeground", new ColorUIResource(Color.WHITE)); // White selection foreground
@@ -56,7 +56,7 @@ public class UIcolors {
         UIManager.put("Table.focusCellForeground", new ColorUIResource(Color.WHITE)); // White focus cell foreground
         UIManager.put("Table.focusCellBackground", new ColorUIResource(Color.BLACK)); // Medium gray focus cell background
 
-        UIManager.put("TableHeader.font", new Font("Agency FB",Font.PLAIN, 24));
+        UIManager.put("TableHeader.font", new Font("Calibiri",Font.PLAIN, 14));
         UIManager.put("TableHeader.background", new ColorUIResource(20,20,20)); // Dark gray background
         UIManager.put("TableHeader.foreground", new ColorUIResource(Color.WHITE)); // White foreground
 

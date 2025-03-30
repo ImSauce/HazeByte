@@ -3,11 +3,16 @@ package Frames;
 
 import Classes.Functions;
 import java.awt.Color;
+import java.awt.Dimension;
 import javax.swing.ImageIcon;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.JTableHeader;
 
 
 public class Main extends javax.swing.JFrame {
 
+    //variables for detecting if a menu button is clicked
     Functions function = new Functions();
     boolean HomeClicked = true;
     boolean OptionClicked = false;
@@ -15,24 +20,41 @@ public class Main extends javax.swing.JFrame {
     boolean InfoClicked =false;
     
     
+    
     public Main() {
         initComponents();
         
-               
-       
-        
+        //icon and title
         ImageIcon Mainicon = new ImageIcon ("hare.png");
         setIconImage(Mainicon.getImage());
         setTitle("HazeByte");
         setResizable(true);
+       
         
         //Open Games Menu after startup
         Home_BTMouseClicked(null);
         categoriesMouseClicked(null);
         Games_txt.requestFocus();
-      
+        
+        //CART TABLE SHIT
+        CartTable.setShowGrid(false);
+        JTableHeader tableHeader = CartTable.getTableHeader();
+            tableHeader.setPreferredSize(new Dimension(tableHeader.getWidth(), 40)); // Change 40 to any height you want
+        CartTable.getTableHeader().setReorderingAllowed(false);
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+            centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+            for (int i = 0; i < CartTable.getColumnCount(); i++) {
+                CartTable.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
+            }
     }
 
+    
+    
+    
+    
+    
+    
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -78,10 +100,22 @@ public class Main extends javax.swing.JFrame {
         newJPanel13 = new Panel.Items();
         Option = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        Cart = new javax.swing.JPanel();
         History = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         Info = new javax.swing.JPanel();
+        Cart = new javax.swing.JPanel();
+        CartBar = new javax.swing.JPanel();
+        Cart_txt = new javax.swing.JLabel();
+        CartBackBT = new javax.swing.JLabel();
+        CartItemView = new javax.swing.JPanel();
+        payment = new SystemOtherComps.PH_TextField();
+        totalcost = new SystemOtherComps.PH_TextField();
+        change = new SystemOtherComps.PH_TextField();
+        paymenttxt = new javax.swing.JLabel();
+        paymenttxt1 = new javax.swing.JLabel();
+        paymenttxt2 = new javax.swing.JLabel();
+        CartTableScroll = new SystemOtherComps.PH_ScrollPane();
+        CartTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(800, 720));
@@ -506,19 +540,6 @@ public class Main extends javax.swing.JFrame {
 
         layers.add(Option, "card3");
 
-        javax.swing.GroupLayout CartLayout = new javax.swing.GroupLayout(Cart);
-        Cart.setLayout(CartLayout);
-        CartLayout.setHorizontalGroup(
-            CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 888, Short.MAX_VALUE)
-        );
-        CartLayout.setVerticalGroup(
-            CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 463, Short.MAX_VALUE)
-        );
-
-        layers.add(Cart, "card6");
-
         History.setBackground(new java.awt.Color(24, 23, 23));
 
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -555,6 +576,216 @@ public class Main extends javax.swing.JFrame {
         );
 
         layers.add(Info, "card5");
+
+        Cart.setBackground(new java.awt.Color(24, 23, 23));
+        Cart.setPreferredSize(new java.awt.Dimension(783, 594));
+
+        CartBar.setBackground(new java.awt.Color(24, 23, 23));
+
+        Cart_txt.setFont(new java.awt.Font("Arial Black", 0, 28)); // NOI18N
+        Cart_txt.setForeground(new java.awt.Color(255, 255, 255));
+        Cart_txt.setText("Cart");
+
+        CartBackBT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/back.png"))); // NOI18N
+        CartBackBT.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CartBackBTMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout CartBarLayout = new javax.swing.GroupLayout(CartBar);
+        CartBar.setLayout(CartBarLayout);
+        CartBarLayout.setHorizontalGroup(
+            CartBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CartBarLayout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(CartBackBT)
+                .addGap(29, 29, 29)
+                .addComponent(Cart_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        CartBarLayout.setVerticalGroup(
+            CartBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(CartBarLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(Cart_txt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(CartBarLayout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(CartBackBT)
+                .addContainerGap(16, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout CartItemViewLayout = new javax.swing.GroupLayout(CartItemView);
+        CartItemView.setLayout(CartItemViewLayout);
+        CartItemViewLayout.setHorizontalGroup(
+            CartItemViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 306, Short.MAX_VALUE)
+        );
+        CartItemViewLayout.setVerticalGroup(
+            CartItemViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        payment.setBackground(new java.awt.Color(24, 23, 23));
+        payment.setForeground(new java.awt.Color(255, 255, 255));
+        payment.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        payment.setAAA_roundBottomLeft(20);
+        payment.setAAA_roundBottomRight(20);
+        payment.setAAA_roundTopLeft(20);
+        payment.setAAA_roundTopRight(20);
+        payment.setAA_BorderColor(new java.awt.Color(51, 51, 51));
+        payment.setAA_DrawBorder(true);
+        payment.setAA_DrawBottomBorder(true);
+        payment.setAA_DrawLeftBorder(true);
+        payment.setAA_DrawLine(false);
+        payment.setAA_DrawRightBorder(true);
+        payment.setAA_DrawTopBorder(true);
+        payment.setAA_TextHint("   Enter Amount");
+        payment.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+
+        totalcost.setBackground(new java.awt.Color(38, 38, 38));
+        totalcost.setForeground(new java.awt.Color(204, 204, 204));
+        totalcost.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        totalcost.setAAA_roundBottomLeft(20);
+        totalcost.setAAA_roundBottomRight(20);
+        totalcost.setAAA_roundTopLeft(20);
+        totalcost.setAAA_roundTopRight(20);
+        totalcost.setAA_DrawLine(false);
+        totalcost.setAA_TextHint("   0");
+        totalcost.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+
+        change.setBackground(new java.awt.Color(38, 38, 38));
+        change.setForeground(new java.awt.Color(204, 204, 204));
+        change.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        change.setAAA_roundBottomLeft(20);
+        change.setAAA_roundBottomRight(20);
+        change.setAAA_roundTopLeft(20);
+        change.setAAA_roundTopRight(20);
+        change.setAA_DrawLine(false);
+        change.setAA_TextHint("   0");
+        change.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+
+        paymenttxt.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        paymenttxt.setText("Payment:");
+
+        paymenttxt1.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        paymenttxt1.setText("Total Cost:");
+
+        paymenttxt2.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        paymenttxt2.setText("Change:");
+
+        CartTable.setBackground(new java.awt.Color(24, 23, 23));
+        CartTable.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        CartTable.setForeground(new java.awt.Color(255, 255, 255));
+        CartTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {"dsadas", "dasdas", "dasd", "asdsad"},
+                {"sadsa", "sadsd", "sad", "sa"},
+                {"dsad", "sad", "sadad", null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Product", "Quantity", "Cost", "Total"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        CartTable.setFocusable(false);
+        CartTable.setGridColor(new java.awt.Color(24, 23, 23));
+        CartTable.setRowHeight(40);
+        CartTable.setSelectionBackground(new java.awt.Color(51, 51, 51));
+        CartTableScroll.setViewportView(CartTable);
+        if (CartTable.getColumnModel().getColumnCount() > 0) {
+            CartTable.getColumnModel().getColumn(0).setResizable(false);
+            CartTable.getColumnModel().getColumn(1).setResizable(false);
+            CartTable.getColumnModel().getColumn(2).setResizable(false);
+            CartTable.getColumnModel().getColumn(3).setResizable(false);
+        }
+
+        javax.swing.GroupLayout CartLayout = new javax.swing.GroupLayout(Cart);
+        Cart.setLayout(CartLayout);
+        CartLayout.setHorizontalGroup(
+            CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(CartBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CartLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(CartLayout.createSequentialGroup()
+                        .addGroup(CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(paymenttxt1)
+                            .addComponent(paymenttxt2, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(paymenttxt, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(totalcost, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(change, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(payment, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(CartLayout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(CartTableScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 520, Short.MAX_VALUE)))
+                .addGap(20, 20, 20)
+                .addComponent(CartItemView, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        CartLayout.setVerticalGroup(
+            CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(CartLayout.createSequentialGroup()
+                .addGroup(CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(CartLayout.createSequentialGroup()
+                        .addComponent(CartBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(CartTableScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(payment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(paymenttxt))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(totalcost, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(paymenttxt1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(change, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(paymenttxt2))
+                        .addGap(116, 116, 116))
+                    .addGroup(CartLayout.createSequentialGroup()
+                        .addGap(70, 70, 70)
+                        .addComponent(CartItemView, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+
+        layers.add(Cart, "card2");
 
         getContentPane().add(layers);
 
@@ -661,6 +892,7 @@ public class Main extends javax.swing.JFrame {
     
     
     
+//------------------HOME PANEL FRONTEND CODES------------------//
     private void CartBTMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CartBTMouseEntered
         CartPN.setBackground(new java.awt.Color(38, 38, 38));
     }//GEN-LAST:event_CartBTMouseEntered
@@ -682,7 +914,19 @@ public class Main extends javax.swing.JFrame {
         categories.setSelectedItem("All");
         Games_txt.requestFocus();
     }//GEN-LAST:event_categoriesMouseClicked
+ //------------------HOME PANEL FRONTEND CODES------------------// 
     
+
+    
+    
+    private void CartBackBTMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CartBackBTMouseClicked
+        Home.setVisible(true);
+        Option.setVisible(false);
+        History.setVisible(false);
+        Info.setVisible(false);
+        Cart.setVisible(false);
+    }//GEN-LAST:event_CartBackBTMouseClicked
+  
     
     
     
@@ -698,19 +942,25 @@ public class Main extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Cart;
     private javax.swing.JLabel CartBT;
+    private javax.swing.JLabel CartBackBT;
+    private javax.swing.JPanel CartBar;
+    private javax.swing.JPanel CartItemView;
     private SystemOtherComps.PH_Panel CartPN;
+    public javax.swing.JTable CartTable;
+    private SystemOtherComps.PH_ScrollPane CartTableScroll;
     private javax.swing.JPanel Cart_Line;
+    private javax.swing.JLabel Cart_txt;
     private javax.swing.JPanel GameBar;
     private SystemOtherComps.PH_BettterFlowLayoutPanel GameList;
     private SystemOtherComps.PH_ScrollPane GameScroll;
     private SystemOtherComps.PH_TextField GameSearchTXT;
-    private javax.swing.JLabel Games_txt;
+    public javax.swing.JLabel Games_txt;
     private javax.swing.JPanel History;
     private SystemOtherComps.PH_Panel HistoryPN;
     private javax.swing.JLabel History_BT;
     private javax.swing.JPanel Home;
     private SystemOtherComps.PH_Panel HomePN;
-    private javax.swing.JLabel Home_BT;
+    public javax.swing.JLabel Home_BT;
     private javax.swing.JPanel Info;
     private SystemOtherComps.PH_Panel InfoPN;
     private javax.swing.JLabel Info_BT;
@@ -719,7 +969,8 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel Option_BT;
     private javax.swing.JLabel SearchIconTXT;
     private javax.swing.JLabel SearchIconTXT1;
-    private SystemShadowedComp.PH_ComboBox categories;
+    public SystemShadowedComp.PH_ComboBox categories;
+    private SystemOtherComps.PH_TextField change;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -741,5 +992,10 @@ public class Main extends javax.swing.JFrame {
     private Panel.Items newJPanel7;
     private Panel.Items newJPanel8;
     private Panel.Items newJPanel9;
+    private SystemOtherComps.PH_TextField payment;
+    private javax.swing.JLabel paymenttxt;
+    private javax.swing.JLabel paymenttxt1;
+    private javax.swing.JLabel paymenttxt2;
+    private SystemOtherComps.PH_TextField totalcost;
     // End of variables declaration//GEN-END:variables
 }
