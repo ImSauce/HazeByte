@@ -308,6 +308,8 @@ public class PH_ComboBox<e> extends JComboBox<e> {
             return new ArrowButton();
         }
 
+        
+        //SCROLL BAR SHIT
         @Override
         protected ComboPopup createPopup() {
             BasicComboPopup pop = new BasicComboPopup(comboBox) {
@@ -317,12 +319,15 @@ public class PH_ComboBox<e> extends JComboBox<e> {
                     JScrollPane scroll = new JScrollPane(list);
                     //Somehow Scroll
                     scroll.setBackground(Color.WHITE);
+                    
                     PH_ScrollBar sb = new PH_ScrollBar();
                     sb.setUnitIncrement(AAA_UniIncrement);
                     //Scrollbar Color
+                    sb.setBackground(AA_BorderColor); //SCROLLBAR BG
                     sb.setForeground(AAA_ComboBoxScrollColor);
                     scroll.setVerticalScrollBar(sb);
                     return scroll;
+                    
                 }
             };
             //Border of the Pop, basta an nakapot han mga model strings
@@ -420,22 +425,25 @@ public class PH_ComboBox<e> extends JComboBox<e> {
                 int size = 10;
                 int x = (width - size) / 2;
                 int y = (height - size) / 2 + 5;
+                int reducedHeight = size / 2; // Reduce height by half
+
                 int px[] = {x, x + size, x + size / 2};
-                int py[] = {y, y, y + size};
+                int py[] = {y, y, y + reducedHeight}; // Reduce the top point's height
+
                 g2.setColor(getBackground());
                 g2.fillPolygon(px, py, px.length);
                 g2.dispose();
             }
         }
     }
+    //24,23,23          255,255,255
     
-    
-    private Color AA_CellSelectedColor = new Color(230,230,230);
-    private Color AA_BorderColor = new Color(140,140,140);
-    private Color AA_ComboBoxColor = new Color(250,250,255);
+    private Color AA_CellSelectedColor = new Color(51,51,51);
+    private Color AA_BorderColor = new Color(24,23,23);
+    private Color AA_ComboBoxColor = new Color(24,23,23);
     private Color AA_PopForeground = new Color(70,70,70);
     private Color AA_HintForeground = new Color(140,140,140);
-    private Color AA_WordLinerColor =  new Color(140,140,140);
+    private Color AA_WordLinerColor =  new Color(37,131,49);
     private Color AA_ArrowColor = new Color(220,220,225);
     private Color AA_SelectedArrowColor = new Color(210,210,215);
     private Color AA_UnSelectedArrowColor = AA_ArrowColor;
@@ -443,7 +451,7 @@ public class PH_ComboBox<e> extends JComboBox<e> {
     private int AAA_FixedCellHeight = 30;
     private int AAA_UniIncrement = 10;
     private int AA_BorderSize = 1;
-    private String labeText = "Label";
+    private String labeText = "Categories";
     private Color AA_lineColor = new Color(3, 133, 179);
     private boolean mouseOver;
     

@@ -35,8 +35,8 @@ public class Constants {
     public static int UI_Default_TextHorizontalAligment = 4;
     public static int UI_Default_ShadowSize = 3;
     public static int UI_Default_LineSize = 1;
-    public static int UI_Default_LineHeight = 3;
-    public static int UI_Default_LineIndent = 5;
+    public static int UI_Default_LineHeight = 1; //aligned with categories line
+    public static int UI_Default_LineIndent = 1;
     public static int UI_Default_Indent = 5;
     public static int UI_Default_BorderSize = 1;
     public static int UI_Default_ArcSize = 0;

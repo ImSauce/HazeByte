@@ -2,6 +2,7 @@ package SystemOtherComps;
 
 import SystemFunctions.Constants;
 import SystemFunctions.ScrollBarWin11UI;
+import java.awt.Color;
 import java.awt.Container;
 import java.awt.EventQueue;
 import java.awt.Insets;
@@ -9,6 +10,9 @@ import java.awt.Rectangle;
 import java.util.Objects;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneLayout;
+import javax.swing.border.LineBorder;
+import javax.swing.plaf.basic.BasicComboPopup;
+import javax.swing.plaf.basic.ComboPopup;
 
 public class PH_ScrollPane extends JScrollPane {
     
@@ -36,6 +40,8 @@ public class PH_ScrollPane extends JScrollPane {
         setBorder(null);
         setOpaque(false);
         setLayout(new ScrollLayout());
+    
+                
     }
     
     private int AA_VerticalUnitIncrement = 10;
@@ -51,10 +57,11 @@ public class PH_ScrollPane extends JScrollPane {
         super.updateUI();
         EventQueue.invokeLater(() -> {
             setComponentZOrder(getVerticalScrollBar(), 0);
-            setComponentZOrder(getHorizontalScrollBar(), 1);
+            setComponentZOrder(getHorizontalScrollBar(), 2);
             setComponentZOrder(getViewport(), 2);
             getVerticalScrollBar().setOpaque(false);
             getHorizontalScrollBar().setOpaque(false);
+            
         });
     }
 
@@ -64,11 +71,17 @@ public class PH_ScrollPane extends JScrollPane {
         public void layoutContainer(Container parent) {
             super.layoutContainer(parent);
             if (parent instanceof JScrollPane) {
+                
+                
+                
                 PH_ScrollPane scroll = (PH_ScrollPane) parent;
+                
+                
                 scroll.setBackground(Constants.UI_Default_CompColor);
                 scroll.setForeground(Constants.UI_Default_CompButtonColor.darker());
                 Rectangle rec = scroll.getViewport().getBounds();
                 
+               
                 Insets insets = parent.getInsets();
                 int rhHeight = 0;
                 if (scroll.getColumnHeader() != null) {
@@ -85,8 +98,14 @@ public class PH_ScrollPane extends JScrollPane {
                     hrc.width = rec.width;
                     hsb.setBounds(hrc);
                 }
+                
+                
             }
         }
+        
+        
+       
+        
     }
     
     

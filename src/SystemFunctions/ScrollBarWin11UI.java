@@ -75,7 +75,7 @@ public class ScrollBarWin11UI extends BasicScrollBarUI {
         super.installUI(c);
         c.setPreferredSize(new Dimension(scrollSize, scrollSize));
         c.addMouseListener(mouseEvent);
-        c.setForeground(new Color(30,30,30));
+        c.setForeground(new Color(140,140,140));//ScrpllPANE scrollbar
         initAnimator();
     }
 
