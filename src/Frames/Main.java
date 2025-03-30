@@ -103,6 +103,7 @@ public class Main extends javax.swing.JFrame {
         History = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         Info = new javax.swing.JPanel();
+        jToggleButton1 = new javax.swing.JToggleButton();
         Cart = new javax.swing.JPanel();
         CartBar = new javax.swing.JPanel();
         Cart_txt = new javax.swing.JLabel();
@@ -564,15 +565,23 @@ public class Main extends javax.swing.JFrame {
 
         layers.add(History, "card4");
 
+        jToggleButton1.setText("jToggleButton1");
+
         javax.swing.GroupLayout InfoLayout = new javax.swing.GroupLayout(Info);
         Info.setLayout(InfoLayout);
         InfoLayout.setHorizontalGroup(
             InfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 888, Short.MAX_VALUE)
+            .addGroup(InfoLayout.createSequentialGroup()
+                .addGap(373, 373, 373)
+                .addComponent(jToggleButton1)
+                .addContainerGap(400, Short.MAX_VALUE))
         );
         InfoLayout.setVerticalGroup(
             InfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 463, Short.MAX_VALUE)
+            .addGroup(InfoLayout.createSequentialGroup()
+                .addGap(211, 211, 211)
+                .addComponent(jToggleButton1)
+                .addContainerGap(226, Short.MAX_VALUE))
         );
 
         layers.add(Info, "card5");
@@ -624,7 +633,7 @@ public class Main extends javax.swing.JFrame {
         );
         CartItemViewLayout.setVerticalGroup(
             CartItemViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 387, Short.MAX_VALUE)
         );
 
         payment.setBackground(new java.awt.Color(24, 23, 23));
@@ -974,6 +983,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JLayeredPane layers;
     private javax.swing.JPanel line;
     private javax.swing.JPanel menu;
