@@ -57,7 +57,7 @@ public class Main extends javax.swing.JFrame {
         Cart_Line = new javax.swing.JPanel();
         categories = new SystemShadowedComp.PH_ComboBox();
         GameSearchTXT = new SystemOtherComps.PH_TextField();
-        searchIconTXT = new SystemOtherComps.PH_Label();
+        SearchIconTXT = new javax.swing.JLabel();
         GameScroll = new SystemOtherComps.PH_ScrollPane();
         GameList = new SystemOtherComps.PH_BettterFlowLayoutPanel();
         newJPanel1 = new Panel.Items();
@@ -380,9 +380,7 @@ public class Main extends javax.swing.JFrame {
         GameSearchTXT.setAA_TextHint("Search...");
         GameSearchTXT.setAB_LineColor(new java.awt.Color(51, 51, 51));
 
-        searchIconTXT.setAAA_AutoSize(true);
-        searchIconTXT.setAA_CompImage(new javax.swing.ImageIcon(getClass().getResource("/Images/search.png"))); // NOI18N
-        searchIconTXT.setAA_DrawImage(true);
+        SearchIconTXT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/search.png"))); // NOI18N
 
         javax.swing.GroupLayout GameBarLayout = new javax.swing.GroupLayout(GameBar);
         GameBar.setLayout(GameBarLayout);
@@ -393,9 +391,9 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(Games_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 224, Short.MAX_VALUE)
                 .addComponent(categories, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(49, 49, 49)
-                .addComponent(searchIconTXT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(57, 57, 57)
+                .addComponent(SearchIconTXT)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(GameSearchTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
                 .addComponent(Cart_Line, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -418,13 +416,15 @@ public class Main extends javax.swing.JFrame {
                                         .addComponent(Games_txt))))
                             .addGroup(GameBarLayout.createSequentialGroup()
                                 .addGap(8, 8, 8)
-                                .addComponent(categories, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(categories, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, GameBarLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(SearchIconTXT)
+                                .addGap(8, 8, 8)))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(GameBarLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(GameBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(searchIconTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(GameSearchTXT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(GameSearchTXT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
@@ -709,6 +709,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel Option;
     private SystemOtherComps.PH_Panel OptionPN;
     private javax.swing.JLabel Option_BT;
+    private javax.swing.JLabel SearchIconTXT;
     private SystemShadowedComp.PH_ComboBox categories;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
@@ -731,6 +732,5 @@ public class Main extends javax.swing.JFrame {
     private Panel.Items newJPanel7;
     private Panel.Items newJPanel8;
     private Panel.Items newJPanel9;
-    private SystemOtherComps.PH_Label searchIconTXT;
     // End of variables declaration//GEN-END:variables
 }

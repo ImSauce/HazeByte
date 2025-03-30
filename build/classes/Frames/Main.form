@@ -368,9 +368,9 @@
                           <Component id="Games_txt" min="-2" pref="165" max="-2" attributes="0"/>
                           <EmptySpace pref="224" max="32767" attributes="0"/>
                           <Component id="categories" min="-2" pref="163" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
-                          <Component id="searchIconTXT" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
+                          <Component id="SearchIconTXT" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="GameSearchTXT" min="-2" pref="138" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                           <Component id="Cart_Line" min="-2" max="-2" attributes="0"/>
@@ -400,15 +400,17 @@
                                           <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
                                           <Component id="categories" min="-2" max="-2" attributes="0"/>
                                       </Group>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="SearchIconTXT" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                  <Group type="103" groupAlignment="1" attributes="0">
-                                      <Component id="searchIconTXT" min="-2" pref="30" max="-2" attributes="0"/>
-                                      <Component id="GameSearchTXT" alignment="1" min="-2" max="-2" attributes="0"/>
-                                  </Group>
+                                  <Component id="GameSearchTXT" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
@@ -551,13 +553,11 @@
                     </Property>
                   </Properties>
                 </Component>
-                <Component class="SystemOtherComps.PH_Label" name="searchIconTXT">
+                <Component class="javax.swing.JLabel" name="SearchIconTXT">
                   <Properties>
-                    <Property name="AAA_AutoSize" type="boolean" value="true"/>
-                    <Property name="AA_CompImage" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/Images/search.png"/>
                     </Property>
-                    <Property name="AA_DrawImage" type="boolean" value="true"/>
                   </Properties>
                 </Component>
               </SubComponents>
