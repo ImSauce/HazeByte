@@ -25,7 +25,7 @@ public class Main extends javax.swing.JFrame {
         initComponents();
         
         //icon and title
-        ImageIcon Mainicon = new ImageIcon ("hare.png");
+        ImageIcon Mainicon = new ImageIcon ("HB icon.png");
         setIconImage(Mainicon.getImage());
         setTitle("HazeByte");
         setResizable(true);
@@ -69,35 +69,7 @@ public class Main extends javax.swing.JFrame {
         History_BT = new javax.swing.JLabel();
         InfoPN = new SystemOtherComps.PH_Panel();
         Info_BT = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         layers = new javax.swing.JLayeredPane();
-        Home = new javax.swing.JPanel();
-        GameBar = new javax.swing.JPanel();
-        Games_txt = new javax.swing.JLabel();
-        CartPN = new SystemOtherComps.PH_Panel();
-        CartBT = new javax.swing.JLabel();
-        Cart_Line = new javax.swing.JPanel();
-        categories = new SystemShadowedComp.PH_ComboBox();
-        GameSearchTXT = new SystemOtherComps.PH_TextField();
-        SearchIconTXT = new javax.swing.JLabel();
-        SearchIconTXT1 = new javax.swing.JLabel();
-        GameScroll = new SystemOtherComps.PH_ScrollPane();
-        GameList = new SystemOtherComps.PH_BettterFlowLayoutPanel();
-        newJPanel1 = new Panel.Items();
-        newJPanel15 = new Panel.Items();
-        newJPanel14 = new Panel.Items();
-        newJPanel12 = new Panel.Items();
-        newJPanel11 = new Panel.Items();
-        newJPanel9 = new Panel.Items();
-        newJPanel10 = new Panel.Items();
-        newJPanel8 = new Panel.Items();
-        newJPanel7 = new Panel.Items();
-        newJPanel6 = new Panel.Items();
-        newJPanel5 = new Panel.Items();
-        newJPanel2 = new Panel.Items();
-        newJPanel4 = new Panel.Items();
-        newJPanel3 = new Panel.Items();
-        newJPanel13 = new Panel.Items();
         Option = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         History = new javax.swing.JPanel();
@@ -117,6 +89,34 @@ public class Main extends javax.swing.JFrame {
         paymenttxt2 = new javax.swing.JLabel();
         CartTableScroll = new SystemOtherComps.PH_ScrollPane();
         CartTable = new javax.swing.JTable();
+        Home = new javax.swing.JPanel();
+        GameBar = new javax.swing.JPanel();
+        Games_txt = new javax.swing.JLabel();
+        CartPN = new SystemOtherComps.PH_Panel();
+        CartBT = new javax.swing.JLabel();
+        Cart_Line = new javax.swing.JPanel();
+        categories = new SystemShadowedComp.PH_ComboBox();
+        GameSearchTXT = new SystemOtherComps.PH_TextField();
+        SearchIconTXT = new javax.swing.JLabel();
+        SearchIconTXT1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        GameScroll = new SystemOtherComps.PH_ScrollPane();
+        GameList = new SystemOtherComps.PH_BettterFlowLayoutPanel();
+        newJPanel1 = new Panel.Items();
+        newJPanel15 = new Panel.Items();
+        newJPanel14 = new Panel.Items();
+        newJPanel12 = new Panel.Items();
+        newJPanel11 = new Panel.Items();
+        newJPanel9 = new Panel.Items();
+        newJPanel10 = new Panel.Items();
+        newJPanel8 = new Panel.Items();
+        newJPanel7 = new Panel.Items();
+        newJPanel6 = new Panel.Items();
+        newJPanel5 = new Panel.Items();
+        newJPanel2 = new Panel.Items();
+        newJPanel4 = new Panel.Items();
+        newJPanel3 = new Panel.Items();
+        newJPanel13 = new Panel.Items();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(800, 720));
@@ -241,7 +241,7 @@ public class Main extends javax.swing.JFrame {
         HistoryPNLayout.setHorizontalGroup(
             HistoryPNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, HistoryPNLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(8, Short.MAX_VALUE)
                 .addComponent(History_BT)
                 .addContainerGap())
         );
@@ -291,8 +291,6 @@ public class Main extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/small hare.jpg"))); // NOI18N
-
         javax.swing.GroupLayout menuLayout = new javax.swing.GroupLayout(menu);
         menu.setLayout(menuLayout);
         menuLayout.setHorizontalGroup(
@@ -303,8 +301,7 @@ public class Main extends javax.swing.JFrame {
                     .addGroup(menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(HistoryPN, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
                         .addComponent(HomePN, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
-                        .addComponent(OptionPN, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(OptionPN, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE))
                     .addComponent(InfoPN, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(line, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -314,207 +311,23 @@ public class Main extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuLayout.createSequentialGroup()
                 .addGroup(menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(menuLayout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
+                        .addContainerGap()
+                        .addComponent(line, javax.swing.GroupLayout.DEFAULT_SIZE, 451, Short.MAX_VALUE))
+                    .addGroup(menuLayout.createSequentialGroup()
+                        .addGap(14, 14, 14)
                         .addComponent(HomePN, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(20, 20, 20)
                         .addComponent(OptionPN, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(20, 20, 20)
                         .addComponent(HistoryPN, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 186, Short.MAX_VALUE)
-                        .addComponent(InfoPN, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(menuLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(line, javax.swing.GroupLayout.DEFAULT_SIZE, 451, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 259, Short.MAX_VALUE)
+                        .addComponent(InfoPN, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
         getContentPane().add(menu);
 
         layers.setLayout(new java.awt.CardLayout());
-
-        Home.setBackground(new java.awt.Color(24, 23, 23));
-        Home.setPreferredSize(new java.awt.Dimension(783, 594));
-
-        GameBar.setBackground(new java.awt.Color(24, 23, 23));
-
-        Games_txt.setFont(new java.awt.Font("Arial Black", 0, 28)); // NOI18N
-        Games_txt.setForeground(new java.awt.Color(255, 255, 255));
-        Games_txt.setText("Games");
-
-        CartPN.setBackground(new java.awt.Color(24, 23, 23));
-        CartPN.setAAA_ImageBoundArcSize(20);
-        CartPN.setAAA_roundBottomLeft(20);
-        CartPN.setAAA_roundBottomRight(20);
-        CartPN.setAAA_roundTopLeft(20);
-        CartPN.setAAA_roundTopRight(20);
-
-        CartBT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/cart.png"))); // NOI18N
-        CartBT.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                CartBTMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                CartBTMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                CartBTMouseExited(evt);
-            }
-        });
-
-        javax.swing.GroupLayout CartPNLayout = new javax.swing.GroupLayout(CartPN);
-        CartPN.setLayout(CartPNLayout);
-        CartPNLayout.setHorizontalGroup(
-            CartPNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CartPNLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(CartBT)
-                .addContainerGap())
-        );
-        CartPNLayout.setVerticalGroup(
-            CartPNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CartPNLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(CartBT)
-                .addContainerGap())
-        );
-
-        Cart_Line.setBackground(new java.awt.Color(51, 51, 51));
-        Cart_Line.setPreferredSize(new java.awt.Dimension(1, 44));
-
-        javax.swing.GroupLayout Cart_LineLayout = new javax.swing.GroupLayout(Cart_Line);
-        Cart_Line.setLayout(Cart_LineLayout);
-        Cart_LineLayout.setHorizontalGroup(
-            Cart_LineLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1, Short.MAX_VALUE)
-        );
-        Cart_LineLayout.setVerticalGroup(
-            Cart_LineLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 44, Short.MAX_VALUE)
-        );
-
-        categories.setForeground(new java.awt.Color(255, 255, 255));
-        categories.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "All", "Action", "Adventure", "Shooter", "Strategy", "Horror", "Sports", "RPG", "Visual Novel", "Gacha", "Rythm", "Cappie Time", "Cappie Date", "Cappie Sex", "Cappie Breeding", "Cappie Impregnation", "Cappie Penetration" }));
-        categories.setAA_WordLinerColor(new java.awt.Color(51, 51, 51));
-        categories.setAA_lineColor(new java.awt.Color(45, 187, 63));
-        categories.setFocusable(false);
-        categories.setLabeText("   Categories ");
-        categories.setRequestFocusEnabled(false);
-        categories.setVerifyInputWhenFocusTarget(false);
-        categories.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                categoriesMouseClicked(evt);
-            }
-        });
-
-        GameSearchTXT.setForeground(new java.awt.Color(255, 255, 255));
-        GameSearchTXT.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        GameSearchTXT.setAA_TextHint("Search...");
-        GameSearchTXT.setAB_LineColor(new java.awt.Color(51, 51, 51));
-
-        SearchIconTXT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/search.png"))); // NOI18N
-
-        SearchIconTXT1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/category.png"))); // NOI18N
-
-        javax.swing.GroupLayout GameBarLayout = new javax.swing.GroupLayout(GameBar);
-        GameBar.setLayout(GameBarLayout);
-        GameBarLayout.setHorizontalGroup(
-            GameBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, GameBarLayout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(Games_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 196, Short.MAX_VALUE)
-                .addComponent(SearchIconTXT1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(categories, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(57, 57, 57)
-                .addComponent(SearchIconTXT)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(GameSearchTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
-                .addComponent(Cart_Line, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(CartPN, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15))
-        );
-        GameBarLayout.setVerticalGroup(
-            GameBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(GameBarLayout.createSequentialGroup()
-                .addGroup(GameBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(GameBarLayout.createSequentialGroup()
-                        .addGroup(GameBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(GameBarLayout.createSequentialGroup()
-                                .addGap(12, 12, 12)
-                                .addGroup(GameBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(GameBarLayout.createSequentialGroup()
-                                        .addComponent(SearchIconTXT1)
-                                        .addGap(10, 10, 10))
-                                    .addGroup(GameBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(CartPN, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(Cart_Line, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(GameBarLayout.createSequentialGroup()
-                                .addGap(8, 8, 8)
-                                .addComponent(categories, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, GameBarLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(GameBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(GameSearchTXT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, GameBarLayout.createSequentialGroup()
-                                .addComponent(SearchIconTXT)
-                                .addGap(9, 9, 9))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, GameBarLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(Games_txt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-
-        GameScroll.setBackground(new java.awt.Color(51, 51, 51));
-        GameScroll.setForeground(new java.awt.Color(0, 204, 255));
-        GameScroll.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
-        GameScroll.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-
-        GameList.setBackground(new java.awt.Color(24, 23, 23));
-        GameList.setForeground(new java.awt.Color(255, 255, 255));
-        GameList.add(newJPanel1);
-        GameList.add(newJPanel15);
-        GameList.add(newJPanel14);
-        GameList.add(newJPanel12);
-        GameList.add(newJPanel11);
-        GameList.add(newJPanel9);
-        GameList.add(newJPanel10);
-        GameList.add(newJPanel8);
-        GameList.add(newJPanel7);
-        GameList.add(newJPanel6);
-        GameList.add(newJPanel5);
-        GameList.add(newJPanel2);
-        GameList.add(newJPanel4);
-        GameList.add(newJPanel3);
-        GameList.add(newJPanel13);
-
-        GameScroll.setViewportView(GameList);
-
-        javax.swing.GroupLayout HomeLayout = new javax.swing.GroupLayout(Home);
-        Home.setLayout(HomeLayout);
-        HomeLayout.setHorizontalGroup(
-            HomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(GameBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(HomeLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(GameScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        HomeLayout.setVerticalGroup(
-            HomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(HomeLayout.createSequentialGroup()
-                .addComponent(GameBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(GameScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 387, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        layers.add(Home, "card2");
 
         Option.setBackground(new java.awt.Color(24, 23, 23));
         Option.setPreferredSize(new java.awt.Dimension(783, 594));
@@ -796,6 +609,194 @@ public class Main extends javax.swing.JFrame {
 
         layers.add(Cart, "card2");
 
+        Home.setBackground(new java.awt.Color(24, 23, 23));
+        Home.setPreferredSize(new java.awt.Dimension(783, 594));
+
+        GameBar.setBackground(new java.awt.Color(24, 23, 23));
+
+        Games_txt.setFont(new java.awt.Font("Arial Black", 0, 28)); // NOI18N
+        Games_txt.setForeground(new java.awt.Color(255, 255, 255));
+        Games_txt.setText("Games");
+
+        CartPN.setBackground(new java.awt.Color(24, 23, 23));
+        CartPN.setAAA_ImageBoundArcSize(20);
+        CartPN.setAAA_roundBottomLeft(20);
+        CartPN.setAAA_roundBottomRight(20);
+        CartPN.setAAA_roundTopLeft(20);
+        CartPN.setAAA_roundTopRight(20);
+
+        CartBT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/cart.png"))); // NOI18N
+        CartBT.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CartBTMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CartBTMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                CartBTMouseExited(evt);
+            }
+        });
+
+        javax.swing.GroupLayout CartPNLayout = new javax.swing.GroupLayout(CartPN);
+        CartPN.setLayout(CartPNLayout);
+        CartPNLayout.setHorizontalGroup(
+            CartPNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CartPNLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(CartBT)
+                .addContainerGap())
+        );
+        CartPNLayout.setVerticalGroup(
+            CartPNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CartPNLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(CartBT)
+                .addContainerGap())
+        );
+
+        Cart_Line.setBackground(new java.awt.Color(51, 51, 51));
+        Cart_Line.setPreferredSize(new java.awt.Dimension(1, 44));
+
+        javax.swing.GroupLayout Cart_LineLayout = new javax.swing.GroupLayout(Cart_Line);
+        Cart_Line.setLayout(Cart_LineLayout);
+        Cart_LineLayout.setHorizontalGroup(
+            Cart_LineLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1, Short.MAX_VALUE)
+        );
+        Cart_LineLayout.setVerticalGroup(
+            Cart_LineLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 44, Short.MAX_VALUE)
+        );
+
+        categories.setForeground(new java.awt.Color(255, 255, 255));
+        categories.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "All", "Action", "Adventure", "Shooter", "Strategy", "Horror", "Sports", "RPG", "Visual Novel", "Gacha", "Rythm", "Cappie Time", "Cappie Date", "Cappie Sex", "Cappie Breeding", "Cappie Impregnation", "Cappie Penetration" }));
+        categories.setAA_WordLinerColor(new java.awt.Color(51, 51, 51));
+        categories.setAA_lineColor(new java.awt.Color(45, 187, 63));
+        categories.setFocusable(false);
+        categories.setLabeText("   Categories ");
+        categories.setRequestFocusEnabled(false);
+        categories.setVerifyInputWhenFocusTarget(false);
+        categories.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                categoriesMouseClicked(evt);
+            }
+        });
+
+        GameSearchTXT.setForeground(new java.awt.Color(255, 255, 255));
+        GameSearchTXT.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        GameSearchTXT.setAA_TextHint("Search...");
+        GameSearchTXT.setAB_LineColor(new java.awt.Color(51, 51, 51));
+
+        SearchIconTXT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/search.png"))); // NOI18N
+
+        SearchIconTXT1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/category.png"))); // NOI18N
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/transparentHB.jpg"))); // NOI18N
+
+        javax.swing.GroupLayout GameBarLayout = new javax.swing.GroupLayout(GameBar);
+        GameBar.setLayout(GameBarLayout);
+        GameBarLayout.setHorizontalGroup(
+            GameBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, GameBarLayout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Games_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 177, Short.MAX_VALUE)
+                .addComponent(SearchIconTXT1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(categories, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(57, 57, 57)
+                .addComponent(SearchIconTXT)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(GameSearchTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
+                .addComponent(Cart_Line, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(CartPN, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15))
+        );
+        GameBarLayout.setVerticalGroup(
+            GameBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(GameBarLayout.createSequentialGroup()
+                .addGroup(GameBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(GameBarLayout.createSequentialGroup()
+                        .addGroup(GameBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(GameBarLayout.createSequentialGroup()
+                                .addGap(12, 12, 12)
+                                .addGroup(GameBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(GameBarLayout.createSequentialGroup()
+                                        .addComponent(SearchIconTXT1)
+                                        .addGap(10, 10, 10))
+                                    .addGroup(GameBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(CartPN, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(Cart_Line, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(GameBarLayout.createSequentialGroup()
+                                .addGap(8, 8, 8)
+                                .addComponent(categories, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, GameBarLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(GameBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(GameSearchTXT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, GameBarLayout.createSequentialGroup()
+                                .addComponent(SearchIconTXT)
+                                .addGap(9, 9, 9))))
+                    .addGroup(GameBarLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(GameBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Games_txt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap())
+        );
+
+        GameScroll.setBackground(new java.awt.Color(51, 51, 51));
+        GameScroll.setForeground(new java.awt.Color(0, 204, 255));
+        GameScroll.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+        GameScroll.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+
+        GameList.setBackground(new java.awt.Color(24, 23, 23));
+        GameList.setForeground(new java.awt.Color(255, 255, 255));
+        GameList.add(newJPanel1);
+        GameList.add(newJPanel15);
+        GameList.add(newJPanel14);
+        GameList.add(newJPanel12);
+        GameList.add(newJPanel11);
+        GameList.add(newJPanel9);
+        GameList.add(newJPanel10);
+        GameList.add(newJPanel8);
+        GameList.add(newJPanel7);
+        GameList.add(newJPanel6);
+        GameList.add(newJPanel5);
+        GameList.add(newJPanel2);
+        GameList.add(newJPanel4);
+        GameList.add(newJPanel3);
+        GameList.add(newJPanel13);
+
+        GameScroll.setViewportView(GameList);
+
+        javax.swing.GroupLayout HomeLayout = new javax.swing.GroupLayout(Home);
+        Home.setLayout(HomeLayout);
+        HomeLayout.setHorizontalGroup(
+            HomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(GameBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(HomeLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(GameScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        HomeLayout.setVerticalGroup(
+            HomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(HomeLayout.createSequentialGroup()
+                .addComponent(GameBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(GameScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 387, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        layers.add(Home, "card2");
+
         getContentPane().add(layers);
 
         pack();
@@ -981,8 +982,8 @@ public class Main extends javax.swing.JFrame {
     public SystemShadowedComp.PH_ComboBox categories;
     private SystemOtherComps.PH_TextField change;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JLayeredPane layers;
     private javax.swing.JPanel line;
