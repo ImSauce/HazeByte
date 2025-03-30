@@ -176,6 +176,8 @@ public class PH_TextField extends JTextField {
     }
 
     public PH_TextField() {
+        
+        
         setOpaque(false);
         setBorder(new EmptyBorder(9, 1, 9, 1));
         setBackground(Constants.UI_Default_CompButtonSeeThroughColor);
@@ -233,6 +235,8 @@ public class PH_TextField extends JTextField {
             }
         });
     }
+    
+       
 
     private void stop() {
         if (animator.isRunning()) {

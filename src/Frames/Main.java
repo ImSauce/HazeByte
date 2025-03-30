@@ -1,9 +1,9 @@
-
 package Frames;
 
 import Classes.Functions;
 import java.awt.Color;
 import java.awt.Dimension;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -46,6 +46,11 @@ public class Main extends javax.swing.JFrame {
             for (int i = 0; i < CartTable.getColumnCount(); i++) {
                 CartTable.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
             }
+            
+            
+             // payment.setBorder(BorderFactory.createCompoundBorder(payment.getBorder(), BorderFactory.createEmptyBorder(0, 10, 0, 0)));
+              
+            
     }
 
     
@@ -108,6 +113,7 @@ public class Main extends javax.swing.JFrame {
         Cart_txt = new javax.swing.JLabel();
         CartBackBT = new javax.swing.JLabel();
         CartItemView = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
         payment = new SystemOtherComps.PH_TextField();
         totalcost = new SystemOtherComps.PH_TextField();
         change = new SystemOtherComps.PH_TextField();
@@ -423,7 +429,7 @@ public class Main extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, GameBarLayout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addComponent(Games_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 196, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
                 .addComponent(SearchIconTXT1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(categories, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -509,7 +515,7 @@ public class Main extends javax.swing.JFrame {
             .addGroup(HomeLayout.createSequentialGroup()
                 .addComponent(GameBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(GameScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 387, Short.MAX_VALUE)
+                .addComponent(GameScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 518, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -616,15 +622,23 @@ public class Main extends javax.swing.JFrame {
                 .addContainerGap(16, Short.MAX_VALUE))
         );
 
+        jButton1.setText("jButton1");
+
         javax.swing.GroupLayout CartItemViewLayout = new javax.swing.GroupLayout(CartItemView);
         CartItemView.setLayout(CartItemViewLayout);
         CartItemViewLayout.setHorizontalGroup(
             CartItemViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 306, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CartItemViewLayout.createSequentialGroup()
+                .addContainerGap(119, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(108, 108, 108))
         );
         CartItemViewLayout.setVerticalGroup(
             CartItemViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CartItemViewLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(131, 131, 131))
         );
 
         payment.setBackground(new java.awt.Color(24, 23, 23));
@@ -641,7 +655,7 @@ public class Main extends javax.swing.JFrame {
         payment.setAA_DrawLine(false);
         payment.setAA_DrawRightBorder(true);
         payment.setAA_DrawTopBorder(true);
-        payment.setAA_TextHint("   Enter Amount");
+        payment.setAA_TextHint("Enter Amount");
         payment.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
 
         totalcost.setBackground(new java.awt.Color(38, 38, 38));
@@ -742,6 +756,9 @@ public class Main extends javax.swing.JFrame {
                 .addGap(30, 30, 30)
                 .addGroup(CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(CartLayout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(CartTableScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 520, Short.MAX_VALUE))
+                    .addGroup(CartLayout.createSequentialGroup()
                         .addGroup(CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(paymenttxt1)
                             .addComponent(paymenttxt2, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -750,10 +767,7 @@ public class Main extends javax.swing.JFrame {
                         .addGroup(CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(totalcost, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(change, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(payment, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(CartLayout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(CartTableScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 520, Short.MAX_VALUE)))
+                            .addComponent(payment, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(20, 20, 20)
                 .addComponent(CartItemView, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -971,6 +985,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel SearchIconTXT1;
     public SystemShadowedComp.PH_ComboBox categories;
     private SystemOtherComps.PH_TextField change;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

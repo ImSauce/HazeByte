@@ -1,7 +1,6 @@
 
 package Classes;
 
-import Frames.Main;
 import java.awt.Color;
 import static java.awt.Color.BLACK;
 import javax.swing.BorderFactory;
