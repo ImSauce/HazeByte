@@ -68,9 +68,9 @@ public class UIcolors {
         UIManager.put("ScrollBar.thumbDarkShadow", new ColorUIResource(38, 38, 38)); // Thumb shadow color
         UIManager.put("ScrollBar.thumbHighlight", new ColorUIResource(80, 80, 80)); // Thumb highlight color
         UIManager.put("ScrollBar.thumbShadow", new ColorUIResource(38, 38, 38)); // Thumb shadow color
-        UIManager.put("ScrollBar.track", new ColorUIResource(44, 44, 44)); // Track color
-        UIManager.put("ScrollBar.trackHighlight", new ColorUIResource(44, 44, 44)); // Track highlight color
-        UIManager.put("ScrollBar.width", 12); // Scrollbar width
+        UIManager.put("ScrollBar.track", new ColorUIResource(24,23,23)); // Track color
+        UIManager.put("ScrollBar.trackHighlight", new ColorUIResource(24,23,23)); // Track highlight color
+        UIManager.put("ScrollBar.width", 5); // Scrollbar width
 
         UIManager.put("ScrollBar.trackArc", 0);
 
