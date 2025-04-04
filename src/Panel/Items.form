@@ -144,6 +144,7 @@
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/Images/add to cart.png"/>
         </Property>
+        <Property name="toolTipText" type="java.lang.String" value="add to cart"/>
         <Property name="AAA_ImageBoundArcSize" type="int" value="20"/>
         <Property name="AAA_roundBottomLeft" type="int" value="20"/>
         <Property name="AAA_roundBottomRight" type="int" value="20"/>

@@ -50,6 +50,7 @@ public class Items extends javax.swing.JPanel {
 
         AddCartBT.setBackground(new java.awt.Color(24, 23, 23));
         AddCartBT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/add to cart.png"))); // NOI18N
+        AddCartBT.setToolTipText("add to cart");
         AddCartBT.setAAA_ImageBoundArcSize(20);
         AddCartBT.setAAA_roundBottomLeft(20);
         AddCartBT.setAAA_roundBottomRight(20);
