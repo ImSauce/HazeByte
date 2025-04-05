@@ -62,6 +62,7 @@ public class Login extends javax.swing.JFrame {
                 main.setVisible(true);
                 main.setVisible(false);
                  new Splash.SplashScreen(null, true).setVisible(true);
+                main.setVisible(false);
                 main.setVisible(true);
             }
         });
@@ -88,11 +89,6 @@ public class Login extends javax.swing.JFrame {
         password.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         password.setAA_TextHint("password");
         password.setAB_LineColor(new java.awt.Color(102, 102, 102));
-        password.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passwordActionPerformed(evt);
-            }
-        });
 
         username.setForeground(new java.awt.Color(255, 255, 255));
         username.setHorizontalAlignment(javax.swing.JTextField.LEFT);
@@ -181,10 +177,6 @@ public class Login extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordActionPerformed
-
-    }//GEN-LAST:event_passwordActionPerformed
 
     private void LoginBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginBTActionPerformed
         char[] enteredPasswordChars = password.getPassword();

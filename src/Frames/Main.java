@@ -1,12 +1,11 @@
 
 package Frames;
-
+//import java.awt.Color;
+//import java.sql.Connection;
+//import java.sql.PreparedStatement;
+//import java.sql.ResultSet;
 import Classes.Functions;
-import java.awt.Color;
 import java.awt.Dimension;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -22,83 +21,25 @@ public class Main extends javax.swing.JFrame {
     boolean HistoryClicked = false;
     boolean InfoClicked =false;
     
-    Connection con;
-    ResultSet rs;
-    PreparedStatement pst;
-    
-    String url= "jdbc:mysql://localhost/hazebyte";
-    String user = "root";
-    String pass= "";
-    
-  
+//    Connection con;
+//    ResultSet rs;
+//    PreparedStatement pst;
+//    
+//    String url= "jdbc:mysql://localhost/hazebyte";
+//    String user = "root";
+//    String pass= "";
+//
+//    public void forConnection(Connection conn){
+//        this.con = conn;
+//      
+//    }
 
-    
-    public void forConnection(Connection conn){
-        this.con = conn;
-      
-    }
-    
-    
     public Main() {
         initComponents();
+        startup();
         
-        //icon and title
-        ImageIcon Mainicon = new ImageIcon ("HB icon.png");
-        setIconImage(Mainicon.getImage());
-        setTitle("HazeByte");
-        setResizable(true);
-       
         
-        //Open Games Menu after startup
-        Home_BTMouseClicked(null);
-        Games_txt.requestFocus();
-        
-        categories.setSelectedItem("Action");
-        categories.setSelectedItem("All");
-        Historycategories.setSelectedItem("Action");
-        Historycategories.setSelectedItem("All");
-        Games_txt.requestFocus();
-        
-        //CART TABLE SHIT
-        CartTable.setShowGrid(false);
-        JTableHeader tableHeader = CartTable.getTableHeader();
-            tableHeader.setPreferredSize(new Dimension(tableHeader.getWidth(), 40)); // Change 40 to any height you want
-        CartTable.getTableHeader().setReorderingAllowed(false);
-        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
-            centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
-            for (int i = 0; i < CartTable.getColumnCount(); i++) {
-                CartTable.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
-            }
-            
-            
-        CartDescriptionTXT.setLineWrap(true);     // Auto-wrap text in JTextArea
-        CartDescriptionTXT.setWrapStyleWord(true); // Wrap at word boundaries in JTextArea
-        EditDescription.setLineWrap(true);  
-        EditDescription.setWrapStyleWord(true);
     }
-
-    
-    
-    
-    public void showcase(boolean Home_, boolean Edit_, boolean Add_, boolean History_, boolean Info_, boolean Cart_){
-        Home.setVisible(Home_);
-        Edit.setVisible(Edit_);
-        Add.setVisible(Add_);
-        History.setVisible(History_);
-        Info.setVisible(Info_);
-        Cart.setVisible(Cart_);     
-    }
-    
-    public void MenuHighlight(boolean home, boolean option, boolean history, boolean info){
-        HomeClicked = home;
-        OptionClicked = option;
-        HistoryClicked =history;
-        InfoClicked =info; 
-    }
-    
-    
-    
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -1740,64 +1681,44 @@ public class Main extends javax.swing.JFrame {
         MenuHighlight(true,false,false,false);
         function.MenuClicked(HomeClicked, HomePN, OptionClicked, OptionPN, HistoryClicked, HistoryPN, InfoClicked, InfoPN ); 
     }//GEN-LAST:event_Home_BTMouseClicked
-
     private void Option_BTMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Option_BTMouseClicked
         showcase(false,true,false,false,false,false);
         MenuHighlight(false,true,false,false);
         function.MenuClicked(HomeClicked, HomePN, OptionClicked, OptionPN, HistoryClicked, HistoryPN, InfoClicked, InfoPN ); 
     }//GEN-LAST:event_Option_BTMouseClicked
-
     private void History_BTMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_History_BTMouseClicked
         showcase(false,false,false,true,false,false);
         MenuHighlight(false,false,true,false);
         function.MenuClicked(HomeClicked, HomePN, OptionClicked, OptionPN, HistoryClicked, HistoryPN, InfoClicked, InfoPN ); 
     }//GEN-LAST:event_History_BTMouseClicked
-
     private void Info_BTMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Info_BTMouseClicked
         showcase(false,false,false,false,true,false);
         MenuHighlight(false,false,false,true);
         function.MenuClicked(HomeClicked, HomePN, OptionClicked, OptionPN, HistoryClicked, HistoryPN, InfoClicked, InfoPN ); 
     }//GEN-LAST:event_Info_BTMouseClicked
-
     private void Home_BTMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Home_BTMouseEntered
-        
         HomePN.setBackground(new java.awt.Color(38, 38, 38));
     }//GEN-LAST:event_Home_BTMouseEntered
-
     private void Home_BTMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Home_BTMouseExited
-        if (HomeClicked == false){
-            HomePN.setBackground(new java.awt.Color(24,23,23));
-        }    
+        if (HomeClicked == false){HomePN.setBackground(new java.awt.Color(24,23,23));}    
     }//GEN-LAST:event_Home_BTMouseExited
-
     private void Option_BTMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Option_BTMouseEntered
         OptionPN.setBackground(new java.awt.Color(38, 38, 38));
     }//GEN-LAST:event_Option_BTMouseEntered
-
     private void Option_BTMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Option_BTMouseExited
-        if (OptionClicked == false){
-            OptionPN.setBackground(new java.awt.Color(24,23,23));
-        } 
+        if (OptionClicked == false){OptionPN.setBackground(new java.awt.Color(24,23,23));} 
     }//GEN-LAST:event_Option_BTMouseExited
-
     private void History_BTMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_History_BTMouseEntered
        HistoryPN.setBackground(new java.awt.Color(38, 38, 38));
     }//GEN-LAST:event_History_BTMouseEntered
-
     private void History_BTMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_History_BTMouseExited
-        if (HistoryClicked == false){
-            HistoryPN.setBackground(new java.awt.Color(24,23,23));
-        } 
+        if (HistoryClicked == false){HistoryPN.setBackground(new java.awt.Color(24,23,23));} 
     }//GEN-LAST:event_History_BTMouseExited
-
     private void Info_BTMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Info_BTMouseEntered
         InfoPN.setBackground(new java.awt.Color(38, 38, 38));
     }//GEN-LAST:event_Info_BTMouseEntered
-
     private void Info_BTMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Info_BTMouseExited
-        if (InfoClicked == false){
-            InfoPN.setBackground(new java.awt.Color(24,23,23));
-        }  
+        if (InfoClicked == false){InfoPN.setBackground(new java.awt.Color(24,23,23));}  
     }//GEN-LAST:event_Info_BTMouseExited
 //----------------MENU BUTTONS -------------//    
     
@@ -1808,17 +1729,14 @@ public class Main extends javax.swing.JFrame {
     private void CartBTMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CartBTMouseEntered
         CartPN.setBackground(new java.awt.Color(38, 38, 38));
     }//GEN-LAST:event_CartBTMouseEntered
-
     private void CartBTMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CartBTMouseExited
         CartPN.setBackground(new java.awt.Color(24,23,23));
     }//GEN-LAST:event_CartBTMouseExited
-
     private void CartBTMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CartBTMouseClicked
         showcase(false,false,false,false,false,true);
     }//GEN-LAST:event_CartBTMouseClicked
-
     private void categoriesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_categoriesMouseClicked
-        
+       
     }//GEN-LAST:event_categoriesMouseClicked
  //------------------HOME PANEL FRONTEND CODES------------------// 
     
@@ -1986,4 +1904,66 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel quantityIcon;
     private SystemOtherComps.PH_TextField totalcost;
     // End of variables declaration//GEN-END:variables
+
+public void startup(){
+        //icon and title
+        ImageIcon Mainicon = new ImageIcon ("HB icon.png");
+        setIconImage(Mainicon.getImage());
+        setTitle("HazeByte");
+        setResizable(true);
+       setExtendedState(MAXIMIZED_BOTH);
+        
+        //Open Games Menu after startup
+        Home_BTMouseClicked(null);
+        Games_txt.requestFocus();
+        
+        categories.setSelectedItem("Action");
+        categories.setSelectedItem("All");
+        Historycategories.setSelectedItem("Action");
+        Historycategories.setSelectedItem("All");
+        Games_txt.requestFocus();
+        
+        //CART TABLE SHIT
+        CartTable.setShowGrid(false);
+        JTableHeader tableHeader = CartTable.getTableHeader();
+            tableHeader.setPreferredSize(new Dimension(tableHeader.getWidth(), 40)); // Change 40 to any height you want
+        CartTable.getTableHeader().setReorderingAllowed(false);
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+            centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+            for (int i = 0; i < CartTable.getColumnCount(); i++) {
+                CartTable.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
+            }
+            
+            
+        CartDescriptionTXT.setLineWrap(true);     // Auto-wrap text in JTextArea
+        CartDescriptionTXT.setWrapStyleWord(true); // Wrap at word boundaries in JTextArea
+        EditDescription.setLineWrap(true);  
+        EditDescription.setWrapStyleWord(true);
+        
+    }
+
+    
+    
+    
+    public void showcase(boolean Home_, boolean Edit_, boolean Add_, boolean History_, boolean Info_, boolean Cart_){
+        Home.setVisible(Home_);
+        Edit.setVisible(Edit_);
+        Add.setVisible(Add_);
+        History.setVisible(History_);
+        Info.setVisible(Info_);
+        Cart.setVisible(Cart_);     
+    }
+    
+    public void MenuHighlight(boolean home, boolean option, boolean history, boolean info){
+        HomeClicked = home;
+        OptionClicked = option;
+        HistoryClicked =history;
+        InfoClicked =info; 
+    }
+
+
+
+
+
+
 }
