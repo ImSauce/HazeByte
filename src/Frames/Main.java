@@ -4,6 +4,9 @@ package Frames;
 import Classes.Functions;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -19,6 +22,21 @@ public class Main extends javax.swing.JFrame {
     boolean HistoryClicked = false;
     boolean InfoClicked =false;
     
+    Connection con;
+    ResultSet rs;
+    PreparedStatement pst;
+    
+    String url= "jdbc:mysql://localhost/hazebyte";
+    String user = "root";
+    String pass= "";
+    
+  
+
+    
+    public void forConnection(Connection conn){
+        this.con = conn;
+      
+    }
     
     
     public Main() {
@@ -1316,7 +1334,7 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(CartItemViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(CostIcon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(CartTotalCostTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                 .addComponent(CartRemoveBT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(16, 16, 16))
         );
@@ -1480,7 +1498,7 @@ public class Main extends javax.swing.JFrame {
                                     .addComponent(payment, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addGroup(CartLayout.createSequentialGroup()
                                 .addGap(6, 6, 6)
-                                .addComponent(CartTableScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 553, Short.MAX_VALUE)))
+                                .addComponent(CartTableScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 430, Short.MAX_VALUE)))
                         .addGap(20, 20, 20))
                     .addGroup(CartLayout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)

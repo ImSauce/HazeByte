@@ -2,6 +2,7 @@
 package Classes;
 import Classes.UIcolors;
 import Frames.Main;
+import Splash.Login;
 
 
 public class Run {
@@ -14,7 +15,7 @@ public class Run {
        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Main().setVisible(true);
+                new Login().setVisible(true);
             }
             
             
