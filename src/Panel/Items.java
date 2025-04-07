@@ -21,18 +21,20 @@ public class Items extends javax.swing.JPanel {
         quantityTXT = new SystemOtherComps.PH_TextField();
         incrementBT = new SystemOtherComps.PH_Button();
         decrementBT = new SystemOtherComps.PH_Button();
+        discountTXT = new javax.swing.JLabel();
+        discount1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(24, 23, 23));
         setMaximumSize(new java.awt.Dimension(223, 363));
         setMinimumSize(new java.awt.Dimension(223, 363));
 
-        ImageTXT.setAAA_FitToSize(true);
-        ImageTXT.setAAA_ImageBoundArcSize(2);
-        ImageTXT.setAAA_roundBottomLeft(2);
-        ImageTXT.setAAA_roundBottomRight(2);
-        ImageTXT.setAAA_roundTopLeft(2);
-        ImageTXT.setAAA_roundTopRight(2);
-        ImageTXT.setAA_ArcSize(2);
+        ImageTXT.setAAA_AutoSize(true);
+        ImageTXT.setAAA_ImageBoundArcSize(20);
+        ImageTXT.setAAA_roundBottomLeft(20);
+        ImageTXT.setAAA_roundBottomRight(20);
+        ImageTXT.setAAA_roundTopLeft(20);
+        ImageTXT.setAAA_roundTopRight(20);
+        ImageTXT.setAA_ArcSize(20);
         ImageTXT.setAA_BorderSize(0);
         ImageTXT.setAA_CompImage(new javax.swing.ImageIcon(getClass().getResource("/Images/download-modified.png"))); // NOI18N
         ImageTXT.setAA_DrawImage(true);
@@ -92,36 +94,53 @@ public class Items extends javax.swing.JPanel {
             }
         });
 
+        discountTXT.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        discountTXT.setForeground(new java.awt.Color(153, 201, 75));
+        discountTXT.setText("10% discount!");
+
+        discount1.setBackground(new java.awt.Color(24, 23, 23));
+        discount1.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        discount1.setForeground(new java.awt.Color(24, 23, 23));
+        discount1.setText("1");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
+                        .addComponent(discount1)
+                        .addGap(1, 1, 1)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(TitleTXT)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(CostTXT)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(quantityTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(incrementBT, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(decrementBT, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(CostTXT, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addGap(49, 49, 49))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(quantityTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(incrementBT, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(decrementBT, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addGap(76, 76, 76))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(discountTXT)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                 .addComponent(AddCartBT, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(CategoryTXT)))
                     .addComponent(ImageTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(17, 17, 17)
+                .addGap(7, 7, 7)
                 .addComponent(ImageTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -131,7 +150,11 @@ public class Items extends javax.swing.JPanel {
                         .addComponent(TitleTXT)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(CostTXT)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(discountTXT)
+                            .addComponent(discount1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(quantityTXT, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
@@ -141,7 +164,7 @@ public class Items extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(AddCartBT, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -173,6 +196,8 @@ public class Items extends javax.swing.JPanel {
     private SystemShadowedComp.PH_SDWLabel ImageTXT;
     private javax.swing.JLabel TitleTXT;
     private SystemOtherComps.PH_Button decrementBT;
+    private javax.swing.JLabel discount1;
+    private javax.swing.JLabel discountTXT;
     private SystemOtherComps.PH_Button incrementBT;
     private SystemOtherComps.PH_TextField quantityTXT;
     // End of variables declaration//GEN-END:variables

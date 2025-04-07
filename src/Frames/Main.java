@@ -55,22 +55,6 @@ public class Main extends javax.swing.JFrame {
         InfoPN = new SystemOtherComps.PH_Panel();
         Info_BT = new javax.swing.JLabel();
         layers = new javax.swing.JLayeredPane();
-        Add = new javax.swing.JPanel();
-        AddBar = new javax.swing.JPanel();
-        AddBT2 = new javax.swing.JLabel();
-        EditBT2 = new javax.swing.JLabel();
-        AddCost = new SystemOtherComps.PH_TextField();
-        AddNameText = new javax.swing.JLabel();
-        AddBT = new SystemOtherComps.PH_Button();
-        CancelBT = new SystemOtherComps.PH_Button();
-        AddImage = new SystemShadowedComp.PH_SDWLabel();
-        AddCostText = new javax.swing.JLabel();
-        AddName = new SystemOtherComps.PH_TextField();
-        AddCategoryText = new javax.swing.JLabel();
-        AddCategory = new SystemShadowedComp.PH_ComboBox();
-        AddDescriptionText = new javax.swing.JLabel();
-        AddDescriptionScroll = new javax.swing.JScrollPane();
-        AddDescription = new javax.swing.JTextArea();
         Edit = new javax.swing.JPanel();
         EditBar = new javax.swing.JPanel();
         AddBT1 = new javax.swing.JLabel();
@@ -92,6 +76,8 @@ public class Main extends javax.swing.JFrame {
         EditDescriptionText = new javax.swing.JLabel();
         EditDescriptionScroll = new javax.swing.JScrollPane();
         EditDescription = new javax.swing.JTextArea();
+        EditDiscount = new SystemOtherComps.PH_TextField();
+        EditDiscountText = new javax.swing.JLabel();
         History = new javax.swing.JPanel();
         HistoryTableScroll = new SystemOtherComps.PH_ScrollPane();
         HistoryTable = new javax.swing.JTable();
@@ -121,7 +107,7 @@ public class Main extends javax.swing.JFrame {
         CostIcon = new javax.swing.JLabel();
         quantityIcon = new javax.swing.JLabel();
         payment = new SystemOtherComps.PH_TextField();
-        totalcost = new SystemOtherComps.PH_TextField();
+        total = new SystemOtherComps.PH_TextField();
         change = new SystemOtherComps.PH_TextField();
         PaymentHeading = new javax.swing.JLabel();
         TotalCostHeading = new javax.swing.JLabel();
@@ -130,6 +116,10 @@ public class Main extends javax.swing.JFrame {
         CartTable = new javax.swing.JTable();
         BuyBT = new SystemOtherComps.PH_Button();
         CancelAllBT = new SystemOtherComps.PH_Button();
+        subtotal = new SystemOtherComps.PH_TextField();
+        SubtotalHeading = new javax.swing.JLabel();
+        totaldiscount = new SystemOtherComps.PH_TextField();
+        TotalDiscountHeading = new javax.swing.JLabel();
         Home = new javax.swing.JPanel();
         GameBar = new javax.swing.JPanel();
         Games_txt = new javax.swing.JLabel();
@@ -158,6 +148,24 @@ public class Main extends javax.swing.JFrame {
         newJPanel4 = new Panel.Items();
         newJPanel3 = new Panel.Items();
         newJPanel13 = new Panel.Items();
+        Add = new javax.swing.JPanel();
+        AddBar = new javax.swing.JPanel();
+        AddBT2 = new javax.swing.JLabel();
+        EditBT2 = new javax.swing.JLabel();
+        AddCost = new SystemOtherComps.PH_TextField();
+        AddNameText = new javax.swing.JLabel();
+        AddBT = new SystemOtherComps.PH_Button();
+        CancelBT = new SystemOtherComps.PH_Button();
+        AddImage = new SystemShadowedComp.PH_SDWLabel();
+        AddCostText = new javax.swing.JLabel();
+        AddName = new SystemOtherComps.PH_TextField();
+        AddCategoryText = new javax.swing.JLabel();
+        AddCategory = new SystemShadowedComp.PH_ComboBox();
+        AddDescriptionText = new javax.swing.JLabel();
+        AddDescriptionScroll = new javax.swing.JScrollPane();
+        AddDescription = new javax.swing.JTextArea();
+        AddDiscount = new SystemOtherComps.PH_TextField();
+        AddDiscountText = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(800, 720));
@@ -369,236 +377,6 @@ public class Main extends javax.swing.JFrame {
 
         layers.setLayout(new java.awt.CardLayout());
 
-        Add.setBackground(new java.awt.Color(24, 23, 23));
-        Add.setPreferredSize(new java.awt.Dimension(783, 594));
-
-        AddBar.setBackground(new java.awt.Color(24, 23, 23));
-
-        AddBT2.setFont(new java.awt.Font("Arial Black", 0, 28)); // NOI18N
-        AddBT2.setForeground(new java.awt.Color(255, 255, 255));
-        AddBT2.setText("Add Product");
-        AddBT2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                AddBT2MouseClicked(evt);
-            }
-        });
-
-        EditBT2.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        EditBT2.setForeground(new java.awt.Color(102, 102, 102));
-        EditBT2.setText("Edit Product");
-        EditBT2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                EditBT2MouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                EditBT2MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                EditBT2MouseExited(evt);
-            }
-        });
-
-        javax.swing.GroupLayout AddBarLayout = new javax.swing.GroupLayout(AddBar);
-        AddBar.setLayout(AddBarLayout);
-        AddBarLayout.setHorizontalGroup(
-            AddBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(AddBarLayout.createSequentialGroup()
-                .addGap(41, 41, 41)
-                .addComponent(EditBT2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(AddBT2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        AddBarLayout.setVerticalGroup(
-            AddBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AddBarLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(AddBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(AddBT2, javax.swing.GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE)
-                    .addComponent(EditBT2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
-        );
-
-        AddCost.setBackground(new java.awt.Color(24, 23, 23));
-        AddCost.setForeground(new java.awt.Color(255, 255, 255));
-        AddCost.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        AddCost.setAAA_roundBottomLeft(20);
-        AddCost.setAAA_roundBottomRight(20);
-        AddCost.setAAA_roundTopLeft(20);
-        AddCost.setAAA_roundTopRight(20);
-        AddCost.setAA_BorderColor(new java.awt.Color(51, 51, 51));
-        AddCost.setAA_DrawBorder(true);
-        AddCost.setAA_DrawBottomBorder(true);
-        AddCost.setAA_DrawLeftBorder(true);
-        AddCost.setAA_DrawLine(false);
-        AddCost.setAA_DrawRightBorder(true);
-        AddCost.setAA_DrawTopBorder(true);
-        AddCost.setAA_TextHint("   Enter Cost");
-        AddCost.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-
-        AddNameText.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        AddNameText.setText(" Name:");
-
-        AddBT.setBackground(new java.awt.Color(32, 180, 52));
-        AddBT.setForeground(new java.awt.Color(255, 255, 255));
-        AddBT.setText("Save");
-        AddBT.setAAA_ImageBoundArcSize(10);
-        AddBT.setAAA_roundBottomLeft(10);
-        AddBT.setAAA_roundBottomRight(10);
-        AddBT.setAAA_roundTopLeft(10);
-        AddBT.setAAA_roundTopRight(10);
-        AddBT.setAA_ArcSize(10);
-        AddBT.setAA_ButtonColor(new java.awt.Color(32, 180, 52));
-        AddBT.setAA_HoverColor(new java.awt.Color(95, 219, 112));
-        AddBT.setAA_PressColor(new java.awt.Color(93, 184, 105));
-        AddBT.setAA_RippleColor(new java.awt.Color(21, 135, 46));
-        AddBT.setFont(new java.awt.Font("Franklin Gothic Heavy", 0, 12)); // NOI18N
-
-        CancelBT.setBackground(new java.awt.Color(24, 23, 23));
-        CancelBT.setText("Cancel");
-        CancelBT.setAAA_ImageBoundArcSize(10);
-        CancelBT.setAAA_roundBottomLeft(10);
-        CancelBT.setAAA_roundBottomRight(10);
-        CancelBT.setAAA_roundTopLeft(10);
-        CancelBT.setAAA_roundTopRight(10);
-        CancelBT.setAA_ArcSize(10);
-        CancelBT.setAA_BorderColor(new java.awt.Color(51, 51, 51));
-        CancelBT.setAA_ButtonColor(new java.awt.Color(24, 23, 23));
-        CancelBT.setAA_DrawBorder(true);
-        CancelBT.setAA_HoverColor(new java.awt.Color(38, 38, 38));
-        CancelBT.setAA_PressColor(new java.awt.Color(54, 53, 53));
-        CancelBT.setAA_RippleColor(new java.awt.Color(215, 54, 54));
-        CancelBT.setFont(new java.awt.Font("Franklin Gothic Heavy", 0, 12)); // NOI18N
-
-        AddImage.setAAA_FitToSize(true);
-        AddImage.setAAA_ImageBoundArcSize(2);
-        AddImage.setAAA_roundBottomLeft(2);
-        AddImage.setAAA_roundBottomRight(2);
-        AddImage.setAAA_roundTopLeft(2);
-        AddImage.setAAA_roundTopRight(2);
-        AddImage.setAA_ArcSize(2);
-        AddImage.setAA_BorderSize(0);
-        AddImage.setAA_CompImage(new javax.swing.ImageIcon(getClass().getResource("/Images/download-modified.png"))); // NOI18N
-        AddImage.setAA_DrawImage(true);
-        AddImage.setAA_OpaqueBackground(true);
-
-        AddCostText.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        AddCostText.setText("Cost:");
-
-        AddName.setBackground(new java.awt.Color(24, 23, 23));
-        AddName.setForeground(new java.awt.Color(255, 255, 255));
-        AddName.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        AddName.setAAA_roundBottomLeft(20);
-        AddName.setAAA_roundBottomRight(20);
-        AddName.setAAA_roundTopLeft(20);
-        AddName.setAAA_roundTopRight(20);
-        AddName.setAA_BorderColor(new java.awt.Color(51, 51, 51));
-        AddName.setAA_DrawBorder(true);
-        AddName.setAA_DrawBottomBorder(true);
-        AddName.setAA_DrawLeftBorder(true);
-        AddName.setAA_DrawLine(false);
-        AddName.setAA_DrawRightBorder(true);
-        AddName.setAA_DrawTopBorder(true);
-        AddName.setAA_TextHint("   Enter Name");
-        AddName.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-
-        AddCategoryText.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        AddCategoryText.setText("Category:");
-
-        AddCategory.setForeground(new java.awt.Color(255, 255, 255));
-        AddCategory.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "All", "Action", "Adventure", "Shooter", "Strategy", "Horror", "Sports", "RPG", "Visual Novel", "Gacha", "Rythm", "Cappie Time", "Cappie Date", "Cappie Sex", "Cappie Breeding", "Cappie Impregnation", "Cappie Penetration" }));
-        AddCategory.setAA_WordLinerColor(new java.awt.Color(51, 51, 51));
-        AddCategory.setAA_lineColor(new java.awt.Color(45, 187, 63));
-        AddCategory.setFocusable(false);
-        AddCategory.setLabeText("    ");
-        AddCategory.setRequestFocusEnabled(false);
-        AddCategory.setVerifyInputWhenFocusTarget(false);
-
-        AddDescriptionText.setForeground(new java.awt.Color(255, 255, 255));
-        AddDescriptionText.setText("Description:");
-
-        AddDescriptionScroll.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
-        AddDescriptionScroll.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        AddDescriptionScroll.setToolTipText("");
-
-        AddDescription.setBackground(new java.awt.Color(24, 23, 23));
-        AddDescription.setColumns(20);
-        AddDescription.setRows(5);
-        AddDescription.setText("MiSide is an adventure game with horror elements developed by Russian indie development team AIHASTO. It was initially published as a demo on August 18, 2023, before being fully released on Steam on December 11, 2024.MiSide is an adventure game with horror elements developed by Russian indie development team AIHASTO. It was initially published as a demo on August 18, 2023, before being fully released on Steam on December 11, 2024.MiSide is an adventure game with horror elements developed by Russian indie development team AIHASTO. It was initially published as a demo on August 18, 2023, before being fully released on Steam on December 11, 2024.MiSide is an adventure game with horror elements developed by Russian indie development team AIHASTO. It was initially published as a demo on August 18, 2023, before being fully released on Steam on December 11, 2024.MiSide is an adventure game with horror elements developed by Russian indie development team AIHASTO. It was initially published as a demo on August 18, 2023, before being fully released on Steam on December 11, 2024.MiSide is an adventure game with horror elements developed by Russian indie development team AIHASTO. It was initially published as a demo on August 18, 2023, before being fully released on Steam on December 11, 2024.\n");
-        AddDescription.setBorder(null);
-        AddDescription.setFocusable(false);
-        AddDescriptionScroll.setViewportView(AddDescription);
-
-        javax.swing.GroupLayout AddLayout = new javax.swing.GroupLayout(Add);
-        Add.setLayout(AddLayout);
-        AddLayout.setHorizontalGroup(
-            AddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(AddBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(AddLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(CancelBT, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(AddBT, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(309, 309, 309))
-            .addGroup(AddLayout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addGroup(AddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(AddLayout.createSequentialGroup()
-                        .addComponent(AddImage, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(AddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(AddLayout.createSequentialGroup()
-                                .addGap(19, 19, 19)
-                                .addGroup(AddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(AddNameText)
-                                    .addComponent(AddCostText)))
-                            .addGroup(AddLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(AddCategoryText)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(AddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(AddCost, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(AddName, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(AddCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(AddLayout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addGroup(AddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(AddDescriptionScroll)
-                            .addComponent(AddDescriptionText))))
-                .addGap(303, 303, 303))
-        );
-        AddLayout.setVerticalGroup(
-            AddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(AddLayout.createSequentialGroup()
-                .addComponent(AddBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(AddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(AddImage, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(AddLayout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addGroup(AddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(AddNameText)
-                            .addComponent(AddName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(19, 19, 19)
-                        .addGroup(AddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(AddCostText)
-                            .addComponent(AddCost, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(9, 9, 9)
-                        .addGroup(AddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(AddCategoryText)
-                            .addComponent(AddCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(AddDescriptionText, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(AddDescriptionScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addGroup(AddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(CancelBT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(AddBT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(16, 16, 16))
-        );
-
-        layers.add(Add, "card2");
-
         Edit.setBackground(new java.awt.Color(24, 23, 23));
         Edit.setPreferredSize(new java.awt.Dimension(783, 594));
 
@@ -669,55 +447,43 @@ public class Main extends javax.swing.JFrame {
         EditTable.setForeground(new java.awt.Color(255, 255, 255));
         EditTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"dsadas"},
-                {"sadsa"},
-                {"dsad"},
-                {null},
-                {null},
-                {null},
-                {null},
-                {null},
-                {null},
-                {null},
-                {null},
-                {null},
-                {null},
-                {null},
-                {null},
-                {null},
-                {null},
-                {null},
-                {null},
-                {null},
-                {null},
-                {null},
-                {null},
-                {null},
-                {null},
-                {null},
-                {null},
-                {null}
+                {"Miside", "2", "200", "10", "400", "380", "1/3/4", "10:09:07", "1", "1"},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Products"
+                "Product", "Quantity", "Cost", "Discount", "Subtotal", "Total", "Date", "Time", "ID", "ProductID"
             }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
+        ));
         EditTable.setFocusable(false);
         EditTable.setGridColor(new java.awt.Color(24, 23, 23));
         EditTable.setRowHeight(40);
         EditTable.setSelectionBackground(new java.awt.Color(51, 51, 51));
         EditTableScroll.setViewportView(EditTable);
-        if (EditTable.getColumnModel().getColumnCount() > 0) {
-            EditTable.getColumnModel().getColumn(0).setResizable(false);
-        }
 
         javax.swing.GroupLayout EditSideBarLayout = new javax.swing.GroupLayout(EditSideBar);
         EditSideBar.setLayout(EditSideBarLayout);
@@ -743,7 +509,7 @@ public class Main extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EditSideBarLayout.createSequentialGroup()
                         .addComponent(EditSearchIcon)
                         .addGap(9, 9, 9)))
-                .addComponent(EditTableScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 478, Short.MAX_VALUE)
+                .addComponent(EditTableScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 564, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -857,6 +623,26 @@ public class Main extends javax.swing.JFrame {
         EditDescription.setFocusable(false);
         EditDescriptionScroll.setViewportView(EditDescription);
 
+        EditDiscount.setBackground(new java.awt.Color(24, 23, 23));
+        EditDiscount.setForeground(new java.awt.Color(255, 255, 255));
+        EditDiscount.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        EditDiscount.setAAA_roundBottomLeft(20);
+        EditDiscount.setAAA_roundBottomRight(20);
+        EditDiscount.setAAA_roundTopLeft(20);
+        EditDiscount.setAAA_roundTopRight(20);
+        EditDiscount.setAA_BorderColor(new java.awt.Color(51, 51, 51));
+        EditDiscount.setAA_DrawBorder(true);
+        EditDiscount.setAA_DrawBottomBorder(true);
+        EditDiscount.setAA_DrawLeftBorder(true);
+        EditDiscount.setAA_DrawLine(false);
+        EditDiscount.setAA_DrawRightBorder(true);
+        EditDiscount.setAA_DrawTopBorder(true);
+        EditDiscount.setAA_TextHint("   Enter Discount");
+        EditDiscount.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+
+        EditDiscountText.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        EditDiscountText.setText("Discount:");
+
         javax.swing.GroupLayout EditLayout = new javax.swing.GroupLayout(Edit);
         Edit.setLayout(EditLayout);
         EditLayout.setHorizontalGroup(
@@ -883,12 +669,16 @@ public class Main extends javax.swing.JFrame {
                                             .addComponent(EditCostText)))
                                     .addGroup(EditLayout.createSequentialGroup()
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(EditCategoryText)))
+                                        .addComponent(EditCategoryText))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EditLayout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(EditDiscountText)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(EditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(EditCost, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(EditName, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(EditCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(EditCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(EditDiscount, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(EditLayout.createSequentialGroup()
                                 .addGap(6, 6, 6)
                                 .addGroup(EditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -904,18 +694,22 @@ public class Main extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(EditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(EditLayout.createSequentialGroup()
-                        .addGroup(EditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(EditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(EditImage, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(EditLayout.createSequentialGroup()
-                                .addGap(24, 24, 24)
+                                .addGap(10, 10, 10)
                                 .addGroup(EditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(EditNameText)
                                     .addComponent(EditName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(19, 19, 19)
+                                .addGap(20, 20, 20)
                                 .addGroup(EditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(EditCostText)
                                     .addComponent(EditCost, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(9, 9, 9)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(EditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(EditDiscount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(EditDiscountText))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(EditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(EditCategoryText)
                                     .addComponent(EditCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -940,47 +734,38 @@ public class Main extends javax.swing.JFrame {
         HistoryTable.setForeground(new java.awt.Color(255, 255, 255));
         HistoryTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"dsadas", "dasdas", "dasd", "asdsad"},
-                {"sadsa", "sadsd", "sad", "sa"},
-                {"dsad", "sad", "sadad", null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {"Miside", "2", "200", "10", "400", "380", "1/3/4", "10:09:07", "1", "1"},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Product", "Quantity", "Cost", "Total"
+                "Product", "Quantity", "Cost", "Discount", "Subtotal", "Total", "Date", "Time", "ID", "ProductID"
             }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
+        ));
         HistoryTable.setFocusable(false);
         HistoryTable.setGridColor(new java.awt.Color(24, 23, 23));
         HistoryTable.setRowHeight(40);
@@ -988,10 +773,14 @@ public class Main extends javax.swing.JFrame {
         HistoryTableScroll.setViewportView(HistoryTable);
         if (HistoryTable.getColumnModel().getColumnCount() > 0) {
             HistoryTable.getColumnModel().getColumn(0).setResizable(false);
-            HistoryTable.getColumnModel().getColumn(1).setHeaderValue("Quantity");
-            HistoryTable.getColumnModel().getColumn(2).setHeaderValue("Cost");
+            HistoryTable.getColumnModel().getColumn(1).setResizable(false);
+            HistoryTable.getColumnModel().getColumn(2).setResizable(false);
             HistoryTable.getColumnModel().getColumn(3).setResizable(false);
-            HistoryTable.getColumnModel().getColumn(3).setHeaderValue("Total");
+            HistoryTable.getColumnModel().getColumn(4).setResizable(false);
+            HistoryTable.getColumnModel().getColumn(5).setResizable(false);
+            HistoryTable.getColumnModel().getColumn(6).setResizable(false);
+            HistoryTable.getColumnModel().getColumn(7).setResizable(false);
+            HistoryTable.getColumnModel().getColumn(8).setResizable(false);
         }
 
         HistoryBar.setBackground(new java.awt.Color(24, 23, 23));
@@ -1275,7 +1064,7 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(CartItemViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(CostIcon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(CartTotalCostTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
                 .addComponent(CartRemoveBT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(16, 16, 16))
         );
@@ -1297,16 +1086,16 @@ public class Main extends javax.swing.JFrame {
         payment.setAA_TextHint("   Enter Amount");
         payment.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
 
-        totalcost.setBackground(new java.awt.Color(38, 38, 38));
-        totalcost.setForeground(new java.awt.Color(204, 204, 204));
-        totalcost.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        totalcost.setAAA_roundBottomLeft(20);
-        totalcost.setAAA_roundBottomRight(20);
-        totalcost.setAAA_roundTopLeft(20);
-        totalcost.setAAA_roundTopRight(20);
-        totalcost.setAA_DrawLine(false);
-        totalcost.setAA_TextHint("   0");
-        totalcost.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        total.setBackground(new java.awt.Color(38, 38, 38));
+        total.setForeground(new java.awt.Color(204, 204, 204));
+        total.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        total.setAAA_roundBottomLeft(20);
+        total.setAAA_roundBottomRight(20);
+        total.setAAA_roundTopLeft(20);
+        total.setAAA_roundTopRight(20);
+        total.setAA_DrawLine(false);
+        total.setAA_TextHint("   0");
+        total.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
 
         change.setBackground(new java.awt.Color(38, 38, 38));
         change.setForeground(new java.awt.Color(204, 204, 204));
@@ -1320,12 +1109,15 @@ public class Main extends javax.swing.JFrame {
         change.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
 
         PaymentHeading.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        PaymentHeading.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         PaymentHeading.setText("Payment:");
 
         TotalCostHeading.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        TotalCostHeading.setText("Total Cost:");
+        TotalCostHeading.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        TotalCostHeading.setText("Total:");
 
         ChangeHeading.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        ChangeHeading.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         ChangeHeading.setText("Change:");
 
         CartTable.setBackground(new java.awt.Color(24, 23, 23));
@@ -1333,47 +1125,38 @@ public class Main extends javax.swing.JFrame {
         CartTable.setForeground(new java.awt.Color(255, 255, 255));
         CartTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"dsadas", "dasdas", "dasd", "asdsad"},
-                {"sadsa", "sadsd", "sad", "sa"},
-                {"dsad", "sad", "sadad", null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {"Miside", "2", "200", "10", "400", "380", "1/3/4", "10:09:07", "1", "1"},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Product", "Quantity", "Cost", "Total"
+                "Product", "Quantity", "Cost", "Discount", "Subtotal", "Total", "Date", "Time", "ID", "ProductID"
             }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
+        ));
         CartTable.setFocusable(false);
         CartTable.setGridColor(new java.awt.Color(24, 23, 23));
         CartTable.setRowHeight(40);
@@ -1384,6 +1167,11 @@ public class Main extends javax.swing.JFrame {
             CartTable.getColumnModel().getColumn(1).setResizable(false);
             CartTable.getColumnModel().getColumn(2).setResizable(false);
             CartTable.getColumnModel().getColumn(3).setResizable(false);
+            CartTable.getColumnModel().getColumn(4).setResizable(false);
+            CartTable.getColumnModel().getColumn(5).setResizable(false);
+            CartTable.getColumnModel().getColumn(6).setResizable(false);
+            CartTable.getColumnModel().getColumn(7).setResizable(false);
+            CartTable.getColumnModel().getColumn(8).setResizable(false);
         }
 
         BuyBT.setBackground(new java.awt.Color(32, 180, 52));
@@ -1417,6 +1205,35 @@ public class Main extends javax.swing.JFrame {
         CancelAllBT.setAA_RippleColor(new java.awt.Color(215, 54, 54));
         CancelAllBT.setFont(new java.awt.Font("Franklin Gothic Heavy", 0, 12)); // NOI18N
 
+        subtotal.setBackground(new java.awt.Color(38, 38, 38));
+        subtotal.setForeground(new java.awt.Color(204, 204, 204));
+        subtotal.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        subtotal.setAAA_roundBottomLeft(20);
+        subtotal.setAAA_roundBottomRight(20);
+        subtotal.setAAA_roundTopLeft(20);
+        subtotal.setAAA_roundTopRight(20);
+        subtotal.setAA_DrawLine(false);
+        subtotal.setAA_TextHint("   0");
+        subtotal.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+
+        SubtotalHeading.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        SubtotalHeading.setText("Subtotal:");
+
+        totaldiscount.setBackground(new java.awt.Color(38, 38, 38));
+        totaldiscount.setForeground(new java.awt.Color(204, 204, 204));
+        totaldiscount.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        totaldiscount.setAAA_roundBottomLeft(20);
+        totaldiscount.setAAA_roundBottomRight(20);
+        totaldiscount.setAAA_roundTopLeft(20);
+        totaldiscount.setAAA_roundTopRight(20);
+        totaldiscount.setAA_DrawLine(false);
+        totaldiscount.setAA_TextHint("   0");
+        totaldiscount.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+
+        TotalDiscountHeading.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        TotalDiscountHeading.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        TotalDiscountHeading.setText("Total Discount:");
+
         javax.swing.GroupLayout CartLayout = new javax.swing.GroupLayout(Cart);
         Cart.setLayout(CartLayout);
         CartLayout.setHorizontalGroup(
@@ -1425,28 +1242,34 @@ public class Main extends javax.swing.JFrame {
             .addGroup(CartLayout.createSequentialGroup()
                 .addGroup(CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(CartLayout.createSequentialGroup()
-                        .addGap(30, 30, 30)
+                        .addGap(36, 36, 36)
                         .addGroup(CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(CartTableScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 644, Short.MAX_VALUE)
                             .addGroup(CartLayout.createSequentialGroup()
-                                .addGroup(CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(TotalCostHeading)
-                                    .addComponent(ChangeHeading, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(PaymentHeading, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addComponent(PaymentHeading)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(totalcost, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(change, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(payment, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addGroup(CartLayout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(CartTableScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 430, Short.MAX_VALUE)))
+                                .addComponent(payment, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGap(20, 20, 20))
                     .addGroup(CartLayout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(CancelAllBT, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(BuyBT, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)))
+                        .addGap(12, 12, 12))
+                    .addGroup(CartLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(ChangeHeading, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(SubtotalHeading)
+                            .addComponent(TotalDiscountHeading)
+                            .addComponent(TotalCostHeading, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(totaldiscount, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(total, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(change, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(subtotal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)))
                 .addComponent(CartItemView, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         CartLayout.setVerticalGroup(
@@ -1456,20 +1279,28 @@ public class Main extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(CartLayout.createSequentialGroup()
-                        .addComponent(CartTableScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addComponent(CartTableScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 372, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(payment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(PaymentHeading))
+                        .addGroup(CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(payment, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(PaymentHeading, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(totalcost, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(TotalCostHeading))
+                        .addGroup(CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(totaldiscount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(TotalDiscountHeading, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(change, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(ChangeHeading))
-                        .addGap(76, 76, 76)
+                        .addGroup(CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(subtotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(SubtotalHeading, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(6, 6, 6)
+                        .addGroup(CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(total, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TotalCostHeading, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(ChangeHeading, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(change, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(26, 26, 26)
                         .addGroup(CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(CancelAllBT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(BuyBT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -1668,6 +1499,264 @@ public class Main extends javax.swing.JFrame {
 
         layers.add(Home, "card2");
 
+        Add.setBackground(new java.awt.Color(24, 23, 23));
+        Add.setPreferredSize(new java.awt.Dimension(783, 594));
+
+        AddBar.setBackground(new java.awt.Color(24, 23, 23));
+
+        AddBT2.setFont(new java.awt.Font("Arial Black", 0, 28)); // NOI18N
+        AddBT2.setForeground(new java.awt.Color(255, 255, 255));
+        AddBT2.setText("Add Product");
+        AddBT2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AddBT2MouseClicked(evt);
+            }
+        });
+
+        EditBT2.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        EditBT2.setForeground(new java.awt.Color(102, 102, 102));
+        EditBT2.setText("Edit Product");
+        EditBT2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                EditBT2MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                EditBT2MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                EditBT2MouseExited(evt);
+            }
+        });
+
+        javax.swing.GroupLayout AddBarLayout = new javax.swing.GroupLayout(AddBar);
+        AddBar.setLayout(AddBarLayout);
+        AddBarLayout.setHorizontalGroup(
+            AddBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(AddBarLayout.createSequentialGroup()
+                .addGap(41, 41, 41)
+                .addComponent(EditBT2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(AddBT2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        AddBarLayout.setVerticalGroup(
+            AddBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AddBarLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(AddBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(AddBT2, javax.swing.GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE)
+                    .addComponent(EditBT2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+
+        AddCost.setBackground(new java.awt.Color(24, 23, 23));
+        AddCost.setForeground(new java.awt.Color(255, 255, 255));
+        AddCost.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        AddCost.setAAA_roundBottomLeft(20);
+        AddCost.setAAA_roundBottomRight(20);
+        AddCost.setAAA_roundTopLeft(20);
+        AddCost.setAAA_roundTopRight(20);
+        AddCost.setAA_BorderColor(new java.awt.Color(51, 51, 51));
+        AddCost.setAA_DrawBorder(true);
+        AddCost.setAA_DrawBottomBorder(true);
+        AddCost.setAA_DrawLeftBorder(true);
+        AddCost.setAA_DrawLine(false);
+        AddCost.setAA_DrawRightBorder(true);
+        AddCost.setAA_DrawTopBorder(true);
+        AddCost.setAA_TextHint("   Enter Cost");
+        AddCost.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+
+        AddNameText.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        AddNameText.setText(" Name:");
+
+        AddBT.setBackground(new java.awt.Color(32, 180, 52));
+        AddBT.setForeground(new java.awt.Color(255, 255, 255));
+        AddBT.setText("Save");
+        AddBT.setAAA_ImageBoundArcSize(10);
+        AddBT.setAAA_roundBottomLeft(10);
+        AddBT.setAAA_roundBottomRight(10);
+        AddBT.setAAA_roundTopLeft(10);
+        AddBT.setAAA_roundTopRight(10);
+        AddBT.setAA_ArcSize(10);
+        AddBT.setAA_ButtonColor(new java.awt.Color(32, 180, 52));
+        AddBT.setAA_HoverColor(new java.awt.Color(95, 219, 112));
+        AddBT.setAA_PressColor(new java.awt.Color(93, 184, 105));
+        AddBT.setAA_RippleColor(new java.awt.Color(21, 135, 46));
+        AddBT.setFont(new java.awt.Font("Franklin Gothic Heavy", 0, 12)); // NOI18N
+
+        CancelBT.setBackground(new java.awt.Color(24, 23, 23));
+        CancelBT.setText("Cancel");
+        CancelBT.setAAA_ImageBoundArcSize(10);
+        CancelBT.setAAA_roundBottomLeft(10);
+        CancelBT.setAAA_roundBottomRight(10);
+        CancelBT.setAAA_roundTopLeft(10);
+        CancelBT.setAAA_roundTopRight(10);
+        CancelBT.setAA_ArcSize(10);
+        CancelBT.setAA_BorderColor(new java.awt.Color(51, 51, 51));
+        CancelBT.setAA_ButtonColor(new java.awt.Color(24, 23, 23));
+        CancelBT.setAA_DrawBorder(true);
+        CancelBT.setAA_HoverColor(new java.awt.Color(38, 38, 38));
+        CancelBT.setAA_PressColor(new java.awt.Color(54, 53, 53));
+        CancelBT.setAA_RippleColor(new java.awt.Color(215, 54, 54));
+        CancelBT.setFont(new java.awt.Font("Franklin Gothic Heavy", 0, 12)); // NOI18N
+
+        AddImage.setAAA_FitToSize(true);
+        AddImage.setAAA_ImageBoundArcSize(2);
+        AddImage.setAAA_roundBottomLeft(2);
+        AddImage.setAAA_roundBottomRight(2);
+        AddImage.setAAA_roundTopLeft(2);
+        AddImage.setAAA_roundTopRight(2);
+        AddImage.setAA_ArcSize(2);
+        AddImage.setAA_BorderSize(0);
+        AddImage.setAA_CompImage(new javax.swing.ImageIcon(getClass().getResource("/Images/download-modified.png"))); // NOI18N
+        AddImage.setAA_DrawImage(true);
+        AddImage.setAA_OpaqueBackground(true);
+
+        AddCostText.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        AddCostText.setText("Cost:");
+
+        AddName.setBackground(new java.awt.Color(24, 23, 23));
+        AddName.setForeground(new java.awt.Color(255, 255, 255));
+        AddName.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        AddName.setAAA_roundBottomLeft(20);
+        AddName.setAAA_roundBottomRight(20);
+        AddName.setAAA_roundTopLeft(20);
+        AddName.setAAA_roundTopRight(20);
+        AddName.setAA_BorderColor(new java.awt.Color(51, 51, 51));
+        AddName.setAA_DrawBorder(true);
+        AddName.setAA_DrawBottomBorder(true);
+        AddName.setAA_DrawLeftBorder(true);
+        AddName.setAA_DrawLine(false);
+        AddName.setAA_DrawRightBorder(true);
+        AddName.setAA_DrawTopBorder(true);
+        AddName.setAA_TextHint("   Enter Name");
+        AddName.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+
+        AddCategoryText.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        AddCategoryText.setText("Category:");
+
+        AddCategory.setForeground(new java.awt.Color(255, 255, 255));
+        AddCategory.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "All", "Action", "Adventure", "Shooter", "Strategy", "Horror", "Sports", "RPG", "Visual Novel", "Gacha", "Rythm", "Cappie Time", "Cappie Date", "Cappie Sex", "Cappie Breeding", "Cappie Impregnation", "Cappie Penetration" }));
+        AddCategory.setAA_WordLinerColor(new java.awt.Color(51, 51, 51));
+        AddCategory.setAA_lineColor(new java.awt.Color(45, 187, 63));
+        AddCategory.setFocusable(false);
+        AddCategory.setLabeText("    ");
+        AddCategory.setRequestFocusEnabled(false);
+        AddCategory.setVerifyInputWhenFocusTarget(false);
+
+        AddDescriptionText.setForeground(new java.awt.Color(255, 255, 255));
+        AddDescriptionText.setText("Description:");
+
+        AddDescriptionScroll.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
+        AddDescriptionScroll.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        AddDescriptionScroll.setToolTipText("");
+
+        AddDescription.setBackground(new java.awt.Color(24, 23, 23));
+        AddDescription.setColumns(20);
+        AddDescription.setRows(5);
+        AddDescription.setText("MiSide is an adventure game with horror elements developed by Russian indie development team AIHASTO. It was initially published as a demo on August 18, 2023, before being fully released on Steam on December 11, 2024.MiSide is an adventure game with horror elements developed by Russian indie development team AIHASTO. It was initially published as a demo on August 18, 2023, before being fully released on Steam on December 11, 2024.MiSide is an adventure game with horror elements developed by Russian indie development team AIHASTO. It was initially published as a demo on August 18, 2023, before being fully released on Steam on December 11, 2024.MiSide is an adventure game with horror elements developed by Russian indie development team AIHASTO. It was initially published as a demo on August 18, 2023, before being fully released on Steam on December 11, 2024.MiSide is an adventure game with horror elements developed by Russian indie development team AIHASTO. It was initially published as a demo on August 18, 2023, before being fully released on Steam on December 11, 2024.MiSide is an adventure game with horror elements developed by Russian indie development team AIHASTO. It was initially published as a demo on August 18, 2023, before being fully released on Steam on December 11, 2024.\n");
+        AddDescription.setBorder(null);
+        AddDescription.setFocusable(false);
+        AddDescriptionScroll.setViewportView(AddDescription);
+
+        AddDiscount.setBackground(new java.awt.Color(24, 23, 23));
+        AddDiscount.setForeground(new java.awt.Color(255, 255, 255));
+        AddDiscount.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        AddDiscount.setAAA_roundBottomLeft(20);
+        AddDiscount.setAAA_roundBottomRight(20);
+        AddDiscount.setAAA_roundTopLeft(20);
+        AddDiscount.setAAA_roundTopRight(20);
+        AddDiscount.setAA_BorderColor(new java.awt.Color(51, 51, 51));
+        AddDiscount.setAA_DrawBorder(true);
+        AddDiscount.setAA_DrawBottomBorder(true);
+        AddDiscount.setAA_DrawLeftBorder(true);
+        AddDiscount.setAA_DrawLine(false);
+        AddDiscount.setAA_DrawRightBorder(true);
+        AddDiscount.setAA_DrawTopBorder(true);
+        AddDiscount.setAA_TextHint("   Enter Discount");
+        AddDiscount.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+
+        AddDiscountText.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        AddDiscountText.setText("Discount:");
+
+        javax.swing.GroupLayout AddLayout = new javax.swing.GroupLayout(Add);
+        Add.setLayout(AddLayout);
+        AddLayout.setHorizontalGroup(
+            AddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(AddBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(AddLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(CancelBT, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(AddBT, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(309, 309, 309))
+            .addGroup(AddLayout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addGroup(AddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(AddLayout.createSequentialGroup()
+                        .addComponent(AddImage, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(AddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(AddLayout.createSequentialGroup()
+                                .addGap(19, 19, 19)
+                                .addGroup(AddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(AddNameText)
+                                    .addComponent(AddCostText)))
+                            .addGroup(AddLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(AddCategoryText))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AddLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(AddDiscountText)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(AddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(AddCost, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(AddName, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(AddCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(AddDiscount, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(AddLayout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addGroup(AddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(AddDescriptionScroll)
+                            .addComponent(AddDescriptionText))))
+                .addGap(303, 303, 303))
+        );
+        AddLayout.setVerticalGroup(
+            AddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(AddLayout.createSequentialGroup()
+                .addComponent(AddBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(AddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(AddImage, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(AddLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addGroup(AddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(AddNameText)
+                            .addComponent(AddName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(20, 20, 20)
+                        .addGroup(AddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(AddCostText)
+                            .addComponent(AddCost, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(20, 20, 20)
+                        .addGroup(AddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(AddDiscount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(AddDiscountText))
+                        .addGap(12, 12, 12)
+                        .addGroup(AddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(AddCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(AddCategoryText))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(AddDescriptionText, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(AddDescriptionScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(AddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CancelBT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(AddBT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(16, 16, 16))
+        );
+
+        layers.add(Add, "card2");
+
         getContentPane().add(layers);
 
         pack();
@@ -1801,6 +1890,8 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JTextArea AddDescription;
     private javax.swing.JScrollPane AddDescriptionScroll;
     private javax.swing.JLabel AddDescriptionText;
+    private SystemOtherComps.PH_TextField AddDiscount;
+    private javax.swing.JLabel AddDiscountText;
     private SystemShadowedComp.PH_SDWLabel AddImage;
     private SystemOtherComps.PH_TextField AddName;
     private javax.swing.JLabel AddNameText;
@@ -1841,6 +1932,8 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JTextArea EditDescription;
     private javax.swing.JScrollPane EditDescriptionScroll;
     private javax.swing.JLabel EditDescriptionText;
+    private SystemOtherComps.PH_TextField EditDiscount;
+    private javax.swing.JLabel EditDiscountText;
     private SystemShadowedComp.PH_SDWLabel EditImage;
     private SystemOtherComps.PH_TextField EditName;
     private javax.swing.JLabel EditNameText;
@@ -1877,7 +1970,9 @@ public class Main extends javax.swing.JFrame {
     private SystemOtherComps.PH_Panel OptionPN;
     private javax.swing.JLabel Option_BT;
     private javax.swing.JLabel PaymentHeading;
+    private javax.swing.JLabel SubtotalHeading;
     private javax.swing.JLabel TotalCostHeading;
+    private javax.swing.JLabel TotalDiscountHeading;
     public SystemShadowedComp.PH_ComboBox categories;
     private SystemOtherComps.PH_TextField change;
     private javax.swing.JLabel jLabel2;
@@ -1902,7 +1997,9 @@ public class Main extends javax.swing.JFrame {
     private Panel.Items newJPanel9;
     private SystemOtherComps.PH_TextField payment;
     private javax.swing.JLabel quantityIcon;
-    private SystemOtherComps.PH_TextField totalcost;
+    private SystemOtherComps.PH_TextField subtotal;
+    private SystemOtherComps.PH_TextField total;
+    private SystemOtherComps.PH_TextField totaldiscount;
     // End of variables declaration//GEN-END:variables
 
 public void startup(){

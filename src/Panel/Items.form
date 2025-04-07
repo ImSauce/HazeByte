@@ -28,40 +28,52 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+              <EmptySpace min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
+                      <Component id="discount1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="TitleTXT" min="-2" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="CostTXT" min="-2" max="-2" attributes="0"/>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="quantityTXT" min="-2" pref="50" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="incrementBT" min="-2" pref="25" max="-2" attributes="0"/>
-                                          <Component id="decrementBT" min="-2" pref="25" max="-2" attributes="0"/>
+                                          <Group type="102" attributes="0">
+                                              <Component id="CostTXT" max="32767" attributes="0"/>
+                                              <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="quantityTXT" min="-2" pref="50" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="incrementBT" min="-2" pref="25" max="-2" attributes="0"/>
+                                                  <Component id="decrementBT" min="-2" pref="25" max="-2" attributes="0"/>
+                                              </Group>
+                                          </Group>
                                       </Group>
+                                      <EmptySpace min="-2" pref="76" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <Component id="discountTXT" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
                                   </Group>
                               </Group>
-                              <EmptySpace max="32767" attributes="0"/>
                               <Component id="AddCartBT" min="-2" pref="48" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="CategoryTXT" min="-2" max="-2" attributes="0"/>
+                          <Component id="CategoryTXT" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Component id="ImageTXT" min="-2" pref="211" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
               <Component id="ImageTXT" min="-2" pref="217" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -71,7 +83,12 @@
                       <Component id="TitleTXT" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="CostTXT" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="7" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="discountTXT" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="discount1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="8" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="quantityTXT" alignment="1" pref="0" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
@@ -86,7 +103,7 @@
                       <Component id="AddCartBT" min="-2" pref="42" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="19" max="32767" attributes="0"/>
+              <EmptySpace pref="22" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -94,13 +111,13 @@
   <SubComponents>
     <Component class="SystemShadowedComp.PH_SDWLabel" name="ImageTXT">
       <Properties>
-        <Property name="AAA_FitToSize" type="boolean" value="true"/>
-        <Property name="AAA_ImageBoundArcSize" type="int" value="2"/>
-        <Property name="AAA_roundBottomLeft" type="int" value="2"/>
-        <Property name="AAA_roundBottomRight" type="int" value="2"/>
-        <Property name="AAA_roundTopLeft" type="int" value="2"/>
-        <Property name="AAA_roundTopRight" type="int" value="2"/>
-        <Property name="AA_ArcSize" type="int" value="2"/>
+        <Property name="AAA_AutoSize" type="boolean" value="true"/>
+        <Property name="AAA_ImageBoundArcSize" type="int" value="20"/>
+        <Property name="AAA_roundBottomLeft" type="int" value="20"/>
+        <Property name="AAA_roundBottomRight" type="int" value="20"/>
+        <Property name="AAA_roundTopLeft" type="int" value="20"/>
+        <Property name="AAA_roundTopRight" type="int" value="20"/>
+        <Property name="AA_ArcSize" type="int" value="20"/>
         <Property name="AA_BorderSize" type="int" value="0"/>
         <Property name="AA_CompImage" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/Images/download-modified.png"/>
@@ -225,6 +242,31 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="decrementBTActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="discountTXT">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="10" style="0"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="4b" green="c9" red="99" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="10% discount!"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="discount1">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="17" green="17" red="18" type="rgb"/>
+        </Property>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="10" style="0"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="17" green="17" red="18" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="1"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

@@ -50,6 +50,26 @@ public class Login extends javax.swing.JFrame {
         setupDarkModeButton();
         setupLightModeButton();
         
+        
+        username.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent e) {
+                if (e.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+                    password.requestFocusInWindow();
+                }
+            }
+        });
+        
+        password.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent e) {
+                if (e.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+                    LoginBT.doClick();
+                }
+            }
+        });
+        
+        
     }
  
     

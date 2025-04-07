@@ -23,6 +23,7 @@ Clip clip;
     public SplashScreen(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        hareIcon.setVisible(false);
         
         getContentPane().setBackground(new Color(24,23,23));
         //  To disable key Alt+F4 to close dialog
@@ -40,7 +41,8 @@ Clip clip;
 
         SplashPanel = new Splash.CurvesPanel();
         lbStatus = new javax.swing.JLabel();
-        loadingAnimation1 = new Splash.LoadingAnimation();
+        loadingAnimation = new Splash.LoadingAnimation();
+        hareIcon = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -54,32 +56,38 @@ Clip clip;
         lbStatus.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbStatus.setText("status");
 
-        javax.swing.GroupLayout loadingAnimation1Layout = new javax.swing.GroupLayout(loadingAnimation1);
-        loadingAnimation1.setLayout(loadingAnimation1Layout);
-        loadingAnimation1Layout.setHorizontalGroup(
-            loadingAnimation1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout loadingAnimationLayout = new javax.swing.GroupLayout(loadingAnimation);
+        loadingAnimation.setLayout(loadingAnimationLayout);
+        loadingAnimationLayout.setHorizontalGroup(
+            loadingAnimationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
-        loadingAnimation1Layout.setVerticalGroup(
-            loadingAnimation1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        loadingAnimationLayout.setVerticalGroup(
+            loadingAnimationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 50, Short.MAX_VALUE)
         );
+
+        hareIcon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        hareIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/small hare.jpg"))); // NOI18N
 
         javax.swing.GroupLayout SplashPanelLayout = new javax.swing.GroupLayout(SplashPanel);
         SplashPanel.setLayout(SplashPanelLayout);
         SplashPanelLayout.setHorizontalGroup(
             SplashPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(loadingAnimation1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 442, Short.MAX_VALUE)
+            .addComponent(loadingAnimation, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 442, Short.MAX_VALUE)
             .addComponent(lbStatus, javax.swing.GroupLayout.DEFAULT_SIZE, 442, Short.MAX_VALUE)
+            .addComponent(hareIcon, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         SplashPanelLayout.setVerticalGroup(
             SplashPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(SplashPanelLayout.createSequentialGroup()
-                .addGap(87, 87, 87)
-                .addComponent(loadingAnimation1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SplashPanelLayout.createSequentialGroup()
+                .addContainerGap(35, Short.MAX_VALUE)
+                .addComponent(hareIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(loadingAnimation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lbStatus)
-                .addContainerGap(77, Short.MAX_VALUE))
+                .addGap(77, 77, 77))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -110,15 +118,16 @@ int bar =1;
 
                     for (int i =100;num < i; num+=1 ){
                        
-                    doTask("Loading "+bar, num);
-                    bar++;
+                        doTask("Loading "+bar, num);
+                        bar++;
                         System.out.println(num);
                     }
                     
                     for (int i =120;num < i; num+=1 ){
-                       
-                    doTask("Done", num); 
-                    bar++;
+                       loadingAnimation.setVisible(false);
+                       hareIcon.setVisible(true);
+                        doTask("Done", num); 
+                        bar++;
                         System.out.println(num);
                     }
                     
@@ -185,7 +194,8 @@ int bar =1;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private Splash.CurvesPanel SplashPanel;
+    private javax.swing.JLabel hareIcon;
     private javax.swing.JLabel lbStatus;
-    private Splash.LoadingAnimation loadingAnimation1;
+    private Splash.LoadingAnimation loadingAnimation;
     // End of variables declaration//GEN-END:variables
 }
