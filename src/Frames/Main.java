@@ -111,13 +111,6 @@ public class Main extends javax.swing.JFrame {
         Info_BT = new javax.swing.JLabel();
         layers = new javax.swing.JLayeredPane();
         Hidden = new javax.swing.JPanel();
-        addimagetool = new javax.swing.JPanel();
-        AddID = new javax.swing.JLabel();
-        iddesc = new javax.swing.JLabel();
-        imagenamedesk = new javax.swing.JLabel();
-        imagepathdesc = new javax.swing.JLabel();
-        add_imageName = new javax.swing.JLabel();
-        add_imagePath = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         addimagetool1 = new javax.swing.JPanel();
         EditID = new javax.swing.JLabel();
@@ -127,6 +120,13 @@ public class Main extends javax.swing.JFrame {
         edit_imageName = new javax.swing.JLabel();
         edit_imagePath = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        addimagetool = new javax.swing.JPanel();
+        AddID = new javax.swing.JLabel();
+        iddesc = new javax.swing.JLabel();
+        imagenamedesk = new javax.swing.JLabel();
+        imagepathdesc = new javax.swing.JLabel();
+        add_imageName = new javax.swing.JLabel();
+        add_imagePath = new javax.swing.JLabel();
         History = new javax.swing.JPanel();
         HistoryTableScroll = new SystemOtherComps.PH_ScrollPane();
         HistoryTable = new javax.swing.JTable();
@@ -453,59 +453,6 @@ public class Main extends javax.swing.JFrame {
 
         layers.setLayout(new java.awt.CardLayout());
 
-        addimagetool.setBackground(new java.awt.Color(102, 102, 102));
-
-        AddID.setText(" ");
-
-        iddesc.setText("id");
-
-        imagenamedesk.setText("imgname");
-
-        imagepathdesc.setText("imgpath");
-
-        add_imageName.setText(" ");
-
-        add_imagePath.setText(" ");
-
-        javax.swing.GroupLayout addimagetoolLayout = new javax.swing.GroupLayout(addimagetool);
-        addimagetool.setLayout(addimagetoolLayout);
-        addimagetoolLayout.setHorizontalGroup(
-            addimagetoolLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(addimagetoolLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(addimagetoolLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(addimagetoolLayout.createSequentialGroup()
-                        .addComponent(iddesc)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(AddID, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(addimagetoolLayout.createSequentialGroup()
-                        .addComponent(imagenamedesk)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(add_imageName, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(addimagetoolLayout.createSequentialGroup()
-                        .addComponent(imagepathdesc)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(add_imagePath, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(168, Short.MAX_VALUE))
-        );
-        addimagetoolLayout.setVerticalGroup(
-            addimagetoolLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(addimagetoolLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(addimagetoolLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(AddID)
-                    .addComponent(iddesc))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(addimagetoolLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(imagenamedesk)
-                    .addComponent(add_imageName))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(addimagetoolLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(imagepathdesc)
-                    .addComponent(add_imagePath))
-                .addContainerGap(28, Short.MAX_VALUE))
-        );
-
         jLabel1.setText("Add Image");
 
         addimagetool1.setBackground(new java.awt.Color(102, 102, 102));
@@ -563,6 +510,59 @@ public class Main extends javax.swing.JFrame {
 
         jLabel3.setText("Edit Image");
 
+        addimagetool.setBackground(new java.awt.Color(102, 102, 102));
+
+        AddID.setText("0");
+
+        iddesc.setText("id");
+
+        imagenamedesk.setText("imgname");
+
+        imagepathdesc.setText("imgpath");
+
+        add_imageName.setText("a");
+
+        add_imagePath.setText("a");
+
+        javax.swing.GroupLayout addimagetoolLayout = new javax.swing.GroupLayout(addimagetool);
+        addimagetool.setLayout(addimagetoolLayout);
+        addimagetoolLayout.setHorizontalGroup(
+            addimagetoolLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addimagetoolLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(addimagetoolLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(addimagetoolLayout.createSequentialGroup()
+                        .addComponent(iddesc)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(AddID, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(addimagetoolLayout.createSequentialGroup()
+                        .addComponent(imagenamedesk)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(add_imageName, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(addimagetoolLayout.createSequentialGroup()
+                        .addComponent(imagepathdesc)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(add_imagePath, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(168, Short.MAX_VALUE))
+        );
+        addimagetoolLayout.setVerticalGroup(
+            addimagetoolLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addimagetoolLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(addimagetoolLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(AddID)
+                    .addComponent(iddesc))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(addimagetoolLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(imagenamedesk)
+                    .addComponent(add_imageName))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(addimagetoolLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(imagepathdesc)
+                    .addComponent(add_imagePath))
+                .addContainerGap(28, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout HiddenLayout = new javax.swing.GroupLayout(Hidden);
         Hidden.setLayout(HiddenLayout);
         HiddenLayout.setHorizontalGroup(
@@ -570,10 +570,10 @@ public class Main extends javax.swing.JFrame {
             .addGroup(HiddenLayout.createSequentialGroup()
                 .addGap(33, 33, 33)
                 .addGroup(HiddenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(addimagetool, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
                     .addComponent(addimagetool1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1)
-                    .addComponent(addimagetool, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel1))
                 .addContainerGap(596, Short.MAX_VALUE))
         );
         HiddenLayout.setVerticalGroup(
@@ -581,9 +581,9 @@ public class Main extends javax.swing.JFrame {
             .addGroup(HiddenLayout.createSequentialGroup()
                 .addGap(33, 33, 33)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(addimagetool, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(49, 49, 49)
+                .addGap(43, 43, 43)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(addimagetool1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1547,39 +1547,38 @@ public class Main extends javax.swing.JFrame {
         Add.setLayout(AddLayout);
         AddLayout.setHorizontalGroup(
             AddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(AddLayout.createSequentialGroup()
+                .addGap(229, 229, 229)
+                .addComponent(CancelBT, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(AddBT, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(AddBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(AddLayout.createSequentialGroup()
+                .addGap(42, 42, 42)
                 .addGroup(AddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(AddDescriptionScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 545, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(AddLayout.createSequentialGroup()
-                        .addGap(229, 229, 229)
-                        .addComponent(CancelBT, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(AddBT, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(AddLayout.createSequentialGroup()
-                        .addGap(42, 42, 42)
+                        .addComponent(AddImage, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(AddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(AddDescriptionScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 545, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(AddLayout.createSequentialGroup()
-                                .addComponent(AddImage, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(AddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(AddLayout.createSequentialGroup()
-                                        .addGap(13, 13, 13)
-                                        .addGroup(AddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(AddNameText)
-                                            .addComponent(AddCostText)))
-                                    .addComponent(AddCategoryText)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AddLayout.createSequentialGroup()
-                                        .addGap(2, 2, 2)
-                                        .addComponent(AddDiscountText)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(AddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(AddCost, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(AddName, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(AddCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(AddDiscount, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(AddDescriptionText))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(13, 13, 13)
+                                .addGroup(AddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(AddNameText)
+                                    .addComponent(AddCostText)))
+                            .addComponent(AddCategoryText)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AddLayout.createSequentialGroup()
+                                .addGap(2, 2, 2)
+                                .addComponent(AddDiscountText)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(AddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(AddCost, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(AddName, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(AddCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(AddDiscount, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(AddDescriptionText))
+                .addGap(32, 315, Short.MAX_VALUE))
         );
         AddLayout.setVerticalGroup(
             AddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2451,17 +2450,18 @@ public class Main extends javax.swing.JFrame {
                sv.setPass("");
 
 
-               String query = "INSERT INTO product(`name`, `cost`, `discount`, `category`, `description`, `imageName`, `imagePath`, `imageFile`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+               String query = "INSERT INTO product(`id`,`name`, `cost`, `discount`, `category`, `description`, `imageName`, `imagePath`, `imageFile`) VALUES (?,?, ?, ?, ?, ?, ?, ?, ?)";
                con = DriverManager.getConnection("jdbc:mysql://"+sv.getServerIP() +"/hazebyte", sv.getUserID(), sv.getPass());
-               pst = con.prepareStatement(query);            
-               pst.setString(1, AddName.getText());      
-               pst.setDouble(2, Double.parseDouble(AddCost.getText()));  
-               pst.setDouble(3, Double.parseDouble(AddDiscount.getText()));  
-               pst.setString(4, AddCategory.getSelectedItem().toString()); 
-               pst.setString(5, AddDescription.getText());  
-               pst.setString(6, "");  
-               pst.setString(7, ""); 
-               pst.setString(8, "");  
+               pst = con.prepareStatement(query); 
+               pst.setString(1, AddID.getText()); 
+               pst.setString(2, AddName.getText());      
+               pst.setDouble(3, Double.parseDouble(AddCost.getText()));  
+               pst.setDouble(4, Double.parseDouble(AddDiscount.getText()));  
+               pst.setString(5, AddCategory.getSelectedItem().toString()); 
+               pst.setString(6, AddDescription.getText());  
+               pst.setString(7, "");  
+               pst.setString(8, ""); 
+               pst.setString(9, "");  
                pst.executeUpdate();
 
 
@@ -2478,15 +2478,14 @@ public class Main extends javax.swing.JFrame {
                 
                 
             
-//            add_imagePath.setText(""); // Clear the text
-//            add_imageName.setText("");
-//            AddImage.setIcon(new ImageIcon("insertimage.jpg"));
-//            
+            add_imagePath.setText(""); // Clear the text
+            add_imageName.setText("");
+            AddImage.setIcon(new ImageIcon("insertimage.jpg"));           
            autoIncrement();
             
 
          } catch (Exception ex) {
-                   JOptionPane.showMessageDialog(null, ex + " save bt");
+                   JOptionPane.showMessageDialog(null, ex + " save bt nigga");
                }
     }
  
@@ -2516,22 +2515,26 @@ public class Main extends javax.swing.JFrame {
     
     
     public void autoIncrement() {
-        String query = "SELECT MAX(id) AS id FROM product";
+    String query = "SELECT MAX(id) AS id FROM product";
+    
+    try (PreparedStatement stmt = con.prepareStatement(query);
+         ResultSet rs = stmt.executeQuery()) {
         
-        try (PreparedStatement stmt = con.prepareStatement(query);
-             ResultSet rs = stmt.executeQuery()) {
-            
-            if (rs.next()) {
-                int highestID = rs.getInt("id");
-                int increment = highestID+1;
-               AddID.setText(Integer.toString(increment));
-                  
+        int increment = 1; // default if no rows
+        
+        if (rs.next()) {
+            int highestID = rs.getInt("id");
+            if (!rs.wasNull()) {
+                increment = highestID + 1;
             }
-            
-        } catch (SQLException ex) {
-            ex.printStackTrace(); // Handle or log the exception appropriately
         }
+
+        AddID.setText(Integer.toString(increment));
+        
+    } catch (SQLException ex) {
+        ex.printStackTrace(); // Handle or log the exception appropriately
     }
+}
     
     
     
