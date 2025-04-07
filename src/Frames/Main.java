@@ -9,6 +9,8 @@ import Classes.Run;
 import Classes.serverCredentials;
 import java.awt.Dimension;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.FileInputStream;
@@ -18,14 +20,19 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
+import javax.swing.Timer;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
 
@@ -84,6 +91,8 @@ public class Main extends javax.swing.JFrame {
         connect();
         startup();
         
+        Hidden.setVisible(false);
+        
         
     }
     @SuppressWarnings("unchecked")
@@ -101,29 +110,23 @@ public class Main extends javax.swing.JFrame {
         InfoPN = new SystemOtherComps.PH_Panel();
         Info_BT = new javax.swing.JLabel();
         layers = new javax.swing.JLayeredPane();
-        Edit = new javax.swing.JPanel();
-        EditBar = new javax.swing.JPanel();
-        AddBT1 = new javax.swing.JLabel();
-        EditBT1 = new javax.swing.JLabel();
-        EditSideBar = new javax.swing.JPanel();
-        EditSearch = new SystemOtherComps.PH_TextField();
-        EditSearchIcon = new javax.swing.JLabel();
-        EditTableScroll = new SystemOtherComps.PH_ScrollPane();
-        EditTable = new javax.swing.JTable();
-        EditCost = new SystemOtherComps.PH_TextField();
-        EditNameText = new javax.swing.JLabel();
-        EditSaveBT = new SystemOtherComps.PH_Button();
-        EditDeleteBT = new SystemOtherComps.PH_Button();
-        EditImage = new SystemShadowedComp.PH_SDWLabel();
-        EditCostText = new javax.swing.JLabel();
-        EditName = new SystemOtherComps.PH_TextField();
-        EditCategoryText = new javax.swing.JLabel();
-        EditCategory = new SystemShadowedComp.PH_ComboBox();
-        EditDescriptionText = new javax.swing.JLabel();
-        EditDescriptionScroll = new javax.swing.JScrollPane();
-        EditDescription = new javax.swing.JTextArea();
-        EditDiscount = new SystemOtherComps.PH_TextField();
-        EditDiscountText = new javax.swing.JLabel();
+        Hidden = new javax.swing.JPanel();
+        addimagetool = new javax.swing.JPanel();
+        AddID = new javax.swing.JLabel();
+        iddesc = new javax.swing.JLabel();
+        imagenamedesk = new javax.swing.JLabel();
+        imagepathdesc = new javax.swing.JLabel();
+        add_imageName = new javax.swing.JLabel();
+        add_imagePath = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        addimagetool1 = new javax.swing.JPanel();
+        EditID = new javax.swing.JLabel();
+        iddesc1 = new javax.swing.JLabel();
+        imagenamedesk1 = new javax.swing.JLabel();
+        imagepathdesc1 = new javax.swing.JLabel();
+        edit_imageName = new javax.swing.JLabel();
+        edit_imagePath = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         History = new javax.swing.JPanel();
         HistoryTableScroll = new SystemOtherComps.PH_ScrollPane();
         HistoryTable = new javax.swing.JTable();
@@ -211,14 +214,34 @@ public class Main extends javax.swing.JFrame {
         AddDescription = new javax.swing.JTextArea();
         AddDiscount = new SystemOtherComps.PH_TextField();
         AddDiscountText = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
-        AddID = new javax.swing.JLabel();
-        AddID1 = new javax.swing.JLabel();
-        AddID2 = new javax.swing.JLabel();
-        AddID3 = new javax.swing.JLabel();
-        add_imageName = new javax.swing.JLabel();
-        add_imagePath = new javax.swing.JLabel();
         AddImage = new javax.swing.JLabel();
+        Edit = new javax.swing.JPanel();
+        EditBar = new javax.swing.JPanel();
+        AddBT1 = new javax.swing.JLabel();
+        EditBT1 = new javax.swing.JLabel();
+        EditSideBar = new javax.swing.JPanel();
+        EditSearch = new SystemOtherComps.PH_TextField();
+        EditSearchIcon = new javax.swing.JLabel();
+        EditTableScroll = new SystemOtherComps.PH_ScrollPane();
+        EditTable = new javax.swing.JTable();
+        EditCategorySort = new SystemShadowedComp.PH_ComboBox();
+        EditSearchIcon1 = new javax.swing.JLabel();
+        EditSaveBT = new SystemOtherComps.PH_Button();
+        EditDeleteBT = new SystemOtherComps.PH_Button();
+        EditDescriptionText = new javax.swing.JLabel();
+        EditDescriptionScroll = new javax.swing.JScrollPane();
+        EditDescription = new javax.swing.JTextArea();
+        EditImage = new javax.swing.JLabel();
+        EditCost = new SystemOtherComps.PH_TextField();
+        EditName = new SystemOtherComps.PH_TextField();
+        EditNameText = new javax.swing.JLabel();
+        EditCostText = new javax.swing.JLabel();
+        EditDiscount = new SystemOtherComps.PH_TextField();
+        EditDiscountText = new javax.swing.JLabel();
+        EditCategoryText = new javax.swing.JLabel();
+        EditCategory = new SystemShadowedComp.PH_ComboBox();
+        saveloading = new Splash.LoadingAnimation();
+        saving = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(800, 720));
@@ -430,355 +453,144 @@ public class Main extends javax.swing.JFrame {
 
         layers.setLayout(new java.awt.CardLayout());
 
-        Edit.setBackground(new java.awt.Color(24, 23, 23));
-        Edit.setPreferredSize(new java.awt.Dimension(783, 594));
+        addimagetool.setBackground(new java.awt.Color(102, 102, 102));
 
-        EditBar.setBackground(new java.awt.Color(24, 23, 23));
+        AddID.setText(" ");
 
-        AddBT1.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        AddBT1.setForeground(new java.awt.Color(102, 102, 102));
-        AddBT1.setText("Add Product");
-        AddBT1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                AddBT1MouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                AddBT1MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                AddBT1MouseExited(evt);
-            }
-        });
+        iddesc.setText("id");
 
-        EditBT1.setFont(new java.awt.Font("Arial Black", 0, 28)); // NOI18N
-        EditBT1.setForeground(new java.awt.Color(255, 255, 255));
-        EditBT1.setText("Edit Product");
-        EditBT1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                EditBT1MouseClicked(evt);
-            }
-        });
+        imagenamedesk.setText("imgname");
 
-        javax.swing.GroupLayout EditBarLayout = new javax.swing.GroupLayout(EditBar);
-        EditBar.setLayout(EditBarLayout);
-        EditBarLayout.setHorizontalGroup(
-            EditBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(EditBarLayout.createSequentialGroup()
-                .addGap(241, 241, 241)
-                .addComponent(AddBT1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(EditBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(EditBarLayout.createSequentialGroup()
-                    .addGap(45, 45, 45)
-                    .addComponent(EditBT1)
-                    .addContainerGap(664, Short.MAX_VALUE)))
-        );
-        EditBarLayout.setVerticalGroup(
-            EditBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EditBarLayout.createSequentialGroup()
-                .addContainerGap(17, Short.MAX_VALUE)
-                .addComponent(AddBT1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-            .addGroup(EditBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(EditBarLayout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(EditBT1, javax.swing.GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE)
-                    .addContainerGap()))
-        );
+        imagepathdesc.setText("imgpath");
 
-        EditSideBar.setBackground(new java.awt.Color(24, 23, 23));
+        add_imageName.setText(" ");
 
-        EditSearch.setForeground(new java.awt.Color(255, 255, 255));
-        EditSearch.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        EditSearch.setAA_TextHint("Search...");
-        EditSearch.setAB_LineColor(new java.awt.Color(51, 51, 51));
+        add_imagePath.setText(" ");
 
-        EditSearchIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/search.png"))); // NOI18N
-
-        EditTable.setBackground(new java.awt.Color(24, 23, 23));
-        EditTable.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        EditTable.setForeground(new java.awt.Color(255, 255, 255));
-        EditTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {"Miside", "2", "200", "10", "400", "380", "1/3/4", "10:09:07", "1", "1"},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "Product", "Quantity", "Cost", "Discount", "Subtotal", "Total", "Date", "Time", "ID", "ProductID"
-            }
-        ));
-        EditTable.setFocusable(false);
-        EditTable.setGridColor(new java.awt.Color(24, 23, 23));
-        EditTable.setRowHeight(40);
-        EditTable.setSelectionBackground(new java.awt.Color(51, 51, 51));
-        EditTableScroll.setViewportView(EditTable);
-
-        javax.swing.GroupLayout EditSideBarLayout = new javax.swing.GroupLayout(EditSideBar);
-        EditSideBar.setLayout(EditSideBarLayout);
-        EditSideBarLayout.setHorizontalGroup(
-            EditSideBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(EditSideBarLayout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addGroup(EditSideBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(EditTableScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addGroup(EditSideBarLayout.createSequentialGroup()
-                        .addComponent(EditSearchIcon)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(EditSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 9, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        EditSideBarLayout.setVerticalGroup(
-            EditSideBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(EditSideBarLayout.createSequentialGroup()
+        javax.swing.GroupLayout addimagetoolLayout = new javax.swing.GroupLayout(addimagetool);
+        addimagetool.setLayout(addimagetoolLayout);
+        addimagetoolLayout.setHorizontalGroup(
+            addimagetoolLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addimagetoolLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(EditSideBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(EditSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EditSideBarLayout.createSequentialGroup()
-                        .addComponent(EditSearchIcon)
-                        .addGap(9, 9, 9)))
-                .addComponent(EditTableScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 478, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        EditCost.setBackground(new java.awt.Color(24, 23, 23));
-        EditCost.setForeground(new java.awt.Color(255, 255, 255));
-        EditCost.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        EditCost.setAAA_roundBottomLeft(20);
-        EditCost.setAAA_roundBottomRight(20);
-        EditCost.setAAA_roundTopLeft(20);
-        EditCost.setAAA_roundTopRight(20);
-        EditCost.setAA_BorderColor(new java.awt.Color(51, 51, 51));
-        EditCost.setAA_DrawBorder(true);
-        EditCost.setAA_DrawBottomBorder(true);
-        EditCost.setAA_DrawLeftBorder(true);
-        EditCost.setAA_DrawLine(false);
-        EditCost.setAA_DrawRightBorder(true);
-        EditCost.setAA_DrawTopBorder(true);
-        EditCost.setAA_TextHint("   Enter Cost");
-        EditCost.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-
-        EditNameText.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        EditNameText.setText(" Name:");
-
-        EditSaveBT.setBackground(new java.awt.Color(32, 180, 52));
-        EditSaveBT.setForeground(new java.awt.Color(255, 255, 255));
-        EditSaveBT.setText("Save");
-        EditSaveBT.setAAA_ImageBoundArcSize(10);
-        EditSaveBT.setAAA_roundBottomLeft(10);
-        EditSaveBT.setAAA_roundBottomRight(10);
-        EditSaveBT.setAAA_roundTopLeft(10);
-        EditSaveBT.setAAA_roundTopRight(10);
-        EditSaveBT.setAA_ArcSize(10);
-        EditSaveBT.setAA_ButtonColor(new java.awt.Color(32, 180, 52));
-        EditSaveBT.setAA_HoverColor(new java.awt.Color(95, 219, 112));
-        EditSaveBT.setAA_PressColor(new java.awt.Color(93, 184, 105));
-        EditSaveBT.setAA_RippleColor(new java.awt.Color(21, 135, 46));
-        EditSaveBT.setFont(new java.awt.Font("Franklin Gothic Heavy", 0, 12)); // NOI18N
-
-        EditDeleteBT.setBackground(new java.awt.Color(24, 23, 23));
-        EditDeleteBT.setText("Delete");
-        EditDeleteBT.setAAA_ImageBoundArcSize(10);
-        EditDeleteBT.setAAA_roundBottomLeft(10);
-        EditDeleteBT.setAAA_roundBottomRight(10);
-        EditDeleteBT.setAAA_roundTopLeft(10);
-        EditDeleteBT.setAAA_roundTopRight(10);
-        EditDeleteBT.setAA_ArcSize(10);
-        EditDeleteBT.setAA_BorderColor(new java.awt.Color(51, 51, 51));
-        EditDeleteBT.setAA_ButtonColor(new java.awt.Color(24, 23, 23));
-        EditDeleteBT.setAA_DrawBorder(true);
-        EditDeleteBT.setAA_HoverColor(new java.awt.Color(38, 38, 38));
-        EditDeleteBT.setAA_PressColor(new java.awt.Color(54, 53, 53));
-        EditDeleteBT.setAA_RippleColor(new java.awt.Color(215, 54, 54));
-        EditDeleteBT.setFont(new java.awt.Font("Franklin Gothic Heavy", 0, 12)); // NOI18N
-
-        EditImage.setAAA_FitToSize(true);
-        EditImage.setAAA_ImageBoundArcSize(2);
-        EditImage.setAAA_roundBottomLeft(2);
-        EditImage.setAAA_roundBottomRight(2);
-        EditImage.setAAA_roundTopLeft(2);
-        EditImage.setAAA_roundTopRight(2);
-        EditImage.setAA_ArcSize(2);
-        EditImage.setAA_BorderSize(0);
-        EditImage.setAA_CompImage(new javax.swing.ImageIcon(getClass().getResource("/Images/download-modified.png"))); // NOI18N
-        EditImage.setAA_DrawImage(true);
-        EditImage.setAA_OpaqueBackground(true);
-
-        EditCostText.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        EditCostText.setText("Cost:");
-
-        EditName.setBackground(new java.awt.Color(24, 23, 23));
-        EditName.setForeground(new java.awt.Color(255, 255, 255));
-        EditName.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        EditName.setAAA_roundBottomLeft(20);
-        EditName.setAAA_roundBottomRight(20);
-        EditName.setAAA_roundTopLeft(20);
-        EditName.setAAA_roundTopRight(20);
-        EditName.setAA_BorderColor(new java.awt.Color(51, 51, 51));
-        EditName.setAA_DrawBorder(true);
-        EditName.setAA_DrawBottomBorder(true);
-        EditName.setAA_DrawLeftBorder(true);
-        EditName.setAA_DrawLine(false);
-        EditName.setAA_DrawRightBorder(true);
-        EditName.setAA_DrawTopBorder(true);
-        EditName.setAA_TextHint("   Enter Name");
-        EditName.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-
-        EditCategoryText.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        EditCategoryText.setText("Category:");
-
-        EditCategory.setForeground(new java.awt.Color(255, 255, 255));
-        EditCategory.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "All", "Action", "Adventure", "Shooter", "Strategy", "Horror", "Sports", "RPG", "Visual Novel", "Gacha", "Rythm", "Cappie Time", "Cappie Date", "Cappie Sex", "Cappie Breeding", "Cappie Impregnation", "Cappie Penetration" }));
-        EditCategory.setAA_WordLinerColor(new java.awt.Color(51, 51, 51));
-        EditCategory.setAA_lineColor(new java.awt.Color(45, 187, 63));
-        EditCategory.setFocusable(false);
-        EditCategory.setLabeText("    ");
-        EditCategory.setRequestFocusEnabled(false);
-        EditCategory.setVerifyInputWhenFocusTarget(false);
-
-        EditDescriptionText.setForeground(new java.awt.Color(255, 255, 255));
-        EditDescriptionText.setText("Description:");
-
-        EditDescriptionScroll.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
-        EditDescriptionScroll.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        EditDescriptionScroll.setToolTipText("");
-
-        EditDescription.setBackground(new java.awt.Color(24, 23, 23));
-        EditDescription.setColumns(20);
-        EditDescription.setRows(5);
-        EditDescription.setText("MiSide is an adventure game with horror elements developed by Russian indie development team AIHASTO. It was initially published as a demo on August 18, 2023, before being fully released on Steam on December 11, 2024.MiSide is an adventure game with horror elements developed by Russian indie development team AIHASTO. It was initially published as a demo on August 18, 2023, before being fully released on Steam on December 11, 2024.MiSide is an adventure game with horror elements developed by Russian indie development team AIHASTO. It was initially published as a demo on August 18, 2023, before being fully released on Steam on December 11, 2024.MiSide is an adventure game with horror elements developed by Russian indie development team AIHASTO. It was initially published as a demo on August 18, 2023, before being fully released on Steam on December 11, 2024.MiSide is an adventure game with horror elements developed by Russian indie development team AIHASTO. It was initially published as a demo on August 18, 2023, before being fully released on Steam on December 11, 2024.MiSide is an adventure game with horror elements developed by Russian indie development team AIHASTO. It was initially published as a demo on August 18, 2023, before being fully released on Steam on December 11, 2024.\n");
-        EditDescription.setBorder(null);
-        EditDescription.setFocusable(false);
-        EditDescriptionScroll.setViewportView(EditDescription);
-
-        EditDiscount.setBackground(new java.awt.Color(24, 23, 23));
-        EditDiscount.setForeground(new java.awt.Color(255, 255, 255));
-        EditDiscount.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        EditDiscount.setAAA_roundBottomLeft(20);
-        EditDiscount.setAAA_roundBottomRight(20);
-        EditDiscount.setAAA_roundTopLeft(20);
-        EditDiscount.setAAA_roundTopRight(20);
-        EditDiscount.setAA_BorderColor(new java.awt.Color(51, 51, 51));
-        EditDiscount.setAA_DrawBorder(true);
-        EditDiscount.setAA_DrawBottomBorder(true);
-        EditDiscount.setAA_DrawLeftBorder(true);
-        EditDiscount.setAA_DrawLine(false);
-        EditDiscount.setAA_DrawRightBorder(true);
-        EditDiscount.setAA_DrawTopBorder(true);
-        EditDiscount.setAA_TextHint("   Enter Discount");
-        EditDiscount.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-
-        EditDiscountText.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        EditDiscountText.setText("Discount:");
-
-        javax.swing.GroupLayout EditLayout = new javax.swing.GroupLayout(Edit);
-        Edit.setLayout(EditLayout);
-        EditLayout.setHorizontalGroup(
-            EditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(EditBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(EditLayout.createSequentialGroup()
-                .addGroup(EditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(EditLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(EditDeleteBT, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(EditSaveBT, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(59, 59, 59))
-                    .addGroup(EditLayout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addGroup(EditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(EditLayout.createSequentialGroup()
-                                .addComponent(EditImage, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(EditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(EditLayout.createSequentialGroup()
-                                        .addGap(19, 19, 19)
-                                        .addGroup(EditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(EditNameText)
-                                            .addComponent(EditCostText)))
-                                    .addGroup(EditLayout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(EditCategoryText))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EditLayout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(EditDiscountText)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(EditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(EditCost, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(EditName, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(EditCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(EditDiscount, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(EditLayout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addGroup(EditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(EditDescriptionScroll)
-                                    .addComponent(EditDescriptionText))))
-                        .addGap(53, 53, 53)))
-                .addComponent(EditSideBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        EditLayout.setVerticalGroup(
-            EditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(EditLayout.createSequentialGroup()
-                .addComponent(EditBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(EditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(EditLayout.createSequentialGroup()
-                        .addGroup(EditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(EditImage, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(EditLayout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addGroup(EditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(EditNameText)
-                                    .addComponent(EditName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(20, 20, 20)
-                                .addGroup(EditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(EditCostText)
-                                    .addComponent(EditCost, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(EditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(EditDiscount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(EditDiscountText))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(EditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(EditCategoryText)
-                                    .addComponent(EditCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(EditDescriptionText, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(addimagetoolLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(addimagetoolLayout.createSequentialGroup()
+                        .addComponent(iddesc)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(EditDescriptionScroll)
-                        .addGap(18, 18, 18)
-                        .addGroup(EditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(EditDeleteBT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(EditSaveBT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(16, 16, 16))
-                    .addComponent(EditSideBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(AddID, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(addimagetoolLayout.createSequentialGroup()
+                        .addComponent(imagenamedesk)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(add_imageName, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(addimagetoolLayout.createSequentialGroup()
+                        .addComponent(imagepathdesc)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(add_imagePath, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(168, Short.MAX_VALUE))
+        );
+        addimagetoolLayout.setVerticalGroup(
+            addimagetoolLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addimagetoolLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(addimagetoolLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(AddID)
+                    .addComponent(iddesc))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(addimagetoolLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(imagenamedesk)
+                    .addComponent(add_imageName))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(addimagetoolLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(imagepathdesc)
+                    .addComponent(add_imagePath))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
-        layers.add(Edit, "card2");
+        jLabel1.setText("Add Image");
+
+        addimagetool1.setBackground(new java.awt.Color(102, 102, 102));
+
+        EditID.setText(" ");
+
+        iddesc1.setText("id");
+
+        imagenamedesk1.setText("imgname");
+
+        imagepathdesc1.setText("imgpath");
+
+        edit_imageName.setText(" ");
+
+        edit_imagePath.setText(" ");
+
+        javax.swing.GroupLayout addimagetool1Layout = new javax.swing.GroupLayout(addimagetool1);
+        addimagetool1.setLayout(addimagetool1Layout);
+        addimagetool1Layout.setHorizontalGroup(
+            addimagetool1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addimagetool1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(addimagetool1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(addimagetool1Layout.createSequentialGroup()
+                        .addComponent(iddesc1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(EditID, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(addimagetool1Layout.createSequentialGroup()
+                        .addComponent(imagenamedesk1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(edit_imageName, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(addimagetool1Layout.createSequentialGroup()
+                        .addComponent(imagepathdesc1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(edit_imagePath, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(156, Short.MAX_VALUE))
+        );
+        addimagetool1Layout.setVerticalGroup(
+            addimagetool1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addimagetool1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(addimagetool1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(EditID)
+                    .addComponent(iddesc1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(addimagetool1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(imagenamedesk1)
+                    .addComponent(edit_imageName))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(addimagetool1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(imagepathdesc1)
+                    .addComponent(edit_imagePath))
+                .addContainerGap(16, Short.MAX_VALUE))
+        );
+
+        jLabel3.setText("Edit Image");
+
+        javax.swing.GroupLayout HiddenLayout = new javax.swing.GroupLayout(Hidden);
+        Hidden.setLayout(HiddenLayout);
+        HiddenLayout.setHorizontalGroup(
+            HiddenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(HiddenLayout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addGroup(HiddenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addComponent(addimagetool1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1)
+                    .addComponent(addimagetool, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(596, Short.MAX_VALUE))
+        );
+        HiddenLayout.setVerticalGroup(
+            HiddenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(HiddenLayout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(addimagetool, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(49, 49, 49)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(addimagetool1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(404, Short.MAX_VALUE))
+        );
+
+        layers.add(Hidden, "card8");
 
         History.setBackground(new java.awt.Color(24, 23, 23));
 
@@ -1724,57 +1536,6 @@ public class Main extends javax.swing.JFrame {
         AddDiscountText.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         AddDiscountText.setText("Discount:");
 
-        AddID.setText(" ");
-
-        AddID1.setText("id");
-
-        AddID2.setText("imgname");
-
-        AddID3.setText("imgpath");
-
-        add_imageName.setText(" ");
-
-        add_imagePath.setText(" ");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(AddID1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(AddID, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(AddID2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(add_imageName, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(AddID3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(add_imagePath, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(42, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(AddID)
-                    .addComponent(AddID1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(AddID2)
-                    .addComponent(add_imageName))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(AddID3)
-                    .addComponent(add_imagePath))
-                .addContainerGap(156, Short.MAX_VALUE))
-        );
-
         AddImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/insertimage.jpg"))); // NOI18N
         AddImage.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -1788,17 +1549,16 @@ public class Main extends javax.swing.JFrame {
             AddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(AddBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(AddLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(CancelBT, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(AddBT, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(309, 309, 309))
-            .addGroup(AddLayout.createSequentialGroup()
-                .addGap(42, 42, 42)
                 .addGroup(AddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(AddDescriptionScroll)
                     .addGroup(AddLayout.createSequentialGroup()
+                        .addGap(229, 229, 229)
+                        .addComponent(CancelBT, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(AddBT, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(AddLayout.createSequentialGroup()
+                        .addGap(42, 42, 42)
                         .addGroup(AddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(AddDescriptionScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 545, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(AddLayout.createSequentialGroup()
                                 .addComponent(AddImage, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -1818,53 +1578,448 @@ public class Main extends javax.swing.JFrame {
                                     .addComponent(AddName, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(AddCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(AddDiscount, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(AddDescriptionText))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addGap(53, 53, 53)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(99, 99, 99))
+                            .addComponent(AddDescriptionText))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         AddLayout.setVerticalGroup(
             AddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(AddLayout.createSequentialGroup()
                 .addComponent(AddBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(AddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(AddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(AddImage, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(AddLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(AddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(AddImage, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(AddLayout.createSequentialGroup()
-                                .addGroup(AddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(AddNameText)
-                                    .addComponent(AddName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(20, 20, 20)
-                                .addGroup(AddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(AddCostText)
-                                    .addComponent(AddCost, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(20, 20, 20)
-                                .addGroup(AddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(AddDiscount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(AddDiscountText))
-                                .addGap(12, 12, 12)
-                                .addGroup(AddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(AddCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(AddCategoryText))))
-                        .addGap(12, 12, 12)
-                        .addComponent(AddDescriptionText, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(AddDescriptionScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
                         .addGroup(AddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(CancelBT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(AddBT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(16, 16, 16))
-                    .addGroup(AddLayout.createSequentialGroup()
-                        .addGap(126, 126, 126)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(AddNameText)
+                            .addComponent(AddName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(20, 20, 20)
+                        .addGroup(AddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(AddCostText)
+                            .addComponent(AddCost, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(20, 20, 20)
+                        .addGroup(AddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(AddDiscount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(AddDiscountText))
+                        .addGap(12, 12, 12)
+                        .addGroup(AddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(AddCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(AddCategoryText))))
+                .addGap(12, 12, 12)
+                .addComponent(AddDescriptionText, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(AddDescriptionScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(AddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CancelBT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(AddBT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         layers.add(Add, "card2");
+
+        Edit.setBackground(new java.awt.Color(24, 23, 23));
+        Edit.setPreferredSize(new java.awt.Dimension(783, 594));
+
+        EditBar.setBackground(new java.awt.Color(24, 23, 23));
+
+        AddBT1.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        AddBT1.setForeground(new java.awt.Color(102, 102, 102));
+        AddBT1.setText("Add Product");
+        AddBT1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AddBT1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                AddBT1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                AddBT1MouseExited(evt);
+            }
+        });
+
+        EditBT1.setFont(new java.awt.Font("Arial Black", 0, 28)); // NOI18N
+        EditBT1.setForeground(new java.awt.Color(255, 255, 255));
+        EditBT1.setText("Edit Product");
+        EditBT1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                EditBT1MouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout EditBarLayout = new javax.swing.GroupLayout(EditBar);
+        EditBar.setLayout(EditBarLayout);
+        EditBarLayout.setHorizontalGroup(
+            EditBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(EditBarLayout.createSequentialGroup()
+                .addGap(241, 241, 241)
+                .addComponent(AddBT1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(EditBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(EditBarLayout.createSequentialGroup()
+                    .addGap(45, 45, 45)
+                    .addComponent(EditBT1)
+                    .addContainerGap(664, Short.MAX_VALUE)))
+        );
+        EditBarLayout.setVerticalGroup(
+            EditBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EditBarLayout.createSequentialGroup()
+                .addContainerGap(17, Short.MAX_VALUE)
+                .addComponent(AddBT1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addGroup(EditBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(EditBarLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(EditBT1, javax.swing.GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE)
+                    .addContainerGap()))
+        );
+
+        EditSideBar.setBackground(new java.awt.Color(24, 23, 23));
+
+        EditSearch.setForeground(new java.awt.Color(255, 255, 255));
+        EditSearch.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        EditSearch.setAA_TextHint("Search...");
+        EditSearch.setAB_LineColor(new java.awt.Color(51, 51, 51));
+        EditSearch.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                EditSearchCaretUpdate(evt);
+            }
+        });
+        EditSearch.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                EditSearchMouseClicked(evt);
+            }
+        });
+
+        EditSearchIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/search.png"))); // NOI18N
+
+        EditTable.setBackground(new java.awt.Color(24, 23, 23));
+        EditTable.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        EditTable.setForeground(new java.awt.Color(255, 255, 255));
+        EditTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "id", "Products", "Cost", "Discount"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        EditTable.setFocusable(false);
+        EditTable.setGridColor(new java.awt.Color(24, 23, 23));
+        EditTable.setRowHeight(40);
+        EditTable.setSelectionBackground(new java.awt.Color(51, 51, 51));
+        EditTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                EditTableMouseClicked(evt);
+            }
+        });
+        EditTableScroll.setViewportView(EditTable);
+        if (EditTable.getColumnModel().getColumnCount() > 0) {
+            EditTable.getColumnModel().getColumn(0).setMinWidth(0);
+            EditTable.getColumnModel().getColumn(0).setPreferredWidth(0);
+            EditTable.getColumnModel().getColumn(0).setMaxWidth(0);
+            EditTable.getColumnModel().getColumn(1).setResizable(false);
+            EditTable.getColumnModel().getColumn(1).setPreferredWidth(200);
+            EditTable.getColumnModel().getColumn(2).setMinWidth(0);
+            EditTable.getColumnModel().getColumn(2).setPreferredWidth(0);
+            EditTable.getColumnModel().getColumn(2).setMaxWidth(0);
+            EditTable.getColumnModel().getColumn(3).setMinWidth(0);
+            EditTable.getColumnModel().getColumn(3).setPreferredWidth(0);
+            EditTable.getColumnModel().getColumn(3).setMaxWidth(0);
+        }
+
+        EditCategorySort.setForeground(new java.awt.Color(255, 255, 255));
+        EditCategorySort.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "All", "Action", "Adventure", "Shooter", "Strategy", "Horror", "Sports", "RPG", "Visual Novel", "Gacha", "Rythm", "Cappie Time", "Cappie Date", "Cappie Sex", "Cappie Breeding", "Cappie Impregnation", "Cappie Penetration" }));
+        EditCategorySort.setAA_WordLinerColor(new java.awt.Color(51, 51, 51));
+        EditCategorySort.setAA_lineColor(new java.awt.Color(45, 187, 63));
+        EditCategorySort.setFocusable(false);
+        EditCategorySort.setLabeText("    ");
+        EditCategorySort.setRequestFocusEnabled(false);
+        EditCategorySort.setVerifyInputWhenFocusTarget(false);
+        EditCategorySort.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EditCategorySortActionPerformed(evt);
+            }
+        });
+
+        EditSearchIcon1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/category.png"))); // NOI18N
+
+        javax.swing.GroupLayout EditSideBarLayout = new javax.swing.GroupLayout(EditSideBar);
+        EditSideBar.setLayout(EditSideBarLayout);
+        EditSideBarLayout.setHorizontalGroup(
+            EditSideBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(EditSideBarLayout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addGroup(EditSideBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(EditTableScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addGroup(EditSideBarLayout.createSequentialGroup()
+                        .addGroup(EditSideBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(EditSearchIcon)
+                            .addComponent(EditSearchIcon1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(EditSideBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(EditCategorySort, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(EditSearch, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE))
+                        .addGap(0, 9, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        EditSideBarLayout.setVerticalGroup(
+            EditSideBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(EditSideBarLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(EditSideBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(EditSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EditSideBarLayout.createSequentialGroup()
+                        .addComponent(EditSearchIcon)
+                        .addGap(9, 9, 9)))
+                .addGroup(EditSideBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(EditCategorySort, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(EditSearchIcon1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(EditTableScroll, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        EditSaveBT.setBackground(new java.awt.Color(32, 180, 52));
+        EditSaveBT.setForeground(new java.awt.Color(255, 255, 255));
+        EditSaveBT.setText("Save");
+        EditSaveBT.setAAA_ImageBoundArcSize(10);
+        EditSaveBT.setAAA_roundBottomLeft(10);
+        EditSaveBT.setAAA_roundBottomRight(10);
+        EditSaveBT.setAAA_roundTopLeft(10);
+        EditSaveBT.setAAA_roundTopRight(10);
+        EditSaveBT.setAA_ArcSize(10);
+        EditSaveBT.setAA_ButtonColor(new java.awt.Color(32, 180, 52));
+        EditSaveBT.setAA_HoverColor(new java.awt.Color(95, 219, 112));
+        EditSaveBT.setAA_PressColor(new java.awt.Color(93, 184, 105));
+        EditSaveBT.setAA_RippleColor(new java.awt.Color(21, 135, 46));
+        EditSaveBT.setFont(new java.awt.Font("Franklin Gothic Heavy", 0, 12)); // NOI18N
+        EditSaveBT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EditSaveBTActionPerformed(evt);
+            }
+        });
+
+        EditDeleteBT.setBackground(new java.awt.Color(24, 23, 23));
+        EditDeleteBT.setText("Delete");
+        EditDeleteBT.setAAA_ImageBoundArcSize(10);
+        EditDeleteBT.setAAA_roundBottomLeft(10);
+        EditDeleteBT.setAAA_roundBottomRight(10);
+        EditDeleteBT.setAAA_roundTopLeft(10);
+        EditDeleteBT.setAAA_roundTopRight(10);
+        EditDeleteBT.setAA_ArcSize(10);
+        EditDeleteBT.setAA_BorderColor(new java.awt.Color(51, 51, 51));
+        EditDeleteBT.setAA_ButtonColor(new java.awt.Color(24, 23, 23));
+        EditDeleteBT.setAA_DrawBorder(true);
+        EditDeleteBT.setAA_HoverColor(new java.awt.Color(38, 38, 38));
+        EditDeleteBT.setAA_PressColor(new java.awt.Color(54, 53, 53));
+        EditDeleteBT.setAA_RippleColor(new java.awt.Color(215, 54, 54));
+        EditDeleteBT.setFont(new java.awt.Font("Franklin Gothic Heavy", 0, 12)); // NOI18N
+        EditDeleteBT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EditDeleteBTActionPerformed(evt);
+            }
+        });
+
+        EditDescriptionText.setForeground(new java.awt.Color(255, 255, 255));
+        EditDescriptionText.setText("Description:");
+
+        EditDescriptionScroll.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
+        EditDescriptionScroll.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        EditDescriptionScroll.setToolTipText("");
+
+        EditDescription.setBackground(new java.awt.Color(24, 23, 23));
+        EditDescription.setColumns(20);
+        EditDescription.setRows(5);
+        EditDescription.setText("\n");
+        EditDescription.setBorder(null);
+        EditDescriptionScroll.setViewportView(EditDescription);
+
+        EditImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/insertimage.jpg"))); // NOI18N
+        EditImage.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                EditImageMouseClicked(evt);
+            }
+        });
+
+        EditCost.setBackground(new java.awt.Color(24, 23, 23));
+        EditCost.setForeground(new java.awt.Color(255, 255, 255));
+        EditCost.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        EditCost.setAAA_roundBottomLeft(20);
+        EditCost.setAAA_roundBottomRight(20);
+        EditCost.setAAA_roundTopLeft(20);
+        EditCost.setAAA_roundTopRight(20);
+        EditCost.setAA_BorderColor(new java.awt.Color(51, 51, 51));
+        EditCost.setAA_DrawBorder(true);
+        EditCost.setAA_DrawBottomBorder(true);
+        EditCost.setAA_DrawLeftBorder(true);
+        EditCost.setAA_DrawLine(false);
+        EditCost.setAA_DrawRightBorder(true);
+        EditCost.setAA_DrawTopBorder(true);
+        EditCost.setAA_TextHint("   Enter Cost");
+        EditCost.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+
+        EditName.setBackground(new java.awt.Color(24, 23, 23));
+        EditName.setForeground(new java.awt.Color(255, 255, 255));
+        EditName.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        EditName.setAAA_roundBottomLeft(20);
+        EditName.setAAA_roundBottomRight(20);
+        EditName.setAAA_roundTopLeft(20);
+        EditName.setAAA_roundTopRight(20);
+        EditName.setAA_BorderColor(new java.awt.Color(51, 51, 51));
+        EditName.setAA_DrawBorder(true);
+        EditName.setAA_DrawBottomBorder(true);
+        EditName.setAA_DrawLeftBorder(true);
+        EditName.setAA_DrawLine(false);
+        EditName.setAA_DrawRightBorder(true);
+        EditName.setAA_DrawTopBorder(true);
+        EditName.setAA_TextHint("   Enter Name");
+        EditName.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+
+        EditNameText.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        EditNameText.setText(" Name:");
+
+        EditCostText.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        EditCostText.setText("Cost:");
+
+        EditDiscount.setBackground(new java.awt.Color(24, 23, 23));
+        EditDiscount.setForeground(new java.awt.Color(255, 255, 255));
+        EditDiscount.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        EditDiscount.setAAA_roundBottomLeft(20);
+        EditDiscount.setAAA_roundBottomRight(20);
+        EditDiscount.setAAA_roundTopLeft(20);
+        EditDiscount.setAAA_roundTopRight(20);
+        EditDiscount.setAA_BorderColor(new java.awt.Color(51, 51, 51));
+        EditDiscount.setAA_DrawBorder(true);
+        EditDiscount.setAA_DrawBottomBorder(true);
+        EditDiscount.setAA_DrawLeftBorder(true);
+        EditDiscount.setAA_DrawLine(false);
+        EditDiscount.setAA_DrawRightBorder(true);
+        EditDiscount.setAA_DrawTopBorder(true);
+        EditDiscount.setAA_TextHint("   Enter Discount");
+        EditDiscount.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+
+        EditDiscountText.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        EditDiscountText.setText("Discount:");
+
+        EditCategoryText.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        EditCategoryText.setText("Category:");
+
+        EditCategory.setForeground(new java.awt.Color(255, 255, 255));
+        EditCategory.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Action", "Adventure", "Shooter", "Strategy", "Horror", "Sports", "RPG", "Visual Novel", "Gacha", "Rythm", "Cappie Time", "Cappie Date", "Cappie Sex", "Cappie Breeding", "Cappie Impregnation", "Cappie Penetration" }));
+        EditCategory.setAA_WordLinerColor(new java.awt.Color(51, 51, 51));
+        EditCategory.setAA_lineColor(new java.awt.Color(45, 187, 63));
+        EditCategory.setFocusable(false);
+        EditCategory.setLabeText("    ");
+        EditCategory.setRequestFocusEnabled(false);
+        EditCategory.setVerifyInputWhenFocusTarget(false);
+
+        javax.swing.GroupLayout saveloadingLayout = new javax.swing.GroupLayout(saveloading);
+        saveloading.setLayout(saveloadingLayout);
+        saveloadingLayout.setHorizontalGroup(
+            saveloadingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 25, Short.MAX_VALUE)
+        );
+        saveloadingLayout.setVerticalGroup(
+            saveloadingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 29, Short.MAX_VALUE)
+        );
+
+        saving.setText("saving...");
+
+        javax.swing.GroupLayout EditLayout = new javax.swing.GroupLayout(Edit);
+        Edit.setLayout(EditLayout);
+        EditLayout.setHorizontalGroup(
+            EditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(EditBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EditLayout.createSequentialGroup()
+                .addGap(42, 42, 42)
+                .addGroup(EditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(EditLayout.createSequentialGroup()
+                        .addComponent(saveloading, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(saving)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(EditDeleteBT, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(EditSaveBT, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(EditLayout.createSequentialGroup()
+                        .addGroup(EditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(EditLayout.createSequentialGroup()
+                                .addComponent(EditImage, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(12, 12, 12)
+                                .addGroup(EditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(EditLayout.createSequentialGroup()
+                                        .addGap(13, 13, 13)
+                                        .addGroup(EditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(EditNameText)
+                                            .addComponent(EditCostText)))
+                                    .addComponent(EditCategoryText)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EditLayout.createSequentialGroup()
+                                        .addGap(2, 2, 2)
+                                        .addComponent(EditDiscountText)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(EditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(EditCost, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(EditName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(EditLayout.createSequentialGroup()
+                                        .addComponent(EditCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 163, Short.MAX_VALUE)
+                                        .addGap(92, 92, 92))
+                                    .addComponent(EditDiscount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(EditDescriptionText))
+                        .addGap(10, 10, 10))
+                    .addComponent(EditDescriptionScroll, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(59, 59, 59)
+                .addComponent(EditSideBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        EditLayout.setVerticalGroup(
+            EditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(EditLayout.createSequentialGroup()
+                .addComponent(EditBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addGroup(EditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(EditLayout.createSequentialGroup()
+                        .addGroup(EditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(EditImage, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(EditLayout.createSequentialGroup()
+                                .addGroup(EditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(EditNameText)
+                                    .addComponent(EditName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(20, 20, 20)
+                                .addGroup(EditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(EditCostText)
+                                    .addComponent(EditCost, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(20, 20, 20)
+                                .addGroup(EditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(EditDiscount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(EditDiscountText))
+                                .addGap(12, 12, 12)
+                                .addGroup(EditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(EditCategory, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(EditCategoryText))
+                                .addGap(8, 8, 8)))
+                        .addGap(12, 12, 12)
+                        .addComponent(EditDescriptionText, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(EditDescriptionScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addGroup(EditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(EditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(EditSaveBT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(EditDeleteBT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(saving, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(saveloading, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(19, 19, 19))
+                    .addComponent(EditSideBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        );
+
+        layers.add(Edit, "card2");
 
         getContentPane().add(layers);
 
@@ -1883,6 +2038,7 @@ public class Main extends javax.swing.JFrame {
         showcase(false,true,false,false,false,false);
         MenuHighlight(false,true,false,false);
         function.MenuClicked(HomeClicked, HomePN, OptionClicked, OptionPN, HistoryClicked, HistoryPN, InfoClicked, InfoPN ); 
+        EditRefreshTable();
     }//GEN-LAST:event_Option_BTMouseClicked
     private void History_BTMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_History_BTMouseClicked
         showcase(false,false,false,true,false,false);
@@ -1954,6 +2110,7 @@ public class Main extends javax.swing.JFrame {
 
     private void EditBT2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditBT2MouseClicked
         showcase(false,true,false,false,false,false);
+        EditRefreshTable();
     }//GEN-LAST:event_EditBT2MouseClicked
 
     private void EditBT2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditBT2MouseEntered
@@ -1974,6 +2131,7 @@ public class Main extends javax.swing.JFrame {
 
     private void AddBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddBTActionPerformed
         AddProduct();
+        
     }//GEN-LAST:event_AddBTActionPerformed
 
     private void CancelBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelBTActionPerformed
@@ -1995,6 +2153,47 @@ public class Main extends javax.swing.JFrame {
             add_remove_image=0;
         }
     }//GEN-LAST:event_AddImageMouseClicked
+
+    private void EditCategorySortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditCategorySortActionPerformed
+        EditSortCategory();
+    }//GEN-LAST:event_EditCategorySortActionPerformed
+
+    private void EditSearchCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_EditSearchCaretUpdate
+        EditSortSearch();
+    }//GEN-LAST:event_EditSearchCaretUpdate
+
+    private void EditSearchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditSearchMouseClicked
+        EditCategorySort.setSelectedItem("All");
+    }//GEN-LAST:event_EditSearchMouseClicked
+
+    private void EditTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditTableMouseClicked
+       SelectEditProduct();
+        LoadImageID();
+        edit_remove_image=0;
+    }//GEN-LAST:event_EditTableMouseClicked
+
+    private void EditDeleteBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditDeleteBTActionPerformed
+        DeleteButton();
+        EditLoading();
+    }//GEN-LAST:event_EditDeleteBTActionPerformed
+
+    private void EditSaveBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditSaveBTActionPerformed
+        EditProduct();
+    }//GEN-LAST:event_EditSaveBTActionPerformed
+
+    private void EditImageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditImageMouseClicked
+            
+    if (evt.getButton() == MouseEvent.BUTTON3) {
+        try{edit_imagePath.setText(""); // Clear the text
+            edit_imageName.setText("");
+            ImageIcon resetimage = new ImageIcon("insertimage.jpg");
+            EditImage.setIcon(resetimage);
+            edit_remove_image=1;
+            }catch(Exception e){}
+    }else { 
+        EditImage(); 
+        }
+    }//GEN-LAST:event_EditImageMouseClicked
   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -2013,9 +2212,6 @@ public class Main extends javax.swing.JFrame {
     private SystemOtherComps.PH_TextField AddDiscount;
     private javax.swing.JLabel AddDiscountText;
     private javax.swing.JLabel AddID;
-    private javax.swing.JLabel AddID1;
-    private javax.swing.JLabel AddID2;
-    private javax.swing.JLabel AddID3;
     private javax.swing.JLabel AddImage;
     private SystemOtherComps.PH_TextField AddName;
     private javax.swing.JLabel AddNameText;
@@ -2049,6 +2245,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel EditBT2;
     private javax.swing.JPanel EditBar;
     public SystemShadowedComp.PH_ComboBox EditCategory;
+    public SystemShadowedComp.PH_ComboBox EditCategorySort;
     private javax.swing.JLabel EditCategoryText;
     private SystemOtherComps.PH_TextField EditCost;
     private javax.swing.JLabel EditCostText;
@@ -2058,12 +2255,14 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel EditDescriptionText;
     private SystemOtherComps.PH_TextField EditDiscount;
     private javax.swing.JLabel EditDiscountText;
-    private SystemShadowedComp.PH_SDWLabel EditImage;
+    private javax.swing.JLabel EditID;
+    private javax.swing.JLabel EditImage;
     private SystemOtherComps.PH_TextField EditName;
     private javax.swing.JLabel EditNameText;
     private SystemOtherComps.PH_Button EditSaveBT;
     private SystemOtherComps.PH_TextField EditSearch;
     private javax.swing.JLabel EditSearchIcon;
+    private javax.swing.JLabel EditSearchIcon1;
     private javax.swing.JPanel EditSideBar;
     public javax.swing.JTable EditTable;
     private SystemOtherComps.PH_ScrollPane EditTableScroll;
@@ -2072,6 +2271,7 @@ public class Main extends javax.swing.JFrame {
     private SystemOtherComps.PH_ScrollPane GameScroll;
     private SystemOtherComps.PH_TextField GameSearchTXT;
     public javax.swing.JLabel Games_txt;
+    private javax.swing.JPanel Hidden;
     private javax.swing.JPanel History;
     private javax.swing.JPanel HistoryBar;
     private javax.swing.JLabel HistoryCategoryIcon;
@@ -2099,10 +2299,21 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel TotalDiscountHeading;
     private javax.swing.JLabel add_imageName;
     private javax.swing.JLabel add_imagePath;
+    private javax.swing.JPanel addimagetool;
+    private javax.swing.JPanel addimagetool1;
     public SystemShadowedComp.PH_ComboBox categories;
     private SystemOtherComps.PH_TextField change;
+    private javax.swing.JLabel edit_imageName;
+    private javax.swing.JLabel edit_imagePath;
+    private javax.swing.JLabel iddesc;
+    private javax.swing.JLabel iddesc1;
+    private javax.swing.JLabel imagenamedesk;
+    private javax.swing.JLabel imagenamedesk1;
+    private javax.swing.JLabel imagepathdesc;
+    private javax.swing.JLabel imagepathdesc1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JLayeredPane layers;
     private javax.swing.JPanel line;
@@ -2124,6 +2335,8 @@ public class Main extends javax.swing.JFrame {
     private Panel.Items newJPanel9;
     private SystemOtherComps.PH_TextField payment;
     private javax.swing.JLabel quantityIcon;
+    private Splash.LoadingAnimation saveloading;
+    private javax.swing.JLabel saving;
     private SystemOtherComps.PH_TextField subtotal;
     private SystemOtherComps.PH_TextField total;
     private SystemOtherComps.PH_TextField totaldiscount;
@@ -2158,12 +2371,21 @@ public class Main extends javax.swing.JFrame {
                 CartTable.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
             }
             
+        saving.setVisible(false); 
+        saveloading.setVisible(false);    
             
+        DescriptionMethod();
+        
+    }
+    
+    
+    public void DescriptionMethod(){
         CartDescriptionTXT.setLineWrap(true);     // Auto-wrap text in JTextArea
         CartDescriptionTXT.setWrapStyleWord(true); // Wrap at word boundaries in JTextArea
         EditDescription.setLineWrap(true);  
         EditDescription.setWrapStyleWord(true);
-        
+        AddDescription.setLineWrap(true);  
+        AddDescription.setWrapStyleWord(true);
     }
 
     
@@ -2185,7 +2407,26 @@ public class Main extends javax.swing.JFrame {
         InfoClicked =info; 
     }
 
-
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^//    
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^//    
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^//
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^//    
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^//
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^//    
+    
+    
+    
     
     
     
@@ -2235,11 +2476,14 @@ public class Main extends javax.swing.JFrame {
              }
                 add_remove_image=0;
                 
-            add_imagePath.setText(""); // Clear the text
-            add_imageName.setText("");
-            AddImage.setIcon(new ImageIcon("insertimage.jpg"));
-            autoIncrement();;
                 
+            
+//            add_imagePath.setText(""); // Clear the text
+//            add_imageName.setText("");
+//            AddImage.setIcon(new ImageIcon("insertimage.jpg"));
+//            
+           autoIncrement();
+            
 
          } catch (Exception ex) {
                    JOptionPane.showMessageDialog(null, ex + " save bt");
@@ -2357,6 +2601,412 @@ public class Main extends javax.swing.JFrame {
     
     
     
+    
+    
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^//    
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^//    
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^//
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^//    
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^//
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^//     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    public void EditRefreshTable() {
+        String sql = "SELECT * FROM product ORDER BY `name` ASC";
+
+
+        try {
+            DefaultTableModel model = (DefaultTableModel) EditTable.getModel();
+            model.setRowCount(0);
+
+            PreparedStatement pst = con.prepareStatement(sql);
+            ResultSet rs = pst.executeQuery();
+
+
+        while (rs.next()) {
+
+
+            model.addRow(new Object[] {
+
+                rs.getString(1),
+                rs.getString(2),
+                rs.getString(3),
+                rs.getString(4),
+             
+            });
+        }
+            // update the student count shown in the upper right corner
+
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }
+    
+    
+    
+    public void EditSortCategory(){
+        String selectedValue = (String) EditCategorySort.getSelectedItem();
+
+        // Construct appropriate SQL query based on selected value
+
+        String sql = null;
+        if (selectedValue.equals("All")) {
+            sql = "SELECT * FROM product ORDER BY name ASC";
+        } else {
+            sql = "SELECT * FROM product WHERE category= '" + selectedValue + "' ORDER BY name ASC";
+        }
+
+        try {
+            // Prepare the statement
+            pst = con.prepareStatement(sql);
+
+            // Execute the query
+            ResultSet resultSet = pst.executeQuery();
+
+            // Create a list to hold the updated data
+            List<Object[]> data = new ArrayList<>();
+
+            // Populate the list with fetched data
+            while (resultSet.next()) {
+                Object[] row = new Object[resultSet.getMetaData().getColumnCount()];
+                for (int i = 0; i < row.length; i++) {
+                    row[i] = resultSet.getObject(i + 1);
+                }
+                data.add(row);
+            }
+
+            // Update the existing table model with new data
+            DefaultTableModel model = (DefaultTableModel) EditTable.getModel();
+            model.setRowCount(0); // Clear existing data
+            for (Object[] row : data) {
+                model.addRow(row);
+            }
+
+            // Close resources
+            resultSet.close();
+            pst.close();
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "SQL Error: " + ex.getMessage());
+        }
+    }    
+
+
+    
+    
+    
+    public void EditSortSearch() {
+      String searchText = EditSearch.getText().trim(); // your search text field
+    String sql;
+
+    if (searchText.isEmpty()) {
+        sql = "SELECT * FROM product ORDER BY `name` ASC";
+    } else {
+        sql = "SELECT * FROM product WHERE `name` LIKE ? ORDER BY `name` ASC";
+    }
+
+    try {
+        DefaultTableModel model = (DefaultTableModel) EditTable.getModel();
+        model.setRowCount(0); // clear table
+
+        PreparedStatement pst = con.prepareStatement(sql);
+
+        if (!searchText.isEmpty()) {
+            pst.setString(1, "%" + searchText + "%");
+        }
+
+        ResultSet rs = pst.executeQuery();
+
+        while (rs.next()) {
+            model.addRow(new Object[]{
+                rs.getString("id"),
+                rs.getString("name"),
+                rs.getString("cost"),
+                rs.getString("discount")
+                // Add more if needed
+            });
+        }
+
+    } catch (Exception ex) {
+        JOptionPane.showMessageDialog(null, "Search Error: " + ex.getMessage());
+    }
+}
+    
+    public void LoadImageID() {
+        try {
+            String ID = EditID.getText();
+            pst = con.prepareStatement("SELECT imageFile FROM product WHERE id = ?");
+            pst.setString(1, ID);
+
+            rs = pst.executeQuery();
+
+            if (rs.next()) {
+                LoadImage();
+            } else {
+                // Set default image if no imageFile found
+                setDefaultImage();
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            setDefaultImage();
+        }
+    }
+
+   public void LoadImage() {
+        try {
+            byte[] imagedata = rs.getBytes("imageFile");
+
+            if (imagedata != null && imagedata.length > 0) {
+                format1 = new ImageIcon(imagedata);
+                Image mm = format1.getImage();
+                Image img2 = mm.getScaledInstance(211, 217, Image.SCALE_SMOOTH);
+                ImageIcon image = new ImageIcon(img2);
+                EditImage.setIcon(image);
+            } else {
+                setDefaultImage(); // fallback if byte array is empty
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            setDefaultImage(); // fallback on error
+        }
+    }
+   
+   
+   public void setDefaultImage() {
+        try {
+            ImageIcon ii = new ImageIcon("insertimage.jpg"); // Make sure this image exists in your project directory
+            Image img = ii.getImage().getScaledInstance(211, 217, Image.SCALE_SMOOTH);
+            EditImage.setIcon(new ImageIcon(img));
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Default image not found!");
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, e);
+        }
+    }
+
+   
+   
+   public void SelectEditProduct() {
+        int selectedRow = EditTable.getSelectedRow();
+
+        if (selectedRow != -1) {
+            String productID = EditTable.getValueAt(selectedRow, 0).toString();
+
+            String sql = "SELECT `id`, `name`, `cost`, `discount`, `category`, `description`, `imageName`, `imagePath` FROM `product` WHERE id = ?";
+
+            try {
+                PreparedStatement pst = con.prepareStatement(sql);
+                pst.setString(1, productID);
+                ResultSet rs = pst.executeQuery();
+
+                if (rs.next()) {
+                    // Populate your fields
+                    EditID.setText(rs.getString("id"));
+                    EditName.setText(rs.getString("name"));
+                    EditCost.setText(rs.getString("cost"));
+                    EditDiscount.setText(rs.getString("discount"));
+                    EditCategory.setSelectedItem(rs.getString("category"));
+                    EditDescription.setText(rs.getString("description"));
+                    edit_imageName.setText(rs.getString("imageName"));
+                    edit_imagePath.setText(rs.getString("imagePath"));
+
+//                    // Optional: set preview image
+//                    String imagePath = rs.getString("imagePath");
+//                    if (imagePath != null && !imagePath.isEmpty()) {
+//                        ImageIcon ii = new ImageIcon(imagePath);
+//                        Image img = ii.getImage().getScaledInstance(478, 300, Image.SCALE_SMOOTH);
+//                        EditImage.setIcon(new ImageIcon(img));
+//                    }
+                }
+
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Error loading product: " + ex.getMessage());
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select a row to edit.");
+        }
+    }
+
+   
+   
+   private void DeleteButton() {
+        int selectedRow = EditTable.getSelectedRow();
+
+        if (selectedRow != -1) {
+            int option = JOptionPane.showConfirmDialog(
+                null, 
+                "Are you sure you want to delete this product?", 
+                "Confirmation", 
+                JOptionPane.YES_NO_OPTION
+            );
+
+            if (option == JOptionPane.YES_OPTION) {
+                String productID = EditTable.getValueAt(selectedRow, 0).toString(); // Get the selected product ID
+
+                String sql = "DELETE FROM `product` WHERE id = ?";
+
+                try {
+                    PreparedStatement pst = con.prepareStatement(sql);
+                    pst.setString(1, productID);
+                    pst.executeUpdate();
+
+
+                    // Refresh table and reinitialize product data
+                    EditRefreshTable();
+                    ClearEdit();
+                  
+
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(null, "Delete failed: " + ex.getMessage());
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select a product to delete");
+        }
+    }
+   
+   
+   public void ClearEdit(){
+        EditName.setText("");
+        EditCost.setText("");
+        EditDiscount.setText("");
+        EditCategory.setSelectedItem("Action");
+        EditDescription.setText("");
+        EditID.setText("");
+        edit_imageName.setText("");
+        edit_imagePath.setText("");
+        ImageIcon resetimage = new ImageIcon("insertimage.jpg");
+        EditImage.setIcon(resetimage);
+ 
+    }
+   
+   
+   
+   public void EditProduct() {
+    try {
+        // SQL Update Query
+        String sql = "UPDATE product SET name=?, cost=?, discount=?, category=?, description=?, imageName=?, imagePath=? WHERE id=?";
+        PreparedStatement preparedStatement = con.prepareStatement(sql);
+
+        // Set parameters
+        preparedStatement.setString(1, EditName.getText());
+        preparedStatement.setString(2, EditCost.getText());
+        preparedStatement.setString(3, EditDiscount.getText());
+        preparedStatement.setString(4, EditCategory.getSelectedItem().toString());
+        preparedStatement.setString(5, EditDescription.getText());
+        preparedStatement.setString(6, edit_imageName.getText());
+        preparedStatement.setString(7, edit_imagePath.getText());
+        preparedStatement.setString(8, EditID.getText());
+
+        // Execute the update
+        preparedStatement.executeUpdate();
+
+        // Save image to database if needed
+        saveImageToDatabaseEdit(f2, path2);
+
+        // Remove image blob if flagged
+        if (edit_remove_image == 1) {
+            emptyBlobFile(EditID.getText());
+        }
+        edit_remove_image = 0;
+
+        EditLoading();
+        // Refresh table and UI
+        EditRefreshTable();
+
+    } catch (Exception ex) {
+        JOptionPane.showMessageDialog(null, ex);
+    }
+}
+
+   
+   
+ private void saveImageToDatabaseEdit(File file, String path) {
+        String ID =EditID.getText();
+       if (file != null && path != null && !path.isEmpty()) {
+           try {
+               FileInputStream fis = new FileInputStream(file);
+               String query = "UPDATE product SET imageName = ?, imagePath = ?, imageFile = ? WHERE id=? ";
+               pst = con.prepareStatement(query);
+               pst.setString(1, file.getName());
+               pst.setString(2, path);
+               pst.setBinaryStream(3, fis, (int) file.length());
+               pst.setString(4, ID);
+               pst.executeUpdate();
+
+
+
+           } catch (FileNotFoundException ex) {
+               JOptionPane.showMessageDialog(null, "Image file not found: " + ex.getMessage());
+           }  catch (SQLException ex) {
+               JOptionPane.showMessageDialog(null, "Error saving image to database: " + ex.getMessage());
+           }
+       }
+   } 
+ 
+ 
+    private void EditImage(){
+    
+        JFileChooser fileChooser = new JFileChooser();
+        FileNameExtensionFilter imageFilter = new FileNameExtensionFilter("Image Files", "png", "jpg", "jpeg","gif");
+        fileChooser.setFileFilter(imageFilter);
+        int load = fileChooser.showOpenDialog(null);
+
+        if (load == JFileChooser.APPROVE_OPTION) {
+            f2 = fileChooser.getSelectedFile();
+            path2 = f2.getAbsolutePath();
+            String imageName = f2.getName();
+            edit_imageName.setText(imageName);
+            
+
+            edit_imagePath.setText(path2);
+            ImageIcon ii = new ImageIcon(path2);
+           
+
+            Image img = ii.getImage().getScaledInstance(211, 217, Image.SCALE_SMOOTH);
+            EditImage.setIcon(new ImageIcon(img));
+
+
+
+        }
+    } 
+    
+    
+    public void EditLoading() {
+    saving.setVisible(true); // Show the label
+    saveloading.setVisible(true);
+
+    // Create a Swing timer to hide it after 3 seconds (3000 ms)
+    Timer timer = new Timer(1500, new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            saving.setVisible(false); // Hide the label after time is up
+            saveloading.setVisible(false);
+        }
+    });
+
+    timer.setRepeats(false); // Only run once
+    timer.start();
+}
 
 
 
