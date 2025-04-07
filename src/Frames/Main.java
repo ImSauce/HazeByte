@@ -5,9 +5,26 @@ package Frames;
 //import java.sql.PreparedStatement;
 //import java.sql.ResultSet;
 import Classes.Functions;
+import Classes.Run;
+import Classes.serverCredentials;
 import java.awt.Dimension;
+import java.awt.Image;
+import java.awt.event.MouseEvent;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.JTableHeader;
 
@@ -21,21 +38,50 @@ public class Main extends javax.swing.JFrame {
     boolean HistoryClicked = false;
     boolean InfoClicked =false;
     
-//    Connection con;
-//    ResultSet rs;
-//    PreparedStatement pst;
-//    
-//    String url= "jdbc:mysql://localhost/hazebyte";
-//    String user = "root";
-//    String pass= "";
-//
-//    public void forConnection(Connection conn){
-//        this.con = conn;
-//      
-//    }
+    
+    int add_remove_image = 0;
+    int edit_remove_image = 0;
+    
+    File f1 = null;
+    String  path1 = null;
+    private ImageIcon format1 = null;
+    
+    File f2 = null;
+    String  path2 = null;
+    private ImageIcon format2 = null;
+    
+    
+    Connection con;
+    ResultSet rs;
+    PreparedStatement pst;
+    
+  
+
+    public void connect() {
+        serverCredentials sv = new serverCredentials();
+        sv.setServerIP("localhost");
+        sv.setUserID("root");
+        sv.setPass("");
+        
+        
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con = DriverManager.getConnection("jdbc:mysql://"+sv.getServerIP() +"/hazebyte", sv.getUserID(), sv.getPass());
+            
+            
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Run.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Run.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
+        
+    }
+    
 
     public Main() {
         initComponents();
+        connect();
         startup();
         
         
@@ -156,7 +202,6 @@ public class Main extends javax.swing.JFrame {
         AddNameText = new javax.swing.JLabel();
         AddBT = new SystemOtherComps.PH_Button();
         CancelBT = new SystemOtherComps.PH_Button();
-        AddImage = new SystemShadowedComp.PH_SDWLabel();
         AddCostText = new javax.swing.JLabel();
         AddName = new SystemOtherComps.PH_TextField();
         AddCategoryText = new javax.swing.JLabel();
@@ -166,6 +211,14 @@ public class Main extends javax.swing.JFrame {
         AddDescription = new javax.swing.JTextArea();
         AddDiscount = new SystemOtherComps.PH_TextField();
         AddDiscountText = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        AddID = new javax.swing.JLabel();
+        AddID1 = new javax.swing.JLabel();
+        AddID2 = new javax.swing.JLabel();
+        AddID3 = new javax.swing.JLabel();
+        add_imageName = new javax.swing.JLabel();
+        add_imagePath = new javax.swing.JLabel();
+        AddImage = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(800, 720));
@@ -509,7 +562,7 @@ public class Main extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EditSideBarLayout.createSequentialGroup()
                         .addComponent(EditSearchIcon)
                         .addGap(9, 9, 9)))
-                .addComponent(EditTableScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 564, Short.MAX_VALUE)
+                .addComponent(EditTableScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 478, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1507,11 +1560,6 @@ public class Main extends javax.swing.JFrame {
         AddBT2.setFont(new java.awt.Font("Arial Black", 0, 28)); // NOI18N
         AddBT2.setForeground(new java.awt.Color(255, 255, 255));
         AddBT2.setText("Add Product");
-        AddBT2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                AddBT2MouseClicked(evt);
-            }
-        });
 
         EditBT2.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         EditBT2.setForeground(new java.awt.Color(102, 102, 102));
@@ -1571,7 +1619,7 @@ public class Main extends javax.swing.JFrame {
 
         AddBT.setBackground(new java.awt.Color(32, 180, 52));
         AddBT.setForeground(new java.awt.Color(255, 255, 255));
-        AddBT.setText("Save");
+        AddBT.setText("Add");
         AddBT.setAAA_ImageBoundArcSize(10);
         AddBT.setAAA_roundBottomLeft(10);
         AddBT.setAAA_roundBottomRight(10);
@@ -1583,6 +1631,11 @@ public class Main extends javax.swing.JFrame {
         AddBT.setAA_PressColor(new java.awt.Color(93, 184, 105));
         AddBT.setAA_RippleColor(new java.awt.Color(21, 135, 46));
         AddBT.setFont(new java.awt.Font("Franklin Gothic Heavy", 0, 12)); // NOI18N
+        AddBT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddBTActionPerformed(evt);
+            }
+        });
 
         CancelBT.setBackground(new java.awt.Color(24, 23, 23));
         CancelBT.setText("Cancel");
@@ -1599,18 +1652,11 @@ public class Main extends javax.swing.JFrame {
         CancelBT.setAA_PressColor(new java.awt.Color(54, 53, 53));
         CancelBT.setAA_RippleColor(new java.awt.Color(215, 54, 54));
         CancelBT.setFont(new java.awt.Font("Franklin Gothic Heavy", 0, 12)); // NOI18N
-
-        AddImage.setAAA_FitToSize(true);
-        AddImage.setAAA_ImageBoundArcSize(2);
-        AddImage.setAAA_roundBottomLeft(2);
-        AddImage.setAAA_roundBottomRight(2);
-        AddImage.setAAA_roundTopLeft(2);
-        AddImage.setAAA_roundTopRight(2);
-        AddImage.setAA_ArcSize(2);
-        AddImage.setAA_BorderSize(0);
-        AddImage.setAA_CompImage(new javax.swing.ImageIcon(getClass().getResource("/Images/download-modified.png"))); // NOI18N
-        AddImage.setAA_DrawImage(true);
-        AddImage.setAA_OpaqueBackground(true);
+        CancelBT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CancelBTActionPerformed(evt);
+            }
+        });
 
         AddCostText.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         AddCostText.setText("Cost:");
@@ -1636,7 +1682,7 @@ public class Main extends javax.swing.JFrame {
         AddCategoryText.setText("Category:");
 
         AddCategory.setForeground(new java.awt.Color(255, 255, 255));
-        AddCategory.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "All", "Action", "Adventure", "Shooter", "Strategy", "Horror", "Sports", "RPG", "Visual Novel", "Gacha", "Rythm", "Cappie Time", "Cappie Date", "Cappie Sex", "Cappie Breeding", "Cappie Impregnation", "Cappie Penetration" }));
+        AddCategory.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Action", "Adventure", "Shooter", "Strategy", "Horror", "Sports", "RPG", "Visual Novel", "Gacha", "Rythm", "Cappie Time", "Cappie Date", "Cappie Sex", "Cappie Breeding", "Cappie Impregnation", "Cappie Penetration" }));
         AddCategory.setAA_WordLinerColor(new java.awt.Color(51, 51, 51));
         AddCategory.setAA_lineColor(new java.awt.Color(45, 187, 63));
         AddCategory.setFocusable(false);
@@ -1654,9 +1700,8 @@ public class Main extends javax.swing.JFrame {
         AddDescription.setBackground(new java.awt.Color(24, 23, 23));
         AddDescription.setColumns(20);
         AddDescription.setRows(5);
-        AddDescription.setText("MiSide is an adventure game with horror elements developed by Russian indie development team AIHASTO. It was initially published as a demo on August 18, 2023, before being fully released on Steam on December 11, 2024.MiSide is an adventure game with horror elements developed by Russian indie development team AIHASTO. It was initially published as a demo on August 18, 2023, before being fully released on Steam on December 11, 2024.MiSide is an adventure game with horror elements developed by Russian indie development team AIHASTO. It was initially published as a demo on August 18, 2023, before being fully released on Steam on December 11, 2024.MiSide is an adventure game with horror elements developed by Russian indie development team AIHASTO. It was initially published as a demo on August 18, 2023, before being fully released on Steam on December 11, 2024.MiSide is an adventure game with horror elements developed by Russian indie development team AIHASTO. It was initially published as a demo on August 18, 2023, before being fully released on Steam on December 11, 2024.MiSide is an adventure game with horror elements developed by Russian indie development team AIHASTO. It was initially published as a demo on August 18, 2023, before being fully released on Steam on December 11, 2024.\n");
+        AddDescription.setText("\n");
         AddDescription.setBorder(null);
-        AddDescription.setFocusable(false);
         AddDescriptionScroll.setViewportView(AddDescription);
 
         AddDiscount.setBackground(new java.awt.Color(24, 23, 23));
@@ -1679,6 +1724,64 @@ public class Main extends javax.swing.JFrame {
         AddDiscountText.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         AddDiscountText.setText("Discount:");
 
+        AddID.setText(" ");
+
+        AddID1.setText("id");
+
+        AddID2.setText("imgname");
+
+        AddID3.setText("imgpath");
+
+        add_imageName.setText(" ");
+
+        add_imagePath.setText(" ");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(AddID1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(AddID, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(AddID2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(add_imageName, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(AddID3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(add_imagePath, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(42, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(AddID)
+                    .addComponent(AddID1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(AddID2)
+                    .addComponent(add_imageName))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(AddID3)
+                    .addComponent(add_imagePath))
+                .addContainerGap(156, Short.MAX_VALUE))
+        );
+
+        AddImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/insertimage.jpg"))); // NOI18N
+        AddImage.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AddImageMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout AddLayout = new javax.swing.GroupLayout(Add);
         Add.setLayout(AddLayout);
         AddLayout.setHorizontalGroup(
@@ -1691,68 +1794,74 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(AddBT, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(309, 309, 309))
             .addGroup(AddLayout.createSequentialGroup()
-                .addGap(36, 36, 36)
+                .addGap(42, 42, 42)
                 .addGroup(AddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(AddDescriptionScroll)
                     .addGroup(AddLayout.createSequentialGroup()
-                        .addComponent(AddImage, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(AddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(AddLayout.createSequentialGroup()
-                                .addGap(19, 19, 19)
-                                .addGroup(AddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(AddNameText)
-                                    .addComponent(AddCostText)))
-                            .addGroup(AddLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(AddCategoryText))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AddLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(AddDiscountText)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(AddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(AddCost, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(AddName, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(AddCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(AddDiscount, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(AddLayout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addGroup(AddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(AddDescriptionScroll)
-                            .addComponent(AddDescriptionText))))
-                .addGap(303, 303, 303))
+                                .addComponent(AddImage, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(AddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(AddLayout.createSequentialGroup()
+                                        .addGap(13, 13, 13)
+                                        .addGroup(AddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(AddNameText)
+                                            .addComponent(AddCostText)))
+                                    .addComponent(AddCategoryText)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AddLayout.createSequentialGroup()
+                                        .addGap(2, 2, 2)
+                                        .addComponent(AddDiscountText)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(AddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(AddCost, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(AddName, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(AddCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(AddDiscount, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(AddDescriptionText))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(53, 53, 53)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(99, 99, 99))
         );
         AddLayout.setVerticalGroup(
             AddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(AddLayout.createSequentialGroup()
                 .addComponent(AddBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(AddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(AddImage, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(AddLayout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addGroup(AddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(AddNameText)
-                            .addComponent(AddName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(20, 20, 20)
-                        .addGroup(AddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(AddCostText)
-                            .addComponent(AddCost, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(20, 20, 20)
-                        .addGroup(AddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(AddDiscount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(AddDiscountText))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(AddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(AddImage, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(AddLayout.createSequentialGroup()
+                                .addGroup(AddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(AddNameText)
+                                    .addComponent(AddName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(20, 20, 20)
+                                .addGroup(AddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(AddCostText)
+                                    .addComponent(AddCost, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(20, 20, 20)
+                                .addGroup(AddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(AddDiscount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(AddDiscountText))
+                                .addGap(12, 12, 12)
+                                .addGroup(AddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(AddCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(AddCategoryText))))
                         .addGap(12, 12, 12)
+                        .addComponent(AddDescriptionText, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(AddDescriptionScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
                         .addGroup(AddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(AddCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(AddCategoryText))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(AddDescriptionText, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(AddDescriptionScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addGroup(AddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(CancelBT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(AddBT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(16, 16, 16))
+                            .addComponent(CancelBT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(AddBT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(16, 16, 16))
+                    .addGroup(AddLayout.createSequentialGroup()
+                        .addGap(126, 126, 126)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         layers.add(Add, "card2");
@@ -1840,15 +1949,12 @@ public class Main extends javax.swing.JFrame {
 
     private void AddBT1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AddBT1MouseClicked
         showcase(false,false,true,false,false,false);
+        autoIncrement();
     }//GEN-LAST:event_AddBT1MouseClicked
 
     private void EditBT2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditBT2MouseClicked
         showcase(false,true,false,false,false,false);
     }//GEN-LAST:event_EditBT2MouseClicked
-
-    private void AddBT2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AddBT2MouseClicked
-        showcase(false,false,true,false,false,false);
-    }//GEN-LAST:event_AddBT2MouseClicked
 
     private void EditBT2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditBT2MouseEntered
         EditBT2.setForeground(new java.awt.Color(153,153,153));
@@ -1865,17 +1971,31 @@ public class Main extends javax.swing.JFrame {
     private void AddBT1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AddBT1MouseExited
          AddBT1.setForeground(new java.awt.Color(102,102,102));
     }//GEN-LAST:event_AddBT1MouseExited
+
+    private void AddBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddBTActionPerformed
+        AddProduct();
+    }//GEN-LAST:event_AddBTActionPerformed
+
+    private void CancelBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelBTActionPerformed
+        ClearAdd();
+    }//GEN-LAST:event_CancelBTActionPerformed
+
+    private void AddImageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AddImageMouseClicked
+        if (evt.getButton() == MouseEvent.BUTTON3) {
+            try{
+                add_imagePath.setText(""); // Clear the text
+                add_imageName.setText("");
+                AddImage.setIcon(new ImageIcon("insertimage.jpg")); // Clear the icon
+
+                add_remove_image = 1;
+
+            }catch(Exception e){}
+        }else{
+            AddImage();
+            add_remove_image=0;
+        }
+    }//GEN-LAST:event_AddImageMouseClicked
   
-    
-    
-    
-    
-    
-    
-    
-    
-    
-   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Add;
@@ -1892,7 +2012,11 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel AddDescriptionText;
     private SystemOtherComps.PH_TextField AddDiscount;
     private javax.swing.JLabel AddDiscountText;
-    private SystemShadowedComp.PH_SDWLabel AddImage;
+    private javax.swing.JLabel AddID;
+    private javax.swing.JLabel AddID1;
+    private javax.swing.JLabel AddID2;
+    private javax.swing.JLabel AddID3;
+    private javax.swing.JLabel AddImage;
     private SystemOtherComps.PH_TextField AddName;
     private javax.swing.JLabel AddNameText;
     private SystemOtherComps.PH_Button BuyBT;
@@ -1973,9 +2097,12 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel SubtotalHeading;
     private javax.swing.JLabel TotalCostHeading;
     private javax.swing.JLabel TotalDiscountHeading;
+    private javax.swing.JLabel add_imageName;
+    private javax.swing.JLabel add_imagePath;
     public SystemShadowedComp.PH_ComboBox categories;
     private SystemOtherComps.PH_TextField change;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JLayeredPane layers;
     private javax.swing.JPanel line;
@@ -2002,7 +2129,7 @@ public class Main extends javax.swing.JFrame {
     private SystemOtherComps.PH_TextField totaldiscount;
     // End of variables declaration//GEN-END:variables
 
-public void startup(){
+    public void startup(){
         //icon and title
         ImageIcon Mainicon = new ImageIcon ("HB icon.png");
         setIconImage(Mainicon.getImage());
@@ -2059,6 +2186,177 @@ public void startup(){
     }
 
 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    public void AddProduct() {
+
+        if (!validateFields()) {
+           return; // Stop execution if all textbox are not inputted
+       }
+
+               try {
+               serverCredentials sv = new serverCredentials();
+               sv.setServerIP("localhost");
+               sv.setUserID("root");
+               sv.setPass("");
+
+
+               String query = "INSERT INTO product(`name`, `cost`, `discount`, `category`, `description`, `imageName`, `imagePath`, `imageFile`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+               con = DriverManager.getConnection("jdbc:mysql://"+sv.getServerIP() +"/hazebyte", sv.getUserID(), sv.getPass());
+               pst = con.prepareStatement(query);            
+               pst.setString(1, AddName.getText());      
+               pst.setDouble(2, Double.parseDouble(AddCost.getText()));  
+               pst.setDouble(3, Double.parseDouble(AddDiscount.getText()));  
+               pst.setString(4, AddCategory.getSelectedItem().toString()); 
+               pst.setString(5, AddDescription.getText());  
+               pst.setString(6, "");  
+               pst.setString(7, ""); 
+               pst.setString(8, "");  
+               pst.executeUpdate();
+
+
+               JOptionPane.showMessageDialog(null,"SAVED!");
+               ClearAdd();
+               
+               if (add_remove_image ==1){
+                emptyBlobFile(AddID.getText());
+                
+                }else{
+             saveImageToDatabase(f1, path1);
+             }
+                add_remove_image=0;
+                
+            add_imagePath.setText(""); // Clear the text
+            add_imageName.setText("");
+            AddImage.setIcon(new ImageIcon("insertimage.jpg"));
+            autoIncrement();;
+                
+
+         } catch (Exception ex) {
+                   JOptionPane.showMessageDialog(null, ex + " save bt");
+               }
+    }
+ 
+    private boolean validateFields() {
+        // Check if any required fields are empty
+        if (AddName.getText().isEmpty() || AddCost.getText().isEmpty() || AddDiscount.getText().isEmpty() ||
+            AddCategory.getSelectedItem() == null || AddDescription.getText().isEmpty()) {   
+            JOptionPane.showMessageDialog(null, "Please fill in all the fields.", "Error", JOptionPane.ERROR_MESSAGE);
+            return false; // If any field is empty, return false
+        }
+        return true; // If all fields are filled, return true
+    }
+
+    public void ClearAdd(){
+        AddName.setText("");
+        AddCost.setText("");
+        AddDiscount.setText("");
+        AddCategory.setSelectedItem("Action");
+        AddDescription.setText("");
+        
+    }
+
+
+    
+    
+    
+    
+    
+    public void autoIncrement() {
+        String query = "SELECT MAX(id) AS id FROM product";
+        
+        try (PreparedStatement stmt = con.prepareStatement(query);
+             ResultSet rs = stmt.executeQuery()) {
+            
+            if (rs.next()) {
+                int highestID = rs.getInt("id");
+                int increment = highestID+1;
+               AddID.setText(Integer.toString(increment));
+                  
+            }
+            
+        } catch (SQLException ex) {
+            ex.printStackTrace(); // Handle or log the exception appropriately
+        }
+    }
+    
+    
+    
+    private void AddImage(){
+    
+        JFileChooser fileChooser = new JFileChooser();
+        FileNameExtensionFilter imageFilter = new FileNameExtensionFilter("Image Files", "png", "jpg", "jpeg","gif");
+        fileChooser.setFileFilter(imageFilter);
+        int load = fileChooser.showOpenDialog(null);
+
+        if (load == JFileChooser.APPROVE_OPTION) {
+            f1 = fileChooser.getSelectedFile();
+            path1 = f1.getAbsolutePath();
+            String imageName = f1.getName();
+            add_imageName.setText(imageName);
+            add_imagePath.setText(path1);
+            ImageIcon ii = new ImageIcon(path1);
+            Image img = ii.getImage().getScaledInstance(211, 217, Image.SCALE_SMOOTH);
+            AddImage.setIcon(new ImageIcon(img));
+
+
+        }
+    } 
+    
+    
+    private void saveImageToDatabase(File file, String path) {
+    String ID =AddID.getText();
+       if (file != null && path != null && !path.isEmpty()) {
+           try {
+               FileInputStream fis = new FileInputStream(file);
+               String query = "UPDATE product SET imageName = ?, imagePath = ?, imageFile = ? WHERE id=? ";
+               pst = con.prepareStatement(query);
+               pst.setString(1, file.getName());
+               pst.setString(2, path);
+               pst.setBinaryStream(3, fis, (int) file.length());
+               pst.setString(4, ID);
+               pst.executeUpdate();
+           } catch (FileNotFoundException ex) {
+               JOptionPane.showMessageDialog(null, "Image file not found: " + ex.getMessage());
+           }  catch (SQLException ex) {
+               JOptionPane.showMessageDialog(null, "Error saving image to database: " + ex.getMessage());
+           }
+       }
+   } 
+
+
+
+    private void emptyBlobFile(String ID) {
+        try {
+            String query = "UPDATE product SET imageName = '', imagePath = '', imageFile = '' WHERE id = ?";
+            pst = con.prepareStatement(query);
+            pst.setString(1, ID);
+            pst.executeUpdate();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error emptying BLOB file: " + ex.getMessage());
+        }
+    }
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
 
 
