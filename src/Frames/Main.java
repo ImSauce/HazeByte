@@ -1547,38 +1547,39 @@ public class Main extends javax.swing.JFrame {
         Add.setLayout(AddLayout);
         AddLayout.setHorizontalGroup(
             AddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(AddLayout.createSequentialGroup()
-                .addGap(229, 229, 229)
-                .addComponent(CancelBT, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(AddBT, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(AddBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(AddLayout.createSequentialGroup()
-                .addGap(42, 42, 42)
                 .addGroup(AddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(AddDescriptionScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 545, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(AddLayout.createSequentialGroup()
-                        .addComponent(AddImage, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(229, 229, 229)
+                        .addComponent(CancelBT, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(AddBT, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(AddLayout.createSequentialGroup()
+                        .addGap(42, 42, 42)
                         .addGroup(AddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(AddDescriptionScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 545, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(AddLayout.createSequentialGroup()
-                                .addGap(13, 13, 13)
-                                .addGroup(AddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(AddNameText)
-                                    .addComponent(AddCostText)))
-                            .addComponent(AddCategoryText)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AddLayout.createSequentialGroup()
-                                .addGap(2, 2, 2)
-                                .addComponent(AddDiscountText)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(AddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(AddCost, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(AddName, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(AddCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(AddDiscount, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(AddDescriptionText))
-                .addGap(32, 315, Short.MAX_VALUE))
+                                .addComponent(AddImage, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(AddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(AddLayout.createSequentialGroup()
+                                        .addGap(13, 13, 13)
+                                        .addGroup(AddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(AddNameText)
+                                            .addComponent(AddCostText)))
+                                    .addComponent(AddCategoryText)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AddLayout.createSequentialGroup()
+                                        .addGap(2, 2, 2)
+                                        .addComponent(AddDiscountText)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(AddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(AddCost, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(AddName, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(AddCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(AddDiscount, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(AddDescriptionText))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         AddLayout.setVerticalGroup(
             AddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1911,13 +1912,18 @@ public class Main extends javax.swing.JFrame {
         EditCategoryText.setText("Category:");
 
         EditCategory.setForeground(new java.awt.Color(255, 255, 255));
-        EditCategory.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Action", "Adventure", "Shooter", "Strategy", "Horror", "Sports", "RPG", "Visual Novel", "Gacha", "Rythm", "Cappie Time", "Cappie Date", "Cappie Sex", "Cappie Breeding", "Cappie Impregnation", "Cappie Penetration" }));
+        EditCategory.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Action", "Adventure", "Shooter", "Strategy", "Horror", "Sports", "RPG", "Visual Novel", "Gacha", "Rythm", "Cappie Time", "Cappie Date", "Cappie Sex", "Cappie Breeding", "Cappie Impregnation", "Cappie Penetration", "Aoi  Impregnation" }));
         EditCategory.setAA_WordLinerColor(new java.awt.Color(51, 51, 51));
         EditCategory.setAA_lineColor(new java.awt.Color(45, 187, 63));
         EditCategory.setFocusable(false);
         EditCategory.setLabeText("    ");
         EditCategory.setRequestFocusEnabled(false);
         EditCategory.setVerifyInputWhenFocusTarget(false);
+        EditCategory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EditCategoryActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout saveloadingLayout = new javax.swing.GroupLayout(saveloading);
         saveloading.setLayout(saveloadingLayout);
@@ -2193,6 +2199,10 @@ public class Main extends javax.swing.JFrame {
         EditImage(); 
         }
     }//GEN-LAST:event_EditImageMouseClicked
+
+    private void EditCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditCategoryActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_EditCategoryActionPerformed
   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
