@@ -1111,18 +1111,16 @@
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <EmptySpace min="-2" pref="232" max="-2" attributes="0"/>
-                              <Component id="Cart_txt1" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="285" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
                                       <Component id="Cart_txt2" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="Cart_txt3" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="password1" min="-2" pref="280" max="-2" attributes="0"/>
-                                  <Component id="password2" min="-2" pref="280" max="-2" attributes="0"/>
-                                  <Component id="password" min="-2" pref="280" max="-2" attributes="0"/>
+                                  <Component id="newpass1" min="-2" pref="280" max="-2" attributes="0"/>
+                                  <Component id="cnfpass1" min="-2" pref="280" max="-2" attributes="0"/>
+                                  <Component id="oldpass1" min="-2" pref="280" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
@@ -1142,20 +1140,12 @@
                           <Component id="Cart_txt2" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
                           <Component id="Cart_txt3" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
-                              <Component id="Cart_txt1" min="-2" pref="28" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                              <Component id="password" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="password1" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="password2" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
+                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                      <Component id="oldpass1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="newpass1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="cnfpass1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                       <Component id="pH_Button1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace pref="399" max="32767" attributes="0"/>
@@ -1164,7 +1154,7 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="SystemOtherComps.PH_PasswordField" name="password">
+            <Component class="SystemOtherComps.PH_PasswordField" name="oldpass1">
               <Properties>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -1176,19 +1166,6 @@
                 </Property>
                 <Property name="AB_LineColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="66" green="66" red="66" type="rgb"/>
-                </Property>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="passwordActionPerformed"/>
-              </Events>
-            </Component>
-            <Component class="javax.swing.JLabel" name="Cart_txt1">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Arial Black" size="30" style="0"/>
-                </Property>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="36" green="bc" red="21" type="rgb"/>
                 </Property>
               </Properties>
             </Component>
@@ -1220,7 +1197,7 @@
                 <Property name="text" type="java.lang.String" value="password"/>
               </Properties>
             </Component>
-            <Component class="SystemOtherComps.PH_PasswordField" name="password2">
+            <Component class="SystemOtherComps.PH_PasswordField" name="cnfpass1">
               <Properties>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -1234,11 +1211,8 @@
                   <Color blue="66" green="66" red="66" type="rgb"/>
                 </Property>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="password2ActionPerformed"/>
-              </Events>
             </Component>
-            <Component class="SystemOtherComps.PH_PasswordField" name="password1">
+            <Component class="SystemOtherComps.PH_PasswordField" name="newpass1">
               <Properties>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -1252,14 +1226,20 @@
                   <Color blue="66" green="66" red="66" type="rgb"/>
                 </Property>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="password1ActionPerformed"/>
-              </Events>
             </Component>
             <Component class="SystemOtherComps.PH_Button" name="pH_Button1">
               <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="33" green="33" red="33" type="rgb"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="fb" green="fb" red="fb" type="rgb"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Change password"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="pH_Button1ActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
