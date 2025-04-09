@@ -1236,6 +1236,24 @@
                   <Color blue="fb" green="fb" red="fb" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Change password"/>
+                <Property name="AAA_ImageBoundArcSize" type="int" value="10"/>
+                <Property name="AAA_roundBottomLeft" type="int" value="10"/>
+                <Property name="AAA_roundBottomRight" type="int" value="10"/>
+                <Property name="AAA_roundTopLeft" type="int" value="10"/>
+                <Property name="AAA_roundTopRight" type="int" value="10"/>
+                <Property name="AA_ArcSize" type="int" value="10"/>
+                <Property name="AA_ButtonColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="33" green="33" red="33" type="rgb"/>
+                </Property>
+                <Property name="AA_HoverColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="99" green="99" red="99" type="rgb"/>
+                </Property>
+                <Property name="AA_PressColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="69" green="b8" red="5d" type="rgb"/>
+                </Property>
+                <Property name="AA_RippleColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="2e" green="87" red="15" type="rgb"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="pH_Button1ActionPerformed"/>

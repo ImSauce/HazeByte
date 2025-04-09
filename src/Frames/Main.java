@@ -774,6 +774,16 @@ public class Main extends javax.swing.JFrame {
         pH_Button1.setBackground(new java.awt.Color(51, 51, 51));
         pH_Button1.setForeground(new java.awt.Color(251, 251, 251));
         pH_Button1.setText("Change password");
+        pH_Button1.setAAA_ImageBoundArcSize(10);
+        pH_Button1.setAAA_roundBottomLeft(10);
+        pH_Button1.setAAA_roundBottomRight(10);
+        pH_Button1.setAAA_roundTopLeft(10);
+        pH_Button1.setAAA_roundTopRight(10);
+        pH_Button1.setAA_ArcSize(10);
+        pH_Button1.setAA_ButtonColor(new java.awt.Color(51, 51, 51));
+        pH_Button1.setAA_HoverColor(new java.awt.Color(153, 153, 153));
+        pH_Button1.setAA_PressColor(new java.awt.Color(93, 184, 105));
+        pH_Button1.setAA_RippleColor(new java.awt.Color(21, 135, 46));
         pH_Button1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pH_Button1ActionPerformed(evt);
