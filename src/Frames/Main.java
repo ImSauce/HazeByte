@@ -137,7 +137,13 @@ public class Main extends javax.swing.JFrame {
         HistorySearchIconTXT = new javax.swing.JLabel();
         HistoryCategoryIcon = new javax.swing.JLabel();
         Info = new javax.swing.JPanel();
-        jToggleButton1 = new javax.swing.JToggleButton();
+        password = new SystemOtherComps.PH_PasswordField();
+        Cart_txt1 = new javax.swing.JLabel();
+        Cart_txt2 = new javax.swing.JLabel();
+        Cart_txt3 = new javax.swing.JLabel();
+        password2 = new SystemOtherComps.PH_PasswordField();
+        password1 = new SystemOtherComps.PH_PasswordField();
+        pH_Button1 = new SystemOtherComps.PH_Button();
         Cart = new javax.swing.JPanel();
         CartBar = new javax.swing.JPanel();
         Cart_txt = new javax.swing.JLabel();
@@ -736,23 +742,100 @@ public class Main extends javax.swing.JFrame {
 
         layers.add(History, "card4");
 
-        jToggleButton1.setText("jToggleButton1");
+        Info.setPreferredSize(new java.awt.Dimension(418, 347));
+
+        password.setForeground(new java.awt.Color(255, 255, 255));
+        password.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        password.setAA_TextHint("Current password");
+        password.setAB_HintColor(new java.awt.Color(153, 153, 153));
+        password.setAB_LineColor(new java.awt.Color(102, 102, 102));
+        password.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                passwordActionPerformed(evt);
+            }
+        });
+
+        Cart_txt1.setFont(new java.awt.Font("Arial Black", 0, 30)); // NOI18N
+        Cart_txt1.setForeground(new java.awt.Color(33, 188, 54));
+
+        Cart_txt2.setFont(new java.awt.Font("Arial Black", 0, 30)); // NOI18N
+        Cart_txt2.setForeground(new java.awt.Color(255, 255, 255));
+        Cart_txt2.setText("Change");
+        Cart_txt2.setMaximumSize(new java.awt.Dimension(125, 43));
+        Cart_txt2.setMinimumSize(new java.awt.Dimension(1235, 43));
+
+        Cart_txt3.setFont(new java.awt.Font("Arial Black", 0, 28)); // NOI18N
+        Cart_txt3.setForeground(new java.awt.Color(255, 255, 255));
+        Cart_txt3.setText("password");
+
+        password2.setForeground(new java.awt.Color(255, 255, 255));
+        password2.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        password2.setAA_TextHint(" Re-type new password");
+        password2.setAB_HintColor(new java.awt.Color(153, 153, 153));
+        password2.setAB_LineColor(new java.awt.Color(102, 102, 102));
+        password2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                password2ActionPerformed(evt);
+            }
+        });
+
+        password1.setForeground(new java.awt.Color(255, 255, 255));
+        password1.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        password1.setAA_TextHint("New password");
+        password1.setAB_HintColor(new java.awt.Color(153, 153, 153));
+        password1.setAB_LineColor(new java.awt.Color(102, 102, 102));
+        password1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                password1ActionPerformed(evt);
+            }
+        });
+
+        pH_Button1.setText("Change password");
 
         javax.swing.GroupLayout InfoLayout = new javax.swing.GroupLayout(Info);
         Info.setLayout(InfoLayout);
         InfoLayout.setHorizontalGroup(
             InfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(InfoLayout.createSequentialGroup()
-                .addGap(373, 373, 373)
-                .addComponent(jToggleButton1)
-                .addContainerGap(418, Short.MAX_VALUE))
+                .addGroup(InfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(InfoLayout.createSequentialGroup()
+                        .addGap(232, 232, 232)
+                        .addComponent(Cart_txt1)
+                        .addGap(53, 53, 53)
+                        .addGroup(InfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(InfoLayout.createSequentialGroup()
+                                .addComponent(Cart_txt2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(Cart_txt3))
+                            .addComponent(password1, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(password2, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(InfoLayout.createSequentialGroup()
+                        .addGap(352, 352, 352)
+                        .addComponent(pH_Button1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(342, Short.MAX_VALUE))
         );
         InfoLayout.setVerticalGroup(
             InfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(InfoLayout.createSequentialGroup()
-                .addGap(211, 211, 211)
-                .addComponent(jToggleButton1)
-                .addContainerGap(443, Short.MAX_VALUE))
+                .addGap(63, 63, 63)
+                .addGroup(InfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Cart_txt2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Cart_txt3, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(InfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(InfoLayout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addComponent(Cart_txt1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(InfoLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(password1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(password2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(27, 27, 27)
+                .addComponent(pH_Button1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(399, Short.MAX_VALUE))
         );
 
         layers.add(Info, "card5");
@@ -929,7 +1012,7 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(CartItemViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(CostIcon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(CartTotalCostTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(CartRemoveBT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(16, 16, 16))
         );
@@ -1109,7 +1192,7 @@ public class Main extends javax.swing.JFrame {
                     .addGroup(CartLayout.createSequentialGroup()
                         .addGap(36, 36, 36)
                         .addGroup(CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(CartTableScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 644, Short.MAX_VALUE)
+                            .addComponent(CartTableScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 553, Short.MAX_VALUE)
                             .addGroup(CartLayout.createSequentialGroup()
                                 .addComponent(PaymentHeading)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1144,7 +1227,7 @@ public class Main extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(CartLayout.createSequentialGroup()
-                        .addComponent(CartTableScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 372, Short.MAX_VALUE)
+                        .addComponent(CartTableScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(payment, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -2203,6 +2286,18 @@ public class Main extends javax.swing.JFrame {
     private void EditCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditCategoryActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_EditCategoryActionPerformed
+
+    private void passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_passwordActionPerformed
+
+    private void password2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_password2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_password2ActionPerformed
+
+    private void password1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_password1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_password1ActionPerformed
   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -2247,6 +2342,9 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel CartTotalCostTXT;
     private javax.swing.JPanel Cart_Line;
     private javax.swing.JLabel Cart_txt;
+    private javax.swing.JLabel Cart_txt1;
+    private javax.swing.JLabel Cart_txt2;
+    private javax.swing.JLabel Cart_txt3;
     private javax.swing.JLabel ChangeHeading;
     private javax.swing.JLabel CostIcon;
     private javax.swing.JPanel Edit;
@@ -2323,7 +2421,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JLayeredPane layers;
     private javax.swing.JPanel line;
     private javax.swing.JPanel menu;
@@ -2342,6 +2439,10 @@ public class Main extends javax.swing.JFrame {
     private Panel.Items newJPanel7;
     private Panel.Items newJPanel8;
     private Panel.Items newJPanel9;
+    private SystemOtherComps.PH_Button pH_Button1;
+    private SystemOtherComps.PH_PasswordField password;
+    private SystemOtherComps.PH_PasswordField password1;
+    private SystemOtherComps.PH_PasswordField password2;
     private SystemOtherComps.PH_TextField payment;
     private javax.swing.JLabel quantityIcon;
     private Splash.LoadingAnimation saveloading;
