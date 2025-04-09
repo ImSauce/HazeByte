@@ -2291,7 +2291,7 @@ public class Main extends javax.swing.JFrame {
           JOptionPane.showMessageDialog(this, "Does not match the New password");
       }
       if(oldPass.isEmpty() || newPass.isEmpty() || cnfPass.isEmpty()) {
-          JOptionPane.showMessageDialog(this, "All fields are required");
+          JOptionPane.showMessageDialog(this, "gago ka ba maglagay ka gago");
           return;
       }
       
