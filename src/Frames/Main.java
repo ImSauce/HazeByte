@@ -137,12 +137,11 @@ public class Main extends javax.swing.JFrame {
         HistorySearchIconTXT = new javax.swing.JLabel();
         HistoryCategoryIcon = new javax.swing.JLabel();
         Info = new javax.swing.JPanel();
-        oldpass1 = new SystemOtherComps.PH_PasswordField();
-        Cart_txt2 = new javax.swing.JLabel();
-        Cart_txt3 = new javax.swing.JLabel();
-        cnfpass1 = new SystemOtherComps.PH_PasswordField();
-        newpass1 = new SystemOtherComps.PH_PasswordField();
-        pH_Button1 = new SystemOtherComps.PH_Button();
+        OldPass = new SystemOtherComps.PH_PasswordField();
+        changepasswordtext = new javax.swing.JLabel();
+        ReNewPass = new SystemOtherComps.PH_PasswordField();
+        NewPass = new SystemOtherComps.PH_PasswordField();
+        ChangePassBT = new SystemOtherComps.PH_Button();
         Cart = new javax.swing.JPanel();
         CartBar = new javax.swing.JPanel();
         Cart_txt = new javax.swing.JLabel();
@@ -743,50 +742,46 @@ public class Main extends javax.swing.JFrame {
 
         Info.setPreferredSize(new java.awt.Dimension(418, 347));
 
-        oldpass1.setForeground(new java.awt.Color(255, 255, 255));
-        oldpass1.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        oldpass1.setAA_TextHint("Current password");
-        oldpass1.setAB_HintColor(new java.awt.Color(153, 153, 153));
-        oldpass1.setAB_LineColor(new java.awt.Color(102, 102, 102));
+        OldPass.setForeground(new java.awt.Color(255, 255, 255));
+        OldPass.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        OldPass.setAA_TextHint("Current password");
+        OldPass.setAB_HintColor(new java.awt.Color(153, 153, 153));
+        OldPass.setAB_LineColor(new java.awt.Color(102, 102, 102));
 
-        Cart_txt2.setFont(new java.awt.Font("Arial Black", 0, 30)); // NOI18N
-        Cart_txt2.setForeground(new java.awt.Color(255, 255, 255));
-        Cart_txt2.setText("Change");
-        Cart_txt2.setMaximumSize(new java.awt.Dimension(125, 43));
-        Cart_txt2.setMinimumSize(new java.awt.Dimension(1235, 43));
+        changepasswordtext.setFont(new java.awt.Font("Arial Black", 0, 30)); // NOI18N
+        changepasswordtext.setForeground(new java.awt.Color(255, 255, 255));
+        changepasswordtext.setText("Change Password");
+        changepasswordtext.setMaximumSize(new java.awt.Dimension(125, 43));
+        changepasswordtext.setMinimumSize(new java.awt.Dimension(1235, 43));
 
-        Cart_txt3.setFont(new java.awt.Font("Arial Black", 0, 28)); // NOI18N
-        Cart_txt3.setForeground(new java.awt.Color(255, 255, 255));
-        Cart_txt3.setText("password");
+        ReNewPass.setForeground(new java.awt.Color(255, 255, 255));
+        ReNewPass.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        ReNewPass.setAA_TextHint(" Re-type new password");
+        ReNewPass.setAB_HintColor(new java.awt.Color(153, 153, 153));
+        ReNewPass.setAB_LineColor(new java.awt.Color(102, 102, 102));
 
-        cnfpass1.setForeground(new java.awt.Color(255, 255, 255));
-        cnfpass1.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        cnfpass1.setAA_TextHint(" Re-type new password");
-        cnfpass1.setAB_HintColor(new java.awt.Color(153, 153, 153));
-        cnfpass1.setAB_LineColor(new java.awt.Color(102, 102, 102));
+        NewPass.setForeground(new java.awt.Color(255, 255, 255));
+        NewPass.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        NewPass.setAA_TextHint("New password");
+        NewPass.setAB_HintColor(new java.awt.Color(153, 153, 153));
+        NewPass.setAB_LineColor(new java.awt.Color(102, 102, 102));
 
-        newpass1.setForeground(new java.awt.Color(255, 255, 255));
-        newpass1.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        newpass1.setAA_TextHint("New password");
-        newpass1.setAB_HintColor(new java.awt.Color(153, 153, 153));
-        newpass1.setAB_LineColor(new java.awt.Color(102, 102, 102));
-
-        pH_Button1.setBackground(new java.awt.Color(51, 51, 51));
-        pH_Button1.setForeground(new java.awt.Color(251, 251, 251));
-        pH_Button1.setText("Change password");
-        pH_Button1.setAAA_ImageBoundArcSize(10);
-        pH_Button1.setAAA_roundBottomLeft(10);
-        pH_Button1.setAAA_roundBottomRight(10);
-        pH_Button1.setAAA_roundTopLeft(10);
-        pH_Button1.setAAA_roundTopRight(10);
-        pH_Button1.setAA_ArcSize(10);
-        pH_Button1.setAA_ButtonColor(new java.awt.Color(51, 51, 51));
-        pH_Button1.setAA_HoverColor(new java.awt.Color(153, 153, 153));
-        pH_Button1.setAA_PressColor(new java.awt.Color(93, 184, 105));
-        pH_Button1.setAA_RippleColor(new java.awt.Color(21, 135, 46));
-        pH_Button1.addActionListener(new java.awt.event.ActionListener() {
+        ChangePassBT.setBackground(new java.awt.Color(51, 51, 51));
+        ChangePassBT.setForeground(new java.awt.Color(251, 251, 251));
+        ChangePassBT.setText("Change password");
+        ChangePassBT.setAAA_ImageBoundArcSize(10);
+        ChangePassBT.setAAA_roundBottomLeft(10);
+        ChangePassBT.setAAA_roundBottomRight(10);
+        ChangePassBT.setAAA_roundTopLeft(10);
+        ChangePassBT.setAAA_roundTopRight(10);
+        ChangePassBT.setAA_ArcSize(10);
+        ChangePassBT.setAA_ButtonColor(new java.awt.Color(51, 51, 51));
+        ChangePassBT.setAA_HoverColor(new java.awt.Color(153, 153, 153));
+        ChangePassBT.setAA_PressColor(new java.awt.Color(93, 184, 105));
+        ChangePassBT.setAA_RippleColor(new java.awt.Color(21, 135, 46));
+        ChangePassBT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pH_Button1ActionPerformed(evt);
+                ChangePassBTActionPerformed(evt);
             }
         });
 
@@ -799,33 +794,28 @@ public class Main extends javax.swing.JFrame {
                     .addGroup(InfoLayout.createSequentialGroup()
                         .addGap(285, 285, 285)
                         .addGroup(InfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(InfoLayout.createSequentialGroup()
-                                .addComponent(Cart_txt2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(Cart_txt3))
-                            .addComponent(newpass1, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cnfpass1, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(oldpass1, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(changepasswordtext, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(NewPass, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ReNewPass, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(OldPass, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(InfoLayout.createSequentialGroup()
                         .addGap(352, 352, 352)
-                        .addComponent(pH_Button1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(342, Short.MAX_VALUE))
+                        .addComponent(ChangePassBT, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(329, Short.MAX_VALUE))
         );
         InfoLayout.setVerticalGroup(
             InfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(InfoLayout.createSequentialGroup()
-                .addGap(63, 63, 63)
-                .addGroup(InfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Cart_txt2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Cart_txt3, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(oldpass1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(48, 48, 48)
+                .addComponent(changepasswordtext, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(19, 19, 19)
+                .addComponent(OldPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(newpass1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(NewPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cnfpass1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(ReNewPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
-                .addComponent(pH_Button1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(ChangePassBT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(399, Short.MAX_VALUE))
         );
 
@@ -1993,11 +1983,6 @@ public class Main extends javax.swing.JFrame {
         EditCategory.setLabeText("    ");
         EditCategory.setRequestFocusEnabled(false);
         EditCategory.setVerifyInputWhenFocusTarget(false);
-        EditCategory.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EditCategoryActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout saveloadingLayout = new javax.swing.GroupLayout(saveloading);
         saveloading.setLayout(saveloadingLayout);
@@ -2274,60 +2259,9 @@ public class Main extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_EditImageMouseClicked
 
-    private void EditCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditCategoryActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_EditCategoryActionPerformed
-
-    private void pH_Button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pH_Button1ActionPerformed
-      String oldPass, newPass, cnfPass;
-      char[] oldPassChars = oldpass1.getPassword();
-      oldPass = new String(oldPassChars);
-      char[] newPassChars = newpass1.getPassword();
-      newPass = new String(newPassChars);
-      char[] cnfPassChars = cnfpass1.getPassword();
-      cnfPass = new String(cnfPassChars);
-      
-      if(!newPass.equals(cnfPass)) {
-          JOptionPane.showMessageDialog(this, "Does not match the New password");
-      }
-      if(oldPass.isEmpty() || newPass.isEmpty() || cnfPass.isEmpty()) {
-          JOptionPane.showMessageDialog(this, "gago ka ba maglagay ka gago");
-          return;
-      }
-      
-      try {
-          String query= "Select password FROM login WHERE id=1";
-          pst= con.prepareStatement(query);
-          rs= pst.executeQuery();
-          
-          if(rs.next()) {
-              String oldPass2 = rs.getString("password");
-              if(!oldPass2.equals(oldPass)) {
-                  JOptionPane.showMessageDialog(this, "Old pass is incorrect please try again");
-                  return;
-                 
-                 
-                 
-              }
-          }
-          
-            String update = "UPDATE login SET password=? WHERE id=1";
-                  pst= con.prepareStatement(update);
-                  pst.setString(1,newPass);
-                  pst.executeUpdate();
-                  
-                  JOptionPane.showMessageDialog(this, "Password changed");
-                  
-                 oldpass1.setText("");
-                 newpass1.setText("");
-                 cnfpass1.setText("");
-      } catch (SQLException ex) {
-          Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-          
-          JOptionPane.showMessageDialog(this, "Error" + ex.getMessage());
-      }
-      
-    }//GEN-LAST:event_pH_Button1ActionPerformed
+    private void ChangePassBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChangePassBTActionPerformed
+      ChangePass();    
+    }//GEN-LAST:event_ChangePassBTActionPerformed
   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -2372,9 +2306,8 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel CartTotalCostTXT;
     private javax.swing.JPanel Cart_Line;
     private javax.swing.JLabel Cart_txt;
-    private javax.swing.JLabel Cart_txt2;
-    private javax.swing.JLabel Cart_txt3;
     private javax.swing.JLabel ChangeHeading;
+    private SystemOtherComps.PH_Button ChangePassBT;
     private javax.swing.JLabel CostIcon;
     private javax.swing.JPanel Edit;
     private javax.swing.JLabel EditBT1;
@@ -2427,9 +2360,12 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel Info;
     private SystemOtherComps.PH_Panel InfoPN;
     private javax.swing.JLabel Info_BT;
+    private SystemOtherComps.PH_PasswordField NewPass;
+    private SystemOtherComps.PH_PasswordField OldPass;
     private SystemOtherComps.PH_Panel OptionPN;
     private javax.swing.JLabel Option_BT;
     private javax.swing.JLabel PaymentHeading;
+    private SystemOtherComps.PH_PasswordField ReNewPass;
     private javax.swing.JLabel SubtotalHeading;
     private javax.swing.JLabel TotalCostHeading;
     private javax.swing.JLabel TotalDiscountHeading;
@@ -2439,7 +2375,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel addimagetool1;
     public SystemShadowedComp.PH_ComboBox categories;
     private SystemOtherComps.PH_TextField change;
-    private SystemOtherComps.PH_PasswordField cnfpass1;
+    private javax.swing.JLabel changepasswordtext;
     private javax.swing.JLabel edit_imageName;
     private javax.swing.JLabel edit_imagePath;
     private javax.swing.JLabel iddesc;
@@ -2469,9 +2405,6 @@ public class Main extends javax.swing.JFrame {
     private Panel.Items newJPanel7;
     private Panel.Items newJPanel8;
     private Panel.Items newJPanel9;
-    private SystemOtherComps.PH_PasswordField newpass1;
-    private SystemOtherComps.PH_PasswordField oldpass1;
-    private SystemOtherComps.PH_Button pH_Button1;
     private SystemOtherComps.PH_TextField payment;
     private javax.swing.JLabel quantityIcon;
     private Splash.LoadingAnimation saveloading;
@@ -2552,6 +2485,54 @@ public class Main extends javax.swing.JFrame {
     
     
     
+    public void ChangePass(){
+        String oldPass, newPass, cnfPass;
+          char[] oldPassChars = OldPass.getPassword();
+          oldPass = new String(oldPassChars);
+          char[] newPassChars = NewPass.getPassword();
+          newPass = new String(newPassChars);
+          char[] RePass = ReNewPass.getPassword();
+          cnfPass = new String(RePass);
+
+          if(!newPass.equals(cnfPass)) {
+              JOptionPane.showMessageDialog(this, "Does not match the New password");
+          }
+          if(oldPass.isEmpty() || newPass.isEmpty() || cnfPass.isEmpty()) {
+              JOptionPane.showMessageDialog(this, "gago ka ba maglagay ka gago");
+              return;
+          }  
+          try {
+              String query= "Select password FROM login WHERE id=1";
+              pst= con.prepareStatement(query);
+              rs= pst.executeQuery();
+
+              if(rs.next()) {
+                  String oldPass2 = rs.getString("password");
+                  if(!oldPass2.equals(oldPass)) {
+                      JOptionPane.showMessageDialog(this, "Old pass is incorrect please try again");
+                      return;
+
+
+
+                  }
+              }
+
+                String update = "UPDATE login SET password=? WHERE id=1";
+                      pst= con.prepareStatement(update);
+                      pst.setString(1,newPass);
+                      pst.executeUpdate();
+
+                      JOptionPane.showMessageDialog(this, "Password changed");
+
+                     OldPass.setText("");
+                     NewPass.setText("");
+                     ReNewPass.setText("");
+          } catch (SQLException ex) {
+              Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+
+              JOptionPane.showMessageDialog(this, "Error" + ex.getMessage());
+          }
+    }
     
     
     
