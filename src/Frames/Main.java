@@ -38,6 +38,9 @@ import javax.swing.table.JTableHeader;
 
 public class Main extends javax.swing.JFrame {
 
+    private ChangePassword ChangePass;
+    private ChangeUsername ChangeUser;
+    
     //variables for detecting if a menu button is clicked
     Functions function = new Functions();
     boolean HomeClicked = true;
@@ -83,8 +86,7 @@ public class Main extends javax.swing.JFrame {
         }
        
         
-    }
-    
+    }    
 
     public Main() {
         initComponents();
@@ -107,8 +109,8 @@ public class Main extends javax.swing.JFrame {
         Option_BT = new javax.swing.JLabel();
         HistoryPN = new SystemOtherComps.PH_Panel();
         History_BT = new javax.swing.JLabel();
-        InfoPN = new SystemOtherComps.PH_Panel();
-        Info_BT = new javax.swing.JLabel();
+        SettingsPN = new SystemOtherComps.PH_Panel();
+        Settings_BT = new javax.swing.JLabel();
         layers = new javax.swing.JLayeredPane();
         Hidden = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -136,12 +138,21 @@ public class Main extends javax.swing.JFrame {
         HistorySearch = new SystemOtherComps.PH_TextField();
         HistorySearchIconTXT = new javax.swing.JLabel();
         HistoryCategoryIcon = new javax.swing.JLabel();
-        Info = new javax.swing.JPanel();
-        OldPass = new SystemOtherComps.PH_PasswordField();
-        changepasswordtext = new javax.swing.JLabel();
-        ReNewPass = new SystemOtherComps.PH_PasswordField();
-        NewPass = new SystemOtherComps.PH_PasswordField();
-        ChangePassBT = new SystemOtherComps.PH_Button();
+        Settings = new javax.swing.JPanel();
+        SettingsBar = new javax.swing.JPanel();
+        SettingsText = new javax.swing.JLabel();
+        ChangeUsernamePN = new SystemOtherComps.PH_Panel();
+        ChangeusernameDesc = new javax.swing.JLabel();
+        ChangeUsernameHeading = new javax.swing.JLabel();
+        Settings_BT1 = new javax.swing.JLabel();
+        ChangePassPN = new SystemOtherComps.PH_Panel();
+        ChangepassDesc1 = new javax.swing.JLabel();
+        ChangePassHeading1 = new javax.swing.JLabel();
+        Settings_BT2 = new javax.swing.JLabel();
+        AboutPN = new SystemOtherComps.PH_Panel();
+        AboutDesc = new javax.swing.JLabel();
+        AboutHeading = new javax.swing.JLabel();
+        Settings_BT3 = new javax.swing.JLabel();
         Cart = new javax.swing.JPanel();
         CartBar = new javax.swing.JPanel();
         Cart_txt = new javax.swing.JLabel();
@@ -381,41 +392,41 @@ public class Main extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        InfoPN.setBackground(new java.awt.Color(24, 23, 23));
-        InfoPN.setAAA_ImageBoundArcSize(20);
-        InfoPN.setAAA_roundBottomLeft(20);
-        InfoPN.setAAA_roundBottomRight(20);
-        InfoPN.setAAA_roundTopLeft(20);
-        InfoPN.setAAA_roundTopRight(20);
+        SettingsPN.setBackground(new java.awt.Color(24, 23, 23));
+        SettingsPN.setAAA_ImageBoundArcSize(20);
+        SettingsPN.setAAA_roundBottomLeft(20);
+        SettingsPN.setAAA_roundBottomRight(20);
+        SettingsPN.setAAA_roundTopLeft(20);
+        SettingsPN.setAAA_roundTopRight(20);
 
-        Info_BT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/info.png"))); // NOI18N
-        Info_BT.setToolTipText("Developer Info");
-        Info_BT.addMouseListener(new java.awt.event.MouseAdapter() {
+        Settings_BT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/settings.png"))); // NOI18N
+        Settings_BT.setToolTipText("Developer Info");
+        Settings_BT.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                Info_BTMouseClicked(evt);
+                Settings_BTMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                Info_BTMouseEntered(evt);
+                Settings_BTMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                Info_BTMouseExited(evt);
+                Settings_BTMouseExited(evt);
             }
         });
 
-        javax.swing.GroupLayout InfoPNLayout = new javax.swing.GroupLayout(InfoPN);
-        InfoPN.setLayout(InfoPNLayout);
-        InfoPNLayout.setHorizontalGroup(
-            InfoPNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, InfoPNLayout.createSequentialGroup()
+        javax.swing.GroupLayout SettingsPNLayout = new javax.swing.GroupLayout(SettingsPN);
+        SettingsPN.setLayout(SettingsPNLayout);
+        SettingsPNLayout.setHorizontalGroup(
+            SettingsPNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SettingsPNLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(Info_BT)
+                .addComponent(Settings_BT)
                 .addContainerGap())
         );
-        InfoPNLayout.setVerticalGroup(
-            InfoPNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, InfoPNLayout.createSequentialGroup()
+        SettingsPNLayout.setVerticalGroup(
+            SettingsPNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SettingsPNLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(Info_BT)
+                .addComponent(Settings_BT)
                 .addContainerGap())
         );
 
@@ -430,7 +441,7 @@ public class Main extends javax.swing.JFrame {
                         .addComponent(HistoryPN, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
                         .addComponent(HomePN, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
                         .addComponent(OptionPN, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE))
-                    .addComponent(InfoPN, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(SettingsPN, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(line, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -449,7 +460,7 @@ public class Main extends javax.swing.JFrame {
                         .addGap(20, 20, 20)
                         .addComponent(HistoryPN, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 476, Short.MAX_VALUE)
-                        .addComponent(InfoPN, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(SettingsPN, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
@@ -591,7 +602,7 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(addimagetool1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(404, Short.MAX_VALUE))
+                .addContainerGap(360, Short.MAX_VALUE))
         );
 
         layers.add(Hidden, "card8");
@@ -740,86 +751,237 @@ public class Main extends javax.swing.JFrame {
 
         layers.add(History, "card4");
 
-        Info.setPreferredSize(new java.awt.Dimension(418, 347));
+        Settings.setBackground(new java.awt.Color(24, 23, 23));
+        Settings.setPreferredSize(new java.awt.Dimension(418, 347));
 
-        OldPass.setForeground(new java.awt.Color(255, 255, 255));
-        OldPass.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        OldPass.setAA_TextHint("Current password");
-        OldPass.setAB_HintColor(new java.awt.Color(153, 153, 153));
-        OldPass.setAB_LineColor(new java.awt.Color(102, 102, 102));
+        SettingsBar.setBackground(new java.awt.Color(24, 23, 23));
 
-        changepasswordtext.setFont(new java.awt.Font("Arial Black", 0, 30)); // NOI18N
-        changepasswordtext.setForeground(new java.awt.Color(255, 255, 255));
-        changepasswordtext.setText("Change Password");
-        changepasswordtext.setMaximumSize(new java.awt.Dimension(125, 43));
-        changepasswordtext.setMinimumSize(new java.awt.Dimension(1235, 43));
+        SettingsText.setFont(new java.awt.Font("Arial Black", 0, 28)); // NOI18N
+        SettingsText.setForeground(new java.awt.Color(255, 255, 255));
+        SettingsText.setText("Settings");
 
-        ReNewPass.setForeground(new java.awt.Color(255, 255, 255));
-        ReNewPass.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        ReNewPass.setAA_TextHint(" Re-type new password");
-        ReNewPass.setAB_HintColor(new java.awt.Color(153, 153, 153));
-        ReNewPass.setAB_LineColor(new java.awt.Color(102, 102, 102));
+        javax.swing.GroupLayout SettingsBarLayout = new javax.swing.GroupLayout(SettingsBar);
+        SettingsBar.setLayout(SettingsBarLayout);
+        SettingsBarLayout.setHorizontalGroup(
+            SettingsBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SettingsBarLayout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(SettingsText, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        SettingsBarLayout.setVerticalGroup(
+            SettingsBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(SettingsBarLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(SettingsText, javax.swing.GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE)
+                .addContainerGap())
+        );
 
-        NewPass.setForeground(new java.awt.Color(255, 255, 255));
-        NewPass.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        NewPass.setAA_TextHint("New password");
-        NewPass.setAB_HintColor(new java.awt.Color(153, 153, 153));
-        NewPass.setAB_LineColor(new java.awt.Color(102, 102, 102));
-
-        ChangePassBT.setBackground(new java.awt.Color(51, 51, 51));
-        ChangePassBT.setForeground(new java.awt.Color(251, 251, 251));
-        ChangePassBT.setText("Change password");
-        ChangePassBT.setAAA_ImageBoundArcSize(10);
-        ChangePassBT.setAAA_roundBottomLeft(10);
-        ChangePassBT.setAAA_roundBottomRight(10);
-        ChangePassBT.setAAA_roundTopLeft(10);
-        ChangePassBT.setAAA_roundTopRight(10);
-        ChangePassBT.setAA_ArcSize(10);
-        ChangePassBT.setAA_ButtonColor(new java.awt.Color(51, 51, 51));
-        ChangePassBT.setAA_HoverColor(new java.awt.Color(153, 153, 153));
-        ChangePassBT.setAA_PressColor(new java.awt.Color(93, 184, 105));
-        ChangePassBT.setAA_RippleColor(new java.awt.Color(21, 135, 46));
-        ChangePassBT.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ChangePassBTActionPerformed(evt);
+        ChangeUsernamePN.setBackground(new java.awt.Color(24, 23, 23));
+        ChangeUsernamePN.setForeground(new java.awt.Color(24, 23, 23));
+        ChangeUsernamePN.setAAA_ImageBoundArcSize(30);
+        ChangeUsernamePN.setAAA_roundBottomLeft(30);
+        ChangeUsernamePN.setAAA_roundBottomRight(30);
+        ChangeUsernamePN.setAAA_roundTopLeft(30);
+        ChangeUsernamePN.setAAA_roundTopRight(30);
+        ChangeUsernamePN.setAA_ArcSize(30);
+        ChangeUsernamePN.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ChangeUsernamePNMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                ChangeUsernamePNMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                ChangeUsernamePNMouseExited(evt);
             }
         });
 
-        javax.swing.GroupLayout InfoLayout = new javax.swing.GroupLayout(Info);
-        Info.setLayout(InfoLayout);
-        InfoLayout.setHorizontalGroup(
-            InfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(InfoLayout.createSequentialGroup()
-                .addGroup(InfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(InfoLayout.createSequentialGroup()
-                        .addGap(285, 285, 285)
-                        .addGroup(InfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(changepasswordtext, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(NewPass, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(ReNewPass, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(OldPass, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(InfoLayout.createSequentialGroup()
-                        .addGap(352, 352, 352)
-                        .addComponent(ChangePassBT, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(329, Short.MAX_VALUE))
+        ChangeusernameDesc.setBackground(new java.awt.Color(102, 102, 102));
+        ChangeusernameDesc.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        ChangeusernameDesc.setForeground(new java.awt.Color(102, 102, 102));
+        ChangeusernameDesc.setText("Update your username to a new one");
+
+        ChangeUsernameHeading.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        ChangeUsernameHeading.setForeground(new java.awt.Color(255, 255, 255));
+        ChangeUsernameHeading.setText("Change Username");
+
+        Settings_BT1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/usericon.png"))); // NOI18N
+        Settings_BT1.setToolTipText("Developer Info");
+
+        javax.swing.GroupLayout ChangeUsernamePNLayout = new javax.swing.GroupLayout(ChangeUsernamePN);
+        ChangeUsernamePN.setLayout(ChangeUsernamePNLayout);
+        ChangeUsernamePNLayout.setHorizontalGroup(
+            ChangeUsernamePNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ChangeUsernamePNLayout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addComponent(Settings_BT1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(ChangeUsernamePNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ChangeusernameDesc)
+                    .addComponent(ChangeUsernameHeading))
+                .addContainerGap(641, Short.MAX_VALUE))
         );
-        InfoLayout.setVerticalGroup(
-            InfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(InfoLayout.createSequentialGroup()
-                .addGap(48, 48, 48)
-                .addComponent(changepasswordtext, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19)
-                .addComponent(OldPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(NewPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ReNewPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
-                .addComponent(ChangePassBT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(399, Short.MAX_VALUE))
+        ChangeUsernamePNLayout.setVerticalGroup(
+            ChangeUsernamePNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ChangeUsernamePNLayout.createSequentialGroup()
+                .addContainerGap(12, Short.MAX_VALUE)
+                .addGroup(ChangeUsernamePNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ChangeUsernamePNLayout.createSequentialGroup()
+                        .addComponent(ChangeUsernameHeading)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ChangeusernameDesc)
+                        .addGap(14, 14, 14))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ChangeUsernamePNLayout.createSequentialGroup()
+                        .addComponent(Settings_BT1)
+                        .addGap(23, 23, 23))))
         );
 
-        layers.add(Info, "card5");
+        ChangePassPN.setBackground(new java.awt.Color(24, 23, 23));
+        ChangePassPN.setForeground(new java.awt.Color(24, 23, 23));
+        ChangePassPN.setAAA_ImageBoundArcSize(30);
+        ChangePassPN.setAAA_roundBottomLeft(30);
+        ChangePassPN.setAAA_roundBottomRight(30);
+        ChangePassPN.setAAA_roundTopLeft(30);
+        ChangePassPN.setAAA_roundTopRight(30);
+        ChangePassPN.setAA_ArcSize(30);
+        ChangePassPN.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ChangePassPNMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                ChangePassPNMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                ChangePassPNMouseExited(evt);
+            }
+        });
+
+        ChangepassDesc1.setBackground(new java.awt.Color(102, 102, 102));
+        ChangepassDesc1.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        ChangepassDesc1.setForeground(new java.awt.Color(102, 102, 102));
+        ChangepassDesc1.setText("Change your current password to a new one.");
+
+        ChangePassHeading1.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        ChangePassHeading1.setForeground(new java.awt.Color(255, 255, 255));
+        ChangePassHeading1.setText("Change Password");
+
+        Settings_BT2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/lock.png"))); // NOI18N
+        Settings_BT2.setToolTipText("Developer Info");
+
+        javax.swing.GroupLayout ChangePassPNLayout = new javax.swing.GroupLayout(ChangePassPN);
+        ChangePassPN.setLayout(ChangePassPNLayout);
+        ChangePassPNLayout.setHorizontalGroup(
+            ChangePassPNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ChangePassPNLayout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addComponent(Settings_BT2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(ChangePassPNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ChangepassDesc1)
+                    .addComponent(ChangePassHeading1))
+                .addContainerGap(595, Short.MAX_VALUE))
+        );
+        ChangePassPNLayout.setVerticalGroup(
+            ChangePassPNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ChangePassPNLayout.createSequentialGroup()
+                .addContainerGap(12, Short.MAX_VALUE)
+                .addGroup(ChangePassPNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ChangePassPNLayout.createSequentialGroup()
+                        .addComponent(ChangePassHeading1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ChangepassDesc1)
+                        .addGap(14, 14, 14))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ChangePassPNLayout.createSequentialGroup()
+                        .addComponent(Settings_BT2)
+                        .addGap(23, 23, 23))))
+        );
+
+        AboutPN.setBackground(new java.awt.Color(24, 23, 23));
+        AboutPN.setForeground(new java.awt.Color(24, 23, 23));
+        AboutPN.setAAA_ImageBoundArcSize(30);
+        AboutPN.setAAA_roundBottomLeft(30);
+        AboutPN.setAAA_roundBottomRight(30);
+        AboutPN.setAAA_roundTopLeft(30);
+        AboutPN.setAAA_roundTopRight(30);
+        AboutPN.setAA_ArcSize(30);
+        AboutPN.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                AboutPNMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                AboutPNMouseExited(evt);
+            }
+        });
+
+        AboutDesc.setBackground(new java.awt.Color(102, 102, 102));
+        AboutDesc.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        AboutDesc.setForeground(new java.awt.Color(102, 102, 102));
+        AboutDesc.setText("About info shows developers and application details.");
+
+        AboutHeading.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        AboutHeading.setForeground(new java.awt.Color(255, 255, 255));
+        AboutHeading.setText("About");
+
+        Settings_BT3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/info.png"))); // NOI18N
+        Settings_BT3.setToolTipText("Developer Info");
+
+        javax.swing.GroupLayout AboutPNLayout = new javax.swing.GroupLayout(AboutPN);
+        AboutPN.setLayout(AboutPNLayout);
+        AboutPNLayout.setHorizontalGroup(
+            AboutPNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(AboutPNLayout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addComponent(Settings_BT3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(AboutPNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(AboutDesc)
+                    .addComponent(AboutHeading))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        AboutPNLayout.setVerticalGroup(
+            AboutPNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(AboutPNLayout.createSequentialGroup()
+                .addContainerGap(12, Short.MAX_VALUE)
+                .addGroup(AboutPNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AboutPNLayout.createSequentialGroup()
+                        .addComponent(AboutHeading)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(AboutDesc)
+                        .addGap(14, 14, 14))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AboutPNLayout.createSequentialGroup()
+                        .addComponent(Settings_BT3)
+                        .addGap(22, 22, 22))))
+        );
+
+        javax.swing.GroupLayout SettingsLayout = new javax.swing.GroupLayout(Settings);
+        Settings.setLayout(SettingsLayout);
+        SettingsLayout.setHorizontalGroup(
+            SettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(SettingsBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(SettingsLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(SettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ChangeUsernamePN, javax.swing.GroupLayout.DEFAULT_SIZE, 894, Short.MAX_VALUE)
+                    .addComponent(ChangePassPN, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 894, Short.MAX_VALUE)
+                    .addComponent(AboutPN, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 894, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        SettingsLayout.setVerticalGroup(
+            SettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(SettingsLayout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(SettingsBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ChangeUsernamePN, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ChangePassPN, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(AboutPN, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(382, Short.MAX_VALUE))
+        );
+
+        layers.add(Settings, "card5");
 
         Cart.setBackground(new java.awt.Color(24, 23, 23));
         Cart.setPreferredSize(new java.awt.Dimension(783, 594));
@@ -1334,7 +1496,7 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Games_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 195, Short.MAX_VALUE)
                 .addComponent(HomeCategoryIconTXT)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(categories, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1422,7 +1584,7 @@ public class Main extends javax.swing.JFrame {
             .addGroup(HomeLayout.createSequentialGroup()
                 .addComponent(GameBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(GameScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 518, Short.MAX_VALUE)
+                .addComponent(GameScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 604, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1675,7 +1837,7 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(AddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(CancelBT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(AddBT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(108, Short.MAX_VALUE))
         );
 
         layers.add(Add, "card2");
@@ -2071,7 +2233,7 @@ public class Main extends javax.swing.JFrame {
                         .addGap(12, 12, 12)
                         .addComponent(EditDescriptionText, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(EditDescriptionScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE)
+                        .addComponent(EditDescriptionScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addGroup(EditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(EditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -2096,24 +2258,24 @@ public class Main extends javax.swing.JFrame {
     private void Home_BTMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Home_BTMouseClicked
         showcase(true,false,false,false,false,false);
         MenuHighlight(true,false,false,false);
-        function.MenuClicked(HomeClicked, HomePN, OptionClicked, OptionPN, HistoryClicked, HistoryPN, InfoClicked, InfoPN ); 
+        function.MenuClicked(HomeClicked, HomePN, OptionClicked, OptionPN, HistoryClicked, HistoryPN, InfoClicked, SettingsPN ); 
     }//GEN-LAST:event_Home_BTMouseClicked
     private void Option_BTMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Option_BTMouseClicked
         showcase(false,true,false,false,false,false);
         MenuHighlight(false,true,false,false);
-        function.MenuClicked(HomeClicked, HomePN, OptionClicked, OptionPN, HistoryClicked, HistoryPN, InfoClicked, InfoPN ); 
+        function.MenuClicked(HomeClicked, HomePN, OptionClicked, OptionPN, HistoryClicked, HistoryPN, InfoClicked, SettingsPN ); 
         EditRefreshTable();
     }//GEN-LAST:event_Option_BTMouseClicked
     private void History_BTMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_History_BTMouseClicked
         showcase(false,false,false,true,false,false);
         MenuHighlight(false,false,true,false);
-        function.MenuClicked(HomeClicked, HomePN, OptionClicked, OptionPN, HistoryClicked, HistoryPN, InfoClicked, InfoPN ); 
+        function.MenuClicked(HomeClicked, HomePN, OptionClicked, OptionPN, HistoryClicked, HistoryPN, InfoClicked, SettingsPN ); 
     }//GEN-LAST:event_History_BTMouseClicked
-    private void Info_BTMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Info_BTMouseClicked
+    private void Settings_BTMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Settings_BTMouseClicked
         showcase(false,false,false,false,true,false);
         MenuHighlight(false,false,false,true);
-        function.MenuClicked(HomeClicked, HomePN, OptionClicked, OptionPN, HistoryClicked, HistoryPN, InfoClicked, InfoPN ); 
-    }//GEN-LAST:event_Info_BTMouseClicked
+        function.MenuClicked(HomeClicked, HomePN, OptionClicked, OptionPN, HistoryClicked, HistoryPN, InfoClicked, SettingsPN ); 
+    }//GEN-LAST:event_Settings_BTMouseClicked
     private void Home_BTMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Home_BTMouseEntered
         HomePN.setBackground(new java.awt.Color(38, 38, 38));
     }//GEN-LAST:event_Home_BTMouseEntered
@@ -2132,12 +2294,12 @@ public class Main extends javax.swing.JFrame {
     private void History_BTMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_History_BTMouseExited
         if (HistoryClicked == false){HistoryPN.setBackground(new java.awt.Color(24,23,23));} 
     }//GEN-LAST:event_History_BTMouseExited
-    private void Info_BTMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Info_BTMouseEntered
-        InfoPN.setBackground(new java.awt.Color(38, 38, 38));
-    }//GEN-LAST:event_Info_BTMouseEntered
-    private void Info_BTMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Info_BTMouseExited
-        if (InfoClicked == false){InfoPN.setBackground(new java.awt.Color(24,23,23));}  
-    }//GEN-LAST:event_Info_BTMouseExited
+    private void Settings_BTMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Settings_BTMouseEntered
+        SettingsPN.setBackground(new java.awt.Color(38, 38, 38));
+    }//GEN-LAST:event_Settings_BTMouseEntered
+    private void Settings_BTMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Settings_BTMouseExited
+        if (InfoClicked == false){SettingsPN.setBackground(new java.awt.Color(24,23,23));}  
+    }//GEN-LAST:event_Settings_BTMouseExited
 //----------------MENU BUTTONS -------------//    
     
     
@@ -2259,12 +2421,46 @@ public class Main extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_EditImageMouseClicked
 
-    private void ChangePassBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChangePassBTActionPerformed
-      ChangePass();    
-    }//GEN-LAST:event_ChangePassBTActionPerformed
+    private void ChangeUsernamePNMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ChangeUsernamePNMouseEntered
+        function.SettingsHoverIn(ChangeUsernamePN);
+    }//GEN-LAST:event_ChangeUsernamePNMouseEntered
+
+    private void ChangePassPNMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ChangePassPNMouseEntered
+        function.SettingsHoverIn(ChangePassPN);
+    }//GEN-LAST:event_ChangePassPNMouseEntered
+
+    private void AboutPNMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AboutPNMouseEntered
+        function.SettingsHoverIn(AboutPN);
+    }//GEN-LAST:event_AboutPNMouseEntered
+
+    private void ChangeUsernamePNMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ChangeUsernamePNMouseExited
+        function.SettingsHoverOut(ChangeUsernamePN);
+    }//GEN-LAST:event_ChangeUsernamePNMouseExited
+
+    private void ChangePassPNMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ChangePassPNMouseExited
+        function.SettingsHoverOut(ChangePassPN);
+    }//GEN-LAST:event_ChangePassPNMouseExited
+
+    private void AboutPNMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AboutPNMouseExited
+        function.SettingsHoverOut(AboutPN);
+    }//GEN-LAST:event_AboutPNMouseExited
+
+    
+    private void ChangeUsernamePNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ChangeUsernamePNMouseClicked
+      ChangeUser = new ChangeUsername(this);
+       ChangeUser.setVisible(true);
+    }//GEN-LAST:event_ChangeUsernamePNMouseClicked
+
+    private void ChangePassPNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ChangePassPNMouseClicked
+        ChangePass = new ChangePassword(this);
+       ChangePass.setVisible(true);
+    }//GEN-LAST:event_ChangePassPNMouseClicked
   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JLabel AboutDesc;
+    public javax.swing.JLabel AboutHeading;
+    private SystemOtherComps.PH_Panel AboutPN;
     private javax.swing.JPanel Add;
     private SystemOtherComps.PH_Button AddBT;
     private javax.swing.JLabel AddBT1;
@@ -2307,7 +2503,12 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel Cart_Line;
     private javax.swing.JLabel Cart_txt;
     private javax.swing.JLabel ChangeHeading;
-    private SystemOtherComps.PH_Button ChangePassBT;
+    public javax.swing.JLabel ChangePassHeading1;
+    private SystemOtherComps.PH_Panel ChangePassPN;
+    public javax.swing.JLabel ChangeUsernameHeading;
+    private SystemOtherComps.PH_Panel ChangeUsernamePN;
+    public javax.swing.JLabel ChangepassDesc1;
+    public javax.swing.JLabel ChangeusernameDesc;
     private javax.swing.JLabel CostIcon;
     private javax.swing.JPanel Edit;
     private javax.swing.JLabel EditBT1;
@@ -2357,15 +2558,17 @@ public class Main extends javax.swing.JFrame {
     private SystemOtherComps.PH_Panel HomePN;
     private javax.swing.JLabel HomeSearchIcon;
     public javax.swing.JLabel Home_BT;
-    private javax.swing.JPanel Info;
-    private SystemOtherComps.PH_Panel InfoPN;
-    private javax.swing.JLabel Info_BT;
-    private SystemOtherComps.PH_PasswordField NewPass;
-    private SystemOtherComps.PH_PasswordField OldPass;
     private SystemOtherComps.PH_Panel OptionPN;
     private javax.swing.JLabel Option_BT;
     private javax.swing.JLabel PaymentHeading;
-    private SystemOtherComps.PH_PasswordField ReNewPass;
+    private javax.swing.JPanel Settings;
+    private javax.swing.JPanel SettingsBar;
+    private SystemOtherComps.PH_Panel SettingsPN;
+    public javax.swing.JLabel SettingsText;
+    private javax.swing.JLabel Settings_BT;
+    private javax.swing.JLabel Settings_BT1;
+    private javax.swing.JLabel Settings_BT2;
+    private javax.swing.JLabel Settings_BT3;
     private javax.swing.JLabel SubtotalHeading;
     private javax.swing.JLabel TotalCostHeading;
     private javax.swing.JLabel TotalDiscountHeading;
@@ -2375,7 +2578,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel addimagetool1;
     public SystemShadowedComp.PH_ComboBox categories;
     private SystemOtherComps.PH_TextField change;
-    private javax.swing.JLabel changepasswordtext;
     private javax.swing.JLabel edit_imageName;
     private javax.swing.JLabel edit_imagePath;
     private javax.swing.JLabel iddesc;
@@ -2420,7 +2622,7 @@ public class Main extends javax.swing.JFrame {
         setIconImage(Mainicon.getImage());
         setTitle("HazeByte");
         setResizable(true);
-       setExtendedState(MAXIMIZED_BOTH);
+        setExtendedState(MAXIMIZED_BOTH);
         
         //Open Games Menu after startup
         Home_BTMouseClicked(null);
@@ -2468,7 +2670,7 @@ public class Main extends javax.swing.JFrame {
         Edit.setVisible(Edit_);
         Add.setVisible(Add_);
         History.setVisible(History_);
-        Info.setVisible(Info_);
+        Settings.setVisible(Info_);
         Cart.setVisible(Cart_);     
     }
     
@@ -2479,60 +2681,15 @@ public class Main extends javax.swing.JFrame {
         InfoClicked =info; 
     }
 
+
     
     
     
     
     
     
-    public void ChangePass(){
-        String oldPass, newPass, cnfPass;
-          char[] oldPassChars = OldPass.getPassword();
-          oldPass = new String(oldPassChars);
-          char[] newPassChars = NewPass.getPassword();
-          newPass = new String(newPassChars);
-          char[] RePass = ReNewPass.getPassword();
-          cnfPass = new String(RePass);
-
-          if(!newPass.equals(cnfPass)) {
-              JOptionPane.showMessageDialog(this, "Does not match the New password");
-          }
-          if(oldPass.isEmpty() || newPass.isEmpty() || cnfPass.isEmpty()) {
-              JOptionPane.showMessageDialog(this, "gago ka ba maglagay ka gago");
-              return;
-          }  
-          try {
-              String query= "Select password FROM login WHERE id=1";
-              pst= con.prepareStatement(query);
-              rs= pst.executeQuery();
-
-              if(rs.next()) {
-                  String oldPass2 = rs.getString("password");
-                  if(!oldPass2.equals(oldPass)) {
-                      JOptionPane.showMessageDialog(this, "Old pass is incorrect please try again");
-                      return;
-
-
-
-                  }
-              }
-
-                String update = "UPDATE login SET password=? WHERE id=1";
-                      pst= con.prepareStatement(update);
-                      pst.setString(1,newPass);
-                      pst.executeUpdate();
-
-                      JOptionPane.showMessageDialog(this, "Password changed");
-
-                     OldPass.setText("");
-                     NewPass.setText("");
-                     ReNewPass.setText("");
-          } catch (SQLException ex) {
-              Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-
-              JOptionPane.showMessageDialog(this, "Error" + ex.getMessage());
-          }
-    }
+    
+    
     
     
     

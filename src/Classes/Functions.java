@@ -40,6 +40,14 @@ public class Functions {
         InfoPN.setBackground(new Color(24,23,23));
         }
     }
+    
+    public void SettingsHoverIn(JPanel settings){
+        settings.setBackground(new Color(38, 38, 38));
+    }
+    
+    public void SettingsHoverOut(JPanel settings){
+        settings.setBackground(new Color(24,23,23));
+    }
  
     
 }
