@@ -7,6 +7,7 @@ package Frames;
 import Classes.Functions;
 import Classes.Run;
 import Classes.serverCredentials;
+import Splash.Login;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -41,6 +42,8 @@ public class Main extends javax.swing.JFrame {
     private ChangePassword ChangePass;
     private ChangeUsername ChangeUser;
     
+    private final Login loginInstance;
+    
     //variables for detecting if a menu button is clicked
     Functions function = new Functions();
     boolean HomeClicked = true;
@@ -65,13 +68,21 @@ public class Main extends javax.swing.JFrame {
     ResultSet rs;
     PreparedStatement pst;
     
-  
-
+    
+    public void forConnection(Connection conn, String serverIP,String userID ,String passwordID){
+        IP.setText(serverIP);
+        USER.setText(userID);
+        PASS.setText(passwordID);
+        
+ 
+    }
+    
+    
     public void connect() {
         serverCredentials sv = new serverCredentials();
-        sv.setServerIP("localhost");
-        sv.setUserID("root");
-        sv.setPass("");
+        sv.setServerIP(IP.getText());
+        sv.setUserID(USER.getText());
+        sv.setPass(PASS.getText());
         
         
         try {
@@ -86,10 +97,19 @@ public class Main extends javax.swing.JFrame {
         }
        
         
-    }    
+    }
+    
 
-    public Main() {
+ 
+    public Main(Login loginInstance) {
         initComponents();
+        
+        USER.setText(loginInstance.user);
+        IP.setText(loginInstance.url);
+        PASS.setText(loginInstance.pass);
+        
+        this.loginInstance = loginInstance;
+        
         connect();
         startup();
         
@@ -129,6 +149,13 @@ public class Main extends javax.swing.JFrame {
         imagepathdesc = new javax.swing.JLabel();
         add_imageName = new javax.swing.JLabel();
         add_imagePath = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        IP = new javax.swing.JLabel();
+        USER = new javax.swing.JLabel();
+        PASS = new javax.swing.JLabel();
         History = new javax.swing.JPanel();
         HistoryTableScroll = new SystemOtherComps.PH_ScrollPane();
         HistoryTable = new javax.swing.JTable();
@@ -197,21 +224,6 @@ public class Main extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         GameScroll = new SystemOtherComps.PH_ScrollPane();
         GameList = new SystemOtherComps.PH_BettterFlowLayoutPanel();
-        newJPanel1 = new Panel.Items();
-        newJPanel15 = new Panel.Items();
-        newJPanel14 = new Panel.Items();
-        newJPanel12 = new Panel.Items();
-        newJPanel11 = new Panel.Items();
-        newJPanel9 = new Panel.Items();
-        newJPanel10 = new Panel.Items();
-        newJPanel8 = new Panel.Items();
-        newJPanel7 = new Panel.Items();
-        newJPanel6 = new Panel.Items();
-        newJPanel5 = new Panel.Items();
-        newJPanel2 = new Panel.Items();
-        newJPanel4 = new Panel.Items();
-        newJPanel3 = new Panel.Items();
-        newJPanel13 = new Panel.Items();
         Add = new javax.swing.JPanel();
         AddBar = new javax.swing.JPanel();
         AddBT2 = new javax.swing.JLabel();
@@ -578,6 +590,59 @@ public class Main extends javax.swing.JFrame {
                 .addContainerGap(28, Short.MAX_VALUE))
         );
 
+        jPanel1.setBackground(new java.awt.Color(102, 102, 102));
+
+        jLabel4.setText("ip");
+
+        jLabel5.setText("user");
+
+        jLabel6.setText("pass");
+
+        IP.setText("0");
+
+        USER.setText("0");
+
+        PASS.setText("0");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(IP, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(USER, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(PASS, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel4)
+                    .addComponent(IP, javax.swing.GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(USER, javax.swing.GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(PASS, javax.swing.GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout HiddenLayout = new javax.swing.GroupLayout(Hidden);
         Hidden.setLayout(HiddenLayout);
         HiddenLayout.setHorizontalGroup(
@@ -587,8 +652,10 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(HiddenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(addimagetool, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
-                    .addComponent(addimagetool1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
+                    .addComponent(jLabel1)
+                    .addGroup(HiddenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(addimagetool1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(596, Short.MAX_VALUE))
         );
         HiddenLayout.setVerticalGroup(
@@ -602,7 +669,9 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(addimagetool1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(360, Short.MAX_VALUE))
+                .addGap(41, 41, 41)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(207, Short.MAX_VALUE))
         );
 
         layers.add(Hidden, "card8");
@@ -1551,22 +1620,6 @@ public class Main extends javax.swing.JFrame {
 
         GameList.setBackground(new java.awt.Color(24, 23, 23));
         GameList.setForeground(new java.awt.Color(255, 255, 255));
-        GameList.add(newJPanel1);
-        GameList.add(newJPanel15);
-        GameList.add(newJPanel14);
-        GameList.add(newJPanel12);
-        GameList.add(newJPanel11);
-        GameList.add(newJPanel9);
-        GameList.add(newJPanel10);
-        GameList.add(newJPanel8);
-        GameList.add(newJPanel7);
-        GameList.add(newJPanel6);
-        GameList.add(newJPanel5);
-        GameList.add(newJPanel2);
-        GameList.add(newJPanel4);
-        GameList.add(newJPanel3);
-        GameList.add(newJPanel13);
-
         GameScroll.setViewportView(GameList);
 
         javax.swing.GroupLayout HomeLayout = new javax.swing.GroupLayout(Home);
@@ -2558,8 +2611,10 @@ public class Main extends javax.swing.JFrame {
     private SystemOtherComps.PH_Panel HomePN;
     private javax.swing.JLabel HomeSearchIcon;
     public javax.swing.JLabel Home_BT;
+    public javax.swing.JLabel IP;
     private SystemOtherComps.PH_Panel OptionPN;
     private javax.swing.JLabel Option_BT;
+    public javax.swing.JLabel PASS;
     private javax.swing.JLabel PaymentHeading;
     private javax.swing.JPanel Settings;
     private javax.swing.JPanel SettingsBar;
@@ -2572,6 +2627,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel SubtotalHeading;
     private javax.swing.JLabel TotalCostHeading;
     private javax.swing.JLabel TotalDiscountHeading;
+    public javax.swing.JLabel USER;
     private javax.swing.JLabel add_imageName;
     private javax.swing.JLabel add_imagePath;
     private javax.swing.JPanel addimagetool;
@@ -2589,24 +2645,13 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLayeredPane layers;
     private javax.swing.JPanel line;
     private javax.swing.JPanel menu;
-    private Panel.Items newJPanel1;
-    private Panel.Items newJPanel10;
-    private Panel.Items newJPanel11;
-    private Panel.Items newJPanel12;
-    private Panel.Items newJPanel13;
-    private Panel.Items newJPanel14;
-    private Panel.Items newJPanel15;
-    private Panel.Items newJPanel2;
-    private Panel.Items newJPanel3;
-    private Panel.Items newJPanel4;
-    private Panel.Items newJPanel5;
-    private Panel.Items newJPanel6;
-    private Panel.Items newJPanel7;
-    private Panel.Items newJPanel8;
-    private Panel.Items newJPanel9;
     private SystemOtherComps.PH_TextField payment;
     private javax.swing.JLabel quantityIcon;
     private Splash.LoadingAnimation saveloading;

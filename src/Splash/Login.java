@@ -1,6 +1,8 @@
 
 package Splash;
 
+import Classes.Run;
+import Classes.serverCredentials;
 import Frames.Main;
 import com.formdev.flatlaf.FlatIntelliJLaf;
 import java.awt.event.ActionEvent;
@@ -15,31 +17,58 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
+import Frames.Main;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 
 
 public class Login extends javax.swing.JFrame {
     
-    String url= "jdbc:mysql://localhost/hazebyte";
-        String user = "root";
-        String pass= "";
+        public String url= "localhost";
+        public String user = "root";
+        public String pass= "";
         Connection con = null;
 
 
+        
+        public void forConnection(Connection conn, String serverIP,String userID ,String passwordID){
+        this.con = conn;
+        this.url = serverIP;
+        this.user = userID;
+        this.pass = passwordID;
+    }
+        
+        
+        Main main = new Main(this);
+    
    
+        
     public Login() {
         initComponents();
+        
+        serverCredentials sv = new serverCredentials();
+        sv.setServerIP(url);
+        sv.setUserID(user);
+        sv.setPass(pass); 
         
       
          //MYSQL CODE-----------------------------------------------
 
-        try{
-        con = DriverManager.getConnection(url, user, pass);
-        }catch(Exception ex){
-            System.out.println("Error: " +ex.getMessage());  
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con = DriverManager.getConnection("jdbc:mysql://"+sv.getServerIP() +"/hazebyte", sv.getUserID(), sv.getPass());
+            
+            
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Run.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Run.class.getName()).log(Level.SEVERE, null, ex);
         }
+    
         //MYSQL CODE-----------------------------------------------
+        
         
         
          ImageIcon logo = new ImageIcon("HB icon.png");   
@@ -47,8 +76,6 @@ public class Login extends javax.swing.JFrame {
         setTitle("HazeByte Login");
         setResizable(false);
         
-        setupDarkModeButton();
-        setupLightModeButton();
         
         
         username.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -78,7 +105,7 @@ public class Login extends javax.swing.JFrame {
     private void openMainApplicationFrame() {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Main main = new Main();
+                
                 main.setVisible(true);
                 main.setVisible(false);
                  new Splash.SplashScreen(null, true).setVisible(true);
@@ -214,8 +241,13 @@ public class Login extends javax.swing.JFrame {
 
                 // Check if the entered credentials are correct
                 if (usernameDB.equals(username.getText()) && passwordDB.equals(enteredPassword)) {
+                    forConnection(con,url,user,pass);
                     openMainApplicationFrame();
                     setVisible(false);
+                    
+                    
+                    main.forConnection(con, url, user, pass);
+                    
                 } else {
                     JOptionPane.showMessageDialog(this, "Invalid username or password", "Login Failed", JOptionPane.ERROR_MESSAGE);
                 }
@@ -241,42 +273,7 @@ public class Login extends javax.swing.JFrame {
     private SystemOtherComps.PH_TextField username;
     // End of variables declaration//GEN-END:variables
 
-  private void setupDarkModeButton() {
-        JButton darkModeButton = new JButton("Dark Mode");
-        darkModeButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                changeStyle("darkStyle");
-            }
-        }); 
-  }
-  
-  
-   private void setupLightModeButton() {
-        JButton lightModeButton = new JButton("Light Mode");
-        lightModeButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                changeStyle("lightStyle");
-            }
-        });
-
-        // Add lightModeButton to your JFrame's layout
     }
-
-private void changeStyle(String style) {
-        FlatIntelliJLaf.registerCustomDefaultsSource(style);
-        FlatIntelliJLaf.setup();
-        // Additional customization if needed
-        SwingUtilities.updateComponentTreeUI(this);
-    }
-
-
-
-
-
-
-}
 
 
 
