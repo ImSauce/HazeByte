@@ -14,6 +14,8 @@ import Splash.Login;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.FontMetrics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -30,6 +32,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -241,14 +244,14 @@ public class Main extends javax.swing.JFrame {
         PaymentHeading = new javax.swing.JLabel();
         TotalCostHeading = new javax.swing.JLabel();
         ChangeHeading = new javax.swing.JLabel();
-        CartTableScroll = new SystemOtherComps.PH_ScrollPane();
-        CartTable = new javax.swing.JTable();
         BuyBT = new SystemOtherComps.PH_Button();
         CancelAllBT = new SystemOtherComps.PH_Button();
         subtotal = new SystemOtherComps.PH_TextField();
         SubtotalHeading = new javax.swing.JLabel();
         totaldiscount = new SystemOtherComps.PH_TextField();
         TotalDiscountHeading = new javax.swing.JLabel();
+        CartTableScroll = new SystemOtherComps.PH_ScrollPane();
+        CartTable = new javax.swing.JTable();
         Home = new javax.swing.JPanel();
         GameBar = new javax.swing.JPanel();
         Games_txt = new javax.swing.JLabel();
@@ -1148,7 +1151,9 @@ public class Main extends javax.swing.JFrame {
         CartCategoryTXT.setText("Gacha Game");
 
         CartTitleTXT.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
+        CartTitleTXT.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         CartTitleTXT.setText("MiSide");
+        CartTitleTXT.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
         CartCostTXT.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         CartCostTXT.setForeground(new java.awt.Color(25, 167, 56));
@@ -1215,42 +1220,47 @@ public class Main extends javax.swing.JFrame {
             CartItemViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CartItemViewLayout.createSequentialGroup()
                 .addContainerGap(47, Short.MAX_VALUE)
-                .addGroup(CartItemViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(CartImageTXT, javax.swing.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, CartItemViewLayout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addGroup(CartItemViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(CartTitleTXT)
-                            .addComponent(CartCategoryTXT)
-                            .addComponent(CartCostTXT)
-                            .addComponent(CartDescriptionheadingTXT)
-                            .addComponent(CartDescriptionScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(CartRemoveBT, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, CartItemViewLayout.createSequentialGroup()
-                        .addGroup(CartItemViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(quantityIcon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(CostIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, 0)
-                        .addGroup(CartItemViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(CartQuantityTXT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(CartTotalCostTXT, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGroup(CartItemViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(CartItemViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, CartItemViewLayout.createSequentialGroup()
+                            .addGap(6, 6, 6)
+                            .addGroup(CartItemViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(CartDescriptionheadingTXT)
+                                .addComponent(CartDescriptionScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, CartItemViewLayout.createSequentialGroup()
+                            .addGroup(CartItemViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(quantityIcon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(CostIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(0, 0, 0)
+                            .addGroup(CartItemViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(CartQuantityTXT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(CartTotalCostTXT, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE))))
+                    .addGroup(CartItemViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(CartImageTXT, javax.swing.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, CartItemViewLayout.createSequentialGroup()
+                            .addGap(6, 6, 6)
+                            .addGroup(CartItemViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(CartCategoryTXT)
+                                .addComponent(CartCostTXT)
+                                .addComponent(CartTitleTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(CartRemoveBT, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(39, 39, 39))
         );
         CartItemViewLayout.setVerticalGroup(
             CartItemViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CartItemViewLayout.createSequentialGroup()
+            .addGroup(CartItemViewLayout.createSequentialGroup()
                 .addGap(0, 0, 0)
                 .addComponent(CartImageTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(CartCategoryTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(CartTitleTXT)
+                .addComponent(CartTitleTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(CartCostTXT)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(CartDescriptionheadingTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(CartDescriptionScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(CartDescriptionScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
                 .addGroup(CartItemViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(CartItemViewLayout.createSequentialGroup()
                         .addGap(8, 8, 8)
@@ -1262,7 +1272,7 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(CartItemViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(CostIcon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(CartTotalCostTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(41, 41, 41)
                 .addComponent(CartRemoveBT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(16, 16, 16))
         );
@@ -1317,60 +1327,6 @@ public class Main extends javax.swing.JFrame {
         ChangeHeading.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         ChangeHeading.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         ChangeHeading.setText("Change:");
-
-        CartTable.setBackground(new java.awt.Color(24, 23, 23));
-        CartTable.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        CartTable.setForeground(new java.awt.Color(255, 255, 255));
-        CartTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {"Miside", "2", "200", "10", "400", "380", "1/3/4", "10:09:07", "1", "1"},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "Product", "Quantity", "Cost", "Discount", "Subtotal", "Total", "Date", "Time", "ID", "ProductID"
-            }
-        ));
-        CartTable.setFocusable(false);
-        CartTable.setGridColor(new java.awt.Color(24, 23, 23));
-        CartTable.setRowHeight(40);
-        CartTable.setSelectionBackground(new java.awt.Color(51, 51, 51));
-        CartTableScroll.setViewportView(CartTable);
-        if (CartTable.getColumnModel().getColumnCount() > 0) {
-            CartTable.getColumnModel().getColumn(0).setResizable(false);
-            CartTable.getColumnModel().getColumn(1).setResizable(false);
-            CartTable.getColumnModel().getColumn(2).setResizable(false);
-            CartTable.getColumnModel().getColumn(3).setResizable(false);
-            CartTable.getColumnModel().getColumn(4).setResizable(false);
-            CartTable.getColumnModel().getColumn(5).setResizable(false);
-            CartTable.getColumnModel().getColumn(6).setResizable(false);
-            CartTable.getColumnModel().getColumn(7).setResizable(false);
-            CartTable.getColumnModel().getColumn(8).setResizable(false);
-        }
 
         BuyBT.setBackground(new java.awt.Color(32, 180, 52));
         BuyBT.setForeground(new java.awt.Color(255, 255, 255));
@@ -1432,6 +1388,56 @@ public class Main extends javax.swing.JFrame {
         TotalDiscountHeading.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         TotalDiscountHeading.setText("Total Discount:");
 
+        CartTable.setBackground(new java.awt.Color(24, 23, 23));
+        CartTable.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        CartTable.setForeground(new java.awt.Color(255, 255, 255));
+        CartTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Product", "Category", "Quantity", "Cost", "Discount", "Subtotal", "Total", "Date", "Time", "ID", "ProductID", "Description"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        CartTable.setFocusable(false);
+        CartTable.setGridColor(new java.awt.Color(24, 23, 23));
+        CartTable.setRowHeight(40);
+        CartTable.setSelectionBackground(new java.awt.Color(51, 51, 51));
+        CartTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CartTableMouseClicked(evt);
+            }
+        });
+        CartTableScroll.setViewportView(CartTable);
+        if (CartTable.getColumnModel().getColumnCount() > 0) {
+            CartTable.getColumnModel().getColumn(0).setResizable(false);
+            CartTable.getColumnModel().getColumn(1).setResizable(false);
+            CartTable.getColumnModel().getColumn(2).setResizable(false);
+            CartTable.getColumnModel().getColumn(3).setResizable(false);
+            CartTable.getColumnModel().getColumn(4).setResizable(false);
+            CartTable.getColumnModel().getColumn(5).setResizable(false);
+            CartTable.getColumnModel().getColumn(6).setResizable(false);
+            CartTable.getColumnModel().getColumn(7).setResizable(false);
+            CartTable.getColumnModel().getColumn(8).setResizable(false);
+            CartTable.getColumnModel().getColumn(9).setMinWidth(0);
+            CartTable.getColumnModel().getColumn(9).setPreferredWidth(0);
+            CartTable.getColumnModel().getColumn(9).setMaxWidth(0);
+            CartTable.getColumnModel().getColumn(10).setMinWidth(0);
+            CartTable.getColumnModel().getColumn(10).setPreferredWidth(0);
+            CartTable.getColumnModel().getColumn(10).setMaxWidth(0);
+            CartTable.getColumnModel().getColumn(11).setMinWidth(0);
+            CartTable.getColumnModel().getColumn(11).setPreferredWidth(0);
+            CartTable.getColumnModel().getColumn(11).setMaxWidth(0);
+        }
+
         javax.swing.GroupLayout CartLayout = new javax.swing.GroupLayout(Cart);
         Cart.setLayout(CartLayout);
         CartLayout.setHorizontalGroup(
@@ -1441,15 +1447,12 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(CartLayout.createSequentialGroup()
                         .addGap(36, 36, 36)
-                        .addGroup(CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(CartTableScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 553, Short.MAX_VALUE)
-                            .addGroup(CartLayout.createSequentialGroup()
-                                .addComponent(PaymentHeading)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(payment, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(PaymentHeading)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(payment, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(20, 20, 20))
                     .addGroup(CartLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap(122, Short.MAX_VALUE)
                         .addComponent(CancelAllBT, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(BuyBT, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1467,7 +1470,11 @@ public class Main extends javax.swing.JFrame {
                             .addComponent(total, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(change, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(subtotal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)))
+                        .addGap(18, 18, 18))
+                    .addGroup(CartLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(CartTableScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addComponent(CartItemView, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         CartLayout.setVerticalGroup(
@@ -1478,7 +1485,7 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(CartLayout.createSequentialGroup()
                         .addComponent(CartTableScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(payment, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(PaymentHeading, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -2405,6 +2412,7 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_CartBTMouseExited
     private void CartBTMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CartBTMouseClicked
         showcase(false,false,false,false,false,true);
+        CartRefreshTable();
     }//GEN-LAST:event_CartBTMouseClicked
  //------------------HOME PANEL FRONTEND CODES------------------// 
     
@@ -2552,6 +2560,10 @@ public class Main extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_categoriesActionPerformed
+
+    private void CartTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CartTableMouseClicked
+       SelectCartItem();
+    }//GEN-LAST:event_CartTableMouseClicked
   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -2908,50 +2920,7 @@ public void initProds() {
     }
 }
 
-    
-   
-
-
-//    
-//    
-//    
-//   public void loadAndAddImage(int productId, Items panel) {
-//    try {
-//        // Retrieve image data from database
-//        pst = con.prepareStatement("SELECT imageFile FROM product WHERE id=?");
-//        pst.setInt(1, productId);
-//        rs = pst.executeQuery();
-//
-//        if (rs.next()) {
-//            byte[] imageData = rs.getBytes("imageFile");
-//            ImageIcon format1 = new ImageIcon(imageData);
-//            Image mm = format1.getImage();
-//            Image img2 = mm.getScaledInstance(218, 218, Image.SCALE_SMOOTH);
-//            ImageIcon image = new ImageIcon(img2);
-//            panel.setProductImage(image); // Set image in itemPanel
-//        } else {
-//            // Handle case where image is not found
-//            // You may want to display a placeholder image or handle it differently
-//            System.out.println("No image found for product with ID: " + productId);
-//        }
-//    } catch (SQLException ex) {
-//        Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-//    } finally {
-//        try {
-//            // Close PreparedStatement and ResultSet
-//            if (pst != null) {
-//                pst.close();
-//            }
-//            if (rs != null) {
-//                rs.close();
-//            }
-//        } catch (SQLException ex) {
-//            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//    }
-//}
-//    
-   
+      
    public void filterProductsByCategory() {
     String selectedCategory = (String) categories.getSelectedItem();
 
@@ -3556,14 +3525,6 @@ public void emptyBlobFile(String id) {
                     EditDescription.setText(rs.getString("description"));
                     edit_imageName.setText(rs.getString("imageName"));
                     edit_imagePath.setText(rs.getString("imagePath"));
-
-//                    // Optional: set preview image
-//                    String imagePath = rs.getString("imagePath");
-//                    if (imagePath != null && !imagePath.isEmpty()) {
-//                        ImageIcon ii = new ImageIcon(imagePath);
-//                        Image img = ii.getImage().getScaledInstance(478, 300, Image.SCALE_SMOOTH);
-//                        EditImage.setIcon(new ImageIcon(img));
-//                    }
                 }
 
             } catch (SQLException ex) {
@@ -3755,6 +3716,114 @@ public void emptyBlobFile(String id) {
 }
 
 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    public void CartRefreshTable() {
+        String sql = "SELECT * FROM cart ORDER BY `name` ASC";
 
+
+        try {
+            DefaultTableModel model = (DefaultTableModel) CartTable.getModel();
+            model.setRowCount(0);
+
+            PreparedStatement pst = con.prepareStatement(sql);
+            ResultSet rs = pst.executeQuery();
+
+
+        while (rs.next()) {
+
+
+            model.addRow(new Object[] {
+
+                rs.getString(2), //name
+                rs.getString(5),
+                rs.getString(9), //quantity
+                rs.getString(3), //cost
+                rs.getString(4), //discount
+                rs.getString(7), //subtotal
+                rs.getString(8), //total
+                rs.getString(10),//date
+                rs.getString(11),//time
+                rs.getString(1), //id
+                rs.getString(12),//prodID
+                rs.getString(6),//prodID
+             
+            });
+        }
+            // update the student count shown in the upper right corner
+
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }
+    
+    
+    public void SelectCartItem() {
+       int selectedRow = CartTable.getSelectedRow();
+
+        if (selectedRow != -1) {
+        String name = CartTable.getValueAt(selectedRow, 0).toString();       // Product
+        String category = CartTable.getValueAt(selectedRow, 1).toString();
+        String quantity = CartTable.getValueAt(selectedRow, 2).toString();   // Quantity
+        String cost = CartTable.getValueAt(selectedRow, 3).toString();       // Cost
+        String discount = CartTable.getValueAt(selectedRow, 4).toString();   // Discount
+        String subtotal = CartTable.getValueAt(selectedRow, 5).toString();   // Subtotal
+        String description = CartTable.getValueAt(selectedRow, 11).toString();
+        
+         
+        
+        CartCategoryTXT.setText(category);
+        CartTitleTXT.setText(name);
+        adjustFontSizeToFit(CartTitleTXT, 24, 12);
+        CartCostTXT.setText(new DecimalFormat("#,##0.00").format(Double.parseDouble(cost)));
+        CartDescriptionTXT.setText(description);
+        CartQuantityTXT.setText(quantity);
+        CartTotalCostTXT.setText(subtotal);
+            
+        } 
+    }
+    
+    
+    public void adjustFontSizeToFit(JLabel label, int maxFontSize, int minFontSize) {
+        Font labelFont = label.getFont();
+        String labelText = label.getText();
+
+        int labelWidth = label.getWidth();
+        int stringWidth;
+        int fontSize = maxFontSize;
+
+        FontMetrics metrics;
+        while (fontSize >= minFontSize) {
+            Font testFont = new Font(labelFont.getName(), labelFont.getStyle(), fontSize);
+            metrics = label.getFontMetrics(testFont);
+            stringWidth = metrics.stringWidth(labelText);
+
+            if (stringWidth <= labelWidth) {
+                label.setFont(testFont);
+                break;
+            }
+            fontSize--;
+        }
+
+        // Fallback in case it drops below minimum
+        if (fontSize < minFontSize) {
+            label.setFont(new Font(labelFont.getName(), labelFont.getStyle(), minFontSize));
+        }
+    }
 
 }

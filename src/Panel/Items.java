@@ -9,13 +9,15 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import javax.swing.JOptionPane;
 
 public class Items extends javax.swing.JPanel {
 
     
     Connection con;
-    ResultSet rs;
-    PreparedStatement pst;
     
     public int productID;
     public String productName;
@@ -89,13 +91,18 @@ public class Items extends javax.swing.JPanel {
         
         // Update the JLabel's text
         TitleTXT.setText(formattedText.toString());
-        
-        CostTXT.setText(String.valueOf(productPrice));
         CategoryTXT.setText(productCategory);
-        String discount = productDiscount +" discount!"; 
-        discountTXT.setText(discount);
+
+        DecimalFormat df = new DecimalFormat("₱#,##0.00");
+        CostTXT.setText(df.format(productPrice));
         
-        
+        if (productDiscount >= 1 && productDiscount <= 100 ) {
+             String discount = new DecimalFormat("#").format(productDiscount) + "% discount!";
+            discountTXT.setText(discount);
+        } else {
+            discountTXT.setText("");
+        }
+               
         this.productID = productID;
         this.productName = productName;
         this.productPrice = productPrice;
@@ -171,6 +178,11 @@ public class Items extends javax.swing.JPanel {
         AddCartBT.setAA_HoverColor(new java.awt.Color(38, 38, 38));
         AddCartBT.setAA_PressColor(new java.awt.Color(54, 53, 53));
         AddCartBT.setAA_RippleColor(new java.awt.Color(31, 211, 71));
+        AddCartBT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddCartBTActionPerformed(evt);
+            }
+        });
         add(AddCartBT, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 340, 48, 42));
 
         quantityTXT.setForeground(new java.awt.Color(255, 255, 255));
@@ -265,6 +277,10 @@ public class Items extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_decrementBTActionPerformed
 
+    private void AddCartBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddCartBTActionPerformed
+        AddCart();
+    }//GEN-LAST:event_AddCartBTActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private SystemOtherComps.PH_Button AddCartBT;
@@ -281,4 +297,84 @@ public class Items extends javax.swing.JPanel {
     private SystemOtherComps.PH_Button incrementBT;
     private SystemOtherComps.PH_TextField quantityTXT;
     // End of variables declaration//GEN-END:variables
+    
+    
+    
+   
+    
+    
+    public void AddCart() {
+    try {
+        serverCredentials sv = new serverCredentials();
+        sv.setServerIP(LIP.getText());
+        sv.setUserID(LUSER.getText());
+        sv.setPass(LPASS.getText());
+            
+        String name = productName;
+        String category = productCategory;
+        double cost = productPrice;
+        double discount = productDiscount; 
+        int quantity = Integer.parseInt(quantityTXT.getText());
+
+        double discountedPrice = cost - (cost * (discount / 100));
+
+        double total = discountedPrice * quantity;
+        double subtotal = cost * quantity; 
+
+        // Fetch additional product info from the database
+        String description = "";
+        String imageName = "";
+        String imagePath = "";
+        byte[] imageFile = null;
+        
+        LocalDateTime now = LocalDateTime.now();
+        String formattedDate = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        String formattedTime = now.format(DateTimeFormatter.ofPattern("HH:mm:ss"));
+
+        try (Connection con = DriverManager.getConnection("jdbc:mysql://"+sv.getServerIP()+"/hazebyte", sv.getUserID(), sv.getPass());
+             PreparedStatement fetchPst = con.prepareStatement("SELECT description, imageName, imagePath, imageFile FROM product WHERE id = ?")) {
+
+            fetchPst.setInt(1, productID);
+            try (ResultSet rs = fetchPst.executeQuery()) {
+                if (rs.next()) {
+                    description = rs.getString("description");
+                    imageName = rs.getString("imageName");
+                    imagePath = rs.getString("imagePath");
+                    imageFile = rs.getBytes("imageFile");
+                }
+            }
+        }
+
+        // Insert into cart
+        String query = "INSERT INTO `cart`(`name`, `cost`, `discount`, `category`, `description`, `subtotal`, `total`, `quantity`, `Date`, `Time`, `productID`, `imageName`, `imagePath`, `imageFile`)" +
+                       "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+        try (Connection con = DriverManager.getConnection("jdbc:mysql://"+sv.getServerIP()+"/hazebyte", sv.getUserID(), sv.getPass());
+             PreparedStatement pst = con.prepareStatement(query)) {
+
+            pst.setString(1, name);
+            pst.setDouble(2, cost);
+            pst.setDouble(3, discount);
+            pst.setString(4, category);
+            pst.setString(5, description);
+            pst.setDouble(6, subtotal);
+            pst.setDouble(7, total);
+            pst.setInt(8, quantity);
+            pst.setString(9, formattedDate); 
+            pst.setString(10, formattedTime); 
+            pst.setInt(11, productID);
+            pst.setString(12, imageName);
+            pst.setString(13, imagePath);
+            pst.setBytes(14, imageFile);
+
+            pst.executeUpdate();
+        }
+        
+        quantityTXT.setText("1");
+    } catch (Exception ex) {
+        JOptionPane.showMessageDialog(null, "Add to Cart Failed: " + ex.getMessage());
+        ex.printStackTrace();
+    }
+}
+
 }

@@ -4,6 +4,8 @@ package Classes;
 import Frames.Main;
 import java.awt.Color;
 import static java.awt.Color.BLACK;
+import java.awt.Font;
+import java.awt.FontMetrics;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -49,6 +51,8 @@ public class Functions {
         settings.setBackground(new Color(24,23,23));
     }
  
+    
+    
     
 }
 
