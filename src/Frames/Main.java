@@ -14,6 +14,7 @@ import Splash.Login;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -2492,6 +2493,7 @@ public class Main extends javax.swing.JFrame {
 
     private void EditSaveBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditSaveBTActionPerformed
         EditProduct();
+        initProds();
     }//GEN-LAST:event_EditSaveBTActionPerformed
 
     private void EditImageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditImageMouseClicked
@@ -3254,38 +3256,68 @@ public void initProds() {
     
     
     private void saveImageToDatabase(File file, String path) {
-    String ID =AddID.getText();
-       if (file != null && path != null && !path.isEmpty()) {
-           try {
-               FileInputStream fis = new FileInputStream(file);
-               String query = "UPDATE product SET imageName = ?, imagePath = ?, imageFile = ? WHERE id=? ";
-               pst = con.prepareStatement(query);
-               pst.setString(1, file.getName());
-               pst.setString(2, path);
-               pst.setBinaryStream(3, fis, (int) file.length());
-               pst.setString(4, ID);
-               pst.executeUpdate();
-           } catch (FileNotFoundException ex) {
-               JOptionPane.showMessageDialog(null, "Image file not found: " + ex.getMessage());
-           }  catch (SQLException ex) {
-               JOptionPane.showMessageDialog(null, "Error saving image to database: " + ex.getMessage());
-           }
-       }
-   } 
-
-
-
-    private void emptyBlobFile(String ID) {
+    String ID = AddID.getText();
+    if (file != null && path != null && !path.isEmpty()) {
         try {
-            String query = "UPDATE product SET imageName = '', imagePath = '', imageFile = '' WHERE id = ?";
+            FileInputStream fis = new FileInputStream(file);
+            String query = "UPDATE product SET imageName = ?, imagePath = ?, imageFile = ? WHERE id=?";
             pst = con.prepareStatement(query);
-            pst.setString(1, ID);
+            pst.setString(1, file.getName());
+            pst.setString(2, path);
+            pst.setBinaryStream(3, fis, (int) file.length());
+            pst.setString(4, ID);
             pst.executeUpdate();
 
+            // --- Save to Cache Directory ---
+            BufferedImage buffered = ImageIO.read(file);
+            if (buffered != null) {
+                // Resize image
+                Image scaledImg = buffered.getScaledInstance(218, 218, Image.SCALE_SMOOTH);
+                BufferedImage resizedBuffered = new BufferedImage(218, 218, BufferedImage.TYPE_INT_ARGB);
+                Graphics2D g2d = resizedBuffered.createGraphics();
+                g2d.drawImage(scaledImg, 0, 0, null);
+                g2d.dispose();
+
+                // Cache path
+                String userHome = System.getProperty("user.home");
+                File cacheDir = new File(userHome + "/MyAppCache/");
+                if (!cacheDir.exists()) {
+                    cacheDir.mkdirs();
+                }
+
+                File outputFile = new File(cacheDir, ID + ".png");
+                ImageIO.write(resizedBuffered, "png", outputFile);
+            }
+
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(null, "Error caching image: " + ex.getMessage());
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error emptying BLOB file: " + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error saving image to database: " + ex.getMessage());
         }
     }
+}
+
+
+
+public void emptyBlobFile(String id) {
+    try {
+        String sql = "UPDATE product SET imageFile = ? WHERE id=?";
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setBytes(1, new byte[0]); // Empty byte array instead of NULL
+        ps.setString(2, id);
+        ps.executeUpdate();
+
+        // Also delete the cached image file
+        String userHome = System.getProperty("user.home");
+        File cacheImage = new File(userHome + "/MyAppCache/" + id + ".png");
+        if (cacheImage.exists()) {
+            cacheImage.delete();
+        }
+
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(null, "Error removing image blob: " + ex.getMessage());
+    }
+}
 
     
     
@@ -3637,27 +3669,45 @@ public void initProds() {
    
    
  private void saveImageToDatabaseEdit(File file, String path) {
-        String ID =EditID.getText();
-       if (file != null && path != null && !path.isEmpty()) {
-           try {
-               FileInputStream fis = new FileInputStream(file);
-               String query = "UPDATE product SET imageName = ?, imagePath = ?, imageFile = ? WHERE id=? ";
-               pst = con.prepareStatement(query);
-               pst.setString(1, file.getName());
-               pst.setString(2, path);
-               pst.setBinaryStream(3, fis, (int) file.length());
-               pst.setString(4, ID);
-               pst.executeUpdate();
+    String ID = EditID.getText();
 
+    if (file != null && path != null && !path.isEmpty()) {
+        try {
+            FileInputStream fis = new FileInputStream(file);
+            String query = "UPDATE product SET imageName = ?, imagePath = ?, imageFile = ? WHERE id=?";
+            pst = con.prepareStatement(query);
+            pst.setString(1, file.getName());
+            pst.setString(2, path);
+            pst.setBinaryStream(3, fis, (int) file.length());
+            pst.setString(4, ID);
+            pst.executeUpdate();
 
+            // Save to cache directory
+            BufferedImage bufferedImage = ImageIO.read(new File(path));
+            if (bufferedImage != null) {
+                BufferedImage resizedBuffered = new BufferedImage(218, 218, BufferedImage.TYPE_INT_ARGB);
+                Graphics2D g2d = resizedBuffered.createGraphics();
+                g2d.drawImage(bufferedImage.getScaledInstance(218, 218, Image.SCALE_SMOOTH), 0, 0, null);
+                g2d.dispose();
 
-           } catch (FileNotFoundException ex) {
-               JOptionPane.showMessageDialog(null, "Image file not found: " + ex.getMessage());
-           }  catch (SQLException ex) {
-               JOptionPane.showMessageDialog(null, "Error saving image to database: " + ex.getMessage());
-           }
-       }
-   } 
+                // Cache directory
+                String userHome = System.getProperty("user.home");
+                File cacheDir = new File(userHome + "/MyAppCache/");
+                if (!cacheDir.exists()) {
+                    cacheDir.mkdirs();
+                }
+
+                // Save image to cache
+                File cacheImageFile = new File(cacheDir, ID + ".png");
+                ImageIO.write(resizedBuffered, "png", cacheImageFile);
+            }
+
+        } catch (IOException | SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error saving image to database/cache: " + ex.getMessage());
+        }
+    }
+}
+
  
  
     private void EditImage(){

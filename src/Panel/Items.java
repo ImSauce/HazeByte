@@ -242,7 +242,7 @@ public class Items extends javax.swing.JPanel {
         LPASS.setMinimumSize(new java.awt.Dimension(0, 0));
         LPASS.setPreferredSize(new java.awt.Dimension(0, 0));
         add(LPASS, new org.netbeans.lib.awtextra.AbsoluteConstraints(175, 408, -1, -1));
-        add(ImageTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 7, 216, 218));
+        add(ImageTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 7, 220, 218));
     }// </editor-fold>//GEN-END:initComponents
 
     private void incrementBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_incrementBTActionPerformed
