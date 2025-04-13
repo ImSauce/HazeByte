@@ -26,6 +26,9 @@ import java.util.logging.Logger;
 
 public class Login extends javax.swing.JFrame {
     
+    
+    
+    
         public String url= "localhost";
         public String user = "root";
         public String pass= "";

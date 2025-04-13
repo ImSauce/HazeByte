@@ -4,19 +4,26 @@ package Frames;
 //import java.sql.Connection;
 //import java.sql.PreparedStatement;
 //import java.sql.ResultSet;
+import Classes.ProductImage;
 import Classes.Functions;
 import Classes.Run;
 import Classes.serverCredentials;
 import Panel.Items;
+import Splash.LoadingAnimation;
 import Splash.Login;
+import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -26,11 +33,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
+import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JProgressBar;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -113,7 +128,18 @@ public class Main extends javax.swing.JFrame {
         
         connect();
         startup();
-        initProds();
+        JDialog loadingDialog = createLoadingDialog();
+
+        new Thread(() -> {
+            SwingUtilities.invokeLater(() -> loadingDialog.setVisible(true));
+
+            try {
+                initProds(); // Run the heavy loading here
+            } finally {
+                loadingDialog.dispose(); // Close loading popup after loading
+            }
+
+        }).start();
         
         Hidden.setVisible(false);
         
@@ -2745,6 +2771,50 @@ public class Main extends javax.swing.JFrame {
     
     
     
+    private JDialog createLoadingDialog() {
+    JDialog loading = new JDialog(this, "Loading...", true); // modal
+    loading.setUndecorated(true);
+    loading.setSize(350, 200);
+    loading.setLocationRelativeTo(null);
+
+    // Get cache directory location
+    String userHome = System.getProperty("user.home");
+    File cacheDir = new File(userHome + "/MyAppCache/");
+    String cacheLocation = "Location: " + cacheDir.getAbsolutePath(); // Location message
+
+    // Create a panel with vertical layout
+    JPanel panel = new JPanel();
+    panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+    panel.setBackground(new Color(24, 23, 23)); // Background color
+
+    // Load and add the loading animation (spinner)
+    LoadingAnimation loadingSpinner = new LoadingAnimation();
+    loadingSpinner.setAlignmentX(Component.CENTER_ALIGNMENT); // Center in BoxLayout
+
+    // Text label for download message
+    JLabel textLabel = new JLabel("Downloading cache, please wait...");
+    textLabel.setForeground(Color.WHITE);
+    textLabel.setAlignmentX(Component.CENTER_ALIGNMENT); // Center in BoxLayout
+
+    // Text label for cache location (gray foreground)
+    JLabel cacheLocationLabel = new JLabel(cacheLocation);
+    cacheLocationLabel.setForeground(Color.GRAY); // Set foreground to gray
+    cacheLocationLabel.setAlignmentX(Component.CENTER_ALIGNMENT); // Center in BoxLayout
+
+    // Optional: Add padding around the image/text
+    panel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+
+    panel.add(Box.createVerticalGlue());  // space before spinner
+    panel.add(loadingSpinner);  // Add the loading spinner
+    panel.add(Box.createVerticalStrut(10));  // space between spinner and text
+    panel.add(textLabel);  // Add the text label
+    panel.add(Box.createVerticalStrut(10));  // space between text labels
+    panel.add(cacheLocationLabel);  // Add the cache location label
+    panel.add(Box.createVerticalGlue());  // space after text
+
+    loading.setContentPane(panel);
+    return loading;
+}
     
     
     
@@ -2754,241 +2824,280 @@ public class Main extends javax.swing.JFrame {
     
     
     
+     public void loadAndAddImage(int productId, JLabel label) {
+        // Use ProductImage class to load image and set it to the JLabel
+        ProductImage.loadImageAndSetToLabel(productId, label, con);
+    }
+
     
-    
-  
- ArrayList <Items> ITEMPANELS = new ArrayList<>();
-    public void initProds() {
-    // DB connection
+  ArrayList<Items> ITEMPANELS = new ArrayList<>();  
+public void initProds() {
     String PRODUCT_QUERY = "SELECT id, name, cost, category, discount, imageFile FROM product";
     PreparedStatement ptsProducts;
     ResultSet resultSet;
 
     try {
-        // Clear the FlowPanel
+        // Clear the FlowPanel and item list
         GameList.removeAll();
+        ITEMPANELS.clear();
 
-        // Prepare the query to fetch all products' details
+        // Set up cache directory
+        String userHome = System.getProperty("user.home");
+        File cacheDir = new File(userHome + "/MyAppCache/");
+        if (!cacheDir.exists()) {
+            cacheDir.mkdirs();
+        }
+
+        // Prepare and execute product query
         ptsProducts = con.prepareStatement(PRODUCT_QUERY);
         resultSet = ptsProducts.executeQuery();
 
         while (resultSet.next()) {
-            // Retrieve product details from the result set
             int prdID = resultSet.getInt("id");
             String prdName = resultSet.getString("name");
             int prdPrice = resultSet.getInt("cost");
             String prdCategory = resultSet.getString("category");
             double prdDiscount = resultSet.getDouble("discount");
-            byte[] imageData = resultSet.getBytes("imageFile");
 
-            // Create itemPanel and set details
             Items shopPanel = new Items(this);
             shopPanel.setDetails(prdID, prdName, prdPrice, prdCategory, prdDiscount);
 
-            // Load and add image
-            if (imageData != null) {
-                ImageIcon format1 = new ImageIcon(imageData);
-                Image mm = format1.getImage();
-                Image img2 = mm.getScaledInstance(218, 218, Image.SCALE_SMOOTH);
-                ImageIcon image = new ImageIcon(img2);
-                shopPanel.setProductImage(image); // Set image in itemPanel
+            // --- Caching Logic ---
+            File imageFile = new File(cacheDir, prdID + ".png");
+            ImageIcon imageIcon = null;
+
+            if (imageFile.exists()) {
+                // Load image from cache
+                imageIcon = new ImageIcon(imageFile.getAbsolutePath());
             } else {
-                // Handle case where image is not found (optional)
-                System.out.println("No image found for product with ID: " + prdID);
+                // Load from DB, write to cache
+                byte[] imageData = resultSet.getBytes("imageFile");
+                if (imageData != null) {
+                    BufferedImage buffered = ImageIO.read(new ByteArrayInputStream(imageData));
+                    if (buffered != null) {
+                        Image scaledImg = buffered.getScaledInstance(218, 218, Image.SCALE_SMOOTH);
+                        BufferedImage resizedBuffered = new BufferedImage(218, 218, BufferedImage.TYPE_INT_ARGB);
+                        resizedBuffered.getGraphics().drawImage(scaledImg, 0, 0, null);
+
+                        // Save resized image
+                        ImageIO.write(resizedBuffered, "png", imageFile);
+
+                        // Use resized image for the UI
+                        imageIcon = new ImageIcon(resizedBuffered);
+                    }
+                }
             }
 
-            // Add itemPanel to FlowPanel
+            if (imageIcon != null) {
+                shopPanel.setProductImage(imageIcon);
+            }
+
             GameList.add(shopPanel);
             ITEMPANELS.add(shopPanel);
         }
 
-        // Repaint the FlowPanel
         GameList.revalidate();
         GameList.repaint();
-        categorystartup =1;
+        categorystartup = 1;
 
-    } catch (SQLException ex) {
-        Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+    } catch (SQLException | IOException ex) {
+        ex.printStackTrace();
+        JOptionPane.showMessageDialog(null, "Init Load Error: " + ex.getMessage());
     }
 }
+
     
    
 
 
-    
-    
-    
-   public void loadAndAddImage(int productId, Items panel) {
-    try {
-        // Retrieve image data from database
-        pst = con.prepareStatement("SELECT imageFile FROM product WHERE id=?");
-        pst.setInt(1, productId);
-        rs = pst.executeQuery();
-
-        if (rs.next()) {
-            byte[] imageData = rs.getBytes("imageFile");
-            ImageIcon format1 = new ImageIcon(imageData);
-            Image mm = format1.getImage();
-            Image img2 = mm.getScaledInstance(218, 218, Image.SCALE_SMOOTH);
-            ImageIcon image = new ImageIcon(img2);
-            panel.setProductImage(image); // Set image in itemPanel
-        } else {
-            // Handle case where image is not found
-            // You may want to display a placeholder image or handle it differently
-            System.out.println("No image found for product with ID: " + productId);
-        }
-    } catch (SQLException ex) {
-        Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-    } finally {
-        try {
-            // Close PreparedStatement and ResultSet
-            if (pst != null) {
-                pst.close();
-            }
-            if (rs != null) {
-                rs.close();
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-}
-    
-   
-   
- 
+//    
+//    
+//    
+//   public void loadAndAddImage(int productId, Items panel) {
+//    try {
+//        // Retrieve image data from database
+//        pst = con.prepareStatement("SELECT imageFile FROM product WHERE id=?");
+//        pst.setInt(1, productId);
+//        rs = pst.executeQuery();
+//
+//        if (rs.next()) {
+//            byte[] imageData = rs.getBytes("imageFile");
+//            ImageIcon format1 = new ImageIcon(imageData);
+//            Image mm = format1.getImage();
+//            Image img2 = mm.getScaledInstance(218, 218, Image.SCALE_SMOOTH);
+//            ImageIcon image = new ImageIcon(img2);
+//            panel.setProductImage(image); // Set image in itemPanel
+//        } else {
+//            // Handle case where image is not found
+//            // You may want to display a placeholder image or handle it differently
+//            System.out.println("No image found for product with ID: " + productId);
+//        }
+//    } catch (SQLException ex) {
+//        Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+//    } finally {
+//        try {
+//            // Close PreparedStatement and ResultSet
+//            if (pst != null) {
+//                pst.close();
+//            }
+//            if (rs != null) {
+//                rs.close();
+//            }
+//        } catch (SQLException ex) {
+//            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//    }
+//}
+//    
    
    public void filterProductsByCategory() {
-    // Get the selected category from the combo box
     String selectedCategory = (String) categories.getSelectedItem();
 
-    // Construct the SQL query based on selected category
     String sql;
     if (selectedCategory.equals("All")) {
-        sql = "SELECT * FROM product ORDER BY name ASC";  // Show all products
+        sql = "SELECT * FROM product ORDER BY name ASC";
     } else {
-        sql = "SELECT * FROM product WHERE category = ? ORDER BY name ASC";  // Filter by selected category
+        sql = "SELECT * FROM product WHERE category = ? ORDER BY name ASC";
     }
 
     try {
-        // Prepare the SQL statement
         pst = con.prepareStatement(sql);
 
-        // If not "All", set the category parameter
         if (!selectedCategory.equals("All")) {
             pst.setString(1, selectedCategory);
         }
 
-        // Execute the query and fetch results
         rs = pst.executeQuery();
+        GameList.removeAll();
 
-        // Clear existing products from the panel
-        GameList.removeAll();  // Make sure to remove previous items
+        // Set up cache directory
+        String userHome = System.getProperty("user.home");
+        File cacheDir = new File(userHome + "/MyAppCache/");
+        if (!cacheDir.exists()) {
+            cacheDir.mkdirs();
+        }
 
-        // Iterate through the result set and create new panels for each product
         while (rs.next()) {
-            // Fetch product details
             int prdID = rs.getInt("id");
             String prdName = rs.getString("name");
             double prdPrice = rs.getDouble("cost");
             String prdCategory = rs.getString("category");
             double prdDiscount = rs.getDouble("discount");
-            byte[] imageData = rs.getBytes("imageFile");
 
-            // Create a new panel for each product (assuming Items is a JPanel that shows product details)
-            Items itemPanel = new Items(this);  // Create a new product panel
+            Items itemPanel = new Items(this);
             itemPanel.setDetails(prdID, prdName, prdPrice, prdCategory, prdDiscount);
 
-            // If the image exists, set it in the panel
-            if (imageData != null) {
-                ImageIcon icon = new ImageIcon(imageData);
-                Image img = icon.getImage();
-                Image scaledImg = img.getScaledInstance(218, 218, Image.SCALE_SMOOTH);  // Adjust size if necessary
-                ImageIcon imageIcon = new ImageIcon(scaledImg);
-                itemPanel.setProductImage(imageIcon);  // Set image in the panel
+            // --- Caching Logic ---
+            File imageFile = new File(cacheDir, prdID + ".png");
+            ImageIcon imageIcon = null;
+
+            if (imageFile.exists()) {
+                // Load image from disk cache
+                imageIcon = new ImageIcon(imageFile.getAbsolutePath());
+            } else {
+                // Load image from database
+                byte[] imageData = rs.getBytes("imageFile");
+                if (imageData != null) {
+                    BufferedImage buffered = ImageIO.read(new ByteArrayInputStream(imageData));
+                    ImageIO.write(buffered, "png", imageFile); // Save to cache
+                    Image scaledImg = buffered.getScaledInstance(216, 218, Image.SCALE_SMOOTH);
+                    imageIcon = new ImageIcon(scaledImg);
+                }
             }
 
-            // Add the product panel to the list or container (e.g., GameList)
-            GameList.add(itemPanel);  // This assumes GameList is a JPanel or a container for the product panels
+            if (imageIcon != null) {
+                itemPanel.setProductImage(imageIcon);
+            }
+
+            GameList.add(itemPanel);
         }
 
-        // Refresh the display (revalidate and repaint to update the UI)
         GameList.revalidate();
         GameList.repaint();
 
-    } catch (SQLException ex) {
+    } catch (SQLException | IOException ex) {
         ex.printStackTrace();
-        JOptionPane.showMessageDialog(null, "SQL Error: " + ex.getMessage());
+        JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage());
     }
 }
 
-    
-    
-  
+ 
    
-   public void filterProductsBySearchAndCategory(String searchTerm, String selectedCategory) {
-    // Construct the SQL query based on selected category and search term
+    public void filterProductsBySearchAndCategory(String searchTerm, String selectedCategory) {
     String sql;
     if (selectedCategory.equals("All")) {
-        sql = "SELECT * FROM product WHERE name LIKE ? ORDER BY name ASC";  // Search across all products
+        sql = "SELECT * FROM product WHERE name LIKE ? ORDER BY name ASC";
     } else {
-        sql = "SELECT * FROM product WHERE category = ? AND name LIKE ? ORDER BY name ASC";  // Filter by selected category and search term
+        sql = "SELECT * FROM product WHERE category = ? AND name LIKE ? ORDER BY name ASC";
     }
 
     try {
-        // Prepare the SQL statement
         pst = con.prepareStatement(sql);
 
-        // Set the parameters for the query
         if (selectedCategory.equals("All")) {
-            pst.setString(1, "%" + searchTerm + "%");  // Use LIKE to search for products that match the search term
+            pst.setString(1, "%" + searchTerm + "%");
         } else {
-            pst.setString(1, selectedCategory);  // Set the category filter
-            pst.setString(2, "%" + searchTerm + "%");  // Use LIKE to search for products that match the search term
+            pst.setString(1, selectedCategory);
+            pst.setString(2, "%" + searchTerm + "%");
         }
 
-        // Execute the query and fetch results
         rs = pst.executeQuery();
+        GameList.removeAll();
 
-        // Clear existing products from the panel
-        GameList.removeAll();  // Make sure to remove previous items
+        // Set up cache directory
+        String userHome = System.getProperty("user.home");
+        File cacheDir = new File(userHome + "/MyAppCache/");
+        if (!cacheDir.exists()) {
+            cacheDir.mkdirs();
+        }
 
-        // Iterate through the result set and create new panels for each product
         while (rs.next()) {
-            // Fetch product details
             int prdID = rs.getInt("id");
             String prdName = rs.getString("name");
             double prdPrice = rs.getDouble("cost");
             String prdCategory = rs.getString("category");
             double prdDiscount = rs.getDouble("discount");
-            byte[] imageData = rs.getBytes("imageFile");
 
-            // Create a new panel for each product (assuming Items is a JPanel that shows product details)
-            Items itemPanel = new Items(this);  // Create a new product panel
+            Items itemPanel = new Items(this);
             itemPanel.setDetails(prdID, prdName, prdPrice, prdCategory, prdDiscount);
 
-            // If the image exists, set it in the panel
-            if (imageData != null) {
-                ImageIcon icon = new ImageIcon(imageData);
-                Image img = icon.getImage();
-                Image scaledImg = img.getScaledInstance(218, 218, Image.SCALE_SMOOTH);  // Adjust size if necessary
-                ImageIcon imageIcon = new ImageIcon(scaledImg);
-                itemPanel.setProductImage(imageIcon);  // Set image in the panel
+            // --- Caching Logic ---
+            File imageFile = new File(cacheDir, prdID + ".png");
+            ImageIcon imageIcon = null;
+
+            if (imageFile.exists()) {
+                // Load from disk cache
+                imageIcon = new ImageIcon(imageFile.getAbsolutePath());
+            } else {
+                // Load from DB and cache
+                byte[] imageData = rs.getBytes("imageFile");
+                if (imageData != null) {
+                    BufferedImage buffered = ImageIO.read(new ByteArrayInputStream(imageData));
+                    ImageIO.write(buffered, "png", imageFile); // Save to disk
+                    Image scaledImg = buffered.getScaledInstance(216, 218, Image.SCALE_SMOOTH);
+                    imageIcon = new ImageIcon(scaledImg);
+                }
             }
 
-            // Add the product panel to the list or container (e.g., GameList)
-            GameList.add(itemPanel);  // This assumes GameList is a JPanel or a container for the product panels
+            if (imageIcon != null) {
+                itemPanel.setProductImage(imageIcon);
+            }
+
+            GameList.add(itemPanel);
         }
 
-        // Refresh the display (revalidate and repaint to update the UI)
         GameList.revalidate();
         GameList.repaint();
 
-    } catch (SQLException ex) {
+    } catch (SQLException | IOException ex) {
         ex.printStackTrace();
-        JOptionPane.showMessageDialog(null, "SQL Error: " + ex.getMessage());
+        JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage());
     }
 }
+
+    
+  
+   
     
    
    

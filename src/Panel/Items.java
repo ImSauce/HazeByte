@@ -3,6 +3,7 @@ package Panel;
 import Classes.serverCredentials;
 import javax.swing.ImageIcon;
 import Frames.Main;
+import java.awt.Image;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -103,10 +104,18 @@ public class Items extends javax.swing.JPanel {
    
     }
      public void setProductImage(ImageIcon imageIcon) {
-        ImageTXT.setIcon(imageIcon);
-        
-        this.productImage = imageIcon;
+    if (imageIcon != null) {
+        Image originalImage = imageIcon.getImage();
+        Image scaledImage = originalImage.getScaledInstance(218, 218, Image.SCALE_SMOOTH);
+        ImageIcon resizedIcon = new ImageIcon(scaledImage);
+
+        ImageTXT.setIcon(resizedIcon);
+        this.productImage = resizedIcon;
+    } else {
+        ImageTXT.setIcon(null);
+        this.productImage = null;
     }
+}
 
      
 
@@ -167,6 +176,7 @@ public class Items extends javax.swing.JPanel {
         quantityTXT.setForeground(new java.awt.Color(255, 255, 255));
         quantityTXT.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         quantityTXT.setText("1");
+        quantityTXT.setFocusable(false);
         add(quantityTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 351, 50, 32));
 
         incrementBT.setBackground(new java.awt.Color(38, 38, 38));
@@ -261,7 +271,7 @@ public class Items extends javax.swing.JPanel {
     private javax.swing.JLabel CategoryTXT;
     private javax.swing.JLabel CostTXT;
     private javax.swing.JLabel ID;
-    private javax.swing.JLabel ImageTXT;
+    public javax.swing.JLabel ImageTXT;
     private javax.swing.JLabel LIP;
     private javax.swing.JLabel LPASS;
     private javax.swing.JLabel LUSER;
