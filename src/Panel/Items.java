@@ -67,11 +67,28 @@ public class Items extends javax.swing.JPanel {
         initComponents();
         this.main = main;
         connect();
+        
+        
+
+    
+    
     }
     
     
     public void setDetails(int productID, String productName, double productPrice, String productCategory, double productDiscount ) {
-        TitleTXT.setText(productName);
+        int lineLength = 25; // Adjust based on your needs
+        StringBuilder formattedText = new StringBuilder("<html>");
+        
+        // Split the text and add line breaks
+        while (productName.length() > lineLength) {
+            formattedText.append(productName.substring(0, lineLength)).append("<br>");
+            productName = productName.substring(lineLength);
+        }
+        formattedText.append(productName).append("</html>");
+        
+        // Update the JLabel's text
+        TitleTXT.setText(formattedText.toString());
+        
         CostTXT.setText(String.valueOf(productPrice));
         CategoryTXT.setText(productCategory);
         String discount = productDiscount +" discount!"; 
@@ -113,18 +130,24 @@ public class Items extends javax.swing.JPanel {
         ImageTXT = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(24, 23, 23));
-        setMaximumSize(new java.awt.Dimension(223, 363));
-        setMinimumSize(new java.awt.Dimension(223, 363));
+        setMaximumSize(new java.awt.Dimension(232, 395));
+        setMinimumSize(new java.awt.Dimension(232, 395));
+        setPreferredSize(new java.awt.Dimension(232, 395));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         CategoryTXT.setForeground(new java.awt.Color(102, 102, 102));
         CategoryTXT.setText("Gacha Game");
+        add(CategoryTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 231, 222, -1));
 
         TitleTXT.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         TitleTXT.setText("MiSide");
+        TitleTXT.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        add(TitleTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 253, 216, -1));
 
         CostTXT.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         CostTXT.setForeground(new java.awt.Color(25, 167, 56));
         CostTXT.setText("456$");
+        add(CostTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 299, 216, -1));
 
         AddCartBT.setBackground(new java.awt.Color(24, 23, 23));
         AddCartBT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/add to cart.png"))); // NOI18N
@@ -139,10 +162,12 @@ public class Items extends javax.swing.JPanel {
         AddCartBT.setAA_HoverColor(new java.awt.Color(38, 38, 38));
         AddCartBT.setAA_PressColor(new java.awt.Color(54, 53, 53));
         AddCartBT.setAA_RippleColor(new java.awt.Color(31, 211, 71));
+        add(AddCartBT, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 340, 48, 42));
 
         quantityTXT.setForeground(new java.awt.Color(255, 255, 255));
         quantityTXT.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         quantityTXT.setText("1");
+        add(quantityTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 351, 50, 32));
 
         incrementBT.setBackground(new java.awt.Color(38, 38, 38));
         incrementBT.setForeground(new java.awt.Color(255, 255, 255));
@@ -156,6 +181,7 @@ public class Items extends javax.swing.JPanel {
                 incrementBTActionPerformed(evt);
             }
         });
+        add(incrementBT, new org.netbeans.lib.awtextra.AbsoluteConstraints(63, 351, 25, 13));
 
         decrementBT.setBackground(new java.awt.Color(38, 38, 38));
         decrementBT.setForeground(new java.awt.Color(255, 255, 255));
@@ -169,10 +195,12 @@ public class Items extends javax.swing.JPanel {
                 decrementBTActionPerformed(evt);
             }
         });
+        add(decrementBT, new org.netbeans.lib.awtextra.AbsoluteConstraints(63, 370, 25, 13));
 
         discountTXT.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         discountTXT.setForeground(new java.awt.Color(153, 201, 75));
         discountTXT.setText("10% discount!");
+        add(discountTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 321, 216, -1));
 
         ID.setBackground(new java.awt.Color(24, 23, 23));
         ID.setFont(new java.awt.Font("Segoe UI", 0, 1)); // NOI18N
@@ -182,110 +210,29 @@ public class Items extends javax.swing.JPanel {
         ID.setMaximumSize(new java.awt.Dimension(0, 0));
         ID.setMinimumSize(new java.awt.Dimension(0, 0));
         ID.setPreferredSize(new java.awt.Dimension(0, 0));
+        add(ID, new org.netbeans.lib.awtextra.AbsoluteConstraints(165, 504, -1, -1));
 
         LIP.setFont(new java.awt.Font("Segoe UI", 0, 1)); // NOI18N
         LIP.setText("jLabel1");
         LIP.setMaximumSize(new java.awt.Dimension(0, 0));
         LIP.setMinimumSize(new java.awt.Dimension(0, 0));
         LIP.setPreferredSize(new java.awt.Dimension(0, 0));
+        add(LIP, new org.netbeans.lib.awtextra.AbsoluteConstraints(165, 389, -1, -1));
 
         LUSER.setFont(new java.awt.Font("Segoe UI", 0, 1)); // NOI18N
         LUSER.setText("jLabel1");
         LUSER.setMaximumSize(new java.awt.Dimension(0, 0));
         LUSER.setMinimumSize(new java.awt.Dimension(0, 0));
         LUSER.setPreferredSize(new java.awt.Dimension(0, 0));
+        add(LUSER, new org.netbeans.lib.awtextra.AbsoluteConstraints(165, 389, -1, -1));
 
         LPASS.setFont(new java.awt.Font("Segoe UI", 0, 1)); // NOI18N
         LPASS.setText("jLabel1");
         LPASS.setMaximumSize(new java.awt.Dimension(0, 0));
         LPASS.setMinimumSize(new java.awt.Dimension(0, 0));
         LPASS.setPreferredSize(new java.awt.Dimension(0, 0));
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(LIP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(LUSER, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(64, 64, 64))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(CostTXT, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGap(49, 49, 49))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(quantityTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(incrementBT, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(decrementBT, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addGap(76, 76, 76))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(discountTXT)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addComponent(AddCartBT, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(TitleTXT)
-                            .addComponent(CategoryTXT))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(ImageTXT, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(169, Short.MAX_VALUE)
-                    .addComponent(LPASS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(54, 54, 54)))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(ImageTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(CategoryTXT)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(TitleTXT)
-                            .addComponent(LUSER, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(CostTXT)
-                            .addComponent(LIP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(discountTXT)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(quantityTXT, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(incrementBT, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(decrementBT, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(AddCartBT, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
-                .addComponent(ID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(281, Short.MAX_VALUE)
-                    .addComponent(LPASS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(96, 96, 96)))
-        );
+        add(LPASS, new org.netbeans.lib.awtextra.AbsoluteConstraints(175, 408, -1, -1));
+        add(ImageTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 7, 216, 218));
     }// </editor-fold>//GEN-END:initComponents
 
     private void incrementBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_incrementBTActionPerformed

@@ -100,7 +100,7 @@ public class Main extends javax.swing.JFrame {
         
     }
     
-
+    int categorystartup = 0;
  
     public Main(Login loginInstance) {
         initComponents();
@@ -116,6 +116,15 @@ public class Main extends javax.swing.JFrame {
         initProds();
         
         Hidden.setVisible(false);
+        
+        GameSearchTXT.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent e) {
+                if (e.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+                    searching();
+                }
+            }
+        });
         
         
     }
@@ -1541,9 +1550,9 @@ public class Main extends javax.swing.JFrame {
         categories.setLabeText("   Categories ");
         categories.setRequestFocusEnabled(false);
         categories.setVerifyInputWhenFocusTarget(false);
-        categories.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                categoriesMouseClicked(evt);
+        categories.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                categoriesActionPerformed(evt);
             }
         });
 
@@ -1567,7 +1576,7 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Games_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 195, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
                 .addComponent(HomeCategoryIconTXT)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(categories, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1639,7 +1648,7 @@ public class Main extends javax.swing.JFrame {
             .addGroup(HomeLayout.createSequentialGroup()
                 .addComponent(GameBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(GameScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 604, Short.MAX_VALUE)
+                .addComponent(GameScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 518, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -2288,7 +2297,7 @@ public class Main extends javax.swing.JFrame {
                         .addGap(12, 12, 12)
                         .addComponent(EditDescriptionText, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(EditDescriptionScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE)
+                        .addComponent(EditDescriptionScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addGroup(EditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(EditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -2370,9 +2379,6 @@ public class Main extends javax.swing.JFrame {
     private void CartBTMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CartBTMouseClicked
         showcase(false,false,false,false,false,true);
     }//GEN-LAST:event_CartBTMouseClicked
-    private void categoriesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_categoriesMouseClicked
-       
-    }//GEN-LAST:event_categoriesMouseClicked
  //------------------HOME PANEL FRONTEND CODES------------------// 
     
     
@@ -2510,6 +2516,14 @@ public class Main extends javax.swing.JFrame {
         ChangePass = new ChangePassword(this);
        ChangePass.setVisible(true);
     }//GEN-LAST:event_ChangePassPNMouseClicked
+
+    private void categoriesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_categoriesActionPerformed
+        if (categorystartup != 0){
+            filterProductsByCategory();
+        }
+        
+        
+    }//GEN-LAST:event_categoriesActionPerformed
   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -2742,95 +2756,56 @@ public class Main extends javax.swing.JFrame {
     
     
     
-    
-    
-    
-    
-   
-   ////////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////            SHOP FIREARMS METHOD                //////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////// 
+  
  ArrayList <Items> ITEMPANELS = new ArrayList<>();
     public void initProds() {
-    // DB connection  
-    String COUNT = "SELECT COUNT(*) FROM product";
-    String NAME = "SELECT name FROM product WHERE id = ?";
-    String PRICE = "SELECT cost FROM product WHERE id = ?";
-    String PRODUCTID = "SELECT id FROM product WHERE id = ?";
-    String CATEGORY = "SELECT category FROM product WHERE id = ?";
-    String DISCOUNT = "SELECT discount FROM product WHERE id = ?";
-    PreparedStatement ptsCount, ptsName, ptsPrice, ptsID,ptsCategory ,ptsDiscount;
+    // DB connection
+    String PRODUCT_QUERY = "SELECT id, name, cost, category, discount, imageFile FROM product";
+    PreparedStatement ptsProducts;
     ResultSet resultSet;
-    
+
     try {
         // Clear the FlowPanel
         GameList.removeAll();
 
-        // Get the total count
-        ptsCount = con.prepareStatement(COUNT);
-        resultSet = ptsCount.executeQuery();
-        resultSet.next();
-        int count = resultSet.getInt(1);
+        // Prepare the query to fetch all products' details
+        ptsProducts = con.prepareStatement(PRODUCT_QUERY);
+        resultSet = ptsProducts.executeQuery();
 
-        for (int i = 1; i <= count; i++) {
-            // Product name
-            ptsName = con.prepareStatement(NAME);
-            ptsName.setInt(1, i); // Use setInt for the integer id
-            resultSet = ptsName.executeQuery();
-            if (resultSet.next()) {
-                String prdName = resultSet.getString(1);
+        while (resultSet.next()) {
+            // Retrieve product details from the result set
+            int prdID = resultSet.getInt("id");
+            String prdName = resultSet.getString("name");
+            int prdPrice = resultSet.getInt("cost");
+            String prdCategory = resultSet.getString("category");
+            double prdDiscount = resultSet.getDouble("discount");
+            byte[] imageData = resultSet.getBytes("imageFile");
 
-                // Product price
-                ptsPrice = con.prepareStatement(PRICE);
-                ptsPrice.setInt(1, i);
-                resultSet = ptsPrice.executeQuery();
-                resultSet.next();
-                int prdPrice = resultSet.getInt(1);
+            // Create itemPanel and set details
+            Items shopPanel = new Items(this);
+            shopPanel.setDetails(prdID, prdName, prdPrice, prdCategory, prdDiscount);
 
-                // Product ID
-                ptsID = con.prepareStatement(PRODUCTID);
-                ptsID.setInt(1, i);
-                resultSet = ptsID.executeQuery();
-                resultSet.next();
-                int prdID = resultSet.getInt(1);
-
-                // Product category
-                ptsCategory = con.prepareStatement(CATEGORY);
-                ptsCategory.setInt(1, i);
-                resultSet = ptsCategory.executeQuery();
-                resultSet.next();
-                String prdCategory = resultSet.getString(1);
-
-                // Product discount
-                ptsDiscount = con.prepareStatement(DISCOUNT);
-                ptsDiscount.setInt(1, i);
-                resultSet = ptsDiscount.executeQuery();
-                resultSet.next();
-                double prdDiscount = resultSet.getDouble(1);
-
-                // Create itemPanel and set details
-                Items shopPanel = new Items(this);
-                shopPanel.setDetails(prdID, prdName, prdPrice, prdCategory, prdDiscount);
-
-                // Load and add image
-                loadAndAddImage(i, shopPanel);
-                // Add itemPanel to FlowPanel
-                GameList.add(shopPanel);
-                
-                ITEMPANELS.add(shopPanel);
-                
-                
-                
-                 
+            // Load and add image
+            if (imageData != null) {
+                ImageIcon format1 = new ImageIcon(imageData);
+                Image mm = format1.getImage();
+                Image img2 = mm.getScaledInstance(218, 218, Image.SCALE_SMOOTH);
+                ImageIcon image = new ImageIcon(img2);
+                shopPanel.setProductImage(image); // Set image in itemPanel
             } else {
-                System.out.println("No data found for product with ID: " + i);
-                // Handle the case where no data is found (e.g., log a message, skip adding the item)
+                // Handle case where image is not found (optional)
+                System.out.println("No image found for product with ID: " + prdID);
             }
+
+            // Add itemPanel to FlowPanel
+            GameList.add(shopPanel);
+            ITEMPANELS.add(shopPanel);
         }
 
         // Repaint the FlowPanel
         GameList.revalidate();
         GameList.repaint();
+        categorystartup =1;
 
     } catch (SQLException ex) {
         Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
@@ -2854,7 +2829,7 @@ public class Main extends javax.swing.JFrame {
             byte[] imageData = rs.getBytes("imageFile");
             ImageIcon format1 = new ImageIcon(imageData);
             Image mm = format1.getImage();
-            Image img2 = mm.getScaledInstance(211, 218, Image.SCALE_SMOOTH);
+            Image img2 = mm.getScaledInstance(218, 218, Image.SCALE_SMOOTH);
             ImageIcon image = new ImageIcon(img2);
             panel.setProductImage(image); // Set image in itemPanel
         } else {
@@ -2879,11 +2854,149 @@ public class Main extends javax.swing.JFrame {
     }
 }
     
+   
+   
+ 
+   
+   public void filterProductsByCategory() {
+    // Get the selected category from the combo box
+    String selectedCategory = (String) categories.getSelectedItem();
+
+    // Construct the SQL query based on selected category
+    String sql;
+    if (selectedCategory.equals("All")) {
+        sql = "SELECT * FROM product ORDER BY name ASC";  // Show all products
+    } else {
+        sql = "SELECT * FROM product WHERE category = ? ORDER BY name ASC";  // Filter by selected category
+    }
+
+    try {
+        // Prepare the SQL statement
+        pst = con.prepareStatement(sql);
+
+        // If not "All", set the category parameter
+        if (!selectedCategory.equals("All")) {
+            pst.setString(1, selectedCategory);
+        }
+
+        // Execute the query and fetch results
+        rs = pst.executeQuery();
+
+        // Clear existing products from the panel
+        GameList.removeAll();  // Make sure to remove previous items
+
+        // Iterate through the result set and create new panels for each product
+        while (rs.next()) {
+            // Fetch product details
+            int prdID = rs.getInt("id");
+            String prdName = rs.getString("name");
+            double prdPrice = rs.getDouble("cost");
+            String prdCategory = rs.getString("category");
+            double prdDiscount = rs.getDouble("discount");
+            byte[] imageData = rs.getBytes("imageFile");
+
+            // Create a new panel for each product (assuming Items is a JPanel that shows product details)
+            Items itemPanel = new Items(this);  // Create a new product panel
+            itemPanel.setDetails(prdID, prdName, prdPrice, prdCategory, prdDiscount);
+
+            // If the image exists, set it in the panel
+            if (imageData != null) {
+                ImageIcon icon = new ImageIcon(imageData);
+                Image img = icon.getImage();
+                Image scaledImg = img.getScaledInstance(218, 218, Image.SCALE_SMOOTH);  // Adjust size if necessary
+                ImageIcon imageIcon = new ImageIcon(scaledImg);
+                itemPanel.setProductImage(imageIcon);  // Set image in the panel
+            }
+
+            // Add the product panel to the list or container (e.g., GameList)
+            GameList.add(itemPanel);  // This assumes GameList is a JPanel or a container for the product panels
+        }
+
+        // Refresh the display (revalidate and repaint to update the UI)
+        GameList.revalidate();
+        GameList.repaint();
+
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+        JOptionPane.showMessageDialog(null, "SQL Error: " + ex.getMessage());
+    }
+}
+
     
     
+  
+   
+   public void filterProductsBySearchAndCategory(String searchTerm, String selectedCategory) {
+    // Construct the SQL query based on selected category and search term
+    String sql;
+    if (selectedCategory.equals("All")) {
+        sql = "SELECT * FROM product WHERE name LIKE ? ORDER BY name ASC";  // Search across all products
+    } else {
+        sql = "SELECT * FROM product WHERE category = ? AND name LIKE ? ORDER BY name ASC";  // Filter by selected category and search term
+    }
+
+    try {
+        // Prepare the SQL statement
+        pst = con.prepareStatement(sql);
+
+        // Set the parameters for the query
+        if (selectedCategory.equals("All")) {
+            pst.setString(1, "%" + searchTerm + "%");  // Use LIKE to search for products that match the search term
+        } else {
+            pst.setString(1, selectedCategory);  // Set the category filter
+            pst.setString(2, "%" + searchTerm + "%");  // Use LIKE to search for products that match the search term
+        }
+
+        // Execute the query and fetch results
+        rs = pst.executeQuery();
+
+        // Clear existing products from the panel
+        GameList.removeAll();  // Make sure to remove previous items
+
+        // Iterate through the result set and create new panels for each product
+        while (rs.next()) {
+            // Fetch product details
+            int prdID = rs.getInt("id");
+            String prdName = rs.getString("name");
+            double prdPrice = rs.getDouble("cost");
+            String prdCategory = rs.getString("category");
+            double prdDiscount = rs.getDouble("discount");
+            byte[] imageData = rs.getBytes("imageFile");
+
+            // Create a new panel for each product (assuming Items is a JPanel that shows product details)
+            Items itemPanel = new Items(this);  // Create a new product panel
+            itemPanel.setDetails(prdID, prdName, prdPrice, prdCategory, prdDiscount);
+
+            // If the image exists, set it in the panel
+            if (imageData != null) {
+                ImageIcon icon = new ImageIcon(imageData);
+                Image img = icon.getImage();
+                Image scaledImg = img.getScaledInstance(218, 218, Image.SCALE_SMOOTH);  // Adjust size if necessary
+                ImageIcon imageIcon = new ImageIcon(scaledImg);
+                itemPanel.setProductImage(imageIcon);  // Set image in the panel
+            }
+
+            // Add the product panel to the list or container (e.g., GameList)
+            GameList.add(itemPanel);  // This assumes GameList is a JPanel or a container for the product panels
+        }
+
+        // Refresh the display (revalidate and repaint to update the UI)
+        GameList.revalidate();
+        GameList.repaint();
+
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+        JOptionPane.showMessageDialog(null, "SQL Error: " + ex.getMessage());
+    }
+}
     
-    
-    
+   
+   
+   public void searching(){ 
+        String category = (String) categories.getSelectedItem();
+        String search = GameSearchTXT.getText();
+        filterProductsBySearchAndCategory(search,category);
+   }
     
     
     
