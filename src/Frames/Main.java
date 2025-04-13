@@ -7,6 +7,7 @@ package Frames;
 import Classes.Functions;
 import Classes.Run;
 import Classes.serverCredentials;
+import Panel.Items;
 import Splash.Login;
 import java.awt.Dimension;
 import java.awt.Image;
@@ -112,6 +113,7 @@ public class Main extends javax.swing.JFrame {
         
         connect();
         startup();
+        initProds();
         
         Hidden.setVisible(false);
         
@@ -2713,7 +2715,7 @@ public class Main extends javax.swing.JFrame {
     public void showcase(boolean Home_, boolean Edit_, boolean Add_, boolean History_, boolean Info_, boolean Cart_){
         Home.setVisible(Home_);
         Edit.setVisible(Edit_);
-        Add.setVisible(Add_);
+        Add.setVisible(Add_); 
         History.setVisible(History_);
         Settings.setVisible(Info_);
         Cart.setVisible(Cart_);     
@@ -2725,11 +2727,157 @@ public class Main extends javax.swing.JFrame {
         HistoryClicked =history;
         InfoClicked =info; 
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+   
+   ////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////            SHOP FIREARMS METHOD                //////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////// 
+ ArrayList <Items> ITEMPANELS = new ArrayList<>();
+    public void initProds() {
+    // DB connection  
+    String COUNT = "SELECT COUNT(*) FROM product";
+    String NAME = "SELECT name FROM product WHERE id = ?";
+    String PRICE = "SELECT cost FROM product WHERE id = ?";
+    String PRODUCTID = "SELECT id FROM product WHERE id = ?";
+    String CATEGORY = "SELECT category FROM product WHERE id = ?";
+    String DISCOUNT = "SELECT discount FROM product WHERE id = ?";
+    PreparedStatement ptsCount, ptsName, ptsPrice, ptsID,ptsCategory ,ptsDiscount;
+    ResultSet resultSet;
+    
+    try {
+        // Clear the FlowPanel
+        GameList.removeAll();
+
+        // Get the total count
+        ptsCount = con.prepareStatement(COUNT);
+        resultSet = ptsCount.executeQuery();
+        resultSet.next();
+        int count = resultSet.getInt(1);
+
+        for (int i = 1; i <= count; i++) {
+            // Product name
+            ptsName = con.prepareStatement(NAME);
+            ptsName.setInt(1, i); // Use setInt for the integer id
+            resultSet = ptsName.executeQuery();
+            if (resultSet.next()) {
+                String prdName = resultSet.getString(1);
+
+                // Product price
+                ptsPrice = con.prepareStatement(PRICE);
+                ptsPrice.setInt(1, i);
+                resultSet = ptsPrice.executeQuery();
+                resultSet.next();
+                int prdPrice = resultSet.getInt(1);
+
+                // Product ID
+                ptsID = con.prepareStatement(PRODUCTID);
+                ptsID.setInt(1, i);
+                resultSet = ptsID.executeQuery();
+                resultSet.next();
+                int prdID = resultSet.getInt(1);
+
+                // Product category
+                ptsCategory = con.prepareStatement(CATEGORY);
+                ptsCategory.setInt(1, i);
+                resultSet = ptsCategory.executeQuery();
+                resultSet.next();
+                String prdCategory = resultSet.getString(1);
+
+                // Product discount
+                ptsDiscount = con.prepareStatement(DISCOUNT);
+                ptsDiscount.setInt(1, i);
+                resultSet = ptsDiscount.executeQuery();
+                resultSet.next();
+                double prdDiscount = resultSet.getDouble(1);
+
+                // Create itemPanel and set details
+                Items shopPanel = new Items(this);
+                shopPanel.setDetails(prdID, prdName, prdPrice, prdCategory, prdDiscount);
+
+                // Load and add image
+                loadAndAddImage(i, shopPanel);
+                // Add itemPanel to FlowPanel
+                GameList.add(shopPanel);
+                
+                ITEMPANELS.add(shopPanel);
+                
+                
+                
+                 
+            } else {
+                System.out.println("No data found for product with ID: " + i);
+                // Handle the case where no data is found (e.g., log a message, skip adding the item)
+            }
+        }
+
+        // Repaint the FlowPanel
+        GameList.revalidate();
+        GameList.repaint();
+
+    } catch (SQLException ex) {
+        Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+    }
+}
+    
+   
 
 
     
     
     
+   public void loadAndAddImage(int productId, Items panel) {
+    try {
+        // Retrieve image data from database
+        pst = con.prepareStatement("SELECT imageFile FROM product WHERE id=?");
+        pst.setInt(1, productId);
+        rs = pst.executeQuery();
+
+        if (rs.next()) {
+            byte[] imageData = rs.getBytes("imageFile");
+            ImageIcon format1 = new ImageIcon(imageData);
+            Image mm = format1.getImage();
+            Image img2 = mm.getScaledInstance(211, 218, Image.SCALE_SMOOTH);
+            ImageIcon image = new ImageIcon(img2);
+            panel.setProductImage(image); // Set image in itemPanel
+        } else {
+            // Handle case where image is not found
+            // You may want to display a placeholder image or handle it differently
+            System.out.println("No image found for product with ID: " + productId);
+        }
+    } catch (SQLException ex) {
+        Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+    } finally {
+        try {
+            // Close PreparedStatement and ResultSet
+            if (pst != null) {
+                pst.close();
+            }
+            if (rs != null) {
+                rs.close();
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+}
     
     
     

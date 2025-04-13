@@ -17,10 +17,10 @@ public class Items extends javax.swing.JPanel {
     PreparedStatement pst;
     
     public int productID;
-    private String productName;
-    private Double productPrice;
-    private String productCategory;
-    private Double productDiscount;
+    public String productName;
+    public Double productPrice;
+    public String productCategory;
+    public Double productDiscount;
     public ImageIcon productImage;
    private Main main;
     
@@ -55,7 +55,7 @@ public class Items extends javax.swing.JPanel {
         try {
 
             Class.forName("com.mysql.cj.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://" + sv.getServerIP() + "/schale_online", sv.getUserID(), sv.getPass());
+            con = DriverManager.getConnection("jdbc:mysql://" + sv.getServerIP() + "/hazebyte", sv.getUserID(), sv.getPass());
 
 
         } catch (ClassNotFoundException ex) { } catch (SQLException ex) {}
@@ -98,7 +98,6 @@ public class Items extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        ImageTXT = new SystemShadowedComp.PH_SDWLabel();
         CategoryTXT = new javax.swing.JLabel();
         TitleTXT = new javax.swing.JLabel();
         CostTXT = new javax.swing.JLabel();
@@ -111,22 +110,11 @@ public class Items extends javax.swing.JPanel {
         LIP = new javax.swing.JLabel();
         LUSER = new javax.swing.JLabel();
         LPASS = new javax.swing.JLabel();
+        ImageTXT = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(24, 23, 23));
         setMaximumSize(new java.awt.Dimension(223, 363));
         setMinimumSize(new java.awt.Dimension(223, 363));
-
-        ImageTXT.setAAA_AutoSize(true);
-        ImageTXT.setAAA_ImageBoundArcSize(20);
-        ImageTXT.setAAA_roundBottomLeft(20);
-        ImageTXT.setAAA_roundBottomRight(20);
-        ImageTXT.setAAA_roundTopLeft(20);
-        ImageTXT.setAAA_roundTopRight(20);
-        ImageTXT.setAA_ArcSize(20);
-        ImageTXT.setAA_BorderSize(0);
-        ImageTXT.setAA_CompImage(new javax.swing.ImageIcon(getClass().getResource("/Images/download-modified.png"))); // NOI18N
-        ImageTXT.setAA_DrawImage(true);
-        ImageTXT.setAA_OpaqueBackground(true);
 
         CategoryTXT.setForeground(new java.awt.Color(102, 102, 102));
         CategoryTXT.setText("Gacha Game");
@@ -218,40 +206,43 @@ public class Items extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(TitleTXT)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(CostTXT, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addGap(49, 49, 49))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(quantityTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(incrementBT, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(decrementBT, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                        .addGap(76, 76, 76))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(discountTXT)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                .addComponent(AddCartBT, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(CategoryTXT)))
-                    .addComponent(ImageTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(LIP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(LUSER, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(64, 64, 64))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(CostTXT, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGap(49, 49, 49))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(quantityTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(incrementBT, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(decrementBT, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(76, 76, 76))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(discountTXT)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(AddCartBT, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(TitleTXT)
+                            .addComponent(CategoryTXT))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(ImageTXT, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                     .addContainerGap(169, Short.MAX_VALUE)
@@ -261,8 +252,8 @@ public class Items extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(7, 7, 7)
-                .addComponent(ImageTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(ImageTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -323,7 +314,7 @@ public class Items extends javax.swing.JPanel {
     private javax.swing.JLabel CategoryTXT;
     private javax.swing.JLabel CostTXT;
     private javax.swing.JLabel ID;
-    private SystemShadowedComp.PH_SDWLabel ImageTXT;
+    private javax.swing.JLabel ImageTXT;
     private javax.swing.JLabel LIP;
     private javax.swing.JLabel LPASS;
     private javax.swing.JLabel LUSER;
