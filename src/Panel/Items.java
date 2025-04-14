@@ -13,6 +13,7 @@ import java.text.DecimalFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import javax.swing.JOptionPane;
+import javax.swing.Timer;
 
 public class Items extends javax.swing.JPanel {
 
@@ -72,7 +73,27 @@ public class Items extends javax.swing.JPanel {
         connect();
         
         
+        incrementBT.addMouseListener(new java.awt.event.MouseAdapter() {
+    public void mousePressed(java.awt.event.MouseEvent evt) {
+        incrementBTMousePressed(evt);
+    }
 
+    public void mouseReleased(java.awt.event.MouseEvent evt) {
+        incrementBTMouseReleased(evt);
+    }
+});
+        
+        decrementBT.addMouseListener(new java.awt.event.MouseAdapter() {
+    @Override
+    public void mousePressed(java.awt.event.MouseEvent evt) {
+        decrementBTMousePressed(evt);
+    }
+
+    @Override
+    public void mouseReleased(java.awt.event.MouseEvent evt) {
+        decrementBTMouseReleased(evt);
+    }
+});
     
     
     }
@@ -198,6 +219,11 @@ public class Items extends javax.swing.JPanel {
         incrementBT.setAA_HoverColor(new java.awt.Color(54, 53, 53));
         incrementBT.setAA_PressColor(new java.awt.Color(54, 53, 53));
         incrementBT.setAA_RippleColor(new java.awt.Color(71, 70, 70));
+        incrementBT.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                incrementBTMousePressed(evt);
+            }
+        });
         incrementBT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 incrementBTActionPerformed(evt);
@@ -212,6 +238,14 @@ public class Items extends javax.swing.JPanel {
         decrementBT.setAA_HoverColor(new java.awt.Color(54, 53, 53));
         decrementBT.setAA_PressColor(new java.awt.Color(54, 53, 53));
         decrementBT.setAA_RippleColor(new java.awt.Color(71, 70, 70));
+        decrementBT.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                decrementBTMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                decrementBTMouseReleased(evt);
+            }
+        });
         decrementBT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 decrementBTActionPerformed(evt);
@@ -281,6 +315,57 @@ public class Items extends javax.swing.JPanel {
         AddCart();
     }//GEN-LAST:event_AddCartBTActionPerformed
 
+    private Timer holdIncrementTimer;
+    private void incrementBTMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_incrementBTMousePressed
+        // Only start the timer if it's not already running
+    if (holdIncrementTimer == null || !holdIncrementTimer.isRunning()) {
+        holdIncrementTimer = new Timer(20, e -> {
+            try {
+                int value = Integer.parseInt(quantityTXT.getText());
+                quantityTXT.setText(String.valueOf(value + 1));
+            } catch (NumberFormatException ex) {
+                quantityTXT.setText("0");
+            }
+        });
+        holdIncrementTimer.setInitialDelay(200); // Delay before auto increment starts
+        holdIncrementTimer.start();
+    }
+    }//GEN-LAST:event_incrementBTMousePressed
+
+    private Timer holdDecrementTimer;
+    private void decrementBTMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_decrementBTMousePressed
+          // Only start the timer if it's not already running
+    if (holdDecrementTimer == null || !holdDecrementTimer.isRunning()) {
+        holdDecrementTimer = new Timer(20, e -> {
+            try {
+                int value = Integer.parseInt(quantityTXT.getText());
+                
+                // Decrease value but not below 1
+                if (value > 1) {
+                    quantityTXT.setText(String.valueOf(value - 1));
+                }
+            } catch (NumberFormatException ex) {
+                quantityTXT.setText("1"); // Default to 1 if invalid input
+            }
+        });
+        holdDecrementTimer.setInitialDelay(200); // Delay before auto decrement starts
+        holdDecrementTimer.start();
+    }
+    }//GEN-LAST:event_decrementBTMousePressed
+
+    private void decrementBTMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_decrementBTMouseReleased
+        if (holdDecrementTimer != null && holdDecrementTimer.isRunning()) {
+        holdDecrementTimer.stop();
+    }
+    }//GEN-LAST:event_decrementBTMouseReleased
+
+    private void incrementBTMouseReleased(java.awt.event.MouseEvent evt) {                                         
+    if (holdIncrementTimer != null && holdIncrementTimer.isRunning()) {
+        holdIncrementTimer.stop();
+    }
+}
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private SystemOtherComps.PH_Button AddCartBT;
@@ -305,26 +390,34 @@ public class Items extends javax.swing.JPanel {
     
     public void AddCart() {
     try {
+        
+        
         serverCredentials sv = new serverCredentials();
         sv.setServerIP(LIP.getText());
         sv.setUserID(LUSER.getText());
         sv.setPass(LPASS.getText());
             
-        String name = productName;
+        
         String category = productCategory;
         double cost = productPrice;
         double discount = productDiscount; 
         int quantity = Integer.parseInt(quantityTXT.getText());
 
         double discountedPrice = cost - (cost * (discount / 100));
+        discountedPrice = Math.round(discountedPrice * 100.0) / 100.0;
 
-        double total = discountedPrice * quantity;
-        double subtotal = cost * quantity; 
+        double raw_total = discountedPrice * quantity;
+        double total = Math.round(raw_total * 100.0) / 100.0;
+
+        double subtotal = cost * quantity;
+        subtotal = Math.round(subtotal * 100.0) / 100.0;
+       
 
         // Fetch additional product info from the database
         String description = "";
         String imageName = "";
         String imagePath = "";
+        String name ="";
         byte[] imageFile = null;
         
         LocalDateTime now = LocalDateTime.now();
@@ -332,7 +425,7 @@ public class Items extends javax.swing.JPanel {
         String formattedTime = now.format(DateTimeFormatter.ofPattern("HH:mm:ss"));
 
         try (Connection con = DriverManager.getConnection("jdbc:mysql://"+sv.getServerIP()+"/hazebyte", sv.getUserID(), sv.getPass());
-             PreparedStatement fetchPst = con.prepareStatement("SELECT description, imageName, imagePath, imageFile FROM product WHERE id = ?")) {
+             PreparedStatement fetchPst = con.prepareStatement("SELECT description, imageName, imagePath, imageFile, name FROM product WHERE id = ?")) {
 
             fetchPst.setInt(1, productID);
             try (ResultSet rs = fetchPst.executeQuery()) {
@@ -341,6 +434,7 @@ public class Items extends javax.swing.JPanel {
                     imageName = rs.getString("imageName");
                     imagePath = rs.getString("imagePath");
                     imageFile = rs.getBytes("imageFile");
+                    name = rs.getString("name");
                 }
             }
         }

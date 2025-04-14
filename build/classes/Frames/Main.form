@@ -1636,7 +1636,7 @@
                           </Group>
                           <Group type="102" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="CartTableScroll" pref="0" max="32767" attributes="0"/>
+                              <Component id="CartTableScroll" pref="474" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -1712,15 +1712,19 @@
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="Cart_txt" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
+                                  <Component id="CartBackBT" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="10" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="Cart_txt" max="32767" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
-                          <Component id="CartBackBT" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="16" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -1762,38 +1766,40 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace pref="47" max="32767" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="CartDescriptionheadingTXT" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="CartDescriptionScroll" alignment="0" pref="199" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="CartImageTXT" alignment="1" min="-2" pref="211" max="-2" attributes="0"/>
+                              <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                              <Component id="CartDescriptionheadingTXT" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="CartDescriptionScroll" alignment="0" pref="199" max="32767" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                              <Component id="quantityIcon" max="32767" attributes="0"/>
+                                              <Component id="CostIcon" min="-2" pref="25" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="CartQuantityTXT" min="-2" max="-2" attributes="0"/>
+                                              <Component id="CartTotalCostTXT" pref="180" max="32767" attributes="0"/>
+                                          </Group>
                                       </Group>
                                   </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="quantityIcon" max="32767" attributes="0"/>
-                                          <Component id="CostIcon" min="-2" pref="25" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="CartQuantityTXT" min="-2" max="-2" attributes="0"/>
-                                          <Component id="CartTotalCostTXT" pref="180" max="32767" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                              </Group>
-                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="CartImageTXT" alignment="1" pref="211" max="32767" attributes="0"/>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="CartCategoryTXT" min="-2" max="-2" attributes="0"/>
-                                          <Component id="CartCostTXT" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="CartTitleTXT" alignment="0" min="-2" pref="199" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Component id="CartRemoveBT" alignment="1" min="-2" pref="211" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="CartCategoryTXT" min="-2" max="-2" attributes="0"/>
+                                              <Component id="CartCostTXT" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="CartTitleTXT" min="-2" pref="199" max="-2" attributes="0"/>
+                                          </Group>
                                       </Group>
                                   </Group>
-                                  <Component id="CartRemoveBT" alignment="1" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
@@ -1803,18 +1809,18 @@
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="0" max="-2" attributes="0"/>
-                          <Component id="CartImageTXT" min="-2" pref="217" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="CartImageTXT" min="-2" pref="211" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                           <Component id="CartCategoryTXT" min="-2" pref="16" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                           <Component id="CartTitleTXT" min="-2" pref="49" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                           <Component id="CartCostTXT" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" max="-2" attributes="0"/>
                           <Component id="CartDescriptionheadingTXT" min="-2" pref="16" max="-2" attributes="0"/>
                           <EmptySpace min="-2" max="-2" attributes="0"/>
-                          <Component id="CartDescriptionScroll" pref="139" max="32767" attributes="0"/>
+                          <Component id="CartDescriptionScroll" pref="13" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
@@ -1838,23 +1844,6 @@
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="SystemShadowedComp.PH_SDWLabel" name="CartImageTXT">
-                  <Properties>
-                    <Property name="AAA_FitToSize" type="boolean" value="true"/>
-                    <Property name="AAA_ImageBoundArcSize" type="int" value="2"/>
-                    <Property name="AAA_roundBottomLeft" type="int" value="2"/>
-                    <Property name="AAA_roundBottomRight" type="int" value="2"/>
-                    <Property name="AAA_roundTopLeft" type="int" value="2"/>
-                    <Property name="AAA_roundTopRight" type="int" value="2"/>
-                    <Property name="AA_ArcSize" type="int" value="2"/>
-                    <Property name="AA_BorderSize" type="int" value="0"/>
-                    <Property name="AA_CompImage" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/Images/download-modified.png"/>
-                    </Property>
-                    <Property name="AA_DrawImage" type="boolean" value="true"/>
-                    <Property name="AA_OpaqueBackground" type="boolean" value="true"/>
-                  </Properties>
-                </Component>
                 <Component class="javax.swing.JLabel" name="CartCategoryTXT">
                   <Properties>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -1866,7 +1855,7 @@
                 <Component class="javax.swing.JLabel" name="CartTitleTXT">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Arial Black" size="18" style="0"/>
+                      <Font name="Arial Black" size="16" style="0"/>
                     </Property>
                     <Property name="horizontalAlignment" type="int" value="2"/>
                     <Property name="text" type="java.lang.String" value="MiSide"/>
@@ -1957,6 +1946,7 @@
                 </Component>
                 <Component class="SystemOtherComps.PH_TextField" name="CartQuantityTXT">
                   <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="26" green="26" red="26" type="rgb"/>
                     </Property>
@@ -1971,6 +1961,7 @@
                     <Property name="AAA_roundTopRight" type="int" value="20"/>
                     <Property name="AA_DrawLine" type="boolean" value="false"/>
                     <Property name="AA_TextHint" type="java.lang.String" value="      0"/>
+                    <Property name="focusable" type="boolean" value="false"/>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Segoe UI" size="14" style="1"/>
                     </Property>
@@ -2004,6 +1995,8 @@
                     </Property>
                     <Property name="toolTipText" type="java.lang.String" value="quantity"/>
                   </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="CartImageTXT">
                 </Component>
               </SubComponents>
             </Container>
@@ -2241,7 +2234,7 @@
                     </Property>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                       <Table columnCount="12" rowCount="0">
-                        <Column editable="false" title="Product" type="java.lang.Object"/>
+                        <Column editable="false" title="Product" type="java.lang.String"/>
                         <Column editable="false" title="Category" type="java.lang.Object"/>
                         <Column editable="false" title="Quantity" type="java.lang.Object"/>
                         <Column editable="false" title="Cost" type="java.lang.Object"/>
@@ -2292,12 +2285,12 @@
                           <Editor/>
                           <Renderer/>
                         </Column>
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
+                        <Column maxWidth="0" minWidth="0" prefWidth="0" resizable="true">
                           <Title/>
                           <Editor/>
                           <Renderer/>
                         </Column>
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
+                        <Column maxWidth="0" minWidth="0" prefWidth="0" resizable="true">
                           <Title/>
                           <Editor/>
                           <Renderer/>
@@ -2633,8 +2626,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="cc" red="0" type="rgb"/>
                 </Property>
-                <Property name="horizontalScrollBarPolicy" type="int" value="32"/>
-                <Property name="verticalScrollBarPolicy" type="int" value="22"/>
+                <Property name="horizontalScrollBarPolicy" type="int" value="31"/>
               </Properties>
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
@@ -3721,7 +3713,7 @@
                 <Property name="AA_DrawLine" type="boolean" value="false"/>
                 <Property name="AA_DrawRightBorder" type="boolean" value="true"/>
                 <Property name="AA_DrawTopBorder" type="boolean" value="true"/>
-                <Property name="AA_TextHint" type="java.lang.String" value="   Enter Discount"/>
+                <Property name="AA_TextHint" type="java.lang.String" value="   Enter Discount %"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Calibri" size="14" style="0"/>
                 </Property>
