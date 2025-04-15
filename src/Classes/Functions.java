@@ -54,6 +54,67 @@ public class Functions {
     
     
     
+    
+    
+    
+    public void adjustFontSizeToFit(JLabel label, int maxFontSize, int minFontSize) {
+    String originalText = label.getText();
+    int labelWidth = label.getWidth();
+    int labelHeight = label.getHeight();
+
+    if (originalText == null || originalText.isEmpty() || labelWidth <= 0 || labelHeight <= 0) return;
+
+    // Enable text wrapping with HTML
+    label.setText("<html>" + wrapTextToFitHTML(originalText, label.getFontMetrics(label.getFont()), labelWidth) + "</html>");
+
+    for (int fontSize = maxFontSize; fontSize >= minFontSize; fontSize--) {
+        Font testFont = new Font("Arial Black", Font.PLAIN, fontSize);
+        FontMetrics metrics = label.getFontMetrics(testFont);
+
+        // Wrap text to fit the label width
+        String htmlWrapped = wrapTextToFitHTML(originalText, metrics, labelWidth);
+        int lineCount = htmlWrapped.split("<br>").length;
+        int totalHeight = metrics.getHeight() * lineCount;
+
+        if (totalHeight <= labelHeight) {
+            label.setFont(testFont);
+            label.setText("<html>" + htmlWrapped + "</html>");
+            return;
+        }
+    }
+
+    // Fallback font size if no fitting font is found
+    Font fallback = new Font("Arial Black", Font.PLAIN, minFontSize);
+    label.setFont(fallback);
+    label.setText("<html>" + wrapTextToFitHTML(originalText, label.getFontMetrics(fallback), labelWidth) + "</html>");
+}
+    
+    
+    public String wrapTextToFitHTML(String text, FontMetrics metrics, int maxWidth) {
+    StringBuilder wrapped = new StringBuilder();
+    String[] words = text.split(" ");
+    StringBuilder line = new StringBuilder();
+
+    for (String word : words) {
+        String testLine = line.length() > 0 ? line + " " + word : word;
+        if (metrics.stringWidth(testLine) > maxWidth) {
+            wrapped.append(line).append("<br>");
+            line = new StringBuilder(word);  // Start new line with the current word
+        } else {
+            if (line.length() > 0) line.append(" ");
+            line.append(word);
+        }
+    }
+
+    if (line.length() > 0) {
+        wrapped.append(line);
+    }
+
+    return wrapped.toString().trim();
+}
+
+
+    
 }
 
 

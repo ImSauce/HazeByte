@@ -14,11 +14,13 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
+import Classes.Functions;
 
 public class Items extends javax.swing.JPanel {
 
     
     Connection con;
+    Functions function = new Functions();
     
     public int productID;
     public String productName;
@@ -112,6 +114,7 @@ public class Items extends javax.swing.JPanel {
         
         // Update the JLabel's text
         TitleTXT.setText(formattedText.toString());
+        function.adjustFontSizeToFit(TitleTXT, 24, 12);
         CategoryTXT.setText(productCategory);
 
         DecimalFormat df = new DecimalFormat("₱#,##0.00");
@@ -179,7 +182,7 @@ public class Items extends javax.swing.JPanel {
         TitleTXT.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         TitleTXT.setText("MiSide");
         TitleTXT.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        add(TitleTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 253, 216, -1));
+        add(TitleTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 253, 216, 40));
 
         CostTXT.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         CostTXT.setForeground(new java.awt.Color(25, 167, 56));
@@ -255,7 +258,7 @@ public class Items extends javax.swing.JPanel {
 
         discountTXT.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         discountTXT.setForeground(new java.awt.Color(153, 201, 75));
-        discountTXT.setText("10% discount!");
+        discountTXT.setText("10% Discount!");
         add(discountTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 321, 216, -1));
 
         ID.setBackground(new java.awt.Color(24, 23, 23));

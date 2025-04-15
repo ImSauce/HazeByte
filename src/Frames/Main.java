@@ -62,7 +62,7 @@ public class Main extends javax.swing.JFrame {
     private ChangePassword ChangePass;
     private ChangeUsername ChangeUser;
     
-    private final Login loginInstance;
+    
     
     //variables for detecting if a menu button is clicked
     Functions function = new Functions();
@@ -128,10 +128,19 @@ public class Main extends javax.swing.JFrame {
         IP.setText(loginInstance.url);
         PASS.setText(loginInstance.pass);
         
-        this.loginInstance = loginInstance;
+        
         
         connect();
         startup();
+        ClearCart();
+        
+        if (CartTable.getRowCount() == 0) {
+            paymentTXT.setEnabled(false);
+            CartItemView.setVisible(false);
+        } else {
+            paymentTXT.setEnabled(true);
+        }
+        
         JDialog loadingDialog = createLoadingDialog();
 
         new Thread(() -> {
@@ -238,17 +247,18 @@ public class Main extends javax.swing.JFrame {
         CostIcon = new javax.swing.JLabel();
         quantityIcon = new javax.swing.JLabel();
         CartImageTXT = new javax.swing.JLabel();
-        payment = new SystemOtherComps.PH_TextField();
-        total = new SystemOtherComps.PH_TextField();
-        change = new SystemOtherComps.PH_TextField();
+        discountTXT = new javax.swing.JLabel();
+        paymentTXT = new SystemOtherComps.PH_TextField();
+        totalTXT = new SystemOtherComps.PH_TextField();
+        changeTXT = new SystemOtherComps.PH_TextField();
         PaymentHeading = new javax.swing.JLabel();
         TotalCostHeading = new javax.swing.JLabel();
         ChangeHeading = new javax.swing.JLabel();
         BuyBT = new SystemOtherComps.PH_Button();
         CancelAllBT = new SystemOtherComps.PH_Button();
-        subtotal = new SystemOtherComps.PH_TextField();
+        subtotalTXT = new SystemOtherComps.PH_TextField();
         SubtotalHeading = new javax.swing.JLabel();
-        totaldiscount = new SystemOtherComps.PH_TextField();
+        totaldiscountTXT = new SystemOtherComps.PH_TextField();
         TotalDiscountHeading = new javax.swing.JLabel();
         CartTableScroll = new SystemOtherComps.PH_ScrollPane();
         CartTable = new javax.swing.JTable();
@@ -1108,6 +1118,12 @@ public class Main extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 CartBackBTMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CartBackBTMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                CartBackBTMouseExited(evt);
+            }
         });
 
         javax.swing.GroupLayout CartBarLayout = new javax.swing.GroupLayout(CartBar);
@@ -1138,16 +1154,14 @@ public class Main extends javax.swing.JFrame {
         CartItemView.setBackground(new java.awt.Color(24, 23, 23));
 
         CartCategoryTXT.setForeground(new java.awt.Color(102, 102, 102));
-        CartCategoryTXT.setText("Gacha Game");
 
         CartTitleTXT.setFont(new java.awt.Font("Arial Black", 0, 16)); // NOI18N
         CartTitleTXT.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        CartTitleTXT.setText("MiSide");
         CartTitleTXT.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
         CartCostTXT.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         CartCostTXT.setForeground(new java.awt.Color(25, 167, 56));
-        CartCostTXT.setText("456$");
+        CartCostTXT.setText("₱0");
 
         CartDescriptionScroll.setBorder(null);
         CartDescriptionScroll.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
@@ -1156,7 +1170,6 @@ public class Main extends javax.swing.JFrame {
         CartDescriptionTXT.setBackground(new java.awt.Color(24, 23, 23));
         CartDescriptionTXT.setColumns(20);
         CartDescriptionTXT.setRows(5);
-        CartDescriptionTXT.setText("MiSide is an adventure game with horror elements developed by Russian indie development team AIHASTO. It was initially published as a demo on August 18, 2023, before being fully released on Steam on December 11, 2024.MiSide is an adventure game with horror elements developed by Russian indie development team AIHASTO. It was initially published as a demo on August 18, 2023, before being fully released on Steam on December 11, 2024.MiSide is an adventure game with horror elements developed by Russian indie development team AIHASTO. It was initially published as a demo on August 18, 2023, before being fully released on Steam on December 11, 2024.MiSide is an adventure game with horror elements developed by Russian indie development team AIHASTO. It was initially published as a demo on August 18, 2023, before being fully released on Steam on December 11, 2024.MiSide is an adventure game with horror elements developed by Russian indie development team AIHASTO. It was initially published as a demo on August 18, 2023, before being fully released on Steam on December 11, 2024.MiSide is an adventure game with horror elements developed by Russian indie development team AIHASTO. It was initially published as a demo on August 18, 2023, before being fully released on Steam on December 11, 2024.\n");
         CartDescriptionTXT.setBorder(null);
         CartDescriptionTXT.setFocusable(false);
         CartDescriptionScroll.setViewportView(CartDescriptionTXT);
@@ -1179,6 +1192,11 @@ public class Main extends javax.swing.JFrame {
         CartRemoveBT.setAA_PressColor(new java.awt.Color(54, 53, 53));
         CartRemoveBT.setAA_RippleColor(new java.awt.Color(215, 54, 54));
         CartRemoveBT.setFont(new java.awt.Font("Franklin Gothic Heavy", 0, 12)); // NOI18N
+        CartRemoveBT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CartRemoveBTActionPerformed(evt);
+            }
+        });
 
         CartQuantityTXT.setEditable(false);
         CartQuantityTXT.setBackground(new java.awt.Color(38, 38, 38));
@@ -1197,14 +1215,20 @@ public class Main extends javax.swing.JFrame {
         CartTotalCostTXT.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         CartTotalCostTXT.setForeground(new java.awt.Color(25, 167, 56));
         CartTotalCostTXT.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        CartTotalCostTXT.setText("4560000000000000000$");
+        CartTotalCostTXT.setText("0");
         CartTotalCostTXT.setToolTipText("cost");
 
-        CostIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/cost.png"))); // NOI18N
+        CostIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/coins.png"))); // NOI18N
         CostIcon.setToolTipText("cost");
 
         quantityIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/quantity.png"))); // NOI18N
         quantityIcon.setToolTipText("quantity");
+
+        CartImageTXT.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
+
+        discountTXT.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        discountTXT.setForeground(new java.awt.Color(153, 201, 75));
+        discountTXT.setText("10% discount!");
 
         javax.swing.GroupLayout CartItemViewLayout = new javax.swing.GroupLayout(CartItemView);
         CartItemView.setLayout(CartItemViewLayout);
@@ -1236,7 +1260,8 @@ public class Main extends javax.swing.JFrame {
                                 .addGroup(CartItemViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(CartCategoryTXT)
                                     .addComponent(CartCostTXT)
-                                    .addComponent(CartTitleTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addComponent(CartTitleTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(discountTXT))))))
                 .addGap(39, 39, 39))
         );
         CartItemViewLayout.setVerticalGroup(
@@ -1251,9 +1276,11 @@ public class Main extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(CartCostTXT)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(CartDescriptionheadingTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(discountTXT)
+                .addGap(2, 2, 2)
+                .addComponent(CartDescriptionheadingTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(CartDescriptionScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 13, Short.MAX_VALUE)
+                .addComponent(CartDescriptionScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 5, Short.MAX_VALUE)
                 .addGroup(CartItemViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(CartItemViewLayout.createSequentialGroup()
                         .addGap(8, 8, 8)
@@ -1270,44 +1297,51 @@ public class Main extends javax.swing.JFrame {
                 .addGap(16, 16, 16))
         );
 
-        payment.setBackground(new java.awt.Color(24, 23, 23));
-        payment.setForeground(new java.awt.Color(255, 255, 255));
-        payment.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        payment.setAAA_roundBottomLeft(20);
-        payment.setAAA_roundBottomRight(20);
-        payment.setAAA_roundTopLeft(20);
-        payment.setAAA_roundTopRight(20);
-        payment.setAA_BorderColor(new java.awt.Color(51, 51, 51));
-        payment.setAA_DrawBorder(true);
-        payment.setAA_DrawBottomBorder(true);
-        payment.setAA_DrawLeftBorder(true);
-        payment.setAA_DrawLine(false);
-        payment.setAA_DrawRightBorder(true);
-        payment.setAA_DrawTopBorder(true);
-        payment.setAA_TextHint("   Enter Amount");
-        payment.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        paymentTXT.setBackground(new java.awt.Color(24, 23, 23));
+        paymentTXT.setForeground(new java.awt.Color(255, 255, 255));
+        paymentTXT.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        paymentTXT.setAAA_roundBottomLeft(20);
+        paymentTXT.setAAA_roundBottomRight(20);
+        paymentTXT.setAAA_roundTopLeft(20);
+        paymentTXT.setAAA_roundTopRight(20);
+        paymentTXT.setAA_BorderColor(new java.awt.Color(51, 51, 51));
+        paymentTXT.setAA_DrawBorder(true);
+        paymentTXT.setAA_DrawBottomBorder(true);
+        paymentTXT.setAA_DrawLeftBorder(true);
+        paymentTXT.setAA_DrawLine(false);
+        paymentTXT.setAA_DrawRightBorder(true);
+        paymentTXT.setAA_DrawTopBorder(true);
+        paymentTXT.setAA_TextHint("   Add items to proceed with payment");
+        paymentTXT.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        paymentTXT.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                paymentTXTCaretUpdate(evt);
+            }
+        });
 
-        total.setBackground(new java.awt.Color(38, 38, 38));
-        total.setForeground(new java.awt.Color(204, 204, 204));
-        total.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        total.setAAA_roundBottomLeft(20);
-        total.setAAA_roundBottomRight(20);
-        total.setAAA_roundTopLeft(20);
-        total.setAAA_roundTopRight(20);
-        total.setAA_DrawLine(false);
-        total.setAA_TextHint("   0");
-        total.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        totalTXT.setEditable(false);
+        totalTXT.setBackground(new java.awt.Color(38, 38, 38));
+        totalTXT.setForeground(new java.awt.Color(204, 204, 204));
+        totalTXT.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        totalTXT.setAAA_roundBottomLeft(20);
+        totalTXT.setAAA_roundBottomRight(20);
+        totalTXT.setAAA_roundTopLeft(20);
+        totalTXT.setAAA_roundTopRight(20);
+        totalTXT.setAA_DrawLine(false);
+        totalTXT.setAA_TextHint("   0.00");
+        totalTXT.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
 
-        change.setBackground(new java.awt.Color(38, 38, 38));
-        change.setForeground(new java.awt.Color(204, 204, 204));
-        change.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        change.setAAA_roundBottomLeft(20);
-        change.setAAA_roundBottomRight(20);
-        change.setAAA_roundTopLeft(20);
-        change.setAAA_roundTopRight(20);
-        change.setAA_DrawLine(false);
-        change.setAA_TextHint("   0");
-        change.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        changeTXT.setEditable(false);
+        changeTXT.setBackground(new java.awt.Color(38, 38, 38));
+        changeTXT.setForeground(new java.awt.Color(204, 204, 204));
+        changeTXT.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        changeTXT.setAAA_roundBottomLeft(20);
+        changeTXT.setAAA_roundBottomRight(20);
+        changeTXT.setAAA_roundTopLeft(20);
+        changeTXT.setAAA_roundTopRight(20);
+        changeTXT.setAA_DrawLine(false);
+        changeTXT.setAA_TextHint("   0.00");
+        changeTXT.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
 
         PaymentHeading.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         PaymentHeading.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -1351,31 +1385,38 @@ public class Main extends javax.swing.JFrame {
         CancelAllBT.setAA_PressColor(new java.awt.Color(54, 53, 53));
         CancelAllBT.setAA_RippleColor(new java.awt.Color(215, 54, 54));
         CancelAllBT.setFont(new java.awt.Font("Franklin Gothic Heavy", 0, 12)); // NOI18N
+        CancelAllBT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CancelAllBTActionPerformed(evt);
+            }
+        });
 
-        subtotal.setBackground(new java.awt.Color(38, 38, 38));
-        subtotal.setForeground(new java.awt.Color(204, 204, 204));
-        subtotal.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        subtotal.setAAA_roundBottomLeft(20);
-        subtotal.setAAA_roundBottomRight(20);
-        subtotal.setAAA_roundTopLeft(20);
-        subtotal.setAAA_roundTopRight(20);
-        subtotal.setAA_DrawLine(false);
-        subtotal.setAA_TextHint("   0");
-        subtotal.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        subtotalTXT.setEditable(false);
+        subtotalTXT.setBackground(new java.awt.Color(38, 38, 38));
+        subtotalTXT.setForeground(new java.awt.Color(204, 204, 204));
+        subtotalTXT.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        subtotalTXT.setAAA_roundBottomLeft(20);
+        subtotalTXT.setAAA_roundBottomRight(20);
+        subtotalTXT.setAAA_roundTopLeft(20);
+        subtotalTXT.setAAA_roundTopRight(20);
+        subtotalTXT.setAA_DrawLine(false);
+        subtotalTXT.setAA_TextHint("   0.00");
+        subtotalTXT.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
 
         SubtotalHeading.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         SubtotalHeading.setText("Subtotal:");
 
-        totaldiscount.setBackground(new java.awt.Color(38, 38, 38));
-        totaldiscount.setForeground(new java.awt.Color(204, 204, 204));
-        totaldiscount.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        totaldiscount.setAAA_roundBottomLeft(20);
-        totaldiscount.setAAA_roundBottomRight(20);
-        totaldiscount.setAAA_roundTopLeft(20);
-        totaldiscount.setAAA_roundTopRight(20);
-        totaldiscount.setAA_DrawLine(false);
-        totaldiscount.setAA_TextHint("   0");
-        totaldiscount.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        totaldiscountTXT.setEditable(false);
+        totaldiscountTXT.setBackground(new java.awt.Color(38, 38, 38));
+        totaldiscountTXT.setForeground(new java.awt.Color(204, 204, 204));
+        totaldiscountTXT.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        totaldiscountTXT.setAAA_roundBottomLeft(20);
+        totaldiscountTXT.setAAA_roundBottomRight(20);
+        totaldiscountTXT.setAAA_roundTopLeft(20);
+        totaldiscountTXT.setAAA_roundTopRight(20);
+        totaldiscountTXT.setAA_DrawLine(false);
+        totaldiscountTXT.setAA_TextHint("   0.00");
+        totaldiscountTXT.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
 
         TotalDiscountHeading.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         TotalDiscountHeading.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -1453,7 +1494,7 @@ public class Main extends javax.swing.JFrame {
                         .addGap(36, 36, 36)
                         .addComponent(PaymentHeading)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(payment, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(paymentTXT, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(20, 20, 20))
                     .addGroup(CartLayout.createSequentialGroup()
                         .addContainerGap(122, Short.MAX_VALUE)
@@ -1470,10 +1511,10 @@ public class Main extends javax.swing.JFrame {
                             .addComponent(TotalCostHeading, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(totaldiscount, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(total, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(change, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(subtotal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(totaldiscountTXT, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(totalTXT, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(changeTXT, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(subtotalTXT, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18))
                     .addGroup(CartLayout.createSequentialGroup()
                         .addContainerGap()
@@ -1491,24 +1532,24 @@ public class Main extends javax.swing.JFrame {
                         .addComponent(CartTableScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(payment, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(paymentTXT, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(PaymentHeading, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(totaldiscount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(totaldiscountTXT, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(TotalDiscountHeading, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(subtotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(subtotalTXT, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(SubtotalHeading, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(6, 6, 6)
                         .addGroup(CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(total, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(totalTXT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(TotalCostHeading, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(ChangeHeading, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(change, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(changeTXT, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(26, 26, 26)
                         .addGroup(CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(CancelAllBT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -2360,6 +2401,7 @@ public class Main extends javax.swing.JFrame {
         showcase(true,false,false,false,false,false);
         MenuHighlight(true,false,false,false);
         function.MenuClicked(HomeClicked, HomePN, OptionClicked, OptionPN, HistoryClicked, HistoryPN, InfoClicked, SettingsPN ); 
+        CartItemView.setVisible(false);
     }//GEN-LAST:event_Home_BTMouseClicked
     private void Option_BTMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Option_BTMouseClicked
         showcase(false,true,false,false,false,false);
@@ -2416,12 +2458,14 @@ public class Main extends javax.swing.JFrame {
     private void CartBTMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CartBTMouseClicked
         showcase(false,false,false,false,false,true);
         CartRefreshTable();
+        CartMath();
     }//GEN-LAST:event_CartBTMouseClicked
  //------------------HOME PANEL FRONTEND CODES------------------// 
     
     
     private void CartBackBTMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CartBackBTMouseClicked
         showcase(true,false,false,false,false,false);
+        CartItemView.setVisible(false);
     }//GEN-LAST:event_CartBackBTMouseClicked
 
     private void EditBT1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditBT1MouseClicked
@@ -2567,6 +2611,32 @@ public class Main extends javax.swing.JFrame {
     private void CartTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CartTableMouseClicked
        SelectCartItem();
     }//GEN-LAST:event_CartTableMouseClicked
+
+    private void CancelAllBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelAllBTActionPerformed
+        ClearCart();
+        CartRefreshTable();
+        CartMath();
+        CartItemView.setVisible(false);
+    }//GEN-LAST:event_CancelAllBTActionPerformed
+
+    private void CartBackBTMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CartBackBTMouseEntered
+        ImageIcon image = new ImageIcon("back2.png");
+        CartBackBT.setIcon(image);
+    }//GEN-LAST:event_CartBackBTMouseEntered
+
+    private void CartBackBTMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CartBackBTMouseExited
+        ImageIcon image = new ImageIcon("back.png");
+        CartBackBT.setIcon(image);
+    }//GEN-LAST:event_CartBackBTMouseExited
+
+    private void CartRemoveBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CartRemoveBTActionPerformed
+        CartSelectDelete();
+        CartMath();
+    }//GEN-LAST:event_CartRemoveBTActionPerformed
+
+    private void paymentTXTCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_paymentTXTCaretUpdate
+        CartMath();
+    }//GEN-LAST:event_paymentTXTCaretUpdate
   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -2692,7 +2762,8 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel addimagetool;
     private javax.swing.JPanel addimagetool1;
     public SystemShadowedComp.PH_ComboBox categories;
-    private SystemOtherComps.PH_TextField change;
+    private SystemOtherComps.PH_TextField changeTXT;
+    private javax.swing.JLabel discountTXT;
     private javax.swing.JLabel edit_imageName;
     private javax.swing.JLabel edit_imagePath;
     private javax.swing.JLabel iddesc;
@@ -2711,13 +2782,13 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLayeredPane layers;
     private javax.swing.JPanel line;
     private javax.swing.JPanel menu;
-    private SystemOtherComps.PH_TextField payment;
+    private SystemOtherComps.PH_TextField paymentTXT;
     private javax.swing.JLabel quantityIcon;
     private Splash.LoadingAnimation saveloading;
     private javax.swing.JLabel saving;
-    private SystemOtherComps.PH_TextField subtotal;
-    private SystemOtherComps.PH_TextField total;
-    private SystemOtherComps.PH_TextField totaldiscount;
+    private SystemOtherComps.PH_TextField subtotalTXT;
+    private SystemOtherComps.PH_TextField totalTXT;
+    private SystemOtherComps.PH_TextField totaldiscountTXT;
     // End of variables declaration//GEN-END:variables
 
     public void startup(){
@@ -3734,6 +3805,66 @@ public void emptyBlobFile(String id) {
     
     
     
+    
+    
+    
+    
+private void ClearCart() {
+    String sql = "DELETE FROM `cart`";
+    
+    try {
+        PreparedStatement pst = con.prepareStatement(sql);
+        pst.executeUpdate();
+        
+    } catch (SQLException ex) {
+       
+    }
+    
+    CartImageTXT.setIcon(null);
+    CartTitleTXT.setText("");
+    CartCategoryTXT.setText("");
+    CartCostTXT.setText("₱0");
+    CartDescriptionTXT.setText("");
+    CartQuantityTXT.setText("0");
+    CartTotalCostTXT.setText("0");
+    discountTXT.setText("");
+    discountTXT.setVisible(false);
+}
+
+
+
+private void CartSelectDelete() {
+    int selectedRow = CartTable.getSelectedRow();
+
+    if (selectedRow != -1) {
+        String ID = CartTable.getValueAt(selectedRow, 9).toString();
+
+        String sql = "DELETE FROM `cart` WHERE id = ?";
+
+        try {
+            PreparedStatement pst = con.prepareStatement(sql);
+            pst.setString(1, ID);
+            pst.executeUpdate();
+            
+            CartRefreshTable();
+            CartImageTXT.setIcon(null);
+            CartTitleTXT.setText("");
+            CartCategoryTXT.setText("");
+            CartCostTXT.setText("₱0");
+            CartDescriptionTXT.setText("");
+            CartQuantityTXT.setText("0");
+            CartTotalCostTXT.setText("0");
+            discountTXT.setText("");
+            discountTXT.setVisible(false);
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }
+  
+}
+
+    
 
 
 public void CartRefreshTable() {
@@ -3791,6 +3922,7 @@ public void CartRefreshTable() {
 
 public void SelectCartItem() {
     int selectedRow = CartTable.getSelectedRow();
+    CartItemView.setVisible(true);
     
     if (selectedRow != -1) {
         int id = Integer.parseInt(CartTable.getValueAt(selectedRow, 10).toString());    
@@ -3799,19 +3931,27 @@ public void SelectCartItem() {
         String quantity = CartTable.getValueAt(selectedRow, 2).toString();   // Quantity
         String cost = CartTable.getValueAt(selectedRow, 3).toString();       // Cost
         String discount = CartTable.getValueAt(selectedRow, 4).toString();   // Discount
-        String subtotal = CartTable.getValueAt(selectedRow, 5).toString();   // Subtotal
+        String total = CartTable.getValueAt(selectedRow, 6).toString();   // total
         String description = CartTable.getValueAt(selectedRow, 11).toString();
 
         CartCategoryTXT.setText(category);
         CartTitleTXT.setText(name);
-        adjustFontSizeToFit(CartTitleTXT, 24, 12);
+        
+        function.adjustFontSizeToFit(CartTitleTXT, 24, 12);
         
         // Remove commas before parsing
-        CartCostTXT.setText(new DecimalFormat("#,##0.00").format(Double.parseDouble(cost.replace(",", ""))));
+        CartCostTXT.setText("₱" +new DecimalFormat("#,##0.00").format(Double.parseDouble(cost.replace(",", ""))));
         CartDescriptionTXT.setText(description);
         CartQuantityTXT.setText(quantity);
-        CartTotalCostTXT.setText(new DecimalFormat("#,##0.00").format(Double.parseDouble(subtotal.replace(",", ""))));
-
+        CartTotalCostTXT.setText("₱" +new DecimalFormat("#,##0.00").format(Double.parseDouble(total.replace(",", ""))));
+        int discountValue = Integer.parseInt(discount.replace("%", ""));
+        if (discountValue > 0 && discountValue <=100){
+            discountTXT.setVisible(true);
+            discountTXT.setText(discount+" Discount!");
+        } else {
+            discountTXT.setVisible(false);
+        }
+        
         // Now fetch the image from the database using the ID
         try {
             String sql = "SELECT imageFile FROM product WHERE id = ?";
@@ -3845,61 +3985,106 @@ public void SelectCartItem() {
 
 
 
-    public void adjustFontSizeToFit(JLabel label, int maxFontSize, int minFontSize) {
-    String originalText = label.getText();
-    int labelWidth = label.getWidth();
-    int labelHeight = label.getHeight();
 
-    if (originalText == null || originalText.isEmpty() || labelWidth <= 0 || labelHeight <= 0) return;
 
-    // Enable text wrapping with HTML
-    label.setText("<html>" + wrapTextToFitHTML(originalText, label.getFontMetrics(label.getFont()), labelWidth) + "</html>");
 
-    for (int fontSize = maxFontSize; fontSize >= minFontSize; fontSize--) {
-        Font testFont = new Font("Arial Black", Font.PLAIN, fontSize);
-        FontMetrics metrics = label.getFontMetrics(testFont);
 
-        // Wrap text to fit the label width
-        String htmlWrapped = wrapTextToFitHTML(originalText, metrics, labelWidth);
-        int lineCount = htmlWrapped.split("<br>").length;
-        int totalHeight = metrics.getHeight() * lineCount;
 
-        if (totalHeight <= labelHeight) {
-            label.setFont(testFont);
-            label.setText("<html>" + htmlWrapped + "</html>");
-            return;
-        }
+
+
+
+
+
+
+
+
+
+
+public void CartMath() {
+    
+    if (CartTable.getRowCount() == 0) {
+        paymentTXT.setEnabled(false);
+        paymentTXT.setAA_TextHint("   Add items to proceed with payment");
+        CartItemView.setVisible(false);
+    } else {
+        paymentTXT.setEnabled(true);
+        paymentTXT.setAA_TextHint("   Enter Amount");
+        
     }
 
-    // Fallback font size if no fitting font is found
-    Font fallback = new Font("Arial Black", Font.PLAIN, minFontSize);
-    label.setFont(fallback);
-    label.setText("<html>" + wrapTextToFitHTML(originalText, label.getFontMetrics(fallback), labelWidth) + "</html>");
-}
-    
-    
-    private String wrapTextToFitHTML(String text, FontMetrics metrics, int maxWidth) {
-    StringBuilder wrapped = new StringBuilder();
-    String[] words = text.split(" ");
-    StringBuilder line = new StringBuilder();
+    try {
+        // 1. Get subtotal from cart table
+        String sqlSubtotal = "SELECT SUM(subtotal) FROM cart";
+        PreparedStatement pstSubtotal = con.prepareStatement(sqlSubtotal);
+        ResultSet rsSubtotal = pstSubtotal.executeQuery();
 
-    for (String word : words) {
-        String testLine = line.length() > 0 ? line + " " + word : word;
-        if (metrics.stringWidth(testLine) > maxWidth) {
-            wrapped.append(line).append("<br>");
-            line = new StringBuilder(word);  // Start new line with the current word
+        double subtotal = 0;
+        if (rsSubtotal.next()) {
+            subtotal = rsSubtotal.getDouble(1);
+        }
+
+        // 2. Get total discount from cart table
+        String sqlDiscount = "SELECT SUM((cost * discount / 100) * quantity) FROM cart";
+        PreparedStatement pstDiscount = con.prepareStatement(sqlDiscount);
+        ResultSet rsDiscount = pstDiscount.executeQuery();
+
+        double totalDiscount = 0;
+        if (rsDiscount.next()) {
+            totalDiscount = rsDiscount.getDouble(1);
+        }
+
+        // 3. Compute final total
+        double total = subtotal - totalDiscount;
+
+        // 4. Get user payment (wallet input)
+        double payment = 0.0;
+
+        if (paymentTXT.getText() == null || paymentTXT.getText().trim().equals("")) {
+            payment = 0.0;
         } else {
-            if (line.length() > 0) line.append(" ");
-            line.append(word);
+            payment = Double.parseDouble(paymentTXT.getText().replace(",", ""));
         }
-    }
+        // 5. Compute change
+        double change = payment - total;
 
-    if (line.length() > 0) {
-        wrapped.append(line);
-    }
+        // 6. Format numbers
+        DecimalFormat df = new DecimalFormat("#,##0.00");
 
-    return wrapped.toString().trim();
+        String formattedSubtotal = df.format(subtotal);
+        String formattedDiscount = df.format(totalDiscount);
+        String formattedTotal = df.format(total);
+        String formattedChange = df.format(change);
+
+        // 7. Set values to UI
+        
+        subtotalTXT.setText("₱" + formattedSubtotal);
+        totaldiscountTXT.setText("₱" +formattedDiscount);
+        totalTXT.setText("₱" +formattedTotal);
+        changeTXT.setText("₱" +formattedChange);
+        
+        
+
+        // 8. Change text color based on payment
+        if (payment < total) {
+            paymentTXT.setForeground(new Color(201, 15, 15));
+            changeTXT.setForeground(new Color(201, 15, 15));
+        } else if (payment == 0){
+            changeTXT.setForeground(new Color(255,255,255));
+            paymentTXT.setForeground(new Color(255,255,255));
+        }
+        else {
+            paymentTXT.setForeground(new Color(52, 196, 57));
+            changeTXT.setForeground(new Color(52, 196, 57));
+        }
+
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
 }
+
+
+
+
 
 
 

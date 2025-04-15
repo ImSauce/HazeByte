@@ -1607,7 +1607,7 @@
                               <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                               <Component id="PaymentHeading" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="payment" max="32767" attributes="0"/>
+                              <Component id="paymentTXT" max="32767" attributes="0"/>
                               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
@@ -1627,16 +1627,16 @@
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="totaldiscount" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="total" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="change" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="subtotal" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="totaldiscountTXT" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="totalTXT" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="changeTXT" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="subtotalTXT" alignment="1" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="CartTableScroll" pref="474" max="32767" attributes="0"/>
+                              <Component id="CartTableScroll" pref="597" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -1654,28 +1654,28 @@
                               <Component id="CartTableScroll" pref="0" max="32767" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="payment" max="32767" attributes="0"/>
+                                  <Component id="paymentTXT" max="32767" attributes="0"/>
                                   <Component id="PaymentHeading" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="totaldiscount" max="32767" attributes="0"/>
+                                  <Component id="totaldiscountTXT" max="32767" attributes="0"/>
                                   <Component id="TotalDiscountHeading" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="subtotal" max="32767" attributes="0"/>
+                                  <Component id="subtotalTXT" max="32767" attributes="0"/>
                                   <Component id="SubtotalHeading" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="total" min="-2" max="-2" attributes="0"/>
+                                  <Component id="totalTXT" min="-2" max="-2" attributes="0"/>
                                   <Component id="TotalCostHeading" min="-2" pref="35" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="ChangeHeading" max="32767" attributes="0"/>
-                                  <Component id="change" max="32767" attributes="0"/>
+                                  <Component id="changeTXT" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
@@ -1750,6 +1750,8 @@
                   </Properties>
                   <Events>
                     <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="CartBackBTMouseClicked"/>
+                    <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="CartBackBTMouseEntered"/>
+                    <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="CartBackBTMouseExited"/>
                   </Events>
                 </Component>
               </SubComponents>
@@ -1797,6 +1799,7 @@
                                               <Component id="CartCategoryTXT" min="-2" max="-2" attributes="0"/>
                                               <Component id="CartCostTXT" alignment="0" min="-2" max="-2" attributes="0"/>
                                               <Component id="CartTitleTXT" min="-2" pref="199" max="-2" attributes="0"/>
+                                              <Component id="discountTXT" alignment="0" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
@@ -1817,10 +1820,12 @@
                           <Component id="CartTitleTXT" min="-2" pref="49" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="CartCostTXT" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" max="-2" attributes="0"/>
-                          <Component id="CartDescriptionheadingTXT" min="-2" pref="16" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" max="-2" attributes="0"/>
-                          <Component id="CartDescriptionScroll" pref="13" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="discountTXT" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+                          <Component id="CartDescriptionheadingTXT" min="-2" pref="22" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="CartDescriptionScroll" pref="77" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
@@ -1849,7 +1854,6 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="66" green="66" red="66" type="rgb"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Gacha Game"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="CartTitleTXT">
@@ -1858,7 +1862,6 @@
                       <Font name="Arial Black" size="16" style="0"/>
                     </Property>
                     <Property name="horizontalAlignment" type="int" value="2"/>
-                    <Property name="text" type="java.lang.String" value="MiSide"/>
                     <Property name="verticalAlignment" type="int" value="1"/>
                   </Properties>
                 </Component>
@@ -1870,7 +1873,7 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="38" green="a7" red="19" type="rgb"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="456$"/>
+                    <Property name="text" type="java.lang.String" value="&#x20b1;0"/>
                   </Properties>
                 </Component>
                 <Container class="javax.swing.JScrollPane" name="CartDescriptionScroll">
@@ -1894,7 +1897,6 @@
                         </Property>
                         <Property name="columns" type="int" value="20"/>
                         <Property name="rows" type="int" value="5"/>
-                        <Property name="text" type="java.lang.String" value="MiSide is an adventure game with horror elements developed by Russian indie development team AIHASTO. It was initially published as a demo on August 18, 2023, before being fully released on Steam on December 11, 2024.MiSide is an adventure game with horror elements developed by Russian indie development team AIHASTO. It was initially published as a demo on August 18, 2023, before being fully released on Steam on December 11, 2024.MiSide is an adventure game with horror elements developed by Russian indie development team AIHASTO. It was initially published as a demo on August 18, 2023, before being fully released on Steam on December 11, 2024.MiSide is an adventure game with horror elements developed by Russian indie development team AIHASTO. It was initially published as a demo on August 18, 2023, before being fully released on Steam on December 11, 2024.MiSide is an adventure game with horror elements developed by Russian indie development team AIHASTO. It was initially published as a demo on August 18, 2023, before being fully released on Steam on December 11, 2024.MiSide is an adventure game with horror elements developed by Russian indie development team AIHASTO. It was initially published as a demo on August 18, 2023, before being fully released on Steam on December 11, 2024.&#xa;"/>
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                           <Border info="null"/>
                         </Property>
@@ -1943,6 +1945,9 @@
                       <Font name="Franklin Gothic Heavy" size="12" style="0"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CartRemoveBTActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="SystemOtherComps.PH_TextField" name="CartQuantityTXT">
                   <Properties>
@@ -1976,14 +1981,14 @@
                       <Color blue="38" green="a7" red="19" type="rgb"/>
                     </Property>
                     <Property name="horizontalAlignment" type="int" value="2"/>
-                    <Property name="text" type="java.lang.String" value="4560000000000000000$"/>
+                    <Property name="text" type="java.lang.String" value="0"/>
                     <Property name="toolTipText" type="java.lang.String" value="cost"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="CostIcon">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/Images/cost.png"/>
+                      <Image iconType="3" name="/Images/coins.png"/>
                     </Property>
                     <Property name="toolTipText" type="java.lang.String" value="cost"/>
                   </Properties>
@@ -1997,10 +2002,30 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="CartImageTXT">
+                  <Properties>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                        <LineBorder>
+                          <Color PropertyName="color" blue="33" green="33" red="33" type="rgb"/>
+                        </LineBorder>
+                      </Border>
+                    </Property>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="discountTXT">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Segoe UI" size="10" style="0"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="4b" green="c9" red="99" type="rgb"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="10% discount!"/>
+                  </Properties>
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="SystemOtherComps.PH_TextField" name="payment">
+            <Component class="SystemOtherComps.PH_TextField" name="paymentTXT">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="17" green="17" red="18" type="rgb"/>
@@ -2022,14 +2047,18 @@
                 <Property name="AA_DrawLine" type="boolean" value="false"/>
                 <Property name="AA_DrawRightBorder" type="boolean" value="true"/>
                 <Property name="AA_DrawTopBorder" type="boolean" value="true"/>
-                <Property name="AA_TextHint" type="java.lang.String" value="   Enter Amount"/>
+                <Property name="AA_TextHint" type="java.lang.String" value="   Add items to proceed with payment"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Calibri" size="14" style="0"/>
+                  <Font name="Arial" size="14" style="0"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="caretUpdate" listener="javax.swing.event.CaretListener" parameters="javax.swing.event.CaretEvent" handler="paymentTXTCaretUpdate"/>
+              </Events>
             </Component>
-            <Component class="SystemOtherComps.PH_TextField" name="total">
+            <Component class="SystemOtherComps.PH_TextField" name="totalTXT">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="26" green="26" red="26" type="rgb"/>
                 </Property>
@@ -2042,14 +2071,15 @@
                 <Property name="AAA_roundTopLeft" type="int" value="20"/>
                 <Property name="AAA_roundTopRight" type="int" value="20"/>
                 <Property name="AA_DrawLine" type="boolean" value="false"/>
-                <Property name="AA_TextHint" type="java.lang.String" value="   0"/>
+                <Property name="AA_TextHint" type="java.lang.String" value="   0.00"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Calibri" size="14" style="0"/>
+                  <Font name="Arial" size="14" style="0"/>
                 </Property>
               </Properties>
             </Component>
-            <Component class="SystemOtherComps.PH_TextField" name="change">
+            <Component class="SystemOtherComps.PH_TextField" name="changeTXT">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="26" green="26" red="26" type="rgb"/>
                 </Property>
@@ -2062,9 +2092,9 @@
                 <Property name="AAA_roundTopLeft" type="int" value="20"/>
                 <Property name="AAA_roundTopRight" type="int" value="20"/>
                 <Property name="AA_DrawLine" type="boolean" value="false"/>
-                <Property name="AA_TextHint" type="java.lang.String" value="   0"/>
+                <Property name="AA_TextHint" type="java.lang.String" value="   0.00"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Calibri" size="14" style="0"/>
+                  <Font name="Arial" size="14" style="0"/>
                 </Property>
               </Properties>
             </Component>
@@ -2159,9 +2189,13 @@
                   <Font name="Franklin Gothic Heavy" size="12" style="0"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CancelAllBTActionPerformed"/>
+              </Events>
             </Component>
-            <Component class="SystemOtherComps.PH_TextField" name="subtotal">
+            <Component class="SystemOtherComps.PH_TextField" name="subtotalTXT">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="26" green="26" red="26" type="rgb"/>
                 </Property>
@@ -2174,9 +2208,9 @@
                 <Property name="AAA_roundTopLeft" type="int" value="20"/>
                 <Property name="AAA_roundTopRight" type="int" value="20"/>
                 <Property name="AA_DrawLine" type="boolean" value="false"/>
-                <Property name="AA_TextHint" type="java.lang.String" value="   0"/>
+                <Property name="AA_TextHint" type="java.lang.String" value="   0.00"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Calibri" size="14" style="0"/>
+                  <Font name="Arial" size="14" style="0"/>
                 </Property>
               </Properties>
             </Component>
@@ -2188,8 +2222,9 @@
                 <Property name="text" type="java.lang.String" value="Subtotal:"/>
               </Properties>
             </Component>
-            <Component class="SystemOtherComps.PH_TextField" name="totaldiscount">
+            <Component class="SystemOtherComps.PH_TextField" name="totaldiscountTXT">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="26" green="26" red="26" type="rgb"/>
                 </Property>
@@ -2202,9 +2237,9 @@
                 <Property name="AAA_roundTopLeft" type="int" value="20"/>
                 <Property name="AAA_roundTopRight" type="int" value="20"/>
                 <Property name="AA_DrawLine" type="boolean" value="false"/>
-                <Property name="AA_TextHint" type="java.lang.String" value="   0"/>
+                <Property name="AA_TextHint" type="java.lang.String" value="   0.00"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Calibri" size="14" style="0"/>
+                  <Font name="Arial" size="14" style="0"/>
                 </Property>
               </Properties>
             </Component>

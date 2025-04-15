@@ -55,7 +55,7 @@
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="7" y="253" width="216" height="-1"/>
+          <AbsoluteConstraints x="7" y="253" width="216" height="40"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -200,7 +200,7 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="4b" green="c9" red="99" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="10% discount!"/>
+        <Property name="text" type="java.lang.String" value="10% Discount!"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
