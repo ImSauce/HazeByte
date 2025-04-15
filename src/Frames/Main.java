@@ -207,14 +207,15 @@ public class Main extends javax.swing.JFrame {
         USER = new javax.swing.JLabel();
         PASS = new javax.swing.JLabel();
         History = new javax.swing.JPanel();
-        HistoryTableScroll = new SystemOtherComps.PH_ScrollPane();
-        HistoryTable = new javax.swing.JTable();
         HistoryBar = new javax.swing.JPanel();
         HistoryText = new javax.swing.JLabel();
-        Historycategories = new SystemShadowedComp.PH_ComboBox();
+        HistoryCategorySort = new SystemShadowedComp.PH_ComboBox();
         HistorySearch = new SystemOtherComps.PH_TextField();
         HistorySearchIconTXT = new javax.swing.JLabel();
         HistoryCategoryIcon = new javax.swing.JLabel();
+        TransactionNumber = new SystemOtherComps.PH_TextField();
+        HistoryTableScroll = new SystemOtherComps.PH_ScrollPane();
+        HistoryTable = new javax.swing.JTable();
         Settings = new javax.swing.JPanel();
         SettingsBar = new javax.swing.JPanel();
         SettingsText = new javax.swing.JLabel();
@@ -729,83 +730,60 @@ public class Main extends javax.swing.JFrame {
 
         History.setBackground(new java.awt.Color(24, 23, 23));
 
-        HistoryTable.setBackground(new java.awt.Color(24, 23, 23));
-        HistoryTable.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        HistoryTable.setForeground(new java.awt.Color(255, 255, 255));
-        HistoryTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {"Miside", "2", "200", "10", "400", "380", "1/3/4", "10:09:07", "1", "1"},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "Product", "Quantity", "Cost", "Discount", "Subtotal", "Total", "Date", "Time", "ID", "ProductID"
-            }
-        ));
-        HistoryTable.setFocusable(false);
-        HistoryTable.setGridColor(new java.awt.Color(24, 23, 23));
-        HistoryTable.setRowHeight(40);
-        HistoryTable.setSelectionBackground(new java.awt.Color(51, 51, 51));
-        HistoryTableScroll.setViewportView(HistoryTable);
-        if (HistoryTable.getColumnModel().getColumnCount() > 0) {
-            HistoryTable.getColumnModel().getColumn(0).setResizable(false);
-            HistoryTable.getColumnModel().getColumn(1).setResizable(false);
-            HistoryTable.getColumnModel().getColumn(2).setResizable(false);
-            HistoryTable.getColumnModel().getColumn(3).setResizable(false);
-            HistoryTable.getColumnModel().getColumn(4).setResizable(false);
-            HistoryTable.getColumnModel().getColumn(5).setResizable(false);
-            HistoryTable.getColumnModel().getColumn(6).setResizable(false);
-            HistoryTable.getColumnModel().getColumn(7).setResizable(false);
-            HistoryTable.getColumnModel().getColumn(8).setResizable(false);
-        }
-
         HistoryBar.setBackground(new java.awt.Color(24, 23, 23));
 
         HistoryText.setFont(new java.awt.Font("Arial Black", 0, 28)); // NOI18N
         HistoryText.setForeground(new java.awt.Color(255, 255, 255));
         HistoryText.setText("Transaction History");
 
-        Historycategories.setForeground(new java.awt.Color(255, 255, 255));
-        Historycategories.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "All", "Action", "Adventure", "Shooter", "Strategy", "Horror", "Sports", "RPG", "Visual Novel", "Gacha", "Rythm", "Cappie Time", "Cappie Date", "Cappie Sex", "Cappie Breeding", "Cappie Impregnation", "Cappie Penetration" }));
-        Historycategories.setAA_WordLinerColor(new java.awt.Color(51, 51, 51));
-        Historycategories.setAA_lineColor(new java.awt.Color(45, 187, 63));
-        Historycategories.setFocusable(false);
-        Historycategories.setLabeText("   Categories ");
-        Historycategories.setRequestFocusEnabled(false);
-        Historycategories.setVerifyInputWhenFocusTarget(false);
+        HistoryCategorySort.setForeground(new java.awt.Color(255, 255, 255));
+        HistoryCategorySort.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "All", "Action", "Adventure", "Shooter", "Strategy", "Horror", "Sports", "RPG", "Visual Novel", "Gacha", "Rythm", "Cappie Time", "Cappie Date", "Cappie Sex", "Cappie Breeding", "Cappie Impregnation", "Cappie Penetration" }));
+        HistoryCategorySort.setAA_WordLinerColor(new java.awt.Color(51, 51, 51));
+        HistoryCategorySort.setAA_lineColor(new java.awt.Color(45, 187, 63));
+        HistoryCategorySort.setFocusable(false);
+        HistoryCategorySort.setLabeText("   Categories ");
+        HistoryCategorySort.setRequestFocusEnabled(false);
+        HistoryCategorySort.setVerifyInputWhenFocusTarget(false);
+        HistoryCategorySort.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                HistoryCategorySortActionPerformed(evt);
+            }
+        });
 
         HistorySearch.setForeground(new java.awt.Color(255, 255, 255));
         HistorySearch.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         HistorySearch.setAA_TextHint("Search...");
         HistorySearch.setAB_LineColor(new java.awt.Color(51, 51, 51));
+        HistorySearch.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                HistorySearchCaretUpdate(evt);
+            }
+        });
+        HistorySearch.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                HistorySearchMouseClicked(evt);
+            }
+        });
 
         HistorySearchIconTXT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/search.png"))); // NOI18N
 
         HistoryCategoryIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/category.png"))); // NOI18N
+
+        TransactionNumber.setEditable(false);
+        TransactionNumber.setBackground(new java.awt.Color(38, 38, 38));
+        TransactionNumber.setForeground(new java.awt.Color(204, 204, 204));
+        TransactionNumber.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        TransactionNumber.setText("0");
+        TransactionNumber.setToolTipText("Number of Transactions");
+        TransactionNumber.setAAA_roundBottomLeft(20);
+        TransactionNumber.setAAA_roundBottomRight(20);
+        TransactionNumber.setAAA_roundTopLeft(20);
+        TransactionNumber.setAAA_roundTopRight(20);
+        TransactionNumber.setAA_BorderSize(0);
+        TransactionNumber.setAA_DrawLine(false);
+        TransactionNumber.setAA_TextHint("");
+        TransactionNumber.setFocusable(false);
+        TransactionNumber.setFont(new java.awt.Font("Arial", 0, 8)); // NOI18N
 
         javax.swing.GroupLayout HistoryBarLayout = new javax.swing.GroupLayout(HistoryBar);
         HistoryBar.setLayout(HistoryBarLayout);
@@ -814,10 +792,12 @@ public class Main extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, HistoryBarLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addComponent(HistoryText, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 131, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(TransactionNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(HistoryCategoryIcon)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Historycategories, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(HistoryCategorySort, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(57, 57, 57)
                 .addComponent(HistorySearchIconTXT)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -832,10 +812,12 @@ public class Main extends javax.swing.JFrame {
                         .addGroup(HistoryBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(HistoryBarLayout.createSequentialGroup()
                                 .addGap(8, 8, 8)
-                                .addComponent(Historycategories, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(HistoryCategorySort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(HistoryBarLayout.createSequentialGroup()
-                                .addGap(30, 30, 30)
-                                .addComponent(HistoryCategoryIcon)))
+                                .addGap(22, 22, 22)
+                                .addGroup(HistoryBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(TransactionNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(HistoryCategoryIcon))))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, HistoryBarLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -850,6 +832,60 @@ public class Main extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        HistoryTable.setBackground(new java.awt.Color(24, 23, 23));
+        HistoryTable.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        HistoryTable.setForeground(new java.awt.Color(255, 255, 255));
+        HistoryTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Product", "Category", "Quantity", "Cost", "Discount", "Subtotal", "Total", "Date", "Time", "ID", "ProductID", "Description"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        HistoryTable.setFocusable(false);
+        HistoryTable.setGridColor(new java.awt.Color(24, 23, 23));
+        HistoryTable.setRowHeight(40);
+        HistoryTable.setSelectionBackground(new java.awt.Color(51, 51, 51));
+        HistoryTableScroll.setViewportView(HistoryTable);
+        if (HistoryTable.getColumnModel().getColumnCount() > 0) {
+            HistoryTable.getColumnModel().getColumn(0).setResizable(false);
+            HistoryTable.getColumnModel().getColumn(1).setResizable(false);
+            HistoryTable.getColumnModel().getColumn(2).setResizable(false);
+            HistoryTable.getColumnModel().getColumn(3).setResizable(false);
+            HistoryTable.getColumnModel().getColumn(4).setResizable(false);
+            HistoryTable.getColumnModel().getColumn(5).setResizable(false);
+            HistoryTable.getColumnModel().getColumn(6).setResizable(false);
+            HistoryTable.getColumnModel().getColumn(7).setResizable(false);
+            HistoryTable.getColumnModel().getColumn(7).setPreferredWidth(0);
+            HistoryTable.getColumnModel().getColumn(8).setResizable(false);
+            HistoryTable.getColumnModel().getColumn(8).setPreferredWidth(0);
+            HistoryTable.getColumnModel().getColumn(9).setMinWidth(0);
+            HistoryTable.getColumnModel().getColumn(9).setPreferredWidth(0);
+            HistoryTable.getColumnModel().getColumn(9).setMaxWidth(0);
+            HistoryTable.getColumnModel().getColumn(10).setMinWidth(0);
+            HistoryTable.getColumnModel().getColumn(10).setPreferredWidth(0);
+            HistoryTable.getColumnModel().getColumn(10).setMaxWidth(0);
+            HistoryTable.getColumnModel().getColumn(11).setMinWidth(0);
+            HistoryTable.getColumnModel().getColumn(11).setPreferredWidth(0);
+            HistoryTable.getColumnModel().getColumn(11).setMaxWidth(0);
+        }
+
         javax.swing.GroupLayout HistoryLayout = new javax.swing.GroupLayout(History);
         History.setLayout(HistoryLayout);
         HistoryLayout.setHorizontalGroup(
@@ -857,7 +893,7 @@ public class Main extends javax.swing.JFrame {
             .addComponent(HistoryBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(HistoryLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(HistoryTableScroll, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(HistoryTableScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 894, Short.MAX_VALUE)
                 .addContainerGap())
         );
         HistoryLayout.setVerticalGroup(
@@ -1369,6 +1405,11 @@ public class Main extends javax.swing.JFrame {
         BuyBT.setAA_PressColor(new java.awt.Color(93, 184, 105));
         BuyBT.setAA_RippleColor(new java.awt.Color(21, 135, 46));
         BuyBT.setFont(new java.awt.Font("Franklin Gothic Heavy", 0, 12)); // NOI18N
+        BuyBT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BuyBTActionPerformed(evt);
+            }
+        });
 
         CancelAllBT.setBackground(new java.awt.Color(24, 23, 23));
         CancelAllBT.setText("Cancel all");
@@ -2413,6 +2454,7 @@ public class Main extends javax.swing.JFrame {
         showcase(false,false,false,true,false,false);
         MenuHighlight(false,false,true,false);
         function.MenuClicked(HomeClicked, HomePN, OptionClicked, OptionPN, HistoryClicked, HistoryPN, InfoClicked, SettingsPN ); 
+        HistoryRefreshTable();
     }//GEN-LAST:event_History_BTMouseClicked
     private void Settings_BTMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Settings_BTMouseClicked
         showcase(false,false,false,false,true,false);
@@ -2637,6 +2679,24 @@ public class Main extends javax.swing.JFrame {
     private void paymentTXTCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_paymentTXTCaretUpdate
         CartMath();
     }//GEN-LAST:event_paymentTXTCaretUpdate
+
+    private void BuyBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuyBTActionPerformed
+       BuyCart();
+       CartMath();
+       
+    }//GEN-LAST:event_BuyBTActionPerformed
+
+    private void HistorySearchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HistorySearchMouseClicked
+        HistoryCategorySort.setSelectedItem("All");
+    }//GEN-LAST:event_HistorySearchMouseClicked
+
+    private void HistorySearchCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_HistorySearchCaretUpdate
+        HistorySortSearch();
+    }//GEN-LAST:event_HistorySearchCaretUpdate
+
+    private void HistoryCategorySortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HistoryCategorySortActionPerformed
+        HistorySortCategory();
+    }//GEN-LAST:event_HistoryCategorySortActionPerformed
   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -2727,6 +2787,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel History;
     private javax.swing.JPanel HistoryBar;
     private javax.swing.JLabel HistoryCategoryIcon;
+    public SystemShadowedComp.PH_ComboBox HistoryCategorySort;
     private SystemOtherComps.PH_Panel HistoryPN;
     private SystemOtherComps.PH_TextField HistorySearch;
     private javax.swing.JLabel HistorySearchIconTXT;
@@ -2734,7 +2795,6 @@ public class Main extends javax.swing.JFrame {
     private SystemOtherComps.PH_ScrollPane HistoryTableScroll;
     public javax.swing.JLabel HistoryText;
     private javax.swing.JLabel History_BT;
-    public SystemShadowedComp.PH_ComboBox Historycategories;
     private javax.swing.JPanel Home;
     private javax.swing.JLabel HomeCategoryIconTXT;
     private SystemOtherComps.PH_Panel HomePN;
@@ -2756,6 +2816,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel SubtotalHeading;
     private javax.swing.JLabel TotalCostHeading;
     private javax.swing.JLabel TotalDiscountHeading;
+    private SystemOtherComps.PH_TextField TransactionNumber;
     public javax.swing.JLabel USER;
     private javax.swing.JLabel add_imageName;
     private javax.swing.JLabel add_imagePath;
@@ -2805,8 +2866,8 @@ public class Main extends javax.swing.JFrame {
         
         categories.setSelectedItem("Action");
         categories.setSelectedItem("All");
-        Historycategories.setSelectedItem("Action");
-        Historycategories.setSelectedItem("All");
+        HistoryCategorySort.setSelectedItem("Action");
+        HistoryCategorySort.setSelectedItem("All");
         Games_txt.requestFocus();
         
         //CART TABLE SHIT
@@ -2819,6 +2880,29 @@ public class Main extends javax.swing.JFrame {
             for (int i = 0; i < CartTable.getColumnCount(); i++) {
                 CartTable.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
             }
+            
+        HistoryTable.setShowGrid(false);
+
+        // Set header properties
+        JTableHeader historyTableHeader = HistoryTable.getTableHeader();
+        historyTableHeader.setPreferredSize(new Dimension(historyTableHeader.getWidth(), 40));
+        historyTableHeader.setReorderingAllowed(false);
+
+        // Create renderers
+        DefaultTableCellRenderer leftRenderer = new DefaultTableCellRenderer();
+        leftRenderer.setHorizontalAlignment(SwingConstants.LEFT);
+
+        DefaultTableCellRenderer historycenterRenderer = new DefaultTableCellRenderer();
+        historycenterRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+
+        // Apply renderers
+        for (int i = 0; i < HistoryTable.getColumnCount(); i++) {
+            if (i == 0) {
+                HistoryTable.getColumnModel().getColumn(i).setCellRenderer(leftRenderer); // First column left
+            } else {
+                HistoryTable.getColumnModel().getColumn(i).setCellRenderer(centerRenderer); // Others center
+            }
+        }    
             
         saving.setVisible(false); 
         saveloading.setVisible(false);    
@@ -3868,7 +3952,7 @@ private void CartSelectDelete() {
 
 
 public void CartRefreshTable() {
-    String sql = "SELECT * FROM cart ORDER BY `name` ASC";
+    String sql = "SELECT * FROM cart ORDER BY `id` DESC";
 
     try {
         DefaultTableModel model = (DefaultTableModel) CartTable.getModel();
@@ -4042,7 +4126,7 @@ public void CartMath() {
         if (paymentTXT.getText() == null || paymentTXT.getText().trim().equals("")) {
             payment = 0.0;
         } else {
-            payment = Double.parseDouble(paymentTXT.getText().replace(",", ""));
+            payment = Double.parseDouble(paymentTXT.getText().replace(",", "").replace("₱", ""));
         }
         // 5. Compute change
         double change = payment - total;
@@ -4054,6 +4138,7 @@ public void CartMath() {
         String formattedDiscount = df.format(totalDiscount);
         String formattedTotal = df.format(total);
         String formattedChange = df.format(change);
+       
 
         // 7. Set values to UI
         
@@ -4061,8 +4146,7 @@ public void CartMath() {
         totaldiscountTXT.setText("₱" +formattedDiscount);
         totalTXT.setText("₱" +formattedTotal);
         changeTXT.setText("₱" +formattedChange);
-        
-        
+     
 
         // 8. Change text color based on payment
         if (payment < total) {
@@ -4084,7 +4168,263 @@ public void CartMath() {
 
 
 
+public void BuyCart() {
+    if (CartTable.getRowCount() == 0) {
+        JOptionPane.showMessageDialog(null, "Cart is Empty");
+        return;
+    }
+    
+    double payment = Double.parseDouble(paymentTXT.getText().replace(",", "").trim());
+    double total = Double.parseDouble(totalTXT.getText().replace(",", "").trim().replace("₱", ""));
+    if (payment >= total){
+        try {
+        // 1. Insert all cart records into history
+        String sql = "INSERT INTO history " +
+                     "SELECT * FROM cart";
+        PreparedStatement pst = con.prepareStatement(sql);
+        pst.executeUpdate();
 
+        // 2. Optional: Clear cart after saving (if needed)
+        String clearCart = "DELETE FROM cart";
+        PreparedStatement pstClear = con.prepareStatement(clearCart);
+        pstClear.executeUpdate();
+
+        paymentTXT.setText("");
+        totalTXT.setText("₱0.00");
+        JOptionPane.showMessageDialog(null, "*temporary receipt*");
+        ClearCart();
+        CartRefreshTable();
+        
+
+    } catch (SQLException e) {
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(null, "failed");
+    }
+    }
+    
+}
+
+
+
+    public void HistoryRefreshTable() {
+    String sql = "SELECT * FROM History ORDER BY `Time` DESC";
+    
+    
+    try {
+        DefaultTableModel model = (DefaultTableModel) HistoryTable.getModel();
+        model.setRowCount(0);
+
+        PreparedStatement pst = con.prepareStatement(sql);
+        ResultSet rs = pst.executeQuery();
+
+        // Formatter for numbers with commas and 2 decimal places
+        DecimalFormat df = new DecimalFormat("#,##0.00");
+
+        while (rs.next()) {
+            // Discount (remove decimals)
+            double discountValue = Double.parseDouble(rs.getString(4));
+            int discountWithoutDecimal = (int) discountValue;
+
+            // Format quantity as integer with commas
+            int quantity = Integer.parseInt(rs.getString(9));
+            String formattedQuantity = String.format("%,d", quantity);
+
+            // Format cost, subtotal, total with commas and 2 decimal places
+            double cost = Double.parseDouble(rs.getString(3).replace(",", ""));
+            double subtotal = Double.parseDouble(rs.getString(7).replace(",", ""));
+            double total = Double.parseDouble(rs.getString(8).replace(",", ""));
+
+            String formattedCost = df.format(cost);
+            String formattedSubtotal = df.format(subtotal);
+            String formattedTotal = df.format(total);
+
+            model.addRow(new Object[] {
+                rs.getString(2),          // name
+                rs.getString(5),
+                formattedQuantity,        // quantity
+                formattedCost,            // cost with commas
+                discountWithoutDecimal + "%", // discount
+                formattedSubtotal,        // subtotal with commas
+                formattedTotal,           // total with commas
+                rs.getString(10),         // date
+                rs.getString(11),         // time
+                rs.getString(1),          // id
+                rs.getString(12),         // prodID
+                rs.getString(6),          // another prodID?
+            });
+        }
+        
+        
+        int rows = HistoryTable.getRowCount();
+        DecimalFormat history = new DecimalFormat("#,###"); // Format without decimals
+        String formattedRows = history.format(rows);
+        TransactionNumber.setText(formattedRows);
+            
+
+    } catch (Exception ex) {
+        JOptionPane.showMessageDialog(null, ex);
+    }
+}
+
+
+    
+    
+    
+    public void HistorySortSearch() {
+    String searchText = HistorySearch.getText().trim(); // Get the search text
+    String sql;
+
+    if (searchText.isEmpty()) {
+        // Default query when the search field is empty
+        sql = "SELECT * FROM History ORDER BY `Time` DESC";
+    } else {
+        // Updated query that excludes `id`, `productID`, `description`, `imageName`, `imagePath`, and `imageFile`
+        sql = "SELECT * FROM History WHERE `name` LIKE ? OR `cost` LIKE ? OR `discount` LIKE ? OR `category` LIKE ? OR `subtotal` LIKE ? OR `total` LIKE ? OR `quantity` LIKE ? OR `Date` LIKE ? OR `Time` LIKE ? ORDER BY `Time` DESC";
+    }
+
+    try {
+        DefaultTableModel model = (DefaultTableModel) HistoryTable.getModel();
+        model.setRowCount(0); // Clear existing rows in the table
+
+        PreparedStatement pst = con.prepareStatement(sql);
+
+        if (!searchText.isEmpty()) {
+            String likeSearch = "%" + searchText + "%"; // Search text with wildcards
+
+            // Set the parameters for the query to search in multiple columns
+            pst.setString(1, likeSearch);  // name
+            pst.setString(2, likeSearch);  // cost
+            pst.setString(3, likeSearch);  // discount
+            pst.setString(4, likeSearch);  // category
+            pst.setString(5, likeSearch);  // subtotal
+            pst.setString(6, likeSearch);  // total
+            pst.setString(7, likeSearch);  // quantity
+            pst.setString(8, likeSearch);  // Date
+            pst.setString(9, likeSearch);  // Time
+        }
+
+        ResultSet rs = pst.executeQuery();
+
+        DecimalFormat df = new DecimalFormat("#,##0.00");
+
+        // Loop through the result set and populate the table
+        while (rs.next()) {
+            double discountValue = Double.parseDouble(rs.getString(4));
+            int discountWithoutDecimal = (int) discountValue;
+
+            int quantity = Integer.parseInt(rs.getString(9));
+            String formattedQuantity = String.format("%,d", quantity);
+
+            double cost = Double.parseDouble(rs.getString(3).replace(",", ""));
+            double subtotal = Double.parseDouble(rs.getString(7).replace(",", ""));
+            double total = Double.parseDouble(rs.getString(8).replace(",", ""));
+
+            String formattedCost = df.format(cost);
+            String formattedSubtotal = df.format(subtotal);
+            String formattedTotal = df.format(total);
+
+            // Add the row to the table model
+            model.addRow(new Object[]{
+                rs.getString(2),          // name
+                rs.getString(5),          // category
+                formattedQuantity,
+                formattedCost,
+                discountWithoutDecimal + "%",
+                formattedSubtotal,
+                formattedTotal,
+                rs.getString(10),         // date
+                rs.getString(11),         // time
+                rs.getString(1),          // id (we are not displaying id)
+                rs.getString(12),         // productID
+            });
+        
+        
+        }
+        
+        int rows = HistoryTable.getRowCount();
+        DecimalFormat history = new DecimalFormat("#,###"); // Format without decimals
+        String formattedRows = history.format(rows);
+        TransactionNumber.setText(formattedRows);
+
+    } catch (Exception ex) {
+        JOptionPane.showMessageDialog(null, "Search Error: " + ex.getMessage());
+    }
+}
+    
+    
+    
+    
+    public void HistorySortCategory() {
+    String selectedValue = (String) HistoryCategorySort.getSelectedItem();
+    String sql;
+
+    if (selectedValue.equals("All")) {
+        sql = "SELECT * FROM history ORDER BY Time DESC";
+    } else {
+        sql = "SELECT * FROM history WHERE category = ? ORDER BY Time DESC";
+    }
+
+    try {
+        DefaultTableModel model = (DefaultTableModel) HistoryTable.getModel();
+        model.setRowCount(0); // Clear existing rows
+
+        PreparedStatement pst = con.prepareStatement(sql);
+
+        if (!selectedValue.equals("All")) {
+            pst.setString(1, selectedValue); // Bind category filter
+        }
+
+        ResultSet rs = pst.executeQuery();
+        DecimalFormat df = new DecimalFormat("#,##0.00");
+
+        while (rs.next()) {
+            double discountValue = Double.parseDouble(rs.getString(4));
+            int discountWithoutDecimal = (int) discountValue;
+
+            int quantity = Integer.parseInt(rs.getString(9));
+            String formattedQuantity = String.format("%,d", quantity);
+
+            double cost = Double.parseDouble(rs.getString(3).replace(",", ""));
+            double subtotal = Double.parseDouble(rs.getString(7).replace(",", ""));
+            double total = Double.parseDouble(rs.getString(8).replace(",", ""));
+
+            String formattedCost = df.format(cost);
+            String formattedSubtotal = df.format(subtotal);
+            String formattedTotal = df.format(total);
+
+            model.addRow(new Object[]{
+                rs.getString(2),          // name
+                rs.getString(5),          // category
+                formattedQuantity,
+                formattedCost,
+                discountWithoutDecimal + "%",
+                formattedSubtotal,
+                formattedTotal,
+                rs.getString(10),         // date
+                rs.getString(11),         // time
+                rs.getString(1),          // id (hidden)
+                rs.getString(12)          // productID (hidden)
+            });
+        }
+
+        int rows = HistoryTable.getRowCount();
+        DecimalFormat history = new DecimalFormat("#,###"); // Format without decimals
+        String formattedRows = history.format(rows);
+        TransactionNumber.setText(formattedRows);
+
+        rs.close();
+        pst.close();
+
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(null, "Sort Error: " + ex.getMessage());
+    }
+}
+
+
+
+
+    
+    
 
 
 
