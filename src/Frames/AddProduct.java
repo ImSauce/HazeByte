@@ -24,18 +24,20 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import raven.toast.Notifications;
 
 public class AddProduct extends javax.swing.JFrame {
 
     int add_remove_image = 0;
-    private Main Main;
+    private Main main;
+    private Connection con;
     
     
     File f1 = null;
     String  path1 = null;
     private ImageIcon format1 = null;
     
-    Connection con;
+   
     PreparedStatement pst;
     UIcolors color = new UIcolors();
     
@@ -60,8 +62,14 @@ public class AddProduct extends javax.swing.JFrame {
         
     }
     
+    public Connection getConnection() {
+    return this.con;
+    }
+    
     public AddProduct(Main mainFrame) {
         initComponents();
+        this.main = mainFrame;
+        this.con = mainFrame.con; 
         connect();
         autoIncrement();
         hidden.setVisible(false);
@@ -432,6 +440,7 @@ public class AddProduct extends javax.swing.JFrame {
 
     private void AddBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddBTActionPerformed
         AddProduct();
+        
 
     }//GEN-LAST:event_AddBTActionPerformed
 
@@ -494,16 +503,10 @@ public class AddProduct extends javax.swing.JFrame {
         if (!validateFields()) {
            return; // Stop execution if all textbox are not inputted
        }
-
+                String query = "INSERT INTO product(`id`,`name`, `cost`, `discount`, `category`, `description`, `imageName`, `imagePath`, `imageFile`) VALUES (?,?, ?, ?, ?, ?, ?, ?, ?)";
+            
                try {
-               serverCredentials sv = new serverCredentials();
-               sv.setServerIP("localhost");
-               sv.setUserID("root");
-               sv.setPass("");
 
-
-               String query = "INSERT INTO product(`id`,`name`, `cost`, `discount`, `category`, `description`, `imageName`, `imagePath`, `imageFile`) VALUES (?,?, ?, ?, ?, ?, ?, ?, ?)";
-               con = DriverManager.getConnection("jdbc:mysql://"+sv.getServerIP() +"/hazebyte", sv.getUserID(), sv.getPass());
                pst = con.prepareStatement(query); 
                pst.setString(1, AddID.getText()); 
                pst.setString(2, AddName.getText());      
@@ -516,8 +519,8 @@ public class AddProduct extends javax.swing.JFrame {
                pst.setString(9, "");  
                pst.executeUpdate();
 
-
-               JOptionPane.showMessageDialog(null,"SAVED!");
+         
+                Notifications.getInstance().show(Notifications.Type.SUCCESS, Notifications.Location.TOP_CENTER,"New Product Added");
                ClearAdd();
                
                if (add_remove_image ==1){
@@ -534,11 +537,10 @@ public class AddProduct extends javax.swing.JFrame {
             add_imageName.setText("");
             AddImage.setIcon(new ImageIcon("insertimage.jpg"));           
             autoIncrement();
-            
-            
-
+            main.initProds();
+            main.EditRefreshTable();
          } catch (Exception ex) {
-                   JOptionPane.showMessageDialog(null, ex + " save bt nigga");
+                   JOptionPane.showMessageDialog(null, "Error adding product: " + ex.getMessage());
          }
                
     }

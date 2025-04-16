@@ -15,6 +15,7 @@ import java.time.format.DateTimeFormatter;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
 import Classes.Functions;
+import raven.toast.Notifications;
 
 public class Items extends javax.swing.JPanel {
 
@@ -316,6 +317,7 @@ public class Items extends javax.swing.JPanel {
 
     private void AddCartBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddCartBTActionPerformed
         AddCart();
+        main.showNotification("Added to Cart",Notifications.Location.TOP_CENTER, Notifications.Type.SUCCESS);
     }//GEN-LAST:event_AddCartBTActionPerformed
 
     private Timer holdIncrementTimer;

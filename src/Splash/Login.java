@@ -13,20 +13,18 @@ import java.sql.SQLException;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import Frames.Main;
-import Panel.Login_PopUps;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.management.Notification;
 import javax.swing.JFrame;
 import raven.glasspanepopup.GlassPanePopup;
+import raven.toast.Notifications;
 
 
 
 
 public class Login extends javax.swing.JFrame {
-    
-    
-    
-        Login_PopUps pop = new Login_PopUps();
+
         public String url= "localhost";
         public String user = "root";
         public String pass= "";
@@ -96,6 +94,8 @@ public class Login extends javax.swing.JFrame {
                 }
             }
         });
+        
+        Notifications.getInstance().setJFrame(this);
         
         
     }
@@ -227,38 +227,38 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void LoginBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginBTActionPerformed
+        String enteredUsername = username.getText().trim();
         char[] enteredPasswordChars = password.getPassword();
         String enteredPassword = new String(enteredPasswordChars);
+
+        // Empty field check
+        if (enteredUsername.isEmpty() || enteredPassword.isEmpty()) {
+            Notifications.getInstance().show(Notifications.Type.WARNING, "Username or password cannot be empty.");
+            return;
+        }
 
         String sqlQuery = "SELECT username, password FROM login WHERE id=1";
         try {
             PreparedStatement pst = con.prepareStatement(sqlQuery);
             ResultSet rs = pst.executeQuery();
 
-            // Assuming you have only one record with id=1
             if (rs.next()) {
                 String usernameDB = rs.getString("username");
                 String passwordDB = rs.getString("password");
 
-                // Check if the entered credentials are correct
-                if (usernameDB.equals(username.getText()) && passwordDB.equals(enteredPassword)) {
-                    forConnection(con,url,user,pass);
+                if (!enteredUsername.equals(usernameDB)|| !enteredPassword.equals(passwordDB)) {
+                    Notifications.getInstance().show(Notifications.Type.ERROR, "Incorrect username or password");
+                } else {
+                    // Successful login
+                    forConnection(con, url, user, pass);
                     openMainApplicationFrame();
                     setVisible(false);
-                    
-                    
                     main.forConnection(con, url, user, pass);
-                    
-                } else {
-                    //CallPopUp(this,"Login Failed", "Invalid username or password");
-                    JOptionPane.showMessageDialog(this, "Invalid username or password", "Login Failed", JOptionPane.ERROR_MESSAGE);
                 }
             } else {
-               // CallPopUp(this,"Login Failed", "User not found.");
-                JOptionPane.showMessageDialog(this, "User not found", "Login Failed", JOptionPane.ERROR_MESSAGE);
+                Notifications.getInstance().show(Notifications.Type.ERROR, "User not found in the database.");
             }
 
-            // Close the ResultSet and PreparedStatement
             rs.close();
             pst.close();
         } catch (SQLException ex) {
@@ -276,21 +276,7 @@ public class Login extends javax.swing.JFrame {
     private SystemOtherComps.PH_TextField username;
     // End of variables declaration//GEN-END:variables
 
-            public void CallPopUp(JFrame parent, String title, String description) {
-            Login_PopUps pop = new Login_PopUps();
-            pop.eventOK(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent ae) {
-                    GlassPanePopup.closePopupLast();
-                }
-            });
-            pop.Title.setText(title);
-            pop.Description.setText(description);
-
-            // Set the GlassPane to the parent frame
-            GlassPanePopup.install(parent);
-            GlassPanePopup.showPopup(pop);
-        }
+            
     }
 
 

@@ -55,6 +55,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import raven.glasspanepopup.GlassPanePopup;
+import raven.toast.Notifications;
 
 
 public class Main extends javax.swing.JFrame {
@@ -135,7 +136,7 @@ public class Main extends javax.swing.JFrame {
         connect();
         startup();
         ClearCart();
-        
+         
         if (CartTable.getRowCount() == 0) {
             paymentTXT.setEnabled(false);
             CartItemView.setVisible(false);
@@ -2521,14 +2522,14 @@ public class Main extends javax.swing.JFrame {
         //showcase(false,false,true,false,false,false);
         //autoIncrement();
         addProduct = new AddProduct(this);
-            addProduct.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosed(WindowEvent e) {
-                EditRefreshTable(); // Call this after AddProduct is closed
-                initProds();
-               
-            }
-        });
+//            addProduct.addWindowListener(new WindowAdapter() {
+//            @Override
+//            public void windowClosed(WindowEvent e) {
+//                EditRefreshTable(); // Call this after AddProduct is closed
+//                initProds();
+//               
+//            }
+//        });
         addProduct.setVisible(true);
         
     }//GEN-LAST:event_AddBT1MouseClicked
@@ -2870,6 +2871,7 @@ public class Main extends javax.swing.JFrame {
     private SystemOtherComps.PH_TextField totaldiscountTXT;
     // End of variables declaration//GEN-END:variables
 
+    
     public void startup(){
         //icon and title
         ImageIcon Mainicon = new ImageIcon ("HB icon.png");
@@ -3018,6 +3020,11 @@ public class Main extends javax.swing.JFrame {
 
     loading.setContentPane(panel);
     return loading;
+}
+    
+    
+    public void showNotification(String message,Notifications.Location location, Notifications.Type type) {
+    Notifications.getInstance().show(type,location, message);
 }
     
     
@@ -3764,6 +3771,7 @@ public void emptyBlobFile(String id) {
                     ClearEdit();
                     EditLoading();
                     initProds();
+                    showNotification("Product Deleted",Notifications.Location.TOP_CENTER, Notifications.Type.WARNING);
 
                 } catch (SQLException ex) {
                     JOptionPane.showMessageDialog(null, "Delete failed: " + ex.getMessage());
@@ -3797,44 +3805,93 @@ public void emptyBlobFile(String id) {
    
    
    public void EditProduct() {
+    String currentID = EditID.getText();
+    String sqlCheck = "SELECT name, cost, discount, category, description, imageName, imagePath FROM product WHERE id = ?";
+
+    try (PreparedStatement checkStmt = con.prepareStatement(sqlCheck)) {
+        checkStmt.setString(1, currentID);
+        ResultSet rs = checkStmt.executeQuery();
+
+        if (rs.next()) {
+            // Get current database values
+            String dbName = rs.getString("name");
+            String dbCost = rs.getString("cost");
+            String dbDiscount = rs.getString("discount");
+            String dbCategory = rs.getString("category");
+            String dbDescription = rs.getString("description");
+            String dbImageName = rs.getString("imageName");
+            String dbImagePath = rs.getString("imagePath");
+
+            // Get current form values
+            String formName = EditName.getText();
+            String formCost = EditCost.getText();
+            String formDiscount = EditDiscount.getText();
+            String formCategory = EditCategory.getSelectedItem().toString();
+            String formDescription = EditDescription.getText();
+            String formImageName = edit_imageName.getText();
+            String formImagePath = edit_imagePath.getText();
+
+            // Check if all values are unchanged
+            boolean noChange = 
+                formName.equals(dbName) &&
+                formCost.equals(dbCost) &&
+                formDiscount.equals(dbDiscount) &&
+                formCategory.equals(dbCategory) &&
+                formDescription.equals(dbDescription) &&
+                formImageName.equals(dbImageName) &&
+                formImagePath.equals(dbImagePath) &&
+                edit_remove_image == 0 &&
+                f2 == null;
+
+            if (noChange) {
+                showNotification("No changes detected.", Notifications.Location.TOP_CENTER, Notifications.Type.WARNING);
+                return;
+            }
+
+        } else {
+            showNotification("Product not found.", Notifications.Location.TOP_CENTER, Notifications.Type.ERROR);
+            return;
+        }
+    } catch (Exception e) {
+        String errorMsg = e.getMessage() != null ? e.getMessage() : "Unknown error while checking changes.";
+        CallPopUp("Check Error", errorMsg);
+        return;
+    }
+
+    // -- If changes detected, proceed with update --
     try {
-        // SQL Update Query
-        String sql = "UPDATE product SET name=?, cost=?, discount=?, category=?, description=?, imageName=?, imagePath=? WHERE id=?";
-        PreparedStatement preparedStatement = con.prepareStatement(sql);
+        String sqlUpdate = "UPDATE product SET name=?, cost=?, discount=?, category=?, description=?, imageName=?, imagePath=? WHERE id=?";
+        PreparedStatement updateStmt = con.prepareStatement(sqlUpdate);
 
-        // Set parameters
-        preparedStatement.setString(1, EditName.getText());
-        preparedStatement.setString(2, EditCost.getText());
-        preparedStatement.setString(3, EditDiscount.getText());
-        preparedStatement.setString(4, EditCategory.getSelectedItem().toString());
-        preparedStatement.setString(5, EditDescription.getText());
-        preparedStatement.setString(6, edit_imageName.getText());
-        preparedStatement.setString(7, edit_imagePath.getText());
-        preparedStatement.setString(8, EditID.getText());
+        updateStmt.setString(1, EditName.getText());
+        updateStmt.setString(2, EditCost.getText());
+        updateStmt.setString(3, EditDiscount.getText());
+        updateStmt.setString(4, EditCategory.getSelectedItem().toString());
+        updateStmt.setString(5, EditDescription.getText());
+        updateStmt.setString(6, edit_imageName.getText());
+        updateStmt.setString(7, edit_imagePath.getText());
+        updateStmt.setString(8, EditID.getText());
 
-        // Execute the update
-        preparedStatement.executeUpdate();
+        updateStmt.executeUpdate();
 
-        // Save image to database if needed
+        // Save new image if any
         saveImageToDatabaseEdit(f2, path2);
 
-        // Remove image blob if flagged
         if (edit_remove_image == 1) {
             emptyBlobFile(EditID.getText());
         }
         edit_remove_image = 0;
 
         EditLoading();
-        // Refresh table and UI
         EditRefreshTable();
+        showNotification("Edit Saved", Notifications.Location.TOP_CENTER, Notifications.Type.SUCCESS);
 
     } catch (Exception ex) {
-    String errorMsg = ex.getMessage() != null ? ex.getMessage() : "Unknown error.";
-    CallPopUp("An Error Has Occurred", errorMsg);
-}
+        String errorMsg = ex.getMessage() != null ? ex.getMessage() : "Unknown error.";
+        CallPopUp("An Error Has Occurred", errorMsg);
+    }
 }
 
-   
    
  private void saveImageToDatabaseEdit(File file, String path) {
     String ID = EditID.getText();
