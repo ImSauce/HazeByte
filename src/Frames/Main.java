@@ -1,9 +1,5 @@
 
 package Frames;
-//import java.awt.Color;
-//import java.sql.Connection;
-//import java.sql.PreparedStatement;
-//import java.sql.ResultSet;
 import Classes.ProductImage;
 import Classes.Functions;
 import Classes.Run;
@@ -33,8 +29,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -737,7 +736,7 @@ public class Main extends javax.swing.JFrame {
         HistoryText.setText("Transaction History");
 
         HistoryCategorySort.setForeground(new java.awt.Color(255, 255, 255));
-        HistoryCategorySort.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "All", "Action", "Adventure", "Shooter", "Strategy", "Horror", "Sports", "RPG", "Visual Novel", "Gacha", "Rythm", "Cappie Time", "Cappie Date", "Cappie Sex", "Cappie Breeding", "Cappie Impregnation", "Cappie Penetration" }));
+        HistoryCategorySort.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "All", "Action", "Adventure", "Shooter", "Strategy", "Horror", "Sports", "RPG", "Visual Novel", "Gacha", "Rythm" }));
         HistoryCategorySort.setAA_WordLinerColor(new java.awt.Color(51, 51, 51));
         HistoryCategorySort.setAA_lineColor(new java.awt.Color(45, 187, 63));
         HistoryCategorySort.setFocusable(false);
@@ -976,7 +975,7 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(ChangeUsernamePNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(ChangeusernameDesc)
                     .addComponent(ChangeUsernameHeading))
-                .addContainerGap(641, Short.MAX_VALUE))
+                .addContainerGap(153, Short.MAX_VALUE))
         );
         ChangeUsernamePNLayout.setVerticalGroup(
             ChangeUsernamePNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1036,7 +1035,7 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(ChangePassPNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(ChangepassDesc1)
                     .addComponent(ChangePassHeading1))
-                .addContainerGap(595, Short.MAX_VALUE))
+                .addContainerGap(107, Short.MAX_VALUE))
         );
         ChangePassPNLayout.setVerticalGroup(
             ChangePassPNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1118,9 +1117,9 @@ public class Main extends javax.swing.JFrame {
             .addGroup(SettingsLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(SettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ChangeUsernamePN, javax.swing.GroupLayout.DEFAULT_SIZE, 894, Short.MAX_VALUE)
-                    .addComponent(ChangePassPN, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 894, Short.MAX_VALUE)
-                    .addComponent(AboutPN, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 894, Short.MAX_VALUE))
+                    .addComponent(ChangeUsernamePN, javax.swing.GroupLayout.DEFAULT_SIZE, 406, Short.MAX_VALUE)
+                    .addComponent(ChangePassPN, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 406, Short.MAX_VALUE)
+                    .addComponent(AboutPN, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 406, Short.MAX_VALUE))
                 .addContainerGap())
         );
         SettingsLayout.setVerticalGroup(
@@ -1134,7 +1133,7 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(ChangePassPN, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(AboutPN, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(382, Short.MAX_VALUE))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
         layers.add(Settings, "card5");
@@ -1663,7 +1662,7 @@ public class Main extends javax.swing.JFrame {
         );
 
         categories.setForeground(new java.awt.Color(255, 255, 255));
-        categories.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "All", "Action", "Adventure", "Shooter", "Strategy", "Horror", "Sports", "RPG", "Visual Novel", "Gacha", "Rythm", "Cappie Time", "Cappie Date", "Cappie Sex", "Cappie Breeding", "Cappie Impregnation", "Cappie Penetration" }));
+        categories.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "All", "Action", "Adventure", "Shooter", "Strategy", "Horror", "Sports", "RPG", "Visual Novel", "Gacha", "Rythm" }));
         categories.setAA_WordLinerColor(new java.awt.Color(51, 51, 51));
         categories.setAA_lineColor(new java.awt.Color(45, 187, 63));
         categories.setFocusable(false);
@@ -1903,7 +1902,7 @@ public class Main extends javax.swing.JFrame {
         AddCategoryText.setText("Category:");
 
         AddCategory.setForeground(new java.awt.Color(255, 255, 255));
-        AddCategory.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Action", "Adventure", "Shooter", "Strategy", "Horror", "Sports", "RPG", "Visual Novel", "Gacha", "Rythm", "Cappie Time", "Cappie Date", "Cappie Sex", "Cappie Breeding", "Cappie Impregnation", "Cappie Penetration" }));
+        AddCategory.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Action", "Adventure", "Shooter", "Strategy", "Horror", "Sports", "RPG", "Visual Novel", "Gacha", "Rythm" }));
         AddCategory.setAA_WordLinerColor(new java.awt.Color(51, 51, 51));
         AddCategory.setAA_lineColor(new java.awt.Color(45, 187, 63));
         AddCategory.setFocusable(false);
@@ -2020,7 +2019,7 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(AddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(CancelBT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(AddBT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(108, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         layers.add(Add, "card2");
@@ -2321,7 +2320,7 @@ public class Main extends javax.swing.JFrame {
         EditCategoryText.setText("Category:");
 
         EditCategory.setForeground(new java.awt.Color(255, 255, 255));
-        EditCategory.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Action", "Adventure", "Shooter", "Strategy", "Horror", "Sports", "RPG", "Visual Novel", "Gacha", "Rythm", "Cappie Time", "Cappie Date", "Cappie Sex", "Cappie Breeding", "Cappie Impregnation", "Cappie Penetration", "Aoi  Impregnation" }));
+        EditCategory.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Action", "Adventure", "Shooter", "Strategy", "Horror", "Sports", "RPG", "Visual Novel", "Gacha", "Rythm" }));
         EditCategory.setAA_WordLinerColor(new java.awt.Color(51, 51, 51));
         EditCategory.setAA_lineColor(new java.awt.Color(45, 187, 63));
         EditCategory.setFocusable(false);
@@ -2378,7 +2377,7 @@ public class Main extends javax.swing.JFrame {
                                     .addComponent(EditCost, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(EditName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addGroup(EditLayout.createSequentialGroup()
-                                        .addComponent(EditCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 163, Short.MAX_VALUE)
+                                        .addComponent(EditCategory, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
                                         .addGap(92, 92, 92))
                                     .addComponent(EditDiscount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addComponent(EditDescriptionText))
@@ -2656,8 +2655,8 @@ public class Main extends javax.swing.JFrame {
 
     private void CancelAllBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelAllBTActionPerformed
         ClearCart();
-        CartRefreshTable();
         CartMath();
+        CartRefreshTable();
         CartItemView.setVisible(false);
     }//GEN-LAST:event_CancelAllBTActionPerformed
 
@@ -2683,6 +2682,7 @@ public class Main extends javax.swing.JFrame {
     private void BuyBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuyBTActionPerformed
        BuyCart();
        CartMath();
+       
        
     }//GEN-LAST:event_BuyBTActionPerformed
 
@@ -3893,6 +3893,38 @@ public void emptyBlobFile(String id) {
     
     
     
+    
+    
+    
+    
+    
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^//    
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^//    
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^//
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^//    
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^//
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^//     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 private void ClearCart() {
     String sql = "DELETE FROM `cart`";
     
@@ -3913,6 +3945,9 @@ private void ClearCart() {
     CartTotalCostTXT.setText("0");
     discountTXT.setText("");
     discountTXT.setVisible(false);
+    paymentTXT.setText("");
+    changeTXT.setText("₱0.00");
+    
 }
 
 
@@ -4070,20 +4105,6 @@ public void SelectCartItem() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 public void CartMath() {
     
     if (CartTable.getRowCount() == 0) {
@@ -4173,41 +4194,140 @@ public void BuyCart() {
         JOptionPane.showMessageDialog(null, "Cart is Empty");
         return;
     }
-    
-    double payment = Double.parseDouble(paymentTXT.getText().replace(",", "").trim());
-    double total = Double.parseDouble(totalTXT.getText().replace(",", "").trim().replace("₱", ""));
-    if (payment >= total){
+
+    String paymentText = paymentTXT.getText().replace(",", "").trim();
+    String totalText = totalTXT.getText().replace(",", "").trim().replace("₱", "");
+
+    if (paymentText.isEmpty() || totalText.isEmpty()) {
+        JOptionPane.showMessageDialog(null, "Please Enter Payment");
+        return;
+    }
+
+    double payment = Double.parseDouble(paymentText);
+    double total = Double.parseDouble(totalText);
+
+    if (payment >= total) {
         try {
-        // 1. Insert all cart records into history
-        String sql = "INSERT INTO history " +
-                     "SELECT * FROM cart";
-        PreparedStatement pst = con.prepareStatement(sql);
-        pst.executeUpdate();
+            // 1. Insert all cart records into history
+            String sql = "INSERT INTO history SELECT * FROM cart";
+            PreparedStatement pst = con.prepareStatement(sql);
+            pst.executeUpdate();
 
-        // 2. Optional: Clear cart after saving (if needed)
-        String clearCart = "DELETE FROM cart";
-        PreparedStatement pstClear = con.prepareStatement(clearCart);
-        pstClear.executeUpdate();
+            // 2. Show receipt window
+            receipt receipt = new receipt(this);
+            receipt.setVisible(true);
 
-        paymentTXT.setText("");
-        totalTXT.setText("₱0.00");
-        JOptionPane.showMessageDialog(null, "*temporary receipt*");
-        ClearCart();
-        CartRefreshTable();
-        
+            // 3. Set formatted values for receipt
+            double subtotal = total / 1.12; // Assuming 12% VAT
+            double tax = total - subtotal;
+            double change = payment - total;
 
-    } catch (SQLException e) {
-        e.printStackTrace();
-        JOptionPane.showMessageDialog(null, "failed");
+            String[] fields = {"Subtotal", "Tax", "Total", "Payment", "Change"};
+            double[] values = {subtotal, tax, total, payment, change};
+            DecimalFormat decimalFormat = new DecimalFormat("#,##0.00");
+
+            for (int i = 0; i < fields.length; i++) {
+                String formattedValue = decimalFormat.format(values[i]);
+                formattedValue = String.format("%s", formattedValue);
+
+                int numDots = Math.max(0, 110 - formattedValue.length());
+                String dots = new String(new char[numDots]).replace('\0', '-');
+
+                switch (fields[i]) {
+                    case "Subtotal":
+                        receipt.r_subtotal.setText(dots + formattedValue);
+                        break;
+                    case "Tax":
+                        receipt.r_tax.setText(dots + formattedValue);
+                        break;
+                    case "Total":
+                        receipt.r_total.setText(dots + formattedValue);
+                        break;
+                    case "Payment":
+                        receipt.r_payment.setText(dots + formattedValue);
+                        break;
+                    case "Change":
+                        receipt.r_change.setText(dots + formattedValue);
+                        break;
+                }
+            }
+            
+            
+            String date = getFormattedDate();
+            String receiptnum = generate8DigitString();
+            receipt.r_date.setText(date);
+            receipt.r_number.setText(receiptnum);
+
+            // 4. Clear cart
+            String clearCart = "DELETE FROM cart";
+            PreparedStatement pstClear = con.prepareStatement(clearCart);
+            pstClear.executeUpdate();
+
+            paymentTXT.setText("");
+            totalTXT.setText("₱0.00");
+
+            ClearCart();
+            CartRefreshTable();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "failed");
+        }
+    } else {
+        JOptionPane.showMessageDialog(null, "Payment is less than total.");
     }
-    }
-    
 }
+
+
+public static String getFormattedDate() {
+    Date now = new Date();
+    SimpleDateFormat formatter = new SimpleDateFormat("MMMM d, yyyy");
+    return formatter.format(now).trim();  // Trim any accidental space
+}
+
+ public static String generate8DigitString() {
+        Random rand = new Random();
+        int number = 10000000 + rand.nextInt(90000000); // ensures it's 8 digits
+        return String.valueOf(number);
+    }
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^//    
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^//    
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^//
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^//    
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^//
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^//     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
 
 
     public void HistoryRefreshTable() {
-    String sql = "SELECT * FROM History ORDER BY `Time` DESC";
+    String sql = "SELECT * FROM History ORDER BY `Date` DESC, `Time` DESC";
     
     
     try {
@@ -4276,10 +4396,10 @@ public void BuyCart() {
 
     if (searchText.isEmpty()) {
         // Default query when the search field is empty
-        sql = "SELECT * FROM History ORDER BY `Time` DESC";
+        sql = "SELECT * FROM History ORDER BY `Date` DESC, `Time` DESC";
     } else {
         // Updated query that excludes `id`, `productID`, `description`, `imageName`, `imagePath`, and `imageFile`
-        sql = "SELECT * FROM History WHERE `name` LIKE ? OR `cost` LIKE ? OR `discount` LIKE ? OR `category` LIKE ? OR `subtotal` LIKE ? OR `total` LIKE ? OR `quantity` LIKE ? OR `Date` LIKE ? OR `Time` LIKE ? ORDER BY `Time` DESC";
+        sql = "SELECT * FROM History WHERE `name` LIKE ? OR `cost` LIKE ? OR `discount` LIKE ? OR `category` LIKE ? OR `subtotal` LIKE ? OR `total` LIKE ? OR `quantity` LIKE ? OR `Date` LIKE ? OR `Time` LIKE ? ORDER BY `Date` DESC, `Time` DESC";
     }
 
     try {
@@ -4359,9 +4479,9 @@ public void BuyCart() {
     String sql;
 
     if (selectedValue.equals("All")) {
-        sql = "SELECT * FROM history ORDER BY Time DESC";
+        sql = "SELECT * FROM history ORDER BY `Date` DESC, `Time` DESC";
     } else {
-        sql = "SELECT * FROM history WHERE category = ? ORDER BY Time DESC";
+        sql = "SELECT * FROM history WHERE category = ? ORDER BY `Date` DESC, `Time` DESC";
     }
 
     try {

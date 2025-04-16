@@ -755,7 +755,7 @@
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="17">
+                      <StringArray count="11">
                         <StringItem index="0" value="All"/>
                         <StringItem index="1" value="Action"/>
                         <StringItem index="2" value="Adventure"/>
@@ -767,12 +767,6 @@
                         <StringItem index="8" value="Visual Novel"/>
                         <StringItem index="9" value="Gacha"/>
                         <StringItem index="10" value="Rythm"/>
-                        <StringItem index="11" value="Cappie Time"/>
-                        <StringItem index="12" value="Cappie Date"/>
-                        <StringItem index="13" value="Cappie Sex"/>
-                        <StringItem index="14" value="Cappie Breeding"/>
-                        <StringItem index="15" value="Cappie Impregnation"/>
-                        <StringItem index="16" value="Cappie Penetration"/>
                       </StringArray>
                     </Property>
                     <Property name="AA_WordLinerColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -987,9 +981,9 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="ChangeUsernamePN" alignment="0" pref="894" max="32767" attributes="0"/>
-                          <Component id="ChangePassPN" alignment="1" pref="894" max="32767" attributes="0"/>
-                          <Component id="AboutPN" alignment="1" pref="894" max="32767" attributes="0"/>
+                          <Component id="ChangeUsernamePN" alignment="0" pref="406" max="32767" attributes="0"/>
+                          <Component id="ChangePassPN" alignment="1" pref="406" max="32767" attributes="0"/>
+                          <Component id="AboutPN" alignment="1" pref="406" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -1006,7 +1000,7 @@
                       <Component id="ChangePassPN" min="-2" pref="72" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="AboutPN" min="-2" pref="72" max="-2" attributes="0"/>
-                      <EmptySpace pref="382" max="32767" attributes="0"/>
+                      <EmptySpace pref="49" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -1088,7 +1082,7 @@
                               <Component id="ChangeusernameDesc" min="-2" max="-2" attributes="0"/>
                               <Component id="ChangeUsernameHeading" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="641" max="32767" attributes="0"/>
+                          <EmptySpace pref="153" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -1186,7 +1180,7 @@
                               <Component id="ChangepassDesc1" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="ChangePassHeading1" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="595" max="32767" attributes="0"/>
+                          <EmptySpace pref="107" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -2352,7 +2346,7 @@
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="17">
+                      <StringArray count="11">
                         <StringItem index="0" value="All"/>
                         <StringItem index="1" value="Action"/>
                         <StringItem index="2" value="Adventure"/>
@@ -2364,12 +2358,6 @@
                         <StringItem index="8" value="Visual Novel"/>
                         <StringItem index="9" value="Gacha"/>
                         <StringItem index="10" value="Rythm"/>
-                        <StringItem index="11" value="Cappie Time"/>
-                        <StringItem index="12" value="Cappie Date"/>
-                        <StringItem index="13" value="Cappie Sex"/>
-                        <StringItem index="14" value="Cappie Breeding"/>
-                        <StringItem index="15" value="Cappie Impregnation"/>
-                        <StringItem index="16" value="Cappie Penetration"/>
                       </StringArray>
                     </Property>
                     <Property name="AA_WordLinerColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -2558,7 +2546,7 @@
                           <Component id="CancelBT" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="AddBT" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="108" max="32767" attributes="0"/>
+                      <EmptySpace pref="22" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -2783,7 +2771,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="16">
+                  <StringArray count="10">
                     <StringItem index="0" value="Action"/>
                     <StringItem index="1" value="Adventure"/>
                     <StringItem index="2" value="Shooter"/>
@@ -2794,12 +2782,6 @@
                     <StringItem index="7" value="Visual Novel"/>
                     <StringItem index="8" value="Gacha"/>
                     <StringItem index="9" value="Rythm"/>
-                    <StringItem index="10" value="Cappie Time"/>
-                    <StringItem index="11" value="Cappie Date"/>
-                    <StringItem index="12" value="Cappie Sex"/>
-                    <StringItem index="13" value="Cappie Breeding"/>
-                    <StringItem index="14" value="Cappie Impregnation"/>
-                    <StringItem index="15" value="Cappie Penetration"/>
                   </StringArray>
                 </Property>
                 <Property name="AA_WordLinerColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -3548,7 +3530,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="17">
+                  <StringArray count="10">
                     <StringItem index="0" value="Action"/>
                     <StringItem index="1" value="Adventure"/>
                     <StringItem index="2" value="Shooter"/>
@@ -3559,13 +3541,6 @@
                     <StringItem index="7" value="Visual Novel"/>
                     <StringItem index="8" value="Gacha"/>
                     <StringItem index="9" value="Rythm"/>
-                    <StringItem index="10" value="Cappie Time"/>
-                    <StringItem index="11" value="Cappie Date"/>
-                    <StringItem index="12" value="Cappie Sex"/>
-                    <StringItem index="13" value="Cappie Breeding"/>
-                    <StringItem index="14" value="Cappie Impregnation"/>
-                    <StringItem index="15" value="Cappie Penetration"/>
-                    <StringItem index="16" value="Aoi  Impregnation"/>
                   </StringArray>
                 </Property>
                 <Property name="AA_WordLinerColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
