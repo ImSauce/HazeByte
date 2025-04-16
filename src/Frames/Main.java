@@ -235,7 +235,7 @@ public class Main extends javax.swing.JFrame {
         HistorySearch = new SystemOtherComps.PH_TextField();
         HistorySearchIconTXT = new javax.swing.JLabel();
         HistoryCategoryIcon = new javax.swing.JLabel();
-        TransactionNumber = new SystemOtherComps.PH_TextField();
+        TransactionNumber = new SystemOtherComps.PH_Label();
         HistoryTableScroll = new SystemOtherComps.PH_ScrollPane();
         HistoryTable = new javax.swing.JTable();
         Settings = new javax.swing.JPanel();
@@ -892,21 +892,18 @@ public class Main extends javax.swing.JFrame {
 
         HistoryCategoryIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/category.png"))); // NOI18N
 
-        TransactionNumber.setEditable(false);
-        TransactionNumber.setBackground(new java.awt.Color(38, 38, 38));
         TransactionNumber.setForeground(new java.awt.Color(204, 204, 204));
-        TransactionNumber.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        TransactionNumber.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         TransactionNumber.setText("0");
         TransactionNumber.setToolTipText("Number of Transactions");
+        TransactionNumber.setAAA_ImageBoundArcSize(20);
         TransactionNumber.setAAA_roundBottomLeft(20);
         TransactionNumber.setAAA_roundBottomRight(20);
         TransactionNumber.setAAA_roundTopLeft(20);
         TransactionNumber.setAAA_roundTopRight(20);
-        TransactionNumber.setAA_BorderSize(0);
-        TransactionNumber.setAA_DrawLine(false);
-        TransactionNumber.setAA_TextHint("");
-        TransactionNumber.setFocusable(false);
-        TransactionNumber.setFont(new java.awt.Font("Arial", 0, 8)); // NOI18N
+        TransactionNumber.setAA_ArcSize(20);
+        TransactionNumber.setAA_BorderColor(new java.awt.Color(51, 51, 51));
+        TransactionNumber.setAA_DrawBorder(true);
 
         javax.swing.GroupLayout HistoryBarLayout = new javax.swing.GroupLayout(HistoryBar);
         HistoryBar.setLayout(HistoryBarLayout);
@@ -915,9 +912,9 @@ public class Main extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, HistoryBarLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addComponent(HistoryText, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(TransactionNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(TransactionNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 113, Short.MAX_VALUE)
                 .addComponent(HistoryCategoryIcon)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(HistoryCategorySort, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -931,17 +928,6 @@ public class Main extends javax.swing.JFrame {
             HistoryBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(HistoryBarLayout.createSequentialGroup()
                 .addGroup(HistoryBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(HistoryBarLayout.createSequentialGroup()
-                        .addGroup(HistoryBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(HistoryBarLayout.createSequentialGroup()
-                                .addGap(8, 8, 8)
-                                .addComponent(HistoryCategorySort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(HistoryBarLayout.createSequentialGroup()
-                                .addGap(22, 22, 22)
-                                .addGroup(HistoryBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(TransactionNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(HistoryCategoryIcon))))
-                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, HistoryBarLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(HistoryBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -949,9 +935,18 @@ public class Main extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, HistoryBarLayout.createSequentialGroup()
                                 .addComponent(HistorySearchIconTXT)
                                 .addGap(9, 9, 9))))
+                    .addComponent(HistoryText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(HistoryBarLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(HistoryText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGroup(HistoryBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(HistoryBarLayout.createSequentialGroup()
+                                .addGap(8, 8, 8)
+                                .addComponent(HistoryCategorySort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(HistoryBarLayout.createSequentialGroup()
+                                .addGap(17, 17, 17)
+                                .addGroup(HistoryBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(TransactionNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(HistoryCategoryIcon))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -1016,7 +1011,7 @@ public class Main extends javax.swing.JFrame {
             .addComponent(HistoryBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(HistoryLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(HistoryTableScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 894, Short.MAX_VALUE)
+                .addComponent(HistoryTableScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 989, Short.MAX_VALUE)
                 .addContainerGap())
         );
         HistoryLayout.setVerticalGroup(
@@ -1099,21 +1094,18 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(ChangeUsernamePNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(ChangeusernameDesc)
                     .addComponent(ChangeUsernameHeading))
-                .addContainerGap(153, Short.MAX_VALUE))
+                .addContainerGap(466, Short.MAX_VALUE))
         );
         ChangeUsernamePNLayout.setVerticalGroup(
             ChangeUsernamePNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ChangeUsernamePNLayout.createSequentialGroup()
-                .addContainerGap(12, Short.MAX_VALUE)
+                .addContainerGap(11, Short.MAX_VALUE)
                 .addGroup(ChangeUsernamePNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ChangeUsernamePNLayout.createSequentialGroup()
-                        .addComponent(ChangeUsernameHeading)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ChangeusernameDesc)
-                        .addGap(14, 14, 14))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ChangeUsernamePNLayout.createSequentialGroup()
-                        .addComponent(Settings_BT1)
-                        .addGap(23, 23, 23))))
+                    .addComponent(ChangeUsernameHeading)
+                    .addComponent(Settings_BT1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ChangeusernameDesc)
+                .addGap(14, 14, 14))
         );
 
         ChangePassPN.setBackground(new java.awt.Color(24, 23, 23));
@@ -1159,21 +1151,18 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(ChangePassPNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(ChangepassDesc1)
                     .addComponent(ChangePassHeading1))
-                .addContainerGap(107, Short.MAX_VALUE))
+                .addContainerGap(420, Short.MAX_VALUE))
         );
         ChangePassPNLayout.setVerticalGroup(
             ChangePassPNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ChangePassPNLayout.createSequentialGroup()
-                .addContainerGap(12, Short.MAX_VALUE)
+                .addContainerGap(11, Short.MAX_VALUE)
                 .addGroup(ChangePassPNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ChangePassPNLayout.createSequentialGroup()
-                        .addComponent(ChangePassHeading1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ChangepassDesc1)
-                        .addGap(14, 14, 14))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ChangePassPNLayout.createSequentialGroup()
-                        .addComponent(Settings_BT2)
-                        .addGap(23, 23, 23))))
+                    .addComponent(ChangePassHeading1)
+                    .addComponent(Settings_BT2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ChangepassDesc1)
+                .addGap(14, 14, 14))
         );
 
         AboutPN.setBackground(new java.awt.Color(24, 23, 23));
@@ -1203,7 +1192,7 @@ public class Main extends javax.swing.JFrame {
 
         AboutHeading.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         AboutHeading.setForeground(new java.awt.Color(255, 255, 255));
-        AboutHeading.setText("About");
+        AboutHeading.setText("About us");
 
         Settings_BT3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/info.png"))); // NOI18N
         Settings_BT3.setToolTipText("Developer Info");
@@ -1224,16 +1213,13 @@ public class Main extends javax.swing.JFrame {
         AboutPNLayout.setVerticalGroup(
             AboutPNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(AboutPNLayout.createSequentialGroup()
-                .addContainerGap(12, Short.MAX_VALUE)
+                .addContainerGap(11, Short.MAX_VALUE)
                 .addGroup(AboutPNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AboutPNLayout.createSequentialGroup()
-                        .addComponent(AboutHeading)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(AboutDesc)
-                        .addGap(14, 14, 14))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AboutPNLayout.createSequentialGroup()
-                        .addComponent(Settings_BT3)
-                        .addGap(22, 22, 22))))
+                    .addComponent(AboutHeading)
+                    .addComponent(Settings_BT3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(AboutDesc)
+                .addGap(14, 14, 14))
         );
 
         javax.swing.GroupLayout SettingsLayout = new javax.swing.GroupLayout(Settings);
@@ -1244,9 +1230,9 @@ public class Main extends javax.swing.JFrame {
             .addGroup(SettingsLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(SettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ChangeUsernamePN, javax.swing.GroupLayout.DEFAULT_SIZE, 894, Short.MAX_VALUE)
-                    .addComponent(ChangePassPN, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 894, Short.MAX_VALUE)
-                    .addComponent(AboutPN, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 894, Short.MAX_VALUE))
+                    .addComponent(ChangeUsernamePN, javax.swing.GroupLayout.DEFAULT_SIZE, 719, Short.MAX_VALUE)
+                    .addComponent(ChangePassPN, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 719, Short.MAX_VALUE)
+                    .addComponent(AboutPN, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 719, Short.MAX_VALUE))
                 .addContainerGap())
         );
         SettingsLayout.setVerticalGroup(
@@ -1260,7 +1246,7 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(ChangePassPN, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(AboutPN, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addContainerGap(162, Short.MAX_VALUE))
         );
 
         layers.add(Settings, "card5");
@@ -2850,12 +2836,12 @@ public class Main extends javax.swing.JFrame {
 
     private void AboutBackBTMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AboutBackBTMouseEntered
         ImageIcon image = new ImageIcon("back2.png");
-        CartBackBT.setIcon(image);
+        AboutBackBT.setIcon(image);
     }//GEN-LAST:event_AboutBackBTMouseEntered
 
     private void AboutBackBTMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AboutBackBTMouseExited
         ImageIcon image = new ImageIcon("back.png");
-        CartBackBT.setIcon(image);
+        AboutBackBT.setIcon(image);
     }//GEN-LAST:event_AboutBackBTMouseExited
   
 
@@ -2983,7 +2969,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel SubtotalHeading;
     private javax.swing.JLabel TotalCostHeading;
     private javax.swing.JLabel TotalDiscountHeading;
-    private SystemOtherComps.PH_TextField TransactionNumber;
+    private SystemOtherComps.PH_Label TransactionNumber;
     public javax.swing.JLabel USER;
     public javax.swing.JLabel add_imageName;
     public javax.swing.JLabel add_imagePath;
