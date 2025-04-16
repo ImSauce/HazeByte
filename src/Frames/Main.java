@@ -12,6 +12,7 @@ import Splash.Login;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.FontMetrics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -137,6 +138,8 @@ public class Main extends javax.swing.JFrame {
         startup();
         ClearCart();
          
+        wrapLabelText(AboutQuote);
+
         if (CartTable.getRowCount() == 0) {
             paymentTXT.setEnabled(false);
             CartItemView.setVisible(false);
@@ -158,6 +161,7 @@ public class Main extends javax.swing.JFrame {
         }).start();
         
         Hidden.setVisible(false);
+        About.setVisible(false);
         
         GameSearchTXT.addKeyListener(new java.awt.event.KeyAdapter() {
             @Override
@@ -174,6 +178,9 @@ public class Main extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
         menu = new javax.swing.JPanel();
         line = new javax.swing.JPanel();
         HomePN = new SystemOtherComps.PH_Panel();
@@ -185,6 +192,18 @@ public class Main extends javax.swing.JFrame {
         SettingsPN = new SystemOtherComps.PH_Panel();
         Settings_BT = new javax.swing.JLabel();
         layers = new javax.swing.JLayeredPane();
+        About = new javax.swing.JPanel();
+        AboutScroll = new SystemOtherComps.PH_ScrollPane();
+        AboutFlow = new SystemOtherComps.PH_BettterFlowLayoutPanel();
+        samPanel5 = new Panel.SamPanel();
+        tonyPanel1 = new Panel.TonyPanel();
+        elaizaPanel1 = new Panel.ElaizaPanel();
+        jmPanel1 = new Panel.JmPanel();
+        clarkPanel1 = new Panel.ClarkPanel();
+        SettingsBar1 = new javax.swing.JPanel();
+        SettingsText1 = new javax.swing.JLabel();
+        AboutBackBT = new javax.swing.JLabel();
+        AboutQuote = new javax.swing.JLabel();
         Hidden = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         addimagetool1 = new javax.swing.JPanel();
@@ -324,6 +343,12 @@ public class Main extends javax.swing.JFrame {
         EditCategory = new SystemShadowedComp.PH_ComboBox();
         saveloading = new Splash.LoadingAnimation();
         saving = new javax.swing.JLabel();
+
+        jMenu1.setText("File");
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Edit");
+        jMenuBar1.add(jMenu2);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(800, 720));
@@ -534,6 +559,101 @@ public class Main extends javax.swing.JFrame {
         getContentPane().add(menu);
 
         layers.setLayout(new java.awt.CardLayout());
+
+        About.setBackground(new java.awt.Color(24, 23, 23));
+
+        AboutScroll.setBackground(new java.awt.Color(51, 51, 51));
+        AboutScroll.setForeground(new java.awt.Color(0, 204, 255));
+        AboutScroll.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+        AboutFlow.setBackground(new java.awt.Color(24, 23, 23));
+        AboutFlow.setForeground(new java.awt.Color(255, 255, 255));
+        AboutFlow.add(samPanel5);
+        AboutFlow.add(tonyPanel1);
+        AboutFlow.add(elaizaPanel1);
+        AboutFlow.add(jmPanel1);
+        AboutFlow.add(clarkPanel1);
+
+        AboutScroll.setViewportView(AboutFlow);
+
+        SettingsBar1.setBackground(new java.awt.Color(24, 23, 23));
+
+        SettingsText1.setFont(new java.awt.Font("Arial Black", 0, 28)); // NOI18N
+        SettingsText1.setForeground(new java.awt.Color(255, 255, 255));
+        SettingsText1.setText("About us");
+
+        AboutBackBT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/back.png"))); // NOI18N
+        AboutBackBT.setToolTipText("back");
+        AboutBackBT.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AboutBackBTMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                AboutBackBTMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                AboutBackBTMouseExited(evt);
+            }
+        });
+
+        javax.swing.GroupLayout SettingsBar1Layout = new javax.swing.GroupLayout(SettingsBar1);
+        SettingsBar1.setLayout(SettingsBar1Layout);
+        SettingsBar1Layout.setHorizontalGroup(
+            SettingsBar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(SettingsBar1Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(AboutBackBT)
+                .addGap(18, 18, 18)
+                .addComponent(SettingsText1, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(583, Short.MAX_VALUE))
+        );
+        SettingsBar1Layout.setVerticalGroup(
+            SettingsBar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(SettingsBar1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(SettingsText1, javax.swing.GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SettingsBar1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(AboutBackBT)
+                .addGap(14, 14, 14))
+        );
+
+        AboutQuote.setFont(new java.awt.Font("Mongolian Baiti", 0, 18)); // NOI18N
+        AboutQuote.setForeground(new java.awt.Color(255, 255, 255));
+        AboutQuote.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        AboutQuote.setText("\"If it works, don't touch it.\"");
+
+        javax.swing.GroupLayout AboutLayout = new javax.swing.GroupLayout(About);
+        About.setLayout(AboutLayout);
+        AboutLayout.setHorizontalGroup(
+            AboutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(SettingsBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(AboutLayout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addComponent(AboutQuote, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(24, 24, 24))
+            .addGroup(AboutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(AboutLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(AboutScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 897, Short.MAX_VALUE)
+                    .addContainerGap()))
+        );
+        AboutLayout.setVerticalGroup(
+            AboutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(AboutLayout.createSequentialGroup()
+                .addComponent(SettingsBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(AboutQuote, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
+                .addGap(504, 504, 504))
+            .addGroup(AboutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AboutLayout.createSequentialGroup()
+                    .addContainerGap(170, Short.MAX_VALUE)
+                    .addComponent(AboutScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 504, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap()))
+        );
+
+        layers.add(About, "card8");
 
         jLabel1.setText("Add Image");
 
@@ -1065,6 +1185,9 @@ public class Main extends javax.swing.JFrame {
         AboutPN.setAAA_roundTopRight(30);
         AboutPN.setAA_ArcSize(30);
         AboutPN.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AboutPNMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 AboutPNMouseEntered(evt);
             }
@@ -1319,7 +1442,7 @@ public class Main extends javax.swing.JFrame {
                 .addGap(2, 2, 2)
                 .addComponent(CartDescriptionheadingTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(CartDescriptionScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE)
+                .addComponent(CartDescriptionScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 5, Short.MAX_VALUE)
                 .addGroup(CartItemViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(CartItemViewLayout.createSequentialGroup()
                         .addGap(8, 8, 8)
@@ -2443,25 +2566,25 @@ public class Main extends javax.swing.JFrame {
     
     //----------------MENU BUTTONS -------------//
     private void Home_BTMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Home_BTMouseClicked
-        showcase(true,false,false,false,false,false);
+        showcase(true,false,false,false,false,false,false);
         MenuHighlight(true,false,false,false);
         function.MenuClicked(HomeClicked, HomePN, OptionClicked, OptionPN, HistoryClicked, HistoryPN, InfoClicked, SettingsPN ); 
         CartItemView.setVisible(false);
     }//GEN-LAST:event_Home_BTMouseClicked
     private void Option_BTMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Option_BTMouseClicked
-        showcase(false,true,false,false,false,false);
+        showcase(false,true,false,false,false,false,false);
         MenuHighlight(false,true,false,false);
         function.MenuClicked(HomeClicked, HomePN, OptionClicked, OptionPN, HistoryClicked, HistoryPN, InfoClicked, SettingsPN ); 
         EditRefreshTable();
     }//GEN-LAST:event_Option_BTMouseClicked
     private void History_BTMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_History_BTMouseClicked
-        showcase(false,false,false,true,false,false);
+        showcase(false,false,false,true,false,false,false);
         MenuHighlight(false,false,true,false);
         function.MenuClicked(HomeClicked, HomePN, OptionClicked, OptionPN, HistoryClicked, HistoryPN, InfoClicked, SettingsPN ); 
         HistoryRefreshTable();
     }//GEN-LAST:event_History_BTMouseClicked
     private void Settings_BTMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Settings_BTMouseClicked
-        showcase(false,false,false,false,true,false);
+        showcase(false,false,false,false,true,false,false);
         MenuHighlight(false,false,false,true);
         function.MenuClicked(HomeClicked, HomePN, OptionClicked, OptionPN, HistoryClicked, HistoryPN, InfoClicked, SettingsPN ); 
     }//GEN-LAST:event_Settings_BTMouseClicked
@@ -2502,7 +2625,7 @@ public class Main extends javax.swing.JFrame {
         CartPN.setBackground(new java.awt.Color(24,23,23));
     }//GEN-LAST:event_CartBTMouseExited
     private void CartBTMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CartBTMouseClicked
-        showcase(false,false,false,false,false,true);
+        showcase(false,false,false,false,false,true,false);
         CartRefreshTable();
         CartMath();
     }//GEN-LAST:event_CartBTMouseClicked
@@ -2510,12 +2633,12 @@ public class Main extends javax.swing.JFrame {
     
     
     private void CartBackBTMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CartBackBTMouseClicked
-        showcase(true,false,false,false,false,false);
+        showcase(true,false,false,false,false,false,false);
         CartItemView.setVisible(false);
     }//GEN-LAST:event_CartBackBTMouseClicked
 
     private void EditBTMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditBTMouseClicked
-        showcase(false,true,false,false,false,false);
+        showcase(false,true,false,false,false,false,false);
     }//GEN-LAST:event_EditBTMouseClicked
 
     private void AddBT1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AddBT1MouseClicked
@@ -2535,7 +2658,7 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_AddBT1MouseClicked
 
     private void EditBT2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditBT2MouseClicked
-        showcase(false,true,false,false,false,false);
+        showcase(false,true,false,false,false,false,false);
         EditRefreshTable();
     }//GEN-LAST:event_EditBT2MouseClicked
 
@@ -2716,12 +2839,35 @@ public class Main extends javax.swing.JFrame {
     private void HistoryCategorySortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HistoryCategorySortActionPerformed
         HistorySortCategory();
     }//GEN-LAST:event_HistoryCategorySortActionPerformed
+
+    private void AboutPNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AboutPNMouseClicked
+       showcase(false, false, false, false, false, false,true);
+    }//GEN-LAST:event_AboutPNMouseClicked
+
+    private void AboutBackBTMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AboutBackBTMouseClicked
+        showcase(false,false,false,false,true,false,false);
+    }//GEN-LAST:event_AboutBackBTMouseClicked
+
+    private void AboutBackBTMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AboutBackBTMouseEntered
+        ImageIcon image = new ImageIcon("back2.png");
+        CartBackBT.setIcon(image);
+    }//GEN-LAST:event_AboutBackBTMouseEntered
+
+    private void AboutBackBTMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AboutBackBTMouseExited
+        ImageIcon image = new ImageIcon("back.png");
+        CartBackBT.setIcon(image);
+    }//GEN-LAST:event_AboutBackBTMouseExited
   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel About;
+    private javax.swing.JLabel AboutBackBT;
     public javax.swing.JLabel AboutDesc;
+    private SystemOtherComps.PH_BettterFlowLayoutPanel AboutFlow;
     public javax.swing.JLabel AboutHeading;
     private SystemOtherComps.PH_Panel AboutPN;
+    public javax.swing.JLabel AboutQuote;
+    private SystemOtherComps.PH_ScrollPane AboutScroll;
     private javax.swing.JPanel Add;
     private SystemOtherComps.PH_Button AddBT;
     private javax.swing.JLabel AddBT1;
@@ -2826,8 +2972,10 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel PaymentHeading;
     private javax.swing.JPanel Settings;
     private javax.swing.JPanel SettingsBar;
+    private javax.swing.JPanel SettingsBar1;
     private SystemOtherComps.PH_Panel SettingsPN;
     public javax.swing.JLabel SettingsText;
+    public javax.swing.JLabel SettingsText1;
     private javax.swing.JLabel Settings_BT;
     private javax.swing.JLabel Settings_BT1;
     private javax.swing.JLabel Settings_BT2;
@@ -2843,9 +2991,11 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel addimagetool1;
     public SystemShadowedComp.PH_ComboBox categories;
     private SystemOtherComps.PH_TextField changeTXT;
+    private Panel.ClarkPanel clarkPanel1;
     private javax.swing.JLabel discountTXT;
     private javax.swing.JLabel edit_imageName;
     private javax.swing.JLabel edit_imagePath;
+    private Panel.ElaizaPanel elaizaPanel1;
     private javax.swing.JLabel iddesc;
     private javax.swing.JLabel iddesc1;
     private javax.swing.JLabel imagenamedesk;
@@ -2858,15 +3008,21 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
+    private Panel.JmPanel jmPanel1;
     private javax.swing.JLayeredPane layers;
     private javax.swing.JPanel line;
     private javax.swing.JPanel menu;
     private SystemOtherComps.PH_TextField paymentTXT;
     private javax.swing.JLabel quantityIcon;
+    private Panel.SamPanel samPanel5;
     private Splash.LoadingAnimation saveloading;
     private javax.swing.JLabel saving;
     private SystemOtherComps.PH_TextField subtotalTXT;
+    private Panel.TonyPanel tonyPanel1;
     private SystemOtherComps.PH_TextField totalTXT;
     private SystemOtherComps.PH_TextField totaldiscountTXT;
     // End of variables declaration//GEN-END:variables
@@ -2944,13 +3100,14 @@ public class Main extends javax.swing.JFrame {
     
     
     
-    public void showcase(boolean Home_, boolean Edit_, boolean Add_, boolean History_, boolean Info_, boolean Cart_){
+    public void showcase(boolean Home_, boolean Edit_, boolean Add_, boolean History_, boolean Info_, boolean Cart_, boolean About_){
         Home.setVisible(Home_);
         Edit.setVisible(Edit_);
         Add.setVisible(Add_); 
         History.setVisible(History_);
         Settings.setVisible(Info_);
-        Cart.setVisible(Cart_);     
+        Cart.setVisible(Cart_);    
+        About.setVisible(About_); 
     }
     
     public void MenuHighlight(boolean home, boolean option, boolean history, boolean info){
@@ -4643,7 +4800,34 @@ public static String getFormattedDate() {
 
 
 
-    
+    public void wrapLabelText(JLabel label) {
+    String text = label.getText();
+    int width = label.getWidth();
+
+    if (width <= 0 || text == null || text.isEmpty()) return;
+
+    // Create a dummy FontMetrics to estimate text width
+    FontMetrics fm = label.getFontMetrics(label.getFont());
+    StringBuilder wrappedText = new StringBuilder("<html>");
+
+    String[] words = text.split(" ");
+    StringBuilder line = new StringBuilder();
+
+    for (String word : words) {
+        String testLine = line + word + " ";
+        int testWidth = fm.stringWidth(testLine);
+
+        if (testWidth > width) {
+            wrappedText.append(line).append("<br>");
+            line = new StringBuilder(word).append(" ");
+        } else {
+            line.append(word).append(" ");
+        }
+    }
+
+    wrappedText.append(line).append("</html>");
+    label.setText(wrappedText.toString());
+}
     
 
 
