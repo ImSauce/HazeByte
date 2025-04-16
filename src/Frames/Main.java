@@ -4,24 +4,25 @@ import Classes.ProductImage;
 import Classes.Functions;
 import Classes.Run;
 import Classes.serverCredentials;
+import Panel.ConfirmationPopup;
 import Panel.Items;
+import Panel.Popup;
 import Splash.LoadingAnimation;
 import Splash.Login;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.FontMetrics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
-import java.io.File;
+import java.io.File; 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -46,7 +47,6 @@ import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JProgressBar;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
@@ -54,12 +54,15 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
+import raven.glasspanepopup.GlassPanePopup;
 
 
 public class Main extends javax.swing.JFrame {
 
     private ChangePassword ChangePass;
+    public AddProduct addProduct;
     private ChangeUsername ChangeUser;
+    
     
     
     
@@ -127,7 +130,7 @@ public class Main extends javax.swing.JFrame {
         IP.setText(loginInstance.url);
         PASS.setText(loginInstance.pass);
         
-        
+        GlassPanePopup.install(this);
         
         connect();
         startup();
@@ -295,8 +298,7 @@ public class Main extends javax.swing.JFrame {
         AddImage = new javax.swing.JLabel();
         Edit = new javax.swing.JPanel();
         EditBar = new javax.swing.JPanel();
-        AddBT1 = new javax.swing.JLabel();
-        EditBT1 = new javax.swing.JLabel();
+        EditBT = new javax.swing.JLabel();
         EditSideBar = new javax.swing.JPanel();
         EditSearch = new SystemOtherComps.PH_TextField();
         EditSearchIcon = new javax.swing.JLabel();
@@ -304,6 +306,7 @@ public class Main extends javax.swing.JFrame {
         EditTable = new javax.swing.JTable();
         EditCategorySort = new SystemShadowedComp.PH_ComboBox();
         EditSearchIcon1 = new javax.swing.JLabel();
+        AddBT1 = new javax.swing.JLabel();
         EditSaveBT = new SystemOtherComps.PH_Button();
         EditDeleteBT = new SystemOtherComps.PH_Button();
         EditDescriptionText = new javax.swing.JLabel();
@@ -1117,9 +1120,9 @@ public class Main extends javax.swing.JFrame {
             .addGroup(SettingsLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(SettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ChangeUsernamePN, javax.swing.GroupLayout.DEFAULT_SIZE, 406, Short.MAX_VALUE)
-                    .addComponent(ChangePassPN, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 406, Short.MAX_VALUE)
-                    .addComponent(AboutPN, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 406, Short.MAX_VALUE))
+                    .addComponent(ChangeUsernamePN, javax.swing.GroupLayout.DEFAULT_SIZE, 894, Short.MAX_VALUE)
+                    .addComponent(ChangePassPN, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 894, Short.MAX_VALUE)
+                    .addComponent(AboutPN, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 894, Short.MAX_VALUE))
                 .addContainerGap())
         );
         SettingsLayout.setVerticalGroup(
@@ -1315,7 +1318,7 @@ public class Main extends javax.swing.JFrame {
                 .addGap(2, 2, 2)
                 .addComponent(CartDescriptionheadingTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(CartDescriptionScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 5, Short.MAX_VALUE)
+                .addComponent(CartDescriptionScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE)
                 .addGroup(CartItemViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(CartItemViewLayout.createSequentialGroup()
                         .addGap(8, 8, 8)
@@ -1537,29 +1540,30 @@ public class Main extends javax.swing.JFrame {
                         .addComponent(paymentTXT, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(20, 20, 20))
                     .addGroup(CartLayout.createSequentialGroup()
-                        .addContainerGap(122, Short.MAX_VALUE)
-                        .addComponent(CancelAllBT, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(BuyBT, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12))
-                    .addGroup(CartLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(ChangeHeading, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(SubtotalHeading)
-                            .addComponent(TotalDiscountHeading)
-                            .addComponent(TotalCostHeading, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(totaldiscountTXT, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(totalTXT, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(changeTXT, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(subtotalTXT, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 18, 18))
-                    .addGroup(CartLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(CartTableScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 474, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CartLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(CartLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(CancelAllBT, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(25, 25, 25)
+                                .addComponent(BuyBT, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(CartLayout.createSequentialGroup()
+                                .addGroup(CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(ChangeHeading, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(SubtotalHeading)
+                                    .addComponent(TotalDiscountHeading)
+                                    .addComponent(TotalCostHeading, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(totaldiscountTXT, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(totalTXT, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(changeTXT, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(subtotalTXT, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(18, 18, 18)))
                 .addComponent(CartItemView, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         CartLayout.setVerticalGroup(
@@ -2029,27 +2033,12 @@ public class Main extends javax.swing.JFrame {
 
         EditBar.setBackground(new java.awt.Color(24, 23, 23));
 
-        AddBT1.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        AddBT1.setForeground(new java.awt.Color(102, 102, 102));
-        AddBT1.setText("Add Product");
-        AddBT1.addMouseListener(new java.awt.event.MouseAdapter() {
+        EditBT.setFont(new java.awt.Font("Arial Black", 0, 28)); // NOI18N
+        EditBT.setForeground(new java.awt.Color(255, 255, 255));
+        EditBT.setText("Products Menu");
+        EditBT.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                AddBT1MouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                AddBT1MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                AddBT1MouseExited(evt);
-            }
-        });
-
-        EditBT1.setFont(new java.awt.Font("Arial Black", 0, 28)); // NOI18N
-        EditBT1.setForeground(new java.awt.Color(255, 255, 255));
-        EditBT1.setText("Edit Product");
-        EditBT1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                EditBT1MouseClicked(evt);
+                EditBTMouseClicked(evt);
             }
         });
 
@@ -2058,26 +2047,16 @@ public class Main extends javax.swing.JFrame {
         EditBarLayout.setHorizontalGroup(
             EditBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(EditBarLayout.createSequentialGroup()
-                .addGap(241, 241, 241)
-                .addComponent(AddBT1)
+                .addGap(45, 45, 45)
+                .addComponent(EditBT)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(EditBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(EditBarLayout.createSequentialGroup()
-                    .addGap(45, 45, 45)
-                    .addComponent(EditBT1)
-                    .addContainerGap(664, Short.MAX_VALUE)))
         );
         EditBarLayout.setVerticalGroup(
             EditBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EditBarLayout.createSequentialGroup()
-                .addContainerGap(17, Short.MAX_VALUE)
-                .addComponent(AddBT1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(EditBarLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(EditBT, javax.swing.GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE)
                 .addContainerGap())
-            .addGroup(EditBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(EditBarLayout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(EditBT1, javax.swing.GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE)
-                    .addContainerGap()))
         );
 
         EditSideBar.setBackground(new java.awt.Color(24, 23, 23));
@@ -2143,7 +2122,7 @@ public class Main extends javax.swing.JFrame {
         }
 
         EditCategorySort.setForeground(new java.awt.Color(255, 255, 255));
-        EditCategorySort.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "All", "Action", "Adventure", "Shooter", "Strategy", "Horror", "Sports", "RPG", "Visual Novel", "Gacha", "Rythm", "Cappie Time", "Cappie Date", "Cappie Sex", "Cappie Breeding", "Cappie Impregnation", "Cappie Penetration" }));
+        EditCategorySort.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "All", "Action", "Adventure", "Shooter", "Strategy", "Horror", "Sports", "RPG", "Visual Novel", "Gacha", "Rythm" }));
         EditCategorySort.setAA_WordLinerColor(new java.awt.Color(51, 51, 51));
         EditCategorySort.setAA_lineColor(new java.awt.Color(45, 187, 63));
         EditCategorySort.setFocusable(false);
@@ -2158,12 +2137,30 @@ public class Main extends javax.swing.JFrame {
 
         EditSearchIcon1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/category.png"))); // NOI18N
 
+        AddBT1.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        AddBT1.setForeground(new java.awt.Color(102, 102, 102));
+        AddBT1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/add2.png"))); // NOI18N
+        AddBT1.setToolTipText("Add Product");
+        AddBT1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AddBT1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                AddBT1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                AddBT1MouseExited(evt);
+            }
+        });
+
         javax.swing.GroupLayout EditSideBarLayout = new javax.swing.GroupLayout(EditSideBar);
         EditSideBar.setLayout(EditSideBarLayout);
         EditSideBarLayout.setHorizontalGroup(
             EditSideBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(EditSideBarLayout.createSequentialGroup()
-                .addGap(17, 17, 17)
+                .addContainerGap()
+                .addComponent(AddBT1, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(EditSideBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(EditTableScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(EditSideBarLayout.createSequentialGroup()
@@ -2189,8 +2186,14 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(EditSideBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(EditCategorySort, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(EditSearchIcon1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(EditTableScroll, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(EditSideBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(EditSideBarLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(EditTableScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 437, Short.MAX_VALUE))
+                    .addGroup(EditSideBarLayout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addComponent(AddBT1)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -2250,6 +2253,7 @@ public class Main extends javax.swing.JFrame {
         EditDescriptionScroll.setViewportView(EditDescription);
 
         EditImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/insertimage.jpg"))); // NOI18N
+        EditImage.setToolTipText("right click to remove image");
         EditImage.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 EditImageMouseClicked(evt);
@@ -2377,7 +2381,7 @@ public class Main extends javax.swing.JFrame {
                                     .addComponent(EditCost, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(EditName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addGroup(EditLayout.createSequentialGroup()
-                                        .addComponent(EditCategory, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
+                                        .addComponent(EditCategory, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addGap(92, 92, 92))
                                     .addComponent(EditDiscount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addComponent(EditDescriptionText))
@@ -2509,13 +2513,24 @@ public class Main extends javax.swing.JFrame {
         CartItemView.setVisible(false);
     }//GEN-LAST:event_CartBackBTMouseClicked
 
-    private void EditBT1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditBT1MouseClicked
+    private void EditBTMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditBTMouseClicked
         showcase(false,true,false,false,false,false);
-    }//GEN-LAST:event_EditBT1MouseClicked
+    }//GEN-LAST:event_EditBTMouseClicked
 
     private void AddBT1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AddBT1MouseClicked
-        showcase(false,false,true,false,false,false);
-        autoIncrement();
+        //showcase(false,false,true,false,false,false);
+        //autoIncrement();
+        addProduct = new AddProduct(this);
+            addProduct.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+                EditRefreshTable(); // Call this after AddProduct is closed
+                initProds();
+               
+            }
+        });
+        addProduct.setVisible(true);
+        
     }//GEN-LAST:event_AddBT1MouseClicked
 
     private void EditBT2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditBT2MouseClicked
@@ -2532,11 +2547,13 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_EditBT2MouseExited
 
     private void AddBT1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AddBT1MouseEntered
-         AddBT1.setForeground(new java.awt.Color(153,153,153));
+        ImageIcon image = new ImageIcon("add.png");
+        AddBT1.setIcon(image);
     }//GEN-LAST:event_AddBT1MouseEntered
 
     private void AddBT1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AddBT1MouseExited
-         AddBT1.setForeground(new java.awt.Color(102,102,102));
+        ImageIcon image = new ImageIcon("add2.png");
+        AddBT1.setIcon(image);
     }//GEN-LAST:event_AddBT1MouseExited
 
     private void AddBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddBTActionPerformed
@@ -2584,7 +2601,8 @@ public class Main extends javax.swing.JFrame {
 
     private void EditDeleteBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditDeleteBTActionPerformed
         DeleteButton();
-        EditLoading();
+        
+        
     }//GEN-LAST:event_EditDeleteBTActionPerformed
 
     private void EditSaveBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditSaveBTActionPerformed
@@ -2717,7 +2735,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel AddDescriptionText;
     private SystemOtherComps.PH_TextField AddDiscount;
     private javax.swing.JLabel AddDiscountText;
-    private javax.swing.JLabel AddID;
+    public javax.swing.JLabel AddID;
     private javax.swing.JLabel AddImage;
     private SystemOtherComps.PH_TextField AddName;
     private javax.swing.JLabel AddNameText;
@@ -2753,7 +2771,7 @@ public class Main extends javax.swing.JFrame {
     public javax.swing.JLabel ChangeusernameDesc;
     private javax.swing.JLabel CostIcon;
     private javax.swing.JPanel Edit;
-    private javax.swing.JLabel EditBT1;
+    private javax.swing.JLabel EditBT;
     private javax.swing.JLabel EditBT2;
     private javax.swing.JPanel EditBar;
     public SystemShadowedComp.PH_ComboBox EditCategory;
@@ -2818,8 +2836,8 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel TotalDiscountHeading;
     private SystemOtherComps.PH_TextField TransactionNumber;
     public javax.swing.JLabel USER;
-    private javax.swing.JLabel add_imageName;
-    private javax.swing.JLabel add_imagePath;
+    public javax.swing.JLabel add_imageName;
+    public javax.swing.JLabel add_imagePath;
     private javax.swing.JPanel addimagetool;
     private javax.swing.JPanel addimagetool1;
     public SystemShadowedComp.PH_ComboBox categories;
@@ -2942,6 +2960,20 @@ public class Main extends javax.swing.JFrame {
     
     
     
+    public void CallPopUp(String title, String description){
+        Popup pop = new Popup();
+            pop.eventOK(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent ae) {
+                    GlassPanePopup.closePopupLast();
+                }
+            });
+            pop.Title.setText(title);
+            pop.Description.setText(description);
+            GlassPanePopup.showPopup(pop);
+            return;
+    }
+
     
     private JDialog createLoadingDialog() {
     JDialog loading = new JDialog(this, "Loading...", true); // modal
@@ -2951,7 +2983,7 @@ public class Main extends javax.swing.JFrame {
 
     // Get cache directory location
     String userHome = System.getProperty("user.home");
-    File cacheDir = new File(userHome + "/MyAppCache/");
+    File cacheDir = new File(userHome + "/HazeByteCache/");
     String cacheLocation = "Location: " + cacheDir.getAbsolutePath(); // Location message
 
     // Create a panel with vertical layout
@@ -3015,7 +3047,7 @@ public void initProds() {
 
         // Set up cache directory
         String userHome = System.getProperty("user.home");
-        File cacheDir = new File(userHome + "/MyAppCache/");
+        File cacheDir = new File(userHome + "/HazeByteCache/");
         if (!cacheDir.exists()) {
             cacheDir.mkdirs();
         }
@@ -3101,7 +3133,7 @@ public void initProds() {
 
         // Set up cache directory
         String userHome = System.getProperty("user.home");
-        File cacheDir = new File(userHome + "/MyAppCache/");
+        File cacheDir = new File(userHome + "/HazeByteCache/");
         if (!cacheDir.exists()) {
             cacheDir.mkdirs();
         }
@@ -3175,7 +3207,7 @@ public void initProds() {
 
         // Set up cache directory
         String userHome = System.getProperty("user.home");
-        File cacheDir = new File(userHome + "/MyAppCache/");
+        File cacheDir = new File(userHome + "/HazeByteCache/");
         if (!cacheDir.exists()) {
             cacheDir.mkdirs();
         }
@@ -3407,7 +3439,7 @@ public void initProds() {
 
                 // Cache path
                 String userHome = System.getProperty("user.home");
-                File cacheDir = new File(userHome + "/MyAppCache/");
+                File cacheDir = new File(userHome + "/HazeByteCache/");
                 if (!cacheDir.exists()) {
                     cacheDir.mkdirs();
                 }
@@ -3436,7 +3468,7 @@ public void emptyBlobFile(String id) {
 
         // Also delete the cached image file
         String userHome = System.getProperty("user.home");
-        File cacheImage = new File(userHome + "/MyAppCache/" + id + ".png");
+        File cacheImage = new File(userHome + "/HazeByteCache/" + id + ".png");
         if (cacheImage.exists()) {
             cacheImage.delete();
         }
@@ -3699,43 +3731,53 @@ public void emptyBlobFile(String id) {
 }
 
 
-   
-   
    private void DeleteButton() {
-        int selectedRow = EditTable.getSelectedRow();
+    int selectedRow = EditTable.getSelectedRow();
 
-        if (selectedRow != -1) {
-            int option = JOptionPane.showConfirmDialog(
-                null, 
-                "Are you sure you want to delete this product?", 
-                "Confirmation", 
-                JOptionPane.YES_NO_OPTION
-            );
-
-            if (option == JOptionPane.YES_OPTION) {
-                String productID = EditTable.getValueAt(selectedRow, 0).toString(); // Get the selected product ID
+    if (selectedRow != -1) {
+        ConfirmationPopup obj = new ConfirmationPopup();
+        obj.eventOK(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                String productID = EditTable.getValueAt(selectedRow, 0).toString();
 
                 String sql = "DELETE FROM `product` WHERE id = ?";
 
                 try {
+                    // Delete image cache first
+                    String userHome = System.getProperty("user.home");
+                    File cacheDir = new File(userHome + "/HazeByteCache/");
+                    File imageFile = new File(cacheDir, productID + ".png");
+
+                    if (imageFile.exists()) {
+                        imageFile.delete();
+                        System.out.println("Deleted image cache: " + imageFile.getAbsolutePath());
+                    }
+
+                    // Delete from database
                     PreparedStatement pst = con.prepareStatement(sql);
                     pst.setString(1, productID);
                     pst.executeUpdate();
 
-
-                    // Refresh table and reinitialize product data
+                    // Refresh UI
                     EditRefreshTable();
                     ClearEdit();
-                  
+                    EditLoading();
+                    initProds();
 
                 } catch (SQLException ex) {
                     JOptionPane.showMessageDialog(null, "Delete failed: " + ex.getMessage());
                 }
+
+                GlassPanePopup.closePopupLast();
             }
-        } else {
-            JOptionPane.showMessageDialog(null, "Please select a product to delete");
-        }
+        });
+
+        GlassPanePopup.showPopup(obj);
+    } else {
+        CallPopUp("No Product Selected", "Select a product to remove.");
     }
+}
    
    
    public void ClearEdit(){
@@ -3787,8 +3829,9 @@ public void emptyBlobFile(String id) {
         EditRefreshTable();
 
     } catch (Exception ex) {
-        JOptionPane.showMessageDialog(null, ex);
-    }
+    String errorMsg = ex.getMessage() != null ? ex.getMessage() : "Unknown error.";
+    CallPopUp("An Error Has Occurred", errorMsg);
+}
 }
 
    
@@ -3817,7 +3860,7 @@ public void emptyBlobFile(String id) {
 
                 // Cache directory
                 String userHome = System.getProperty("user.home");
-                File cacheDir = new File(userHome + "/MyAppCache/");
+                File cacheDir = new File(userHome + "/HazeByteCache/");
                 if (!cacheDir.exists()) {
                     cacheDir.mkdirs();
                 }
@@ -4191,7 +4234,7 @@ public void CartMath() {
 
 public void BuyCart() {
     if (CartTable.getRowCount() == 0) {
-        JOptionPane.showMessageDialog(null, "Cart is Empty");
+            CallPopUp("Cart Empty", "Please select items to purchase.");
         return;
     }
 
@@ -4199,8 +4242,8 @@ public void BuyCart() {
     String totalText = totalTXT.getText().replace(",", "").trim().replace("₱", "");
 
     if (paymentText.isEmpty() || totalText.isEmpty()) {
-        JOptionPane.showMessageDialog(null, "Please Enter Payment");
-        return;
+        CallPopUp("Payment Required","Please make a payment before proceeding with the purchase.");
+        
     }
 
     double payment = Double.parseDouble(paymentText);
@@ -4274,7 +4317,7 @@ public void BuyCart() {
             JOptionPane.showMessageDialog(null, "failed");
         }
     } else {
-        JOptionPane.showMessageDialog(null, "Payment is less than total.");
+        CallPopUp("Insufficient Payment", "Please enter a sufficient payment amount.");
     }
 }
 

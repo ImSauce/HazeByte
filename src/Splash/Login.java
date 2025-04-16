@@ -3,8 +3,6 @@ package Splash;
 
 import Classes.Run;
 import Classes.serverCredentials;
-import Frames.Main;
-import com.formdev.flatlaf.FlatIntelliJLaf;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
@@ -12,14 +10,14 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import javax.sound.sampled.Clip;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JOptionPane;
-import javax.swing.SwingUtilities;
 import Frames.Main;
+import Panel.Login_PopUps;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
+import raven.glasspanepopup.GlassPanePopup;
 
 
 
@@ -28,7 +26,7 @@ public class Login extends javax.swing.JFrame {
     
     
     
-    
+        Login_PopUps pop = new Login_PopUps();
         public String url= "localhost";
         public String user = "root";
         public String pass= "";
@@ -252,10 +250,12 @@ public class Login extends javax.swing.JFrame {
                     main.forConnection(con, url, user, pass);
                     
                 } else {
-                    JOptionPane.showMessageDialog(this, "Invalid username or password", "Login Failed", JOptionPane.ERROR_MESSAGE);
+                    CallPopUp(this,"Login Failed", "Invalid username or password");
+                    //JOptionPane.showMessageDialog(this, "Invalid username or password", "Login Failed", JOptionPane.ERROR_MESSAGE);
                 }
             } else {
-                JOptionPane.showMessageDialog(this, "User not found", "Login Failed", JOptionPane.ERROR_MESSAGE);
+                CallPopUp(this,"Login Failed", "User not found.");
+                //JOptionPane.showMessageDialog(this, "User not found", "Login Failed", JOptionPane.ERROR_MESSAGE);
             }
 
             // Close the ResultSet and PreparedStatement
@@ -276,6 +276,21 @@ public class Login extends javax.swing.JFrame {
     private SystemOtherComps.PH_TextField username;
     // End of variables declaration//GEN-END:variables
 
+            public void CallPopUp(JFrame parent, String title, String description) {
+            Login_PopUps pop = new Login_PopUps();
+            pop.eventOK(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent ae) {
+                    GlassPanePopup.closePopupLast();
+                }
+            });
+            pop.Title.setText(title);
+            pop.Description.setText(description);
+
+            // Set the GlassPane to the parent frame
+            GlassPanePopup.install(parent);
+            GlassPanePopup.showPopup(pop);
+        }
     }
 
 

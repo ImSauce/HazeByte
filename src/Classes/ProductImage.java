@@ -30,7 +30,7 @@ public class ProductImage {
         String query = "SELECT id, imageFile FROM product";
         try (PreparedStatement pst = con.prepareStatement(query); ResultSet rs = pst.executeQuery()) {
             String userHome = System.getProperty("user.home");
-            File cacheDir = new File(userHome + "/MyAppCache/");
+            File cacheDir = new File(userHome + "/HazeByteCache/");
             if (!cacheDir.exists()) {
                 cacheDir.mkdirs();
             }
@@ -69,7 +69,7 @@ public class ProductImage {
 
         try {
             String userHome = System.getProperty("user.home");
-            File cacheDir = new File(userHome + "/MyAppCache/");
+            File cacheDir = new File(userHome + "/HazeByteCache/");
             if (!cacheDir.exists()) {
                 cacheDir.mkdirs();
             }
