@@ -250,12 +250,12 @@ public class Login extends javax.swing.JFrame {
                     main.forConnection(con, url, user, pass);
                     
                 } else {
-                    CallPopUp(this,"Login Failed", "Invalid username or password");
-                    //JOptionPane.showMessageDialog(this, "Invalid username or password", "Login Failed", JOptionPane.ERROR_MESSAGE);
+                    //CallPopUp(this,"Login Failed", "Invalid username or password");
+                    JOptionPane.showMessageDialog(this, "Invalid username or password", "Login Failed", JOptionPane.ERROR_MESSAGE);
                 }
             } else {
-                CallPopUp(this,"Login Failed", "User not found.");
-                //JOptionPane.showMessageDialog(this, "User not found", "Login Failed", JOptionPane.ERROR_MESSAGE);
+               // CallPopUp(this,"Login Failed", "User not found.");
+                JOptionPane.showMessageDialog(this, "User not found", "Login Failed", JOptionPane.ERROR_MESSAGE);
             }
 
             // Close the ResultSet and PreparedStatement

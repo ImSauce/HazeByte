@@ -67,9 +67,9 @@ public class AddProduct extends javax.swing.JFrame {
         hidden.setVisible(false);
         Add.setVisible(true);
         color.UIcolor();
-        ImageIcon PasswordIcon = new ImageIcon ("lock.png");
+        ImageIcon PasswordIcon = new ImageIcon ("transparentHB.jpg");
         setIconImage(PasswordIcon.getImage());
-        setTitle("Change Password");
+        setTitle("Add Product");
         setResizable(false);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         
@@ -337,7 +337,7 @@ public class AddProduct extends javax.swing.JFrame {
         AddDiscount.setAA_DrawLine(false);
         AddDiscount.setAA_DrawRightBorder(true);
         AddDiscount.setAA_DrawTopBorder(true);
-        AddDiscount.setAA_TextHint("   Enter Discount");
+        AddDiscount.setAA_TextHint("   Enter Discount %");
         AddDiscount.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
 
         AddDiscountText.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
