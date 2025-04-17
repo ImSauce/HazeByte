@@ -23,6 +23,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.Timer;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import raven.toast.Notifications;
 
@@ -113,6 +114,8 @@ public class AddProduct extends javax.swing.JFrame {
         AddDiscount = new SystemOtherComps.PH_TextField();
         AddDiscountText = new javax.swing.JLabel();
         AddImage = new javax.swing.JLabel();
+        incrementBT = new SystemOtherComps.PH_Button();
+        decrementBT = new SystemOtherComps.PH_Button();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(650, 640));
@@ -331,9 +334,11 @@ public class AddProduct extends javax.swing.JFrame {
         AddDescription.setBorder(null);
         AddDescriptionScroll.setViewportView(AddDescription);
 
+        AddDiscount.setEditable(false);
         AddDiscount.setBackground(new java.awt.Color(24, 23, 23));
         AddDiscount.setForeground(new java.awt.Color(255, 255, 255));
-        AddDiscount.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        AddDiscount.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        AddDiscount.setText("0%");
         AddDiscount.setAAA_roundBottomLeft(20);
         AddDiscount.setAAA_roundBottomRight(20);
         AddDiscount.setAAA_roundTopLeft(20);
@@ -345,7 +350,7 @@ public class AddProduct extends javax.swing.JFrame {
         AddDiscount.setAA_DrawLine(false);
         AddDiscount.setAA_DrawRightBorder(true);
         AddDiscount.setAA_DrawTopBorder(true);
-        AddDiscount.setAA_TextHint("   Enter Discount %");
+        AddDiscount.setAA_TextHint("");
         AddDiscount.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
 
         AddDiscountText.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
@@ -355,6 +360,48 @@ public class AddProduct extends javax.swing.JFrame {
         AddImage.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 AddImageMouseClicked(evt);
+            }
+        });
+
+        incrementBT.setBackground(new java.awt.Color(38, 38, 38));
+        incrementBT.setForeground(new java.awt.Color(255, 255, 255));
+        incrementBT.setText("+");
+        incrementBT.setAA_ButtonColor(new java.awt.Color(38, 38, 38));
+        incrementBT.setAA_HoverColor(new java.awt.Color(54, 53, 53));
+        incrementBT.setAA_PressColor(new java.awt.Color(54, 53, 53));
+        incrementBT.setAA_RippleColor(new java.awt.Color(71, 70, 70));
+        incrementBT.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                incrementBTMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                incrementBTMouseReleased(evt);
+            }
+        });
+        incrementBT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                incrementBTActionPerformed(evt);
+            }
+        });
+
+        decrementBT.setBackground(new java.awt.Color(38, 38, 38));
+        decrementBT.setForeground(new java.awt.Color(255, 255, 255));
+        decrementBT.setText("-");
+        decrementBT.setAA_ButtonColor(new java.awt.Color(38, 38, 38));
+        decrementBT.setAA_HoverColor(new java.awt.Color(54, 53, 53));
+        decrementBT.setAA_PressColor(new java.awt.Color(54, 53, 53));
+        decrementBT.setAA_RippleColor(new java.awt.Color(71, 70, 70));
+        decrementBT.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                decrementBTMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                decrementBTMouseReleased(evt);
+            }
+        });
+        decrementBT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                decrementBTActionPerformed(evt);
             }
         });
 
@@ -393,7 +440,12 @@ public class AddProduct extends javax.swing.JFrame {
                                             .addComponent(AddCost, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(AddName, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(AddCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(AddDiscount, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addGroup(AddLayout.createSequentialGroup()
+                                                .addComponent(AddDiscount, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addGroup(AddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(incrementBT, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(decrementBT, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                                     .addComponent(AddDescriptionText))))
                         .addGap(0, 41, Short.MAX_VALUE))
                     .addComponent(AddBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -414,9 +466,14 @@ public class AddProduct extends javax.swing.JFrame {
                             .addComponent(AddCostText)
                             .addComponent(AddCost, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(20, 20, 20)
-                        .addGroup(AddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(AddDiscount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(AddDiscountText))
+                        .addGroup(AddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(AddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(AddDiscount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(AddDiscountText))
+                            .addGroup(AddLayout.createSequentialGroup()
+                                .addComponent(incrementBT, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(6, 6, 6)
+                                .addComponent(decrementBT, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(12, 12, 12)
                         .addGroup(AddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(AddCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -429,7 +486,7 @@ public class AddProduct extends javax.swing.JFrame {
                 .addGroup(AddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(CancelBT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(AddBT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         getContentPane().add(Add, "card2");
@@ -464,6 +521,93 @@ public class AddProduct extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_AddImageMouseClicked
 
+    
+    private Timer holdIncrementTimer;
+    private Timer holdDecrementTimer;
+    private void incrementBTMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_incrementBTMousePressed
+        if (holdIncrementTimer == null || !holdIncrementTimer.isRunning()) {
+            holdIncrementTimer = new Timer(5, e -> {
+                try {
+                    // Remove "%" before parsing
+                    String text = AddDiscount.getText().replace("%", "").trim();
+                    int value = Integer.parseInt(text);
+
+                    if (value < 100) {
+                        value++;
+                        AddDiscount.setText(value + "%");
+                    }
+
+                    if (value >= 100) {
+                        holdIncrementTimer.stop(); // Stop timer at 100
+                    }
+                } catch (NumberFormatException ex) {
+                    AddDiscount.setText("0%");
+                }
+            });
+            holdIncrementTimer.setInitialDelay(200); // Delay before auto increment starts
+            holdIncrementTimer.start();
+        }
+    }//GEN-LAST:event_incrementBTMousePressed
+
+    private void incrementBTMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_incrementBTMouseReleased
+        if (holdIncrementTimer != null && holdIncrementTimer.isRunning()) {
+            holdIncrementTimer.stop();
+        }
+    }//GEN-LAST:event_incrementBTMouseReleased
+
+    private void incrementBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_incrementBTActionPerformed
+        String text = AddDiscount.getText().replace("%", "").trim();
+        int plus = Integer.parseInt(text);
+
+        if (plus < 100) {
+            plus += 1;
+            AddDiscount.setText(plus + "%");
+        } else {
+            AddDiscount.setText("100%");
+        }
+    }//GEN-LAST:event_incrementBTActionPerformed
+
+    private void decrementBTMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_decrementBTMousePressed
+        if (holdDecrementTimer == null || !holdDecrementTimer.isRunning()) {
+            holdDecrementTimer = new Timer(5, e -> {
+                try {
+                    // Remove "%" before parsing
+                    String text = AddDiscount.getText().replace("%", "").trim();
+                    int value = Integer.parseInt(text);
+
+                    // Decrease value but not below 1
+                    if (value > 0) {
+                        value--;
+                        AddDiscount.setText(value + "%");
+                    }
+                } catch (NumberFormatException ex) {
+                    AddDiscount.setText("1%");
+                }
+            });
+            holdDecrementTimer.setInitialDelay(200); // Delay before auto decrement starts
+            holdDecrementTimer.start();
+        }
+    }//GEN-LAST:event_decrementBTMousePressed
+
+    private void decrementBTMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_decrementBTMouseReleased
+        if (holdDecrementTimer != null && holdDecrementTimer.isRunning()) {
+            holdDecrementTimer.stop();
+        }
+    }//GEN-LAST:event_decrementBTMouseReleased
+
+    private void decrementBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decrementBTActionPerformed
+        String text = AddDiscount.getText().replace("%", "").trim();
+        int plus = Integer.parseInt(text);
+        if (plus > 0) {
+
+            plus -= 1;
+            AddDiscount.setText(Integer.toString(plus)+ "%");
+
+        }else {
+            //add sound
+        }
+    }//GEN-LAST:event_decrementBTActionPerformed
+
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -488,10 +632,12 @@ public class AddProduct extends javax.swing.JFrame {
     public javax.swing.JLabel add_imageName;
     public javax.swing.JLabel add_imagePath;
     private javax.swing.JPanel addimagetool;
+    private SystemOtherComps.PH_Button decrementBT;
     private javax.swing.JPanel hidden;
     private javax.swing.JLabel iddesc;
     private javax.swing.JLabel imagenamedesk;
     private javax.swing.JLabel imagepathdesc;
+    private SystemOtherComps.PH_Button incrementBT;
     // End of variables declaration//GEN-END:variables
 
     
@@ -511,7 +657,7 @@ public class AddProduct extends javax.swing.JFrame {
                pst.setString(1, AddID.getText()); 
                pst.setString(2, AddName.getText());      
                pst.setDouble(3, Double.parseDouble(AddCost.getText()));  
-               pst.setDouble(4, Double.parseDouble(AddDiscount.getText()));  
+               pst.setDouble(4, Double.parseDouble(AddDiscount.getText().replace("%", "").trim()));  
                pst.setString(5, AddCategory.getSelectedItem().toString()); 
                pst.setString(6, AddDescription.getText());  
                pst.setString(7, "");  
@@ -558,7 +704,7 @@ public class AddProduct extends javax.swing.JFrame {
     public void ClearAdd(){
         AddName.setText("");
         AddCost.setText("");
-        AddDiscount.setText("");
+        AddDiscount.setText("0%");
         AddCategory.setSelectedItem("Action");
         AddDescription.setText("");
         

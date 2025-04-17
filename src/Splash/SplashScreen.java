@@ -116,18 +116,18 @@ int bar =1;
                     
                     
 
-                    for (int i =100;num < i; num+=1 ){
+                    for (int i =100;num < i; num+=2 ){
                        
                         doTask("Loading "+bar, num);
-                        bar++;
+                        bar += 2;
                         System.out.println(num);
                     }
                     
-                    for (int i =120;num < i; num+=1 ){
+                    for (int i =140;num < i; num+=2 ){
                        loadingAnimation.setVisible(false);
                        hareIcon.setVisible(true);
                         doTask("Done", num); 
-                        bar++;
+                        bar +=2;
                         System.out.println(num);
                     }
                     

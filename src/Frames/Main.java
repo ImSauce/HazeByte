@@ -1,5 +1,6 @@
 
 package Frames;
+import javax.swing.Timer;
 import Classes.ProductImage;
 import Classes.Functions;
 import Classes.Run;
@@ -173,6 +174,33 @@ public class Main extends javax.swing.JFrame {
         });
         
         
+        
+        
+        
+        
+        incrementBT.addMouseListener(new java.awt.event.MouseAdapter() {
+        public void mousePressed(java.awt.event.MouseEvent evt) {
+            incrementBTMousePressed(evt);
+        }
+
+        public void mouseReleased(java.awt.event.MouseEvent evt) {
+            incrementBTMouseReleased(evt);
+        }
+    });
+
+            decrementBT.addMouseListener(new java.awt.event.MouseAdapter() {
+        @Override
+        public void mousePressed(java.awt.event.MouseEvent evt) {
+            decrementBTMousePressed(evt);
+        }
+
+        @Override
+        public void mouseReleased(java.awt.event.MouseEvent evt) {
+            decrementBTMouseReleased(evt);
+        }
+    });
+
+        
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -343,6 +371,8 @@ public class Main extends javax.swing.JFrame {
         EditCategory = new SystemShadowedComp.PH_ComboBox();
         saveloading = new Splash.LoadingAnimation();
         saving = new javax.swing.JLabel();
+        decrementBT = new SystemOtherComps.PH_Button();
+        incrementBT = new SystemOtherComps.PH_Button();
 
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
@@ -605,7 +635,7 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(AboutBackBT)
                 .addGap(18, 18, 18)
                 .addComponent(SettingsText1, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(583, Short.MAX_VALUE))
+                .addContainerGap(675, Short.MAX_VALUE))
         );
         SettingsBar1Layout.setVerticalGroup(
             SettingsBar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -636,7 +666,7 @@ public class Main extends javax.swing.JFrame {
             .addGroup(AboutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(AboutLayout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(AboutScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 897, Short.MAX_VALUE)
+                    .addComponent(AboutScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 989, Short.MAX_VALUE)
                     .addContainerGap()))
         );
         AboutLayout.setVerticalGroup(
@@ -831,7 +861,7 @@ public class Main extends javax.swing.JFrame {
                     .addGroup(HiddenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(addimagetool1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(596, Short.MAX_VALUE))
+                .addContainerGap(691, Short.MAX_VALUE))
         );
         HiddenLayout.setVerticalGroup(
             HiddenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1094,7 +1124,7 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(ChangeUsernamePNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(ChangeusernameDesc)
                     .addComponent(ChangeUsernameHeading))
-                .addContainerGap(466, Short.MAX_VALUE))
+                .addContainerGap(736, Short.MAX_VALUE))
         );
         ChangeUsernamePNLayout.setVerticalGroup(
             ChangeUsernamePNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1151,7 +1181,7 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(ChangePassPNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(ChangepassDesc1)
                     .addComponent(ChangePassHeading1))
-                .addContainerGap(420, Short.MAX_VALUE))
+                .addContainerGap(690, Short.MAX_VALUE))
         );
         ChangePassPNLayout.setVerticalGroup(
             ChangePassPNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1230,9 +1260,9 @@ public class Main extends javax.swing.JFrame {
             .addGroup(SettingsLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(SettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ChangeUsernamePN, javax.swing.GroupLayout.DEFAULT_SIZE, 719, Short.MAX_VALUE)
-                    .addComponent(ChangePassPN, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 719, Short.MAX_VALUE)
-                    .addComponent(AboutPN, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 719, Short.MAX_VALUE))
+                    .addComponent(ChangeUsernamePN, javax.swing.GroupLayout.DEFAULT_SIZE, 989, Short.MAX_VALUE)
+                    .addComponent(ChangePassPN, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 989, Short.MAX_VALUE)
+                    .addComponent(AboutPN, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 989, Short.MAX_VALUE))
                 .addContainerGap())
         );
         SettingsLayout.setVerticalGroup(
@@ -1651,7 +1681,7 @@ public class Main extends javax.swing.JFrame {
                         .addGap(20, 20, 20))
                     .addGroup(CartLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(CartTableScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 474, Short.MAX_VALUE)
+                        .addComponent(CartTableScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 692, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CartLayout.createSequentialGroup()
                         .addContainerGap()
@@ -1809,7 +1839,7 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Games_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 290, Short.MAX_VALUE)
                 .addComponent(HomeCategoryIconTXT)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(categories, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -2299,7 +2329,7 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(EditSideBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(EditSideBarLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(EditTableScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 437, Short.MAX_VALUE))
+                        .addComponent(EditTableScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 523, Short.MAX_VALUE))
                     .addGroup(EditSideBarLayout.createSequentialGroup()
                         .addGap(17, 17, 17)
                         .addComponent(AddBT1)
@@ -2410,9 +2440,10 @@ public class Main extends javax.swing.JFrame {
         EditCostText.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         EditCostText.setText("Cost:");
 
+        EditDiscount.setEditable(false);
         EditDiscount.setBackground(new java.awt.Color(24, 23, 23));
         EditDiscount.setForeground(new java.awt.Color(255, 255, 255));
-        EditDiscount.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        EditDiscount.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         EditDiscount.setAAA_roundBottomLeft(20);
         EditDiscount.setAAA_roundBottomRight(20);
         EditDiscount.setAAA_roundTopLeft(20);
@@ -2424,7 +2455,7 @@ public class Main extends javax.swing.JFrame {
         EditDiscount.setAA_DrawLine(false);
         EditDiscount.setAA_DrawRightBorder(true);
         EditDiscount.setAA_DrawTopBorder(true);
-        EditDiscount.setAA_TextHint("   Enter Discount %");
+        EditDiscount.setAA_TextHint("");
         EditDiscount.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
 
         EditDiscountText.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
@@ -2455,6 +2486,48 @@ public class Main extends javax.swing.JFrame {
 
         saving.setText("saving...");
 
+        decrementBT.setBackground(new java.awt.Color(38, 38, 38));
+        decrementBT.setForeground(new java.awt.Color(255, 255, 255));
+        decrementBT.setText("-");
+        decrementBT.setAA_ButtonColor(new java.awt.Color(38, 38, 38));
+        decrementBT.setAA_HoverColor(new java.awt.Color(54, 53, 53));
+        decrementBT.setAA_PressColor(new java.awt.Color(54, 53, 53));
+        decrementBT.setAA_RippleColor(new java.awt.Color(71, 70, 70));
+        decrementBT.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                decrementBTMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                decrementBTMouseReleased(evt);
+            }
+        });
+        decrementBT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                decrementBTActionPerformed(evt);
+            }
+        });
+
+        incrementBT.setBackground(new java.awt.Color(38, 38, 38));
+        incrementBT.setForeground(new java.awt.Color(255, 255, 255));
+        incrementBT.setText("+");
+        incrementBT.setAA_ButtonColor(new java.awt.Color(38, 38, 38));
+        incrementBT.setAA_HoverColor(new java.awt.Color(54, 53, 53));
+        incrementBT.setAA_PressColor(new java.awt.Color(54, 53, 53));
+        incrementBT.setAA_RippleColor(new java.awt.Color(71, 70, 70));
+        incrementBT.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                incrementBTMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                incrementBTMouseReleased(evt);
+            }
+        });
+        incrementBT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                incrementBTActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout EditLayout = new javax.swing.GroupLayout(Edit);
         Edit.setLayout(EditLayout);
         EditLayout.setHorizontalGroup(
@@ -2472,29 +2545,35 @@ public class Main extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(EditSaveBT, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(EditLayout.createSequentialGroup()
+                        .addComponent(EditImage, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12)
                         .addGroup(EditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(EditLayout.createSequentialGroup()
-                                .addComponent(EditImage, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(12, 12, 12)
+                                .addGap(13, 13, 13)
+                                .addGroup(EditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(EditNameText)
+                                    .addComponent(EditCostText)))
+                            .addComponent(EditCategoryText)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EditLayout.createSequentialGroup()
+                                .addGap(2, 2, 2)
+                                .addComponent(EditDiscountText)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(EditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(EditLayout.createSequentialGroup()
+                                .addComponent(EditDiscount, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(EditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(EditLayout.createSequentialGroup()
-                                        .addGap(13, 13, 13)
-                                        .addGroup(EditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(EditNameText)
-                                            .addComponent(EditCostText)))
-                                    .addComponent(EditCategoryText)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EditLayout.createSequentialGroup()
-                                        .addGap(2, 2, 2)
-                                        .addComponent(EditDiscountText)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(EditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(EditCost, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(EditName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGroup(EditLayout.createSequentialGroup()
-                                        .addComponent(EditCategory, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGap(92, 92, 92))
-                                    .addComponent(EditDiscount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addComponent(EditDescriptionText))
+                                    .addComponent(incrementBT, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(decrementBT, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EditLayout.createSequentialGroup()
+                                .addGroup(EditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(EditName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(EditCost, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(EditCategory, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(102, 102, 102))))
+                    .addGroup(EditLayout.createSequentialGroup()
+                        .addComponent(EditDescriptionText)
                         .addGap(10, 10, 10))
                     .addComponent(EditDescriptionScroll, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(59, 59, 59)
@@ -2518,18 +2597,24 @@ public class Main extends javax.swing.JFrame {
                                     .addComponent(EditCostText)
                                     .addComponent(EditCost, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(20, 20, 20)
-                                .addGroup(EditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(EditDiscount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(EditDiscountText))
-                                .addGap(12, 12, 12)
-                                .addGroup(EditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(EditCategory, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(EditCategoryText))
-                                .addGap(8, 8, 8)))
-                        .addGap(12, 12, 12)
+                                .addGroup(EditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(EditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(EditDiscount, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                                        .addComponent(EditDiscountText, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(EditLayout.createSequentialGroup()
+                                        .addComponent(incrementBT, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(6, 6, 6)
+                                        .addComponent(decrementBT, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(EditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(EditCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(EditLayout.createSequentialGroup()
+                                        .addGap(15, 15, 15)
+                                        .addComponent(EditCategoryText, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(EditDescriptionText, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(EditDescriptionScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE)
+                        .addComponent(EditDescriptionScroll)
                         .addGap(18, 18, 18)
                         .addGroup(EditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(EditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -2843,6 +2928,96 @@ public class Main extends javax.swing.JFrame {
         ImageIcon image = new ImageIcon("back.png");
         AboutBackBT.setIcon(image);
     }//GEN-LAST:event_AboutBackBTMouseExited
+
+    
+    
+    private Timer holdIncrementTimer;
+    private Timer holdDecrementTimer;
+    private void incrementBTMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_incrementBTMousePressed
+       if (holdIncrementTimer == null || !holdIncrementTimer.isRunning()) {
+        holdIncrementTimer = new Timer(5, e -> {
+            try {
+                // Remove "%" before parsing
+                String text = EditDiscount.getText().replace("%", "").trim();
+                int value = Integer.parseInt(text);
+
+                if (value < 100) {
+                    value++;
+                    EditDiscount.setText(value + "%");
+                }
+
+                if (value >= 100) {
+                    holdIncrementTimer.stop(); // Stop timer at 100
+                }
+            } catch (NumberFormatException ex) {
+                EditDiscount.setText("0%");
+            }
+        });
+        holdIncrementTimer.setInitialDelay(200); // Delay before auto increment starts
+        holdIncrementTimer.start();
+    }
+    }//GEN-LAST:event_incrementBTMousePressed
+
+    private void incrementBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_incrementBTActionPerformed
+        String text = EditDiscount.getText().replace("%", "").trim();
+        int plus = Integer.parseInt(text);
+
+        if (plus < 100) {
+            plus += 1;
+            EditDiscount.setText(plus + "%");
+        } else {
+            EditDiscount.setText("100%");
+        }
+
+    }//GEN-LAST:event_incrementBTActionPerformed
+
+    private void decrementBTMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_decrementBTMousePressed
+        if (holdDecrementTimer == null || !holdDecrementTimer.isRunning()) {
+        holdDecrementTimer = new Timer(5, e -> {
+            try {
+                // Remove "%" before parsing
+                String text = EditDiscount.getText().replace("%", "").trim();
+                int value = Integer.parseInt(text);
+
+                // Decrease value but not below 1
+                if (value > 0) {
+                    value--;
+                    EditDiscount.setText(value + "%");
+                }
+            } catch (NumberFormatException ex) {
+                EditDiscount.setText("1%");
+            }
+        });
+        holdDecrementTimer.setInitialDelay(200); // Delay before auto decrement starts
+        holdDecrementTimer.start();
+    }
+
+    }//GEN-LAST:event_decrementBTMousePressed
+
+    private void decrementBTMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_decrementBTMouseReleased
+        if (holdDecrementTimer != null && holdDecrementTimer.isRunning()) {
+            holdDecrementTimer.stop();
+        }
+    }//GEN-LAST:event_decrementBTMouseReleased
+
+    private void decrementBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decrementBTActionPerformed
+        String text = EditDiscount.getText().replace("%", "").trim();
+        int plus = Integer.parseInt(text);
+        if (plus > 0) {
+
+            plus -= 1;
+            EditDiscount.setText(Integer.toString(plus)+ "%");
+
+        }else {
+            //add sound
+        }
+    }//GEN-LAST:event_decrementBTActionPerformed
+
+    private void incrementBTMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_incrementBTMouseReleased
+        if (holdIncrementTimer != null && holdIncrementTimer.isRunning()) {
+        holdIncrementTimer.stop();
+    }
+    }//GEN-LAST:event_incrementBTMouseReleased
   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -2978,6 +3153,7 @@ public class Main extends javax.swing.JFrame {
     public SystemShadowedComp.PH_ComboBox categories;
     private SystemOtherComps.PH_TextField changeTXT;
     private Panel.ClarkPanel clarkPanel1;
+    private SystemOtherComps.PH_Button decrementBT;
     private javax.swing.JLabel discountTXT;
     private javax.swing.JLabel edit_imageName;
     private javax.swing.JLabel edit_imagePath;
@@ -2988,6 +3164,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel imagenamedesk1;
     private javax.swing.JLabel imagepathdesc;
     private javax.swing.JLabel imagepathdesc1;
+    private SystemOtherComps.PH_Button incrementBT;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -3209,22 +3386,20 @@ public void initProds() {
         while (resultSet.next()) {
             int prdID = resultSet.getInt("id");
             String prdName = resultSet.getString("name");
-            int prdPrice = resultSet.getInt("cost");
+            double prdPrice = resultSet.getDouble("cost"); 
             String prdCategory = resultSet.getString("category");
             double prdDiscount = resultSet.getDouble("discount");
 
             Items shopPanel = new Items(this);
-            shopPanel.setDetails(prdID, prdName, prdPrice, prdCategory, prdDiscount);
+            shopPanel.setDetails(prdID, prdName, prdPrice, prdCategory, prdDiscount); // Make sure setDetails accepts double
 
             // --- Caching Logic ---
             File imageFile = new File(cacheDir, prdID + ".png");
             ImageIcon imageIcon = null;
 
             if (imageFile.exists()) {
-                // Load image from cache
                 imageIcon = new ImageIcon(imageFile.getAbsolutePath());
             } else {
-                // Load from DB, write to cache
                 byte[] imageData = resultSet.getBytes("imageFile");
                 if (imageData != null) {
                     BufferedImage buffered = ImageIO.read(new ByteArrayInputStream(imageData));
@@ -3233,10 +3408,7 @@ public void initProds() {
                         BufferedImage resizedBuffered = new BufferedImage(218, 218, BufferedImage.TYPE_INT_ARGB);
                         resizedBuffered.getGraphics().drawImage(scaledImg, 0, 0, null);
 
-                        // Save resized image
                         ImageIO.write(resizedBuffered, "png", imageFile);
-
-                        // Use resized image for the UI
                         imageIcon = new ImageIcon(resizedBuffered);
                     }
                 }
@@ -3249,6 +3421,7 @@ public void initProds() {
             GameList.add(shopPanel);
             ITEMPANELS.add(shopPanel);
         }
+
 
         GameList.revalidate();
         GameList.repaint();
@@ -3859,12 +4032,13 @@ public void emptyBlobFile(String id) {
                 // Populate your fields
                 EditID.setText(rs.getString("id"));
                 EditName.setText(rs.getString("name"));
-                EditCost.setText(rs.getString("cost"));
-
+                double costValue = rs.getDouble("cost");
+                DecimalFormat costFormat = new DecimalFormat("0.00"); // Use "0" if you want integers only
+                EditCost.setText(costFormat.format(costValue));
                 // Get discount, remove decimals, and set it
                 double discountValue = rs.getDouble("discount");  // Get the discount as a double
                 int discountWithoutDecimal = (int) discountValue;  // Remove decimals by casting to int
-                EditDiscount.setText(String.valueOf(discountWithoutDecimal));  // Set the discount without decimals
+                EditDiscount.setText(String.valueOf(discountWithoutDecimal) + "%");  // Set the discount without decimals
 
                 EditCategory.setSelectedItem(rs.getString("category"));
                 EditDescription.setText(rs.getString("description"));
@@ -3968,7 +4142,7 @@ public void emptyBlobFile(String id) {
             // Get current form values
             String formName = EditName.getText();
             String formCost = EditCost.getText();
-            String formDiscount = EditDiscount.getText();
+            String formDiscount = EditDiscount.getText().replace("%", "").trim();
             String formCategory = EditCategory.getSelectedItem().toString();
             String formDescription = EditDescription.getText();
             String formImageName = edit_imageName.getText();
@@ -3978,7 +4152,7 @@ public void emptyBlobFile(String id) {
             boolean noChange = 
                 formName.equals(dbName) &&
                 formCost.equals(dbCost) &&
-                formDiscount.equals(dbDiscount) &&
+                formDiscount.equals(dbDiscount + "%") &&
                 formCategory.equals(dbCategory) &&
                 formDescription.equals(dbDescription) &&
                 formImageName.equals(dbImageName) &&
@@ -4008,7 +4182,7 @@ public void emptyBlobFile(String id) {
 
         updateStmt.setString(1, EditName.getText());
         updateStmt.setString(2, EditCost.getText());
-        updateStmt.setString(3, EditDiscount.getText());
+        updateStmt.setString(3, EditDiscount.getText().replace("%", "").trim());
         updateStmt.setString(4, EditCategory.getSelectedItem().toString());
         updateStmt.setString(5, EditDescription.getText());
         updateStmt.setString(6, edit_imageName.getText());
