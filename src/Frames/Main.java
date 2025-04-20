@@ -1019,16 +1019,7 @@ public class Main extends javax.swing.JFrame {
         HistoryTable.setSelectionBackground(new java.awt.Color(51, 51, 51));
         HistoryTableScroll.setViewportView(HistoryTable);
         if (HistoryTable.getColumnModel().getColumnCount() > 0) {
-            HistoryTable.getColumnModel().getColumn(0).setResizable(false);
-            HistoryTable.getColumnModel().getColumn(1).setResizable(false);
-            HistoryTable.getColumnModel().getColumn(2).setResizable(false);
-            HistoryTable.getColumnModel().getColumn(3).setResizable(false);
-            HistoryTable.getColumnModel().getColumn(4).setResizable(false);
-            HistoryTable.getColumnModel().getColumn(5).setResizable(false);
-            HistoryTable.getColumnModel().getColumn(6).setResizable(false);
-            HistoryTable.getColumnModel().getColumn(7).setResizable(false);
             HistoryTable.getColumnModel().getColumn(7).setPreferredWidth(0);
-            HistoryTable.getColumnModel().getColumn(8).setResizable(false);
             HistoryTable.getColumnModel().getColumn(8).setPreferredWidth(0);
             HistoryTable.getColumnModel().getColumn(9).setMinWidth(0);
             HistoryTable.getColumnModel().getColumn(9).setPreferredWidth(0);
@@ -1039,7 +1030,6 @@ public class Main extends javax.swing.JFrame {
             HistoryTable.getColumnModel().getColumn(11).setMinWidth(0);
             HistoryTable.getColumnModel().getColumn(11).setPreferredWidth(0);
             HistoryTable.getColumnModel().getColumn(11).setMaxWidth(0);
-            HistoryTable.getColumnModel().getColumn(12).setResizable(false);
         }
 
         javax.swing.GroupLayout HistoryLayout = new javax.swing.GroupLayout(History);
@@ -1689,7 +1679,7 @@ public class Main extends javax.swing.JFrame {
                         .addGap(20, 20, 20))
                     .addGroup(CartLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(CartTableScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 692, Short.MAX_VALUE)
+                        .addComponent(CartTableScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 474, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CartLayout.createSequentialGroup()
                         .addContainerGap()
