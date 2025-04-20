@@ -445,8 +445,8 @@ public class Items extends javax.swing.JPanel {
         }
 
         // Insert into cart
-        String query = "INSERT INTO `cart`(`name`, `cost`, `discount`, `category`, `description`, `subtotal`, `total`, `quantity`, `Date`, `Time`, `productID`, `imageName`, `imagePath`, `imageFile`)" +
-                       "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO `cart`(`name`, `cost`, `discount`, `category`, `description`, `subtotal`, `total`, `quantity`, `Date`, `Time`, `productID`, `imageName`, `imagePath`, `imageFile`, `receipt`)" +
+                       "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection con = DriverManager.getConnection("jdbc:mysql://"+sv.getServerIP()+"/hazebyte", sv.getUserID(), sv.getPass());
              PreparedStatement pst = con.prepareStatement(query)) {
@@ -465,6 +465,7 @@ public class Items extends javax.swing.JPanel {
             pst.setString(12, imageName);
             pst.setString(13, imagePath);
             pst.setBytes(14, imageFile);
+            pst.setString(15, "");
 
             pst.executeUpdate();
         }

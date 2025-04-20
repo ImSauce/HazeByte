@@ -4,7 +4,12 @@ package Frames;
 
 import Classes.UIcolors;
 import Classes.serverCredentials;
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.MultiFormatWriter;
+import com.google.zxing.client.j2se.MatrixToImageWriter;
+import com.google.zxing.common.BitMatrix;
 import java.awt.Color;
+import java.awt.image.BufferedImage;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -154,6 +159,7 @@ PreparedStatement pst;
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
+        qrcode = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(457, 576));
@@ -370,6 +376,9 @@ PreparedStatement pst;
         jLabel19.setForeground(new java.awt.Color(0, 0, 0));
         jLabel19.setText("Category");
 
+        qrcode.setForeground(new java.awt.Color(0, 0, 0));
+        qrcode.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -385,7 +394,7 @@ PreparedStatement pst;
                                 .addComponent(jLabel5)
                                 .addGap(49, 49, 49)
                                 .addComponent(jLabel19)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(44, 44, 44)
                                 .addComponent(jLabel7))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel4)
@@ -394,6 +403,7 @@ PreparedStatement pst;
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(r_date, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(40, 40, 40)
@@ -415,10 +425,10 @@ PreparedStatement pst;
                                 .addGap(20, 20, 20))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 687, Short.MAX_VALUE)
+                            .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 687, Short.MAX_VALUE)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 687, Short.MAX_VALUE))
+                            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 686, Short.MAX_VALUE)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 686, Short.MAX_VALUE))
                         .addContainerGap())))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -451,6 +461,10 @@ PreparedStatement pst;
                                     .addComponent(r_change))))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(252, 252, 252)
+                .addComponent(qrcode, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 256, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -504,7 +518,9 @@ PreparedStatement pst;
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(r_change)
                     .addComponent(jLabel16))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 94, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(qrcode, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ip)
                     .addComponent(user)
@@ -567,6 +583,7 @@ PreparedStatement pst;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel pass;
+    public javax.swing.JLabel qrcode;
     public javax.swing.JLabel r_change;
     public javax.swing.JLabel r_date;
     public javax.swing.JLabel r_number;
@@ -588,7 +605,7 @@ private void format_JTable() {
     DefaultTableCellRenderer Center = new DefaultTableCellRenderer();
     Center.setHorizontalAlignment(JLabel.CENTER);
     
-    for (int i=0; i< 4;i++){
+    for (int i=0; i< 6;i++){
     
     receiptTable.getColumnModel().getColumn(i).setCellRenderer(Center);
     }
@@ -607,9 +624,10 @@ private void format_JTable() {
 
 
 
-public void receiptInfo(){
-    String sql = "SELECT * FROM cart ORDER BY `id` DESC";
 
+public void receiptInfo() {
+    String sql = "SELECT * FROM cart ORDER BY `id` DESC";
+    
     try {
         DefaultTableModel model = (DefaultTableModel) receiptTable.getModel();
         model.setRowCount(0);
@@ -617,19 +635,19 @@ public void receiptInfo(){
         PreparedStatement pst = con.prepareStatement(sql);
         ResultSet rs = pst.executeQuery();
 
-        // Formatter for numbers with commas and 2 decimal places
         DecimalFormat df = new DecimalFormat("#,##0.00");
 
+        
+
         while (rs.next()) {
-            // Discount (remove decimals)
+           
+
             double discountValue = Double.parseDouble(rs.getString(4));
             int discountWithoutDecimal = (int) discountValue;
 
-            // Format quantity as integer with commas
             int quantity = Integer.parseInt(rs.getString(9));
             String formattedQuantity = String.format("%,d", quantity);
 
-            // Format cost, subtotal, total with commas and 2 decimal places
             double cost = Double.parseDouble(rs.getString(3).replace(",", ""));
             double subtotal = Double.parseDouble(rs.getString(7).replace(",", ""));
             double total = Double.parseDouble(rs.getString(8).replace(",", ""));
@@ -639,26 +657,28 @@ public void receiptInfo(){
             String formattedTotal = df.format(total);
 
             model.addRow(new Object[] {
-                rs.getString(2),          // name
+                rs.getString(2),          
                 rs.getString(5),
-                formattedQuantity,        // quantity
-                formattedCost,            // cost with commas
-                discountWithoutDecimal + "%", // discount
-                formattedSubtotal,        // subtotal with commas
-                formattedTotal,           // total with commas
-                rs.getString(10),         // date
-                rs.getString(11),         // time
-                rs.getString(1),          // id
-                rs.getString(12),         // prodID
-                rs.getString(6),          // another prodID?
+                formattedQuantity,        
+                formattedCost,            
+                discountWithoutDecimal + "%", 
+                formattedSubtotal,        
+                formattedTotal,           
+                rs.getString(10),         
+                rs.getString(11),         
+                rs.getString(1),          
+                rs.getString(12),         
+                rs.getString(6),          
             });
         }
 
+        // 🔳 Generate QR code from receipt number
+        
+        
+        
     } catch (Exception ex) {
         JOptionPane.showMessageDialog(null, ex);
     }
-
-
 }
 
 

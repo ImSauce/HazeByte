@@ -10,6 +10,11 @@ import Panel.Items;
 import Panel.Popup;
 import Splash.LoadingAnimation;
 import Splash.Login;
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.MultiFormatWriter;
+import com.google.zxing.client.j2se.MatrixToImageWriter;
+import com.google.zxing.common.BitMatrix;
+import com.google.zxing.qrcode.QRCodeWriter;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -33,6 +38,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -988,14 +995,14 @@ public class Main extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Product", "Category", "Quantity", "Cost", "Discount", "Subtotal", "Total", "Date", "Time", "ID", "ProductID", "Description"
+                "Product", "Category", "Quantity", "Cost", "Discount", "Subtotal", "Total", "Date", "Time", "ID", "ProductID", "Description", "Receipt No."
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -1032,6 +1039,7 @@ public class Main extends javax.swing.JFrame {
             HistoryTable.getColumnModel().getColumn(11).setMinWidth(0);
             HistoryTable.getColumnModel().getColumn(11).setPreferredWidth(0);
             HistoryTable.getColumnModel().getColumn(11).setMaxWidth(0);
+            HistoryTable.getColumnModel().getColumn(12).setResizable(false);
         }
 
         javax.swing.GroupLayout HistoryLayout = new javax.swing.GroupLayout(History);
@@ -4342,7 +4350,7 @@ public void emptyBlobFile(String id) {
     
     
     
-private void ClearCart() {
+public void ClearCart() {
     String sql = "DELETE FROM `cart`";
     
     try {
@@ -4606,7 +4614,31 @@ public void CartMath() {
 
 
 
+public ImageIcon generateQRCode(String data, int width, int height) {
+    try {
+        QRCodeWriter qrCodeWriter = new QRCodeWriter();
+        BitMatrix bitMatrix = qrCodeWriter.encode(data, BarcodeFormat.QR_CODE, width, height);
+
+        BufferedImage qrImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+        for (int x = 0; x < width; x++) {
+            for (int y = 0; y < height; y++) {
+                qrImage.setRGB(x, y, bitMatrix.get(x, y) ? Color.BLACK.getRGB() : Color.WHITE.getRGB());
+            }
+        }
+
+        return new ImageIcon(qrImage);
+    } catch (Exception e) {
+        e.printStackTrace();
+        return null;
+    }
+}
+
 public void BuyCart() {
+    LocalDateTime now = LocalDateTime.now();
+    String formattedDate = getFormattedDate();
+    String formattedTime = now.format(DateTimeFormatter.ofPattern("HH:mm:ss"));
+        
+        
     if (CartTable.getRowCount() == 0) {
             CallPopUp("Cart Empty", "Please select items to purchase.");
         return;
@@ -4625,9 +4657,15 @@ public void BuyCart() {
 
     if (payment >= total) {
         try {
-            // 1. Insert all cart records into history
-            String sql = "INSERT INTO history SELECT * FROM cart";
+            // 1. Insert all cart records into 
+            String receiptnum="";
+            receiptnum = generate8DigitString();
+            String sql = "INSERT INTO history (id, name, cost, discount, category, description, subtotal, total, quantity, Date, Time, productID, imageName, imagePath, imageFile, receipt) " +
+                         "SELECT id, name, cost, discount, category, description, subtotal, total, quantity, ?, ?, productID, imageName, imagePath, imageFile, ? FROM cart";
             PreparedStatement pst = con.prepareStatement(sql);
+            pst.setString(1, formattedDate);
+            pst.setString(2, formattedTime);
+            pst.setString(3, receiptnum);
             pst.executeUpdate();
 
             // 2. Show receipt window
@@ -4670,15 +4708,24 @@ public void BuyCart() {
             }
             
             
-            String date = getFormattedDate();
-            String receiptnum = generate8DigitString();
-            receipt.r_date.setText(date);
+            String info = 
+                    "Receipt number: " + receiptnum +"\n"
+                   +"Date: " + formattedDate +"\n"
+                   +"Time: " + formattedTime +"\n\n"
+                   +"Discount: " + receipt.r_tax.getText().replace("-", "") + "\n"
+                   +"Subtotal: " + receipt.r_subtotal.getText().replace("-", "")  +"\n"
+                   +"Total: " + receipt.r_total.getText().replace("-", "")  +"\n\n"
+                   +"Payment: " + receipt.r_payment.getText().replace("-", "")  +"\n"
+                   +"Change: " + receipt.r_change.getText().replace("-", "")  +"\n";
+            
+            receipt.r_date.setText(formattedDate);
             receipt.r_number.setText(receiptnum);
-
+            ImageIcon qrIcon = generateQRCode(info, 190, 190); // 150x150 is a good size
+            receipt.qrcode.setIcon(qrIcon);
+            
+            
             // 4. Clear cart
-            String clearCart = "DELETE FROM cart";
-            PreparedStatement pstClear = con.prepareStatement(clearCart);
-            pstClear.executeUpdate();
+            
 
             paymentTXT.setText("");
             totalTXT.setText("₱0.00");
@@ -4694,6 +4741,8 @@ public void BuyCart() {
         CallPopUp("Insufficient Payment", "Please enter a sufficient payment amount.");
     }
 }
+
+
 
 
 public static String getFormattedDate() {
@@ -4787,7 +4836,8 @@ public static String getFormattedDate() {
                 rs.getString(11),         // time
                 rs.getString(1),          // id
                 rs.getString(12),         // prodID
-                rs.getString(6),          // another prodID?
+                rs.getString(6),          // desc
+                rs.getString(16),       // receipt
             });
         }
         
@@ -4816,7 +4866,7 @@ public static String getFormattedDate() {
         sql = "SELECT * FROM History ORDER BY `Date` DESC, `Time` DESC";
     } else {
         // Updated query that excludes `id`, `productID`, `description`, `imageName`, `imagePath`, and `imageFile`
-        sql = "SELECT * FROM History WHERE `name` LIKE ? OR `cost` LIKE ? OR `discount` LIKE ? OR `category` LIKE ? OR `subtotal` LIKE ? OR `total` LIKE ? OR `quantity` LIKE ? OR `Date` LIKE ? OR `Time` LIKE ? ORDER BY `Date` DESC, `Time` DESC";
+        sql = "SELECT * FROM History WHERE `name` LIKE ? OR `cost` LIKE ? OR `discount` LIKE ? OR `category` LIKE ? OR `subtotal` LIKE ? OR `total` LIKE ? OR `quantity` LIKE ? OR `Date` LIKE ? OR `Time` LIKE ?OR `receipt` LIKE ? ORDER BY `Date` DESC, `Time` DESC";
     }
 
     try {
@@ -4838,6 +4888,7 @@ public static String getFormattedDate() {
             pst.setString(7, likeSearch);  // quantity
             pst.setString(8, likeSearch);  // Date
             pst.setString(9, likeSearch);  // Time
+            pst.setString(10, likeSearch);  // receipt
         }
 
         ResultSet rs = pst.executeQuery();
@@ -4873,6 +4924,8 @@ public static String getFormattedDate() {
                 rs.getString(11),         // time
                 rs.getString(1),          // id (we are not displaying id)
                 rs.getString(12),         // productID
+                rs.getString(6),
+                rs.getString(16),
             });
         
         
@@ -4940,7 +4993,9 @@ public static String getFormattedDate() {
                 rs.getString(10),         // date
                 rs.getString(11),         // time
                 rs.getString(1),          // id (hidden)
-                rs.getString(12)          // productID (hidden)
+                rs.getString(12),          // productID (hidden)
+                rs.getString(6),
+                rs.getString(16),    
             });
         }
 
