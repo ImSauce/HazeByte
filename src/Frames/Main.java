@@ -72,7 +72,7 @@ public class Main extends javax.swing.JFrame {
     private ChangePassword ChangePass;
     public AddProduct addProduct;
     private ChangeUsername ChangeUser;
-    
+    public HistoryPreview preview;
     
     
     
@@ -1017,6 +1017,11 @@ public class Main extends javax.swing.JFrame {
         HistoryTable.setGridColor(new java.awt.Color(24, 23, 23));
         HistoryTable.setRowHeight(40);
         HistoryTable.setSelectionBackground(new java.awt.Color(51, 51, 51));
+        HistoryTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                HistoryTableMouseClicked(evt);
+            }
+        });
         HistoryTableScroll.setViewportView(HistoryTable);
         if (HistoryTable.getColumnModel().getColumnCount() > 0) {
             HistoryTable.getColumnModel().getColumn(7).setPreferredWidth(0);
@@ -3016,6 +3021,12 @@ public class Main extends javax.swing.JFrame {
         holdIncrementTimer.stop();
     }
     }//GEN-LAST:event_incrementBTMouseReleased
+
+    private void HistoryTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HistoryTableMouseClicked
+         if (evt.getButton() == java.awt.event.MouseEvent.BUTTON3) { // Right-click
+        SelectHistoryItem();
+    }
+    }//GEN-LAST:event_HistoryTableMouseClicked
   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -4650,12 +4661,14 @@ public void BuyCart() {
             // 1. Insert all cart records into 
             String receiptnum="";
             receiptnum = generate8DigitString();
-            String sql = "INSERT INTO history (id, name, cost, discount, category, description, subtotal, total, quantity, Date, Time, productID, imageName, imagePath, imageFile, receipt) " +
-                         "SELECT id, name, cost, discount, category, description, subtotal, total, quantity, ?, ?, productID, imageName, imagePath, imageFile, ? FROM cart";
+            String sql = "INSERT INTO history (id, name, cost, discount, category, description, subtotal, total, quantity, Date, Time, productID, imageName, imagePath, imageFile, receipt, status, reason) " +
+                         "SELECT id, name, cost, discount, category, description, subtotal, total, quantity, ?, ?, productID, imageName, imagePath, imageFile, ?,?,? FROM cart";
             PreparedStatement pst = con.prepareStatement(sql);
             pst.setString(1, formattedDate);
             pst.setString(2, formattedTime);
             pst.setString(3, receiptnum);
+            pst.setString(4, "Sold");
+            pst.setString(5, "");
             pst.executeUpdate();
 
             // 2. Show receipt window
@@ -4699,14 +4712,17 @@ public void BuyCart() {
             
             
             String info = 
-                    "Receipt number: " + receiptnum +"\n"
+                    "[ HAZEBYTE ]\n"
+                   +"Receipt number: " + receiptnum +"\n"
                    +"Date: " + formattedDate +"\n"
                    +"Time: " + formattedTime +"\n\n"
                    +"Discount: " + receipt.r_tax.getText().replace("-", "") + "\n"
                    +"Subtotal: " + receipt.r_subtotal.getText().replace("-", "")  +"\n"
                    +"Total: " + receipt.r_total.getText().replace("-", "")  +"\n\n"
                    +"Payment: " + receipt.r_payment.getText().replace("-", "")  +"\n"
-                   +"Change: " + receipt.r_change.getText().replace("-", "")  +"\n";
+                   +"Change: " + receipt.r_change.getText().replace("-", "")  +"\n"
+                   +"\n 14 days warranty!"
+                    ;
             
             receipt.r_date.setText(formattedDate);
             receipt.r_number.setText(receiptnum);
@@ -5034,6 +5050,74 @@ public static String getFormattedDate() {
     label.setText(wrappedText.toString());
 }
     
+    
+    //work in progress
+    
+    public void SelectHistoryItem() {
+    int selectedRow = HistoryTable.getSelectedRow();
+    
+    
+    if (selectedRow != -1) {
+        preview = new HistoryPreview(this);
+        preview.setVisible(true);
+       
+        int id = Integer.parseInt(CartTable.getValueAt(selectedRow, 10).toString());    
+        String name = CartTable.getValueAt(selectedRow, 0).toString();       // Product
+        String category = CartTable.getValueAt(selectedRow, 1).toString();
+        String quantity = CartTable.getValueAt(selectedRow, 2).toString();   // Quantity
+        String cost = CartTable.getValueAt(selectedRow, 3).toString();       // Cost
+        String discount = CartTable.getValueAt(selectedRow, 4).toString();   // Discount
+        String total = CartTable.getValueAt(selectedRow, 6).toString();   // total
+        String description = CartTable.getValueAt(selectedRow, 11).toString();
+
+        CartCategoryTXT.setText(category);
+        CartTitleTXT.setText(name);
+        
+        function.adjustFontSizeToFit(CartTitleTXT, 24, 12);
+        
+        // Remove commas before parsing
+        CartCostTXT.setText("₱" +new DecimalFormat("#,##0.00").format(Double.parseDouble(cost.replace(",", ""))));
+        CartDescriptionTXT.setText(description);
+        CartQuantityTXT.setText(quantity);
+        CartTotalCostTXT.setText("₱" +new DecimalFormat("#,##0.00").format(Double.parseDouble(total.replace(",", ""))));
+        int discountValue = Integer.parseInt(discount.replace("%", ""));
+        if (discountValue > 0 && discountValue <=100){
+            discountTXT.setVisible(true);
+            discountTXT.setText(discount+" Discount!");
+        } else {
+            discountTXT.setVisible(false);
+        }
+        
+        // Now fetch the image from the database using the ID
+        try {
+            String sql = "SELECT imageFile FROM product WHERE id = ?";
+            PreparedStatement pst = con.prepareStatement(sql);
+            pst.setInt(1, id);
+            ResultSet rs = pst.executeQuery();
+
+            if (rs.next()) {
+                byte[] imgBytes = rs.getBytes("imageFile");
+
+                if (imgBytes != null) {
+                    ImageIcon icon = new ImageIcon(imgBytes);
+                    Image img = icon.getImage().getScaledInstance(211, 211, Image.SCALE_SMOOTH);
+                    CartImageTXT.setIcon(new ImageIcon(img));
+                    CartImageTXT.setText("");
+                } else {
+                    CartImageTXT.setIcon(null);
+                    CartImageTXT.setText("No Image");
+                }
+            }
+
+            rs.close();
+            pst.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            CartImageTXT.setIcon(null);
+            CartImageTXT.setText("Error loading image");
+        }
+    } 
+}
 
 
 
