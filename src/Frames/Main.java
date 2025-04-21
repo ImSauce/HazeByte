@@ -5061,64 +5061,65 @@ public static String getFormattedDate() {
         preview = new HistoryPreview(this);
         preview.setVisible(true);
        
-        int id = Integer.parseInt(CartTable.getValueAt(selectedRow, 10).toString());    
-        String name = CartTable.getValueAt(selectedRow, 0).toString();       // Product
-        String category = CartTable.getValueAt(selectedRow, 1).toString();
-        String quantity = CartTable.getValueAt(selectedRow, 2).toString();   // Quantity
-        String cost = CartTable.getValueAt(selectedRow, 3).toString();       // Cost
-        String discount = CartTable.getValueAt(selectedRow, 4).toString();   // Discount
-        String total = CartTable.getValueAt(selectedRow, 6).toString();   // total
-        String description = CartTable.getValueAt(selectedRow, 11).toString();
-
-        CartCategoryTXT.setText(category);
-        CartTitleTXT.setText(name);
-        
-        function.adjustFontSizeToFit(CartTitleTXT, 24, 12);
-        
-        // Remove commas before parsing
-        CartCostTXT.setText("₱" +new DecimalFormat("#,##0.00").format(Double.parseDouble(cost.replace(",", ""))));
-        CartDescriptionTXT.setText(description);
-        CartQuantityTXT.setText(quantity);
-        CartTotalCostTXT.setText("₱" +new DecimalFormat("#,##0.00").format(Double.parseDouble(total.replace(",", ""))));
-        int discountValue = Integer.parseInt(discount.replace("%", ""));
-        if (discountValue > 0 && discountValue <=100){
-            discountTXT.setVisible(true);
-            discountTXT.setText(discount+" Discount!");
-        } else {
-            discountTXT.setVisible(false);
-        }
-        
-        // Now fetch the image from the database using the ID
-        try {
-            String sql = "SELECT imageFile FROM product WHERE id = ?";
-            PreparedStatement pst = con.prepareStatement(sql);
-            pst.setInt(1, id);
-            ResultSet rs = pst.executeQuery();
-
-            if (rs.next()) {
-                byte[] imgBytes = rs.getBytes("imageFile");
-
-                if (imgBytes != null) {
-                    ImageIcon icon = new ImageIcon(imgBytes);
-                    Image img = icon.getImage().getScaledInstance(211, 211, Image.SCALE_SMOOTH);
-                    CartImageTXT.setIcon(new ImageIcon(img));
-                    CartImageTXT.setText("");
-                } else {
-                    CartImageTXT.setIcon(null);
-                    CartImageTXT.setText("No Image");
-                }
-            }
-
-            rs.close();
-            pst.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-            CartImageTXT.setIcon(null);
-            CartImageTXT.setText("Error loading image");
-        }
     } 
 }
 
 
 
 }
+
+//int id = Integer.parseInt(CartTable.getValueAt(selectedRow, 10).toString());    
+//        String name = CartTable.getValueAt(selectedRow, 0).toString();       // Product
+//        String category = CartTable.getValueAt(selectedRow, 1).toString();
+//        String quantity = CartTable.getValueAt(selectedRow, 2).toString();   // Quantity
+//        String cost = CartTable.getValueAt(selectedRow, 3).toString();       // Cost
+//        String discount = CartTable.getValueAt(selectedRow, 4).toString();   // Discount
+//        String total = CartTable.getValueAt(selectedRow, 6).toString();   // total
+//        String description = CartTable.getValueAt(selectedRow, 11).toString();
+//
+//        CartCategoryTXT.setText(category);
+//        CartTitleTXT.setText(name);
+//        
+//        function.adjustFontSizeToFit(CartTitleTXT, 24, 12);
+//        
+//        // Remove commas before parsing
+//        CartCostTXT.setText("₱" +new DecimalFormat("#,##0.00").format(Double.parseDouble(cost.replace(",", ""))));
+//        CartDescriptionTXT.setText(description);
+//        CartQuantityTXT.setText(quantity);
+//        CartTotalCostTXT.setText("₱" +new DecimalFormat("#,##0.00").format(Double.parseDouble(total.replace(",", ""))));
+//        int discountValue = Integer.parseInt(discount.replace("%", ""));
+//        if (discountValue > 0 && discountValue <=100){
+//            discountTXT.setVisible(true);
+//            discountTXT.setText(discount+" Discount!");
+//        } else {
+//            discountTXT.setVisible(false);
+//        }
+//        
+//        // Now fetch the image from the database using the ID
+//        try {
+//            String sql = "SELECT imageFile FROM product WHERE id = ?";
+//            PreparedStatement pst = con.prepareStatement(sql);
+//            pst.setInt(1, id);
+//            ResultSet rs = pst.executeQuery();
+//
+//            if (rs.next()) {
+//                byte[] imgBytes = rs.getBytes("imageFile");
+//
+//                if (imgBytes != null) {
+//                    ImageIcon icon = new ImageIcon(imgBytes);
+//                    Image img = icon.getImage().getScaledInstance(211, 211, Image.SCALE_SMOOTH);
+//                    CartImageTXT.setIcon(new ImageIcon(img));
+//                    CartImageTXT.setText("");
+//                } else {
+//                    CartImageTXT.setIcon(null);
+//                    CartImageTXT.setText("No Image");
+//                }
+//            }
+//
+//            rs.close();
+//            pst.close();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            CartImageTXT.setIcon(null);
+//            CartImageTXT.setText("Error loading image");
+//        }
