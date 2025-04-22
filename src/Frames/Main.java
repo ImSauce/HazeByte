@@ -951,7 +951,7 @@ public class Main extends javax.swing.JFrame {
         TransactionNumber.setAA_DrawBorder(true);
 
         HistoryCalculate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/total.png"))); // NOI18N
-        HistoryCalculate.setToolTipText("Caculate Total");
+        HistoryCalculate.setToolTipText("Total Earnings");
         HistoryCalculate.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 HistoryCalculateMouseClicked(evt);
@@ -5280,12 +5280,6 @@ public static String getFormattedDate() {
             }
         }
 
-        System.out.println("Total Quantity: " + totalQuantity);
-        System.out.println("Total Sales: " + totalSales);
-        System.out.println("Total Discount Amount: " + totalDiscountAmount);
-        System.out.println("Total Sold Rows: " + totalSold);
-        System.out.println("Total Refund Rows: " + totalRefund);
-        System.out.println("Total Refunded Amount: " + totalRefundAmount); // Print total refunded amount
 
         historytotal = new HistoryTotal(this);
         historytotal.setVisible(true);

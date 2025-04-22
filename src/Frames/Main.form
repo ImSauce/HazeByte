@@ -1045,7 +1045,7 @@
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/Images/total.png"/>
                     </Property>
-                    <Property name="toolTipText" type="java.lang.String" value="Caculate Total"/>
+                    <Property name="toolTipText" type="java.lang.String" value="Total Earnings"/>
                   </Properties>
                   <Events>
                     <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="HistoryCalculateMouseClicked"/>
