@@ -33,6 +33,7 @@ public class HistoryPreview extends javax.swing.JFrame {
     private Main main;
     private Connection con;
     public boolean stat = false;
+    public int prevID;
     
     
     File f1 = null;
@@ -100,7 +101,9 @@ public class HistoryPreview extends javax.swing.JFrame {
         PreviewImage = new javax.swing.JLabel();
         Category = new javax.swing.JLabel();
         Title = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
+        line = new javax.swing.JPanel();
+        receipttxt = new javax.swing.JLabel();
+        receipt = new javax.swing.JLabel();
         InfoPanel = new javax.swing.JPanel();
         PreviewCost = new javax.swing.JLabel();
         PreviewQuantity = new javax.swing.JLabel();
@@ -112,13 +115,13 @@ public class HistoryPreview extends javax.swing.JFrame {
         PreviewReason = new javax.swing.JLabel();
         issuescroll = new javax.swing.JScrollPane();
         Issues = new javax.swing.JTextArea();
-        pH_TextField1 = new SystemOtherComps.PH_TextField();
-        pH_TextField2 = new SystemOtherComps.PH_TextField();
-        pH_TextField3 = new SystemOtherComps.PH_TextField();
-        pH_TextField4 = new SystemOtherComps.PH_TextField();
-        pH_TextField5 = new SystemOtherComps.PH_TextField();
-        pH_TextField6 = new SystemOtherComps.PH_TextField();
-        categories = new SystemShadowedComp.PH_ComboBox();
+        cost = new SystemOtherComps.PH_TextField();
+        quantity = new SystemOtherComps.PH_TextField();
+        discountper = new SystemOtherComps.PH_TextField();
+        discount = new SystemOtherComps.PH_TextField();
+        subtotal = new SystemOtherComps.PH_TextField();
+        total = new SystemOtherComps.PH_TextField();
+        status = new SystemShadowedComp.PH_ComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(700, 412));
@@ -135,10 +138,11 @@ public class HistoryPreview extends javax.swing.JFrame {
         DescriptionText.setForeground(new java.awt.Color(102, 102, 102));
         DescriptionText.setText("Description:");
 
-        DescriptionScroll.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
+        DescriptionScroll.setBorder(null);
         DescriptionScroll.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         DescriptionScroll.setToolTipText("");
 
+        Description.setEditable(false);
         Description.setBackground(new java.awt.Color(24, 23, 23));
         Description.setColumns(20);
         Description.setRows(5);
@@ -146,72 +150,78 @@ public class HistoryPreview extends javax.swing.JFrame {
         Description.setBorder(null);
         DescriptionScroll.setViewportView(Description);
 
-        PreviewImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/aoi.jpg"))); // NOI18N
-        PreviewImage.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                PreviewImageMouseClicked(evt);
-            }
-        });
+        PreviewImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/x.png"))); // NOI18N
 
         Category.setForeground(new java.awt.Color(102, 102, 102));
         Category.setText("Category");
 
-        Title.setFont(new java.awt.Font("Arial Black", 0, 16)); // NOI18N
+        Title.setFont(new java.awt.Font("Arial Black", 0, 20)); // NOI18N
         Title.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         Title.setText("Name");
         Title.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
-        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
+        line.setBackground(new java.awt.Color(51, 51, 51));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout lineLayout = new javax.swing.GroupLayout(line);
+        line.setLayout(lineLayout);
+        lineLayout.setHorizontalGroup(
+            lineLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 1, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        lineLayout.setVerticalGroup(
+            lineLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
+
+        receipttxt.setBackground(new java.awt.Color(102, 102, 102));
+        receipttxt.setForeground(new java.awt.Color(255, 255, 255));
+        receipttxt.setText("Receipt No:");
+
+        receipt.setBackground(new java.awt.Color(102, 102, 102));
+        receipt.setForeground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout PreviewPanelLayout = new javax.swing.GroupLayout(PreviewPanel);
         PreviewPanel.setLayout(PreviewPanelLayout);
         PreviewPanelLayout.setHorizontalGroup(
             PreviewPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PreviewPanelLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(PreviewPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(PreviewPanelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(PreviewPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Title, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(DescriptionScroll, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(DescriptionText)
-                            .addComponent(Category, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(PreviewPanelLayout.createSequentialGroup()
-                        .addGap(43, 43, 43)
-                        .addComponent(PreviewImage)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(PreviewPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(DescriptionText)
+                        .addGroup(PreviewPanelLayout.createSequentialGroup()
+                            .addComponent(receipttxt)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(receipt))
+                        .addComponent(PreviewImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Title, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Category, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE))
+                    .addComponent(DescriptionScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                .addComponent(line, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         PreviewPanelLayout.setVerticalGroup(
             PreviewPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PreviewPanelLayout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(PreviewImage, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(Category, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Title)
-                .addGap(42, 42, 42)
-                .addComponent(DescriptionText, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(DescriptionScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 17, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PreviewPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(PreviewPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PreviewPanelLayout.createSequentialGroup()
+                        .addGroup(PreviewPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(receipttxt, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(receipt, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(PreviewImage, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Category)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Title)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(DescriptionText)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(DescriptionScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 17, Short.MAX_VALUE))
+                    .addComponent(line, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         InfoPanel.setBackground(new java.awt.Color(24, 23, 23));
@@ -259,55 +269,60 @@ public class HistoryPreview extends javax.swing.JFrame {
         Issues.setRows(5);
         Issues.setText("\n");
         Issues.setBorder(null);
+        Issues.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                IssuesCaretUpdate(evt);
+            }
+        });
         issuescroll.setViewportView(Issues);
 
-        pH_TextField1.setForeground(new java.awt.Color(255, 255, 255));
-        pH_TextField1.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        pH_TextField1.setText("output");
-        pH_TextField1.setAA_TextHint("");
-        pH_TextField1.setAB_LineColor(new java.awt.Color(51, 51, 51));
+        cost.setEditable(false);
+        cost.setForeground(new java.awt.Color(255, 255, 255));
+        cost.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        cost.setAA_TextHint("");
+        cost.setAB_LineColor(new java.awt.Color(51, 51, 51));
 
-        pH_TextField2.setForeground(new java.awt.Color(255, 255, 255));
-        pH_TextField2.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        pH_TextField2.setText("output");
-        pH_TextField2.setAA_TextHint("");
-        pH_TextField2.setAB_LineColor(new java.awt.Color(51, 51, 51));
+        quantity.setEditable(false);
+        quantity.setForeground(new java.awt.Color(255, 255, 255));
+        quantity.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        quantity.setAA_TextHint("");
+        quantity.setAB_LineColor(new java.awt.Color(51, 51, 51));
 
-        pH_TextField3.setForeground(new java.awt.Color(255, 255, 255));
-        pH_TextField3.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        pH_TextField3.setText("output");
-        pH_TextField3.setAA_TextHint("");
-        pH_TextField3.setAB_LineColor(new java.awt.Color(51, 51, 51));
+        discountper.setEditable(false);
+        discountper.setForeground(new java.awt.Color(255, 255, 255));
+        discountper.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        discountper.setAA_TextHint("");
+        discountper.setAB_LineColor(new java.awt.Color(51, 51, 51));
 
-        pH_TextField4.setForeground(new java.awt.Color(255, 255, 255));
-        pH_TextField4.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        pH_TextField4.setText("output");
-        pH_TextField4.setAA_TextHint("");
-        pH_TextField4.setAB_LineColor(new java.awt.Color(51, 51, 51));
+        discount.setEditable(false);
+        discount.setForeground(new java.awt.Color(255, 255, 255));
+        discount.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        discount.setAA_TextHint("");
+        discount.setAB_LineColor(new java.awt.Color(51, 51, 51));
 
-        pH_TextField5.setForeground(new java.awt.Color(255, 255, 255));
-        pH_TextField5.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        pH_TextField5.setText("output");
-        pH_TextField5.setAA_TextHint("");
-        pH_TextField5.setAB_LineColor(new java.awt.Color(51, 51, 51));
+        subtotal.setEditable(false);
+        subtotal.setForeground(new java.awt.Color(255, 255, 255));
+        subtotal.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        subtotal.setAA_TextHint("");
+        subtotal.setAB_LineColor(new java.awt.Color(51, 51, 51));
 
-        pH_TextField6.setForeground(new java.awt.Color(255, 255, 255));
-        pH_TextField6.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        pH_TextField6.setText("output");
-        pH_TextField6.setAA_TextHint("");
-        pH_TextField6.setAB_LineColor(new java.awt.Color(51, 51, 51));
+        total.setEditable(false);
+        total.setForeground(new java.awt.Color(255, 255, 255));
+        total.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        total.setAA_TextHint("");
+        total.setAB_LineColor(new java.awt.Color(51, 51, 51));
 
-        categories.setForeground(new java.awt.Color(255, 255, 255));
-        categories.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Sold", "Returned" }));
-        categories.setAA_WordLinerColor(new java.awt.Color(51, 51, 51));
-        categories.setAA_lineColor(new java.awt.Color(45, 187, 63));
-        categories.setFocusable(false);
-        categories.setLabeText("");
-        categories.setRequestFocusEnabled(false);
-        categories.setVerifyInputWhenFocusTarget(false);
-        categories.addActionListener(new java.awt.event.ActionListener() {
+        status.setForeground(new java.awt.Color(255, 255, 255));
+        status.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Sold", "Refunded" }));
+        status.setAA_WordLinerColor(new java.awt.Color(51, 51, 51));
+        status.setAA_lineColor(new java.awt.Color(45, 187, 63));
+        status.setFocusable(false);
+        status.setLabeText("");
+        status.setRequestFocusEnabled(false);
+        status.setVerifyInputWhenFocusTarget(false);
+        status.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                categoriesActionPerformed(evt);
+                statusActionPerformed(evt);
             }
         });
 
@@ -318,30 +333,29 @@ public class HistoryPreview extends javax.swing.JFrame {
             .addGroup(InfoPanelLayout.createSequentialGroup()
                 .addGroup(InfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(InfoPanelLayout.createSequentialGroup()
-                        .addGroup(InfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(PreviewReason, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(InfoPanelLayout.createSequentialGroup()
-                                .addGroup(InfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(PreviewSubtotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(DiscountPercentage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(PreviewTotal, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(PreviewDiscount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(PreviewQuantity, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(PreviewCost, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(PreviewStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(InfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(pH_TextField6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(pH_TextField5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(pH_TextField4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(pH_TextField3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(pH_TextField2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(pH_TextField1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(categories, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE))))
+                        .addGroup(InfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(PreviewSubtotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(DiscountPercentage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(PreviewTotal, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(PreviewDiscount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(PreviewQuantity, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(PreviewCost, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(PreviewStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(InfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(total, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(subtotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(discount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(discountper, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(quantity, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cost, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(status, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE))
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, InfoPanelLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(issuescroll, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(InfoPanelLayout.createSequentialGroup()
+                        .addGap(0, 0, 0)
+                        .addComponent(issuescroll, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(PreviewReason, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         InfoPanelLayout.setVerticalGroup(
@@ -350,30 +364,30 @@ public class HistoryPreview extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(InfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(PreviewCost, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pH_TextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cost, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(InfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(PreviewQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pH_TextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(quantity, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(InfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(DiscountPercentage, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pH_TextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(discountper, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(InfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(PreviewDiscount, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pH_TextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(discount, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(InfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(PreviewSubtotal, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pH_TextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(subtotal, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(5, 5, 5)
                 .addGroup(InfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(PreviewTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pH_TextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(total, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(InfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(categories, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(status, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(PreviewStatus))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(PreviewReason)
@@ -418,48 +432,79 @@ public class HistoryPreview extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void PreviewImageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PreviewImageMouseClicked
-      
-    }//GEN-LAST:event_PreviewImageMouseClicked
+    private void statusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statusActionPerformed
+        if (status.getSelectedItem().equals("Sold")){
+            stat = false;
+            PreviewReason.setVisible(false);
+            issuescroll.setVisible(false);    
+            Issues.setText("");
+            status(prevID);
+            
+        }else{
+            stat = true;
+            PreviewReason.setVisible(true);
+            issuescroll.setVisible(true);    
+            status(prevID);
+        }
+    }//GEN-LAST:event_statusActionPerformed
 
-    private void categoriesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_categoriesActionPerformed
-
-    }//GEN-LAST:event_categoriesActionPerformed
+    private void IssuesCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_IssuesCaretUpdate
+       status(prevID);
+    }//GEN-LAST:event_IssuesCaretUpdate
 
  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel Category;
-    private javax.swing.JTextArea Description;
+    public javax.swing.JLabel Category;
+    public javax.swing.JTextArea Description;
     private javax.swing.JScrollPane DescriptionScroll;
     private javax.swing.JLabel DescriptionText;
     private javax.swing.JLabel DiscountPercentage;
     private javax.swing.JPanel InfoPanel;
-    private javax.swing.JTextArea Issues;
+    public javax.swing.JTextArea Issues;
     private javax.swing.JLabel PreviewCost;
     private javax.swing.JLabel PreviewDiscount;
-    private javax.swing.JLabel PreviewImage;
+    public javax.swing.JLabel PreviewImage;
     private javax.swing.JPanel PreviewPN;
     private javax.swing.JPanel PreviewPanel;
     private javax.swing.JLabel PreviewQuantity;
-    private javax.swing.JLabel PreviewReason;
+    public javax.swing.JLabel PreviewReason;
     private javax.swing.JLabel PreviewStatus;
     private javax.swing.JLabel PreviewSubtotal;
     private javax.swing.JLabel PreviewTotal;
-    private javax.swing.JLabel Title;
-    public SystemShadowedComp.PH_ComboBox categories;
-    private javax.swing.JScrollPane issuescroll;
-    private javax.swing.JPanel jPanel1;
-    private SystemOtherComps.PH_TextField pH_TextField1;
-    private SystemOtherComps.PH_TextField pH_TextField2;
-    private SystemOtherComps.PH_TextField pH_TextField3;
-    private SystemOtherComps.PH_TextField pH_TextField4;
-    private SystemOtherComps.PH_TextField pH_TextField5;
-    private SystemOtherComps.PH_TextField pH_TextField6;
+    public javax.swing.JLabel Title;
+    public SystemOtherComps.PH_TextField cost;
+    public SystemOtherComps.PH_TextField discount;
+    public SystemOtherComps.PH_TextField discountper;
+    public javax.swing.JScrollPane issuescroll;
+    private javax.swing.JPanel line;
+    public SystemOtherComps.PH_TextField quantity;
+    public javax.swing.JLabel receipt;
+    private javax.swing.JLabel receipttxt;
+    public SystemShadowedComp.PH_ComboBox status;
+    public SystemOtherComps.PH_TextField subtotal;
+    public SystemOtherComps.PH_TextField total;
     // End of variables declaration//GEN-END:variables
 
     
+    
+    
+  public void status(int id) {
+    try {
+        String sql = "UPDATE history SET status=?, reason=? WHERE id=?";
+        PreparedStatement updateStmt = con.prepareStatement(sql);
 
+        // Convert selected item to string
+        updateStmt.setString(1, status.getSelectedItem().toString());
+        updateStmt.setString(2, Issues.getText());
+        updateStmt.setInt(3, id); // Pass the ID of the item you want to update
+
+        updateStmt.executeUpdate();
+
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}
     
     
 

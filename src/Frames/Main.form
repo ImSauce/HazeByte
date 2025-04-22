@@ -1779,7 +1779,7 @@
                           <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
                           <Component id="CartDescriptionheadingTXT" min="-2" pref="22" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="CartDescriptionScroll" pref="5" max="32767" attributes="0"/>
+                          <Component id="CartDescriptionScroll" pref="28" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
@@ -2380,7 +2380,7 @@
                           <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="Games_txt" min="-2" pref="135" max="-2" attributes="0"/>
-                          <EmptySpace pref="290" max="32767" attributes="0"/>
+                          <EmptySpace pref="72" max="32767" attributes="0"/>
                           <Component id="HomeCategoryIconTXT" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="categories" min="-2" pref="163" max="-2" attributes="0"/>
@@ -3317,7 +3317,7 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="EditTableScroll" pref="523" max="32767" attributes="0"/>
+                                  <Component id="EditTableScroll" pref="437" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>

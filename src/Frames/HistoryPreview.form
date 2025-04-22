@@ -91,24 +91,23 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="-2" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="Title" max="32767" attributes="0"/>
-                                  <Component id="DescriptionScroll" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="DescriptionText" min="-2" max="-2" attributes="0"/>
-                                  <Component id="Category" alignment="0" min="-2" pref="222" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
-                              <Component id="PreviewImage" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          </Group>
-                      </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="DescriptionText" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="receipttxt" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="receipt" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="PreviewImage" max="32767" attributes="0"/>
+                              <Component id="Title" alignment="0" min="-2" pref="209" max="-2" attributes="0"/>
+                              <Component id="Category" alignment="0" pref="213" max="32767" attributes="0"/>
+                          </Group>
+                          <Component id="DescriptionScroll" min="-2" pref="209" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="9" max="32767" attributes="0"/>
+                      <Component id="line" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -116,21 +115,27 @@
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                      <Component id="PreviewImage" min="-2" pref="138" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="Category" min="-2" pref="16" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="Title" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
-                      <Component id="DescriptionText" min="-2" pref="28" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="DescriptionScroll" min="-2" pref="149" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="17" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jPanel1" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="receipttxt" alignment="3" min="-2" pref="16" max="-2" attributes="0"/>
+                                  <Component id="receipt" alignment="3" min="-2" pref="16" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="PreviewImage" min="-2" pref="207" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="Category" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="Title" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="DescriptionText" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="DescriptionScroll" min="-2" pref="116" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="17" max="32767" attributes="0"/>
+                          </Group>
+                          <Component id="line" max="32767" attributes="0"/>
+                      </Group>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -150,11 +155,7 @@
             <Container class="javax.swing.JScrollPane" name="DescriptionScroll">
               <Properties>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                  <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-                    <LineBorder>
-                      <Color PropertyName="color" blue="33" green="33" red="33" type="rgb"/>
-                    </LineBorder>
-                  </Border>
+                  <Border info="null"/>
                 </Property>
                 <Property name="horizontalScrollBarPolicy" type="int" value="31"/>
                 <Property name="toolTipText" type="java.lang.String" value=""/>
@@ -167,6 +168,7 @@
               <SubComponents>
                 <Component class="javax.swing.JTextArea" name="Description">
                   <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="17" green="17" red="18" type="rgb"/>
                     </Property>
@@ -177,18 +179,21 @@
                       <Border info="null"/>
                     </Property>
                   </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+                  </AuxValues>
                 </Component>
               </SubComponents>
             </Container>
             <Component class="javax.swing.JLabel" name="PreviewImage">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Images/aoi.jpg"/>
+                  <Image iconType="3" name="/Images/x.png"/>
                 </Property>
               </Properties>
-              <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="PreviewImageMouseClicked"/>
-              </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JLabel" name="Category">
               <Properties>
@@ -197,18 +202,24 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Category"/>
               </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JLabel" name="Title">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Arial Black" size="16" style="0"/>
+                  <Font name="Arial Black" size="20" style="0"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="2"/>
                 <Property name="text" type="java.lang.String" value="Name"/>
                 <Property name="verticalAlignment" type="int" value="1"/>
               </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+              </AuxValues>
             </Component>
-            <Container class="javax.swing.JPanel" name="jPanel1">
+            <Container class="javax.swing.JPanel" name="line">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="33" green="33" red="33" type="rgb"/>
@@ -228,6 +239,30 @@
                 </DimensionLayout>
               </Layout>
             </Container>
+            <Component class="javax.swing.JLabel" name="receipttxt">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="66" green="66" red="66" type="rgb"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Receipt No:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="receipt">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="66" green="66" red="66" type="rgb"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+              </AuxValues>
+            </Component>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="InfoPanel">
@@ -243,36 +278,33 @@
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="PreviewReason" min="-2" pref="103" max="-2" attributes="0"/>
-                                  <Group type="102" attributes="0">
-                                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                          <Component id="PreviewSubtotal" max="32767" attributes="0"/>
-                                          <Component id="DiscountPercentage" alignment="1" max="32767" attributes="0"/>
-                                          <Component id="PreviewTotal" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="PreviewDiscount" alignment="1" max="32767" attributes="0"/>
-                                          <Component id="PreviewQuantity" alignment="1" max="32767" attributes="0"/>
-                                          <Component id="PreviewCost" alignment="1" max="32767" attributes="0"/>
-                                          <Component id="PreviewStatus" min="-2" pref="103" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="pH_TextField6" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="pH_TextField5" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="pH_TextField4" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="pH_TextField3" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="pH_TextField2" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="pH_TextField1" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="categories" alignment="0" pref="170" max="32767" attributes="0"/>
-                                      </Group>
-                                  </Group>
+                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="PreviewSubtotal" max="32767" attributes="0"/>
+                                  <Component id="DiscountPercentage" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="PreviewTotal" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="PreviewDiscount" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="PreviewQuantity" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="PreviewCost" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="PreviewStatus" min="-2" pref="103" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="total" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="subtotal" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="discount" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="discountper" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="quantity" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="cost" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="status" alignment="0" pref="170" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="0" max="-2" attributes="0"/>
                               <Component id="issuescroll" min="-2" pref="279" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
+                          <Component id="PreviewReason" alignment="1" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -284,36 +316,36 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="PreviewCost" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
-                          <Component id="pH_TextField1" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                          <Component id="cost" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="PreviewQuantity" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
-                          <Component id="pH_TextField2" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                          <Component id="quantity" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="DiscountPercentage" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
-                          <Component id="pH_TextField3" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                          <Component id="discountper" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="PreviewDiscount" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
-                          <Component id="pH_TextField4" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                          <Component id="discount" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="PreviewSubtotal" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
-                          <Component id="pH_TextField5" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                          <Component id="subtotal" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="PreviewTotal" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
-                          <Component id="pH_TextField6" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                          <Component id="total" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="categories" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
+                          <Component id="status" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
                           <Component id="PreviewStatus" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
@@ -403,6 +435,9 @@
                 <Property name="horizontalAlignment" type="int" value="2"/>
                 <Property name="text" type="java.lang.String" value="Issues:"/>
               </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+              </AuxValues>
             </Component>
             <Container class="javax.swing.JScrollPane" name="issuescroll">
               <Properties>
@@ -417,6 +452,7 @@
                 <Property name="toolTipText" type="java.lang.String" value=""/>
               </Properties>
               <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
                 <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
               </AuxValues>
 
@@ -434,88 +470,112 @@
                       <Border info="null"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="caretUpdate" listener="javax.swing.event.CaretListener" parameters="javax.swing.event.CaretEvent" handler="IssuesCaretUpdate"/>
+                  </Events>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+                  </AuxValues>
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="SystemOtherComps.PH_TextField" name="pH_TextField1">
+            <Component class="SystemOtherComps.PH_TextField" name="cost">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="2"/>
-                <Property name="text" type="java.lang.String" value="output"/>
                 <Property name="AA_TextHint" type="java.lang.String" value=""/>
                 <Property name="AB_LineColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="33" green="33" red="33" type="rgb"/>
                 </Property>
               </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+              </AuxValues>
             </Component>
-            <Component class="SystemOtherComps.PH_TextField" name="pH_TextField2">
+            <Component class="SystemOtherComps.PH_TextField" name="quantity">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="2"/>
-                <Property name="text" type="java.lang.String" value="output"/>
                 <Property name="AA_TextHint" type="java.lang.String" value=""/>
                 <Property name="AB_LineColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="33" green="33" red="33" type="rgb"/>
                 </Property>
               </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+              </AuxValues>
             </Component>
-            <Component class="SystemOtherComps.PH_TextField" name="pH_TextField3">
+            <Component class="SystemOtherComps.PH_TextField" name="discountper">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="2"/>
-                <Property name="text" type="java.lang.String" value="output"/>
                 <Property name="AA_TextHint" type="java.lang.String" value=""/>
                 <Property name="AB_LineColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="33" green="33" red="33" type="rgb"/>
                 </Property>
               </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+              </AuxValues>
             </Component>
-            <Component class="SystemOtherComps.PH_TextField" name="pH_TextField4">
+            <Component class="SystemOtherComps.PH_TextField" name="discount">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="2"/>
-                <Property name="text" type="java.lang.String" value="output"/>
                 <Property name="AA_TextHint" type="java.lang.String" value=""/>
                 <Property name="AB_LineColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="33" green="33" red="33" type="rgb"/>
                 </Property>
               </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+              </AuxValues>
             </Component>
-            <Component class="SystemOtherComps.PH_TextField" name="pH_TextField5">
+            <Component class="SystemOtherComps.PH_TextField" name="subtotal">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="2"/>
-                <Property name="text" type="java.lang.String" value="output"/>
                 <Property name="AA_TextHint" type="java.lang.String" value=""/>
                 <Property name="AB_LineColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="33" green="33" red="33" type="rgb"/>
                 </Property>
               </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+              </AuxValues>
             </Component>
-            <Component class="SystemOtherComps.PH_TextField" name="pH_TextField6">
+            <Component class="SystemOtherComps.PH_TextField" name="total">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="2"/>
-                <Property name="text" type="java.lang.String" value="output"/>
                 <Property name="AA_TextHint" type="java.lang.String" value=""/>
                 <Property name="AB_LineColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="33" green="33" red="33" type="rgb"/>
                 </Property>
               </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+              </AuxValues>
             </Component>
-            <Component class="SystemShadowedComp.PH_ComboBox" name="categories">
+            <Component class="SystemShadowedComp.PH_ComboBox" name="status">
               <Properties>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -523,7 +583,7 @@
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="2">
                     <StringItem index="0" value="Sold"/>
-                    <StringItem index="1" value="Returned"/>
+                    <StringItem index="1" value="Refunded"/>
                   </StringArray>
                 </Property>
                 <Property name="AA_WordLinerColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -538,7 +598,7 @@
                 <Property name="verifyInputWhenFocusTarget" type="boolean" value="false"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="categoriesActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="statusActionPerformed"/>
               </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>

@@ -1461,7 +1461,7 @@ public class Main extends javax.swing.JFrame {
                 .addGap(2, 2, 2)
                 .addComponent(CartDescriptionheadingTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(CartDescriptionScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 5, Short.MAX_VALUE)
+                .addComponent(CartDescriptionScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
                 .addGroup(CartItemViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(CartItemViewLayout.createSequentialGroup()
                         .addGap(8, 8, 8)
@@ -1842,7 +1842,7 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Games_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 290, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
                 .addComponent(HomeCategoryIconTXT)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(categories, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -4999,7 +4999,7 @@ public static String getFormattedDate() {
                 rs.getString(10),         // date
                 rs.getString(11),         // time
                 rs.getString(1),          // id (hidden)
-                rs.getString(12),          // productID (hidden)
+                rs.getString(12),         // productID (hidden)
                 rs.getString(6),
                 rs.getString(16),    
             });
@@ -5051,15 +5051,72 @@ public static String getFormattedDate() {
 }
     
     
-    //work in progress
+    
     
     public void SelectHistoryItem() {
     int selectedRow = HistoryTable.getSelectedRow();
     
     
     if (selectedRow != -1) {
-        preview = new HistoryPreview(this);
-        preview.setVisible(true);
+        int id = Integer.parseInt(HistoryTable.getValueAt(selectedRow, 9).toString());
+        
+        try{
+            String sql ="SELECT * FROM History WHERE id=?";
+            PreparedStatement pst = con.prepareStatement(sql);
+            pst.setInt(1, id);
+            ResultSet rs = pst.executeQuery();
+            
+             if (rs.next()) {
+                // Extract all values
+                int dbId = rs.getInt("id");
+                String name = rs.getString("name");
+                double cost = rs.getDouble("cost");
+                double discount = rs.getDouble("discount");
+                String category = rs.getString("category");
+                String description = rs.getString("description");
+                double subtotal = rs.getDouble("subtotal");
+                double total = rs.getDouble("total");
+                String quantity = rs.getString("quantity");
+                String receipt = rs.getString("receipt");
+                String status = rs.getString("status");
+                String reason = rs.getString("reason");
+
+                DecimalFormat df = new DecimalFormat("₱#,##0.00");
+                double discountAmount = subtotal * (discount / 100.0);
+                // Show preview
+                preview = new HistoryPreview(this);
+                preview.prevID = dbId;
+                preview.receipt.setText(receipt);
+                preview.Title.setText(name);
+                preview.Category.setText(category);
+                preview.Description.setText(description);
+                preview.Issues.setText(reason);
+                function.adjustFontSizeToFit(preview.Title, 20, 10);
+                preview.Description.setLineWrap(true);
+                preview.Issues.setLineWrap(true);
+                
+                
+                
+                preview.cost.setText(df.format(cost));
+                preview.quantity.setText(quantity);
+                preview.discountper.setText(discount+"%");
+                preview.discount.setText(df.format(discountAmount));
+                preview.subtotal.setText(df.format(subtotal));
+                preview.total.setText(df.format(total));
+                preview.status.setSelectedItem(status);
+                if (status.equals("Refunded")){
+                    preview.stat = true;
+                    preview.PreviewReason.setVisible(true);
+                    preview.issuescroll.setVisible(true);
+                }
+                preview.setVisible(true);
+                
+             }
+        
+        }catch(Exception e){
+             e.printStackTrace();
+        }
+        
        
     } 
 }
