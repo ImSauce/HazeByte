@@ -92,19 +92,17 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="DescriptionText" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="receipttxt" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="receipt" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Component id="PreviewImage" max="32767" attributes="0"/>
-                              <Component id="Title" alignment="0" min="-2" pref="209" max="-2" attributes="0"/>
-                              <Component id="Category" alignment="0" pref="213" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="DescriptionText" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="receipttxt" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="receipt" min="-2" max="-2" attributes="0"/>
                           </Group>
+                          <Component id="Title" alignment="0" min="-2" pref="209" max="-2" attributes="0"/>
+                          <Component id="Category" alignment="0" pref="213" max="32767" attributes="0"/>
                           <Component id="DescriptionScroll" min="-2" pref="209" max="-2" attributes="0"/>
+                          <Component id="PreviewImage" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace pref="9" max="32767" attributes="0"/>
                       <Component id="line" min="-2" max="-2" attributes="0"/>
@@ -186,11 +184,6 @@
               </SubComponents>
             </Container>
             <Component class="javax.swing.JLabel" name="PreviewImage">
-              <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Images/x.png"/>
-                </Property>
-              </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
               </AuxValues>
@@ -277,34 +270,34 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="PreviewSubtotal" max="32767" attributes="0"/>
-                                  <Component id="DiscountPercentage" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="PreviewTotal" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="PreviewDiscount" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="PreviewQuantity" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="PreviewCost" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="PreviewStatus" min="-2" pref="103" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="total" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="subtotal" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="discount" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="discountper" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="quantity" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="cost" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="status" alignment="0" pref="170" max="32767" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="0" max="-2" attributes="0"/>
-                              <Component id="issuescroll" min="-2" pref="279" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          </Group>
                           <Component id="PreviewReason" alignment="1" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                          <Component id="PreviewSubtotal" max="32767" attributes="0"/>
+                                          <Component id="DiscountPercentage" alignment="1" max="32767" attributes="0"/>
+                                          <Component id="PreviewTotal" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="PreviewDiscount" alignment="1" max="32767" attributes="0"/>
+                                          <Component id="PreviewQuantity" alignment="1" max="32767" attributes="0"/>
+                                          <Component id="PreviewCost" alignment="1" max="32767" attributes="0"/>
+                                          <Component id="PreviewStatus" min="-2" pref="103" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="total" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="subtotal" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="discount" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="discountper" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="quantity" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="cost" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="status" alignment="0" pref="170" max="32767" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Component id="issuescroll" alignment="0" min="-2" pref="279" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>

@@ -4,6 +4,7 @@ import javax.swing.Timer;
 import Classes.ProductImage;
 import Classes.Functions;
 import Classes.Run;
+import Classes.CustomCellRenderer;
 import Classes.serverCredentials;
 import Panel.ConfirmationPopup;
 import Panel.Items;
@@ -56,6 +57,8 @@ import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
@@ -63,6 +66,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
+import javax.swing.table.TableCellRenderer;
 import raven.glasspanepopup.GlassPanePopup;
 import raven.toast.Notifications;
 
@@ -951,7 +955,7 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(HistoryText, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(TransactionNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 113, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 167, Short.MAX_VALUE)
                 .addComponent(HistoryCategoryIcon)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(HistoryCategorySort, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -995,14 +999,14 @@ public class Main extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Product", "Category", "Quantity", "Cost", "Discount", "Subtotal", "Total", "Date", "Time", "ID", "ProductID", "Description", "Receipt No."
+                "Product", "Category", "Quantity", "Cost", "Discount", "Subtotal", "Total", "Date", "Time", "ID", "ProductID", "Description", "Receipt No.", ""
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -1035,6 +1039,9 @@ public class Main extends javax.swing.JFrame {
             HistoryTable.getColumnModel().getColumn(11).setMinWidth(0);
             HistoryTable.getColumnModel().getColumn(11).setPreferredWidth(0);
             HistoryTable.getColumnModel().getColumn(11).setMaxWidth(0);
+            HistoryTable.getColumnModel().getColumn(13).setMinWidth(5);
+            HistoryTable.getColumnModel().getColumn(13).setPreferredWidth(5);
+            HistoryTable.getColumnModel().getColumn(13).setMaxWidth(5);
         }
 
         javax.swing.GroupLayout HistoryLayout = new javax.swing.GroupLayout(History);
@@ -1044,7 +1051,7 @@ public class Main extends javax.swing.JFrame {
             .addComponent(HistoryBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(HistoryLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(HistoryTableScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 989, Short.MAX_VALUE)
+                .addComponent(HistoryTableScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 1043, Short.MAX_VALUE)
                 .addContainerGap())
         );
         HistoryLayout.setVerticalGroup(
@@ -2332,7 +2339,7 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(EditSideBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(EditSideBarLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(EditTableScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 523, Short.MAX_VALUE))
+                        .addComponent(EditTableScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 437, Short.MAX_VALUE))
                     .addGroup(EditSideBarLayout.createSequentialGroup()
                         .addGap(17, 17, 17)
                         .addComponent(AddBT1)
@@ -4844,9 +4851,12 @@ public static String getFormattedDate() {
                 rs.getString(12),         // prodID
                 rs.getString(6),          // desc
                 rs.getString(16),       // receipt
+                rs.getString(17),       //status
+                                  
             });
         }
         
+        HistoryTable.getColumnModel().getColumn(13).setCellRenderer(new CustomCellRenderer());
         
         int rows = HistoryTable.getRowCount();
         DecimalFormat history = new DecimalFormat("#,###"); // Format without decimals
@@ -4872,7 +4882,7 @@ public static String getFormattedDate() {
         sql = "SELECT * FROM History ORDER BY `Date` DESC, `Time` DESC";
     } else {
         // Updated query that excludes `id`, `productID`, `description`, `imageName`, `imagePath`, and `imageFile`
-        sql = "SELECT * FROM History WHERE `name` LIKE ? OR `cost` LIKE ? OR `discount` LIKE ? OR `category` LIKE ? OR `subtotal` LIKE ? OR `total` LIKE ? OR `quantity` LIKE ? OR `Date` LIKE ? OR `Time` LIKE ?OR `receipt` LIKE ? ORDER BY `Date` DESC, `Time` DESC";
+        sql = "SELECT * FROM History WHERE `name` LIKE ? OR `cost` LIKE ? OR `discount` LIKE ? OR `category` LIKE ? OR `subtotal` LIKE ? OR `total` LIKE ? OR `quantity` LIKE ? OR `Date` LIKE ? OR `Time` LIKE ? OR `receipt` LIKE ? OR `status` LIKE ? ORDER BY `Date` DESC, `Time` DESC";
     }
 
     try {
@@ -4895,6 +4905,7 @@ public static String getFormattedDate() {
             pst.setString(8, likeSearch);  // Date
             pst.setString(9, likeSearch);  // Time
             pst.setString(10, likeSearch);  // receipt
+            pst.setString(11, likeSearch);  // status
         }
 
         ResultSet rs = pst.executeQuery();
@@ -4932,6 +4943,7 @@ public static String getFormattedDate() {
                 rs.getString(12),         // productID
                 rs.getString(6),
                 rs.getString(16),
+                rs.getString(17),       //status
             });
         
         
@@ -5001,7 +5013,8 @@ public static String getFormattedDate() {
                 rs.getString(1),          // id (hidden)
                 rs.getString(12),         // productID (hidden)
                 rs.getString(6),
-                rs.getString(16),    
+                rs.getString(16),  
+                rs.getString(17),       //status
             });
         }
 
@@ -5086,6 +5099,7 @@ public static String getFormattedDate() {
                 // Show preview
                 preview = new HistoryPreview(this);
                 preview.prevID = dbId;
+                PreviewLoadImageID(dbId,preview.PreviewImage);
                 preview.receipt.setText(receipt);
                 preview.Title.setText(name);
                 preview.Category.setText(category);
@@ -5094,17 +5108,22 @@ public static String getFormattedDate() {
                 function.adjustFontSizeToFit(preview.Title, 20, 10);
                 preview.Description.setLineWrap(true);
                 preview.Issues.setLineWrap(true);
+                //.Issues.setCaretPosition(0);
+                //preview.issuescroll.getVerticalScrollBar().setValue(0);
+                //preview.issuescroll.getViewport().setViewPosition(new java.awt.Point(0, 0));
+                
                 
                 
                 
                 preview.cost.setText(df.format(cost));
                 preview.quantity.setText(quantity);
-                preview.discountper.setText(discount+"%");
+                preview.discountper.setText(((int) discount) + "%");
                 preview.discount.setText(df.format(discountAmount));
                 preview.subtotal.setText(df.format(subtotal));
                 preview.total.setText(df.format(total));
                 preview.status.setSelectedItem(status);
                 if (status.equals("Refunded")){
+                    preview.status.setForeground(new Color(235, 87, 87));
                     preview.stat = true;
                     preview.PreviewReason.setVisible(true);
                     preview.issuescroll.setVisible(true);
@@ -5120,63 +5139,64 @@ public static String getFormattedDate() {
        
     } 
 }
+    
+    
+   
+   
+    
+    
+    public void PreviewLoadImageID(int ID, JLabel label) {
+        try {
+
+            pst = con.prepareStatement("SELECT imageFile FROM history WHERE id = ?");
+            pst.setInt(1, ID);
+
+            rs = pst.executeQuery();
+
+            if (rs.next()) {
+                LoadImagePreview(label);
+            } else {
+                // Set default image if no imageFile found
+                setDefaultImage();
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            setDefaultImage();
+        }
+    }
+
+   public void LoadImagePreview(JLabel label) {
+        try {
+            byte[] imagedata = rs.getBytes("imageFile");
+
+            if (imagedata != null && imagedata.length > 0) {
+                format1 = new ImageIcon(imagedata);
+                Image mm = format1.getImage();
+                Image img2 = mm.getScaledInstance(213, 207, Image.SCALE_SMOOTH);
+                ImageIcon image = new ImageIcon(img2);
+                label.setIcon(image);
+            } else {
+                setDefaultImage(); // fallback if byte array is empty
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            setDefaultImage(); // fallback on error
+        }
+    }
+   
+   public void PreviewDefaultImage() {
+        try {
+            ImageIcon ii = new ImageIcon(""); // Make sure this image exists in your project directory
+            Image img = ii.getImage().getScaledInstance(213, 207, Image.SCALE_SMOOTH);
+            EditImage.setIcon(new ImageIcon(img));
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Default image not found!");
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, e);
+        }
+    }
 
 
 
 }
-
-//int id = Integer.parseInt(CartTable.getValueAt(selectedRow, 10).toString());    
-//        String name = CartTable.getValueAt(selectedRow, 0).toString();       // Product
-//        String category = CartTable.getValueAt(selectedRow, 1).toString();
-//        String quantity = CartTable.getValueAt(selectedRow, 2).toString();   // Quantity
-//        String cost = CartTable.getValueAt(selectedRow, 3).toString();       // Cost
-//        String discount = CartTable.getValueAt(selectedRow, 4).toString();   // Discount
-//        String total = CartTable.getValueAt(selectedRow, 6).toString();   // total
-//        String description = CartTable.getValueAt(selectedRow, 11).toString();
-//
-//        CartCategoryTXT.setText(category);
-//        CartTitleTXT.setText(name);
-//        
-//        function.adjustFontSizeToFit(CartTitleTXT, 24, 12);
-//        
-//        // Remove commas before parsing
-//        CartCostTXT.setText("₱" +new DecimalFormat("#,##0.00").format(Double.parseDouble(cost.replace(",", ""))));
-//        CartDescriptionTXT.setText(description);
-//        CartQuantityTXT.setText(quantity);
-//        CartTotalCostTXT.setText("₱" +new DecimalFormat("#,##0.00").format(Double.parseDouble(total.replace(",", ""))));
-//        int discountValue = Integer.parseInt(discount.replace("%", ""));
-//        if (discountValue > 0 && discountValue <=100){
-//            discountTXT.setVisible(true);
-//            discountTXT.setText(discount+" Discount!");
-//        } else {
-//            discountTXT.setVisible(false);
-//        }
-//        
-//        // Now fetch the image from the database using the ID
-//        try {
-//            String sql = "SELECT imageFile FROM product WHERE id = ?";
-//            PreparedStatement pst = con.prepareStatement(sql);
-//            pst.setInt(1, id);
-//            ResultSet rs = pst.executeQuery();
-//
-//            if (rs.next()) {
-//                byte[] imgBytes = rs.getBytes("imageFile");
-//
-//                if (imgBytes != null) {
-//                    ImageIcon icon = new ImageIcon(imgBytes);
-//                    Image img = icon.getImage().getScaledInstance(211, 211, Image.SCALE_SMOOTH);
-//                    CartImageTXT.setIcon(new ImageIcon(img));
-//                    CartImageTXT.setText("");
-//                } else {
-//                    CartImageTXT.setIcon(null);
-//                    CartImageTXT.setText("No Image");
-//                }
-//            }
-//
-//            rs.close();
-//            pst.close();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            CartImageTXT.setIcon(null);
-//            CartImageTXT.setText("Error loading image");
-//        }
