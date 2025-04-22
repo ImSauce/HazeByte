@@ -77,6 +77,8 @@ public class Main extends javax.swing.JFrame {
     public AddProduct addProduct;
     private ChangeUsername ChangeUser;
     public HistoryPreview preview;
+    public HistoryTotal historytotal;
+    
     
     
     
@@ -139,6 +141,7 @@ public class Main extends javax.swing.JFrame {
  
     public Main(Login loginInstance) {
         initComponents();
+        
         
         USER.setText(loginInstance.user);
         IP.setText(loginInstance.url);
@@ -275,6 +278,7 @@ public class Main extends javax.swing.JFrame {
         HistorySearchIconTXT = new javax.swing.JLabel();
         HistoryCategoryIcon = new javax.swing.JLabel();
         TransactionNumber = new SystemOtherComps.PH_Label();
+        HistoryCalculate = new javax.swing.JLabel();
         HistoryTableScroll = new SystemOtherComps.PH_ScrollPane();
         HistoryTable = new javax.swing.JTable();
         Settings = new javax.swing.JPanel();
@@ -946,6 +950,20 @@ public class Main extends javax.swing.JFrame {
         TransactionNumber.setAA_BorderColor(new java.awt.Color(51, 51, 51));
         TransactionNumber.setAA_DrawBorder(true);
 
+        HistoryCalculate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/total.png"))); // NOI18N
+        HistoryCalculate.setToolTipText("Caculate Total");
+        HistoryCalculate.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                HistoryCalculateMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                HistoryCalculateMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                HistoryCalculateMouseExited(evt);
+            }
+        });
+
         javax.swing.GroupLayout HistoryBarLayout = new javax.swing.GroupLayout(HistoryBar);
         HistoryBar.setLayout(HistoryBarLayout);
         HistoryBarLayout.setHorizontalGroup(
@@ -955,7 +973,7 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(HistoryText, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(TransactionNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 167, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(HistoryCategoryIcon)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(HistoryCategorySort, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -963,32 +981,37 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(HistorySearchIconTXT)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(HistorySearch, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(42, 42, 42))
+                .addGap(27, 27, 27)
+                .addComponent(HistoryCalculate)
+                .addGap(28, 28, 28))
         );
         HistoryBarLayout.setVerticalGroup(
             HistoryBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(HistoryBarLayout.createSequentialGroup()
-                .addGroup(HistoryBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, HistoryBarLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, HistoryBarLayout.createSequentialGroup()
+                .addGroup(HistoryBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(HistoryBarLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(HistoryBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(HistorySearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, HistoryBarLayout.createSequentialGroup()
-                                .addComponent(HistorySearchIconTXT)
-                                .addGap(9, 9, 9))))
-                    .addComponent(HistoryText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(HistoryBarLayout.createSequentialGroup()
-                        .addGroup(HistoryBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(HistoryBarLayout.createSequentialGroup()
-                                .addGap(8, 8, 8)
-                                .addComponent(HistoryCategorySort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(HistoryBarLayout.createSequentialGroup()
-                                .addGap(17, 17, 17)
-                                .addGroup(HistoryBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(TransactionNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(HistoryCategoryIcon))))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                                .addGap(16, 16, 16)
+                                .addGroup(HistoryBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(HistorySearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, HistoryBarLayout.createSequentialGroup()
+                                        .addComponent(HistorySearchIconTXT)
+                                        .addGap(9, 9, 9))))
+                            .addComponent(HistoryCategorySort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(HistoryText, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, HistoryBarLayout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addGroup(HistoryBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(TransactionNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(HistoryCategoryIcon))
+                        .addGap(0, 11, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, HistoryBarLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(HistoryCalculate)
+                .addGap(14, 14, 14))
         );
 
         HistoryTable.setBackground(new java.awt.Color(24, 23, 23));
@@ -1039,9 +1062,9 @@ public class Main extends javax.swing.JFrame {
             HistoryTable.getColumnModel().getColumn(11).setMinWidth(0);
             HistoryTable.getColumnModel().getColumn(11).setPreferredWidth(0);
             HistoryTable.getColumnModel().getColumn(11).setMaxWidth(0);
-            HistoryTable.getColumnModel().getColumn(13).setMinWidth(5);
-            HistoryTable.getColumnModel().getColumn(13).setPreferredWidth(5);
-            HistoryTable.getColumnModel().getColumn(13).setMaxWidth(5);
+            HistoryTable.getColumnModel().getColumn(13).setMinWidth(3);
+            HistoryTable.getColumnModel().getColumn(13).setPreferredWidth(3);
+            HistoryTable.getColumnModel().getColumn(13).setMaxWidth(3);
         }
 
         javax.swing.GroupLayout HistoryLayout = new javax.swing.GroupLayout(History);
@@ -1468,7 +1491,7 @@ public class Main extends javax.swing.JFrame {
                 .addGap(2, 2, 2)
                 .addComponent(CartDescriptionheadingTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(CartDescriptionScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+                .addComponent(CartDescriptionScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 5, Short.MAX_VALUE)
                 .addGroup(CartItemViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(CartItemViewLayout.createSequentialGroup()
                         .addGap(8, 8, 8)
@@ -3034,6 +3057,20 @@ public class Main extends javax.swing.JFrame {
         SelectHistoryItem();
     }
     }//GEN-LAST:event_HistoryTableMouseClicked
+
+    private void HistoryCalculateMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HistoryCalculateMouseEntered
+       ImageIcon image = new ImageIcon("total2.png");
+       HistoryCalculate.setIcon(image);
+    }//GEN-LAST:event_HistoryCalculateMouseEntered
+
+    private void HistoryCalculateMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HistoryCalculateMouseExited
+        ImageIcon image = new ImageIcon("total.png");
+       HistoryCalculate.setIcon(image);
+    }//GEN-LAST:event_HistoryCalculateMouseExited
+
+    private void HistoryCalculateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HistoryCalculateMouseClicked
+       HistoryCalculate();
+    }//GEN-LAST:event_HistoryCalculateMouseClicked
   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -3128,6 +3165,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel Hidden;
     private javax.swing.JPanel History;
     private javax.swing.JPanel HistoryBar;
+    private javax.swing.JLabel HistoryCalculate;
     private javax.swing.JLabel HistoryCategoryIcon;
     public SystemShadowedComp.PH_ComboBox HistoryCategorySort;
     private SystemOtherComps.PH_Panel HistoryPN;
@@ -4641,6 +4679,7 @@ public ImageIcon generateQRCode(String data, int width, int height) {
     }
 }
 
+
 public void BuyCart() {
     LocalDateTime now = LocalDateTime.now();
     String formattedDate = getFormattedDate();
@@ -4654,7 +4693,9 @@ public void BuyCart() {
 
     String paymentText = paymentTXT.getText().replace(",", "").trim();
     String totalText = totalTXT.getText().replace(",", "").trim().replace("₱", "");
-
+    String totalDiscount = totaldiscountTXT.getText().replace(",", "").trim().replace("₱", "");
+    String totalsubtotal = subtotalTXT.getText().replace(",", "").trim().replace("₱", "");
+    String totalchange = changeTXT.getText().replace(",", "").trim().replace("₱", "");
     if (paymentText.isEmpty() || totalText.isEmpty()) {
         CallPopUp("Payment Required","Please make a payment before proceeding with the purchase.");
         
@@ -4682,10 +4723,11 @@ public void BuyCart() {
             receipt receipt = new receipt(this);
             receipt.setVisible(true);
 
-            // 3. Set formatted values for receipt
-            double subtotal = total / 1.12; // Assuming 12% VAT
-            double tax = total - subtotal;
-            double change = payment - total;
+            
+            double subtotal = Double.parseDouble(totalsubtotal);
+            double tax = Double.parseDouble(totalDiscount);
+            double change = Double.parseDouble(totalchange);
+
 
             String[] fields = {"Subtotal", "Tax", "Total", "Payment", "Change"};
             double[] values = {subtotal, tax, total, payment, change};
@@ -4723,8 +4765,8 @@ public void BuyCart() {
                    +"Receipt number: " + receiptnum +"\n"
                    +"Date: " + formattedDate +"\n"
                    +"Time: " + formattedTime +"\n\n"
-                   +"Discount: " + receipt.r_tax.getText().replace("-", "") + "\n"
                    +"Subtotal: " + receipt.r_subtotal.getText().replace("-", "")  +"\n"
+                   +"Discount: " + receipt.r_tax.getText().replace("-", "") + "\n"
                    +"Total: " + receipt.r_total.getText().replace("-", "")  +"\n\n"
                    +"Payment: " + receipt.r_payment.getText().replace("-", "")  +"\n"
                    +"Change: " + receipt.r_change.getText().replace("-", "")  +"\n"
@@ -4754,7 +4796,6 @@ public void BuyCart() {
         CallPopUp("Insufficient Payment", "Please enter a sufficient payment amount.");
     }
 }
-
 
 
 
@@ -5198,5 +5239,65 @@ public static String getFormattedDate() {
     }
 
 
+   
+   
+   public void HistoryCalculate() {
+    String query = "SELECT cost, discount, quantity, total, status FROM history";
 
+    long totalQuantity = 0;
+    double totalSales = 0;
+    double totalDiscountAmount = 0;
+    int totalSold = 0;
+    int totalRefund = 0;
+    double totalRefundAmount = 0; // New variable to track refunded amount
+
+    try (PreparedStatement stmt = con.prepareStatement(query);
+         ResultSet rs = stmt.executeQuery()) {
+
+        while (rs.next()) {
+            double cost = rs.getDouble("cost");
+            double discountPercent = rs.getDouble("discount");
+            long quantity = rs.getLong("quantity");
+            double total = rs.getDouble("total");
+
+            String status = rs.getString("status");
+
+            if ("Sold".equalsIgnoreCase(status)) {
+                // Calculate only for rows where status is "Sold"
+                totalQuantity += quantity;
+                totalSales += total;
+
+                // Convert discount % to actual discount amount and accumulate it
+                double discountAmount = (cost * (discountPercent / 100.0)) * quantity;
+                totalDiscountAmount += discountAmount;
+
+                totalSold++; // Increment totalSold for "Sold" status
+            } else if ("Refunded".equalsIgnoreCase(status)) {
+                // For refunded rows, track the total cost or total refunded amount
+                double discountAmount = (cost * (discountPercent / 100.0)) * quantity;
+                totalRefundAmount += ((cost * quantity) - discountAmount);
+                totalRefund++; // Increment totalRefund for "Refunded" status
+            }
+        }
+
+        System.out.println("Total Quantity: " + totalQuantity);
+        System.out.println("Total Sales: " + totalSales);
+        System.out.println("Total Discount Amount: " + totalDiscountAmount);
+        System.out.println("Total Sold Rows: " + totalSold);
+        System.out.println("Total Refund Rows: " + totalRefund);
+        System.out.println("Total Refunded Amount: " + totalRefundAmount); // Print total refunded amount
+
+        historytotal = new HistoryTotal(this);
+        historytotal.setVisible(true);
+        historytotal.TotalQuantity.setText(String.valueOf(totalQuantity));
+        historytotal.TotalSold.setText("₱" + String.format("%,.2f", totalSales));
+        historytotal.TotalRefund.setText("₱" + String.format("%,.2f", totalRefundAmount));
+
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+}
+
+
+        
 }
