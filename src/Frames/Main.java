@@ -4737,24 +4737,24 @@ public void BuyCart() {
                 String formattedValue = decimalFormat.format(values[i]);
                 formattedValue = String.format("%s", formattedValue);
 
-                int numDots = Math.max(0, 110 - formattedValue.length());
+                int numDots = Math.max(0, 70 - formattedValue.length());
                 String dots = new String(new char[numDots]).replace('\0', '-');
 
                 switch (fields[i]) {
                     case "Subtotal":
-                        receipt.r_subtotal.setText(dots + formattedValue);
+                        receipt.r_subtotal.setText(dots +" ₱"+ formattedValue);
                         break;
                     case "Tax":
-                        receipt.r_tax.setText(dots + formattedValue);
+                        receipt.r_tax.setText(dots +" ₱"+ formattedValue);
                         break;
                     case "Total":
-                        receipt.r_total.setText(dots + formattedValue);
+                        receipt.r_total.setText(dots +" ₱"+ formattedValue);
                         break;
                     case "Payment":
-                        receipt.r_payment.setText(dots + formattedValue);
+                        receipt.r_payment.setText(dots +" ₱"+ formattedValue);
                         break;
                     case "Change":
-                        receipt.r_change.setText(dots + formattedValue);
+                        receipt.r_change.setText(dots +" ₱"+ formattedValue);
                         break;
                 }
             }
@@ -4765,17 +4765,17 @@ public void BuyCart() {
                    +"Receipt number: " + receiptnum +"\n"
                    +"Date: " + formattedDate +"\n"
                    +"Time: " + formattedTime +"\n\n"
-                   +"Subtotal: " + receipt.r_subtotal.getText().replace("-", "")  +"\n"
-                   +"Discount: " + receipt.r_tax.getText().replace("-", "") + "\n"
-                   +"Total: " + receipt.r_total.getText().replace("-", "")  +"\n\n"
-                   +"Payment: " + receipt.r_payment.getText().replace("-", "")  +"\n"
-                   +"Change: " + receipt.r_change.getText().replace("-", "")  +"\n"
+                   +"Subtotal: " + receipt.r_subtotal.getText().replace("-", "").replace("₱", "")  +"\n"
+                   +"Discount: " + receipt.r_tax.getText().replace("-", "").replace("₱", "") + "\n"
+                   +"Total: " + receipt.r_total.getText().replace("-", "").replace("₱", "")  +"\n\n"
+                   +"Payment: " + receipt.r_payment.getText().replace("-", "").replace("₱", "")  +"\n"
+                   +"Change: " + receipt.r_change.getText().replace("-", "").replace("₱", "")  +"\n"
                    +"\n 14 days warranty!"
                     ;
             
             receipt.r_date.setText(formattedDate);
             receipt.r_number.setText(receiptnum);
-            ImageIcon qrIcon = generateQRCode(info, 190, 190); // 150x150 is a good size
+            ImageIcon qrIcon = generateQRCode(info, 200, 200); // 150x150 is a good size
             receipt.qrcode.setIcon(qrIcon);
             
             

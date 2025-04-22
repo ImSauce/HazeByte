@@ -296,30 +296,30 @@ PreparedStatement pst;
             .addGap(0, 1, Short.MAX_VALUE)
         );
 
-        r_subtotal.setFont(new java.awt.Font("Berlin Sans FB", 0, 14)); // NOI18N
+        r_subtotal.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         r_subtotal.setForeground(new java.awt.Color(0, 0, 0));
         r_subtotal.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        r_subtotal.setText("---------------------------------------------------------------------------------------------------------------------");
+        r_subtotal.setText("----------------------------------------------------------------");
 
-        r_tax.setFont(new java.awt.Font("Berlin Sans FB", 0, 14)); // NOI18N
+        r_tax.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         r_tax.setForeground(new java.awt.Color(0, 0, 0));
         r_tax.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        r_tax.setText("---------------------------------------------------------------------------------------------------------------------");
+        r_tax.setText("----------------------------------------------------------------");
 
-        r_total.setFont(new java.awt.Font("Berlin Sans FB", 0, 14)); // NOI18N
+        r_total.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         r_total.setForeground(new java.awt.Color(0, 0, 0));
         r_total.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        r_total.setText("---------------------------------------------------------------------------------------------------------------------");
+        r_total.setText("----------------------------------------------------------------");
 
-        r_payment.setFont(new java.awt.Font("Berlin Sans FB", 0, 14)); // NOI18N
+        r_payment.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         r_payment.setForeground(new java.awt.Color(0, 0, 0));
         r_payment.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        r_payment.setText("---------------------------------------------------------------------------------------------------------------------");
+        r_payment.setText("----------------------------------------------------------------");
 
-        r_change.setFont(new java.awt.Font("Berlin Sans FB", 0, 14)); // NOI18N
+        r_change.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         r_change.setForeground(new java.awt.Color(0, 0, 0));
         r_change.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        r_change.setText("---------------------------------------------------------------------------------------------------------------------");
+        r_change.setText("----------------------------------------------------------------");
 
         r_number.setFont(new java.awt.Font("Berlin Sans FB", 0, 14)); // NOI18N
         r_number.setForeground(new java.awt.Color(0, 0, 0));
@@ -339,22 +339,27 @@ PreparedStatement pst;
 
         jLabel9.setFont(new java.awt.Font("Berlin Sans FB", 0, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel9.setText("Subtotal");
 
         jLabel13.setFont(new java.awt.Font("Berlin Sans FB", 0, 14)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel13.setText("Total Discount");
 
         jLabel14.setFont(new java.awt.Font("Berlin Sans FB", 0, 14)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel14.setText("Grand Total");
 
         jLabel15.setFont(new java.awt.Font("Berlin Sans FB", 0, 14)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel15.setText("Payment");
 
         jLabel16.setFont(new java.awt.Font("Berlin Sans FB", 0, 14)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel16.setText("Change");
 
         Cart_txt2.setFont(new java.awt.Font("Arial Black", 0, 28)); // NOI18N
@@ -378,6 +383,7 @@ PreparedStatement pst;
         jLabel19.setText("Category");
 
         qrcode.setForeground(new java.awt.Color(0, 0, 0));
+        qrcode.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         qrcode.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel20.setFont(new java.awt.Font("Berlin Sans FB", 0, 14)); // NOI18N
@@ -450,12 +456,12 @@ PreparedStatement pst;
                                 .addComponent(pass))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addContainerGap()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(r_payment, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
