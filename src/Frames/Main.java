@@ -3527,24 +3527,31 @@ public void initProds() {
 
             // --- Caching Logic ---
             File imageFile = new File(cacheDir, prdID + ".png");
-            ImageIcon imageIcon = null;
 
-            if (imageFile.exists()) {
-                // Load image from disk cache
-                imageIcon = new ImageIcon(imageFile.getAbsolutePath());
-            } else {
-                // Load image from database
-                byte[] imageData = rs.getBytes("imageFile");
-                if (imageData != null) {
-                    BufferedImage buffered = ImageIO.read(new ByteArrayInputStream(imageData));
-                    ImageIO.write(buffered, "png", imageFile); // Save to cache
-                    Image scaledImg = buffered.getScaledInstance(216, 218, Image.SCALE_SMOOTH);
-                    imageIcon = new ImageIcon(scaledImg);
+            try {
+                ImageIcon imageIcon = null;
+
+                if (imageFile.exists()) {
+                    imageIcon = new ImageIcon(imageFile.getAbsolutePath());
+                } else {
+                    byte[] imageData = rs.getBytes("imageFile");
+                    if (imageData != null) {
+                        BufferedImage buffered = ImageIO.read(new ByteArrayInputStream(imageData));
+                        if (buffered != null) {
+                            Image scaledImg = buffered.getScaledInstance(216, 218, Image.SCALE_SMOOTH);
+                            ImageIO.write(buffered, "png", imageFile); // Save to cache
+                            imageIcon = new ImageIcon(scaledImg);
+                        }
+                    }
                 }
-            }
 
-            if (imageIcon != null) {
-                itemPanel.setProductImage(imageIcon);
+                if (imageIcon != null) {
+                    itemPanel.setProductImage(imageIcon);
+                }
+
+            } catch (Exception e) {
+                // Image loading failed, but we continue without it
+                System.err.println("Image loading failed for product ID " + prdID + ": " + e.getMessage());
             }
 
             GameList.add(itemPanel);
@@ -3553,7 +3560,7 @@ public void initProds() {
         GameList.revalidate();
         GameList.repaint();
 
-    } catch (SQLException | IOException ex) {
+    } catch (SQLException ex) {
         ex.printStackTrace();
         JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage());
     }
@@ -3601,24 +3608,31 @@ public void initProds() {
 
             // --- Caching Logic ---
             File imageFile = new File(cacheDir, prdID + ".png");
-            ImageIcon imageIcon = null;
 
-            if (imageFile.exists()) {
-                // Load from disk cache
-                imageIcon = new ImageIcon(imageFile.getAbsolutePath());
-            } else {
-                // Load from DB and cache
-                byte[] imageData = rs.getBytes("imageFile");
-                if (imageData != null) {
-                    BufferedImage buffered = ImageIO.read(new ByteArrayInputStream(imageData));
-                    ImageIO.write(buffered, "png", imageFile); // Save to disk
-                    Image scaledImg = buffered.getScaledInstance(216, 218, Image.SCALE_SMOOTH);
-                    imageIcon = new ImageIcon(scaledImg);
+            try {
+                ImageIcon imageIcon = null;
+
+                if (imageFile.exists()) {
+                    imageIcon = new ImageIcon(imageFile.getAbsolutePath());
+                } else {
+                    byte[] imageData = rs.getBytes("imageFile");
+                    if (imageData != null) {
+                        BufferedImage buffered = ImageIO.read(new ByteArrayInputStream(imageData));
+                        if (buffered != null) {
+                            Image scaledImg = buffered.getScaledInstance(216, 218, Image.SCALE_SMOOTH);
+                            ImageIO.write(buffered, "png", imageFile); // Save to cache
+                            imageIcon = new ImageIcon(scaledImg);
+                        }
+                    }
                 }
-            }
 
-            if (imageIcon != null) {
-                itemPanel.setProductImage(imageIcon);
+                if (imageIcon != null) {
+                    itemPanel.setProductImage(imageIcon);
+                }
+
+            } catch (Exception e) {
+                // Image loading failed, but we continue without it
+                System.err.println("Image loading failed for product ID " + prdID + ": " + e.getMessage());
             }
 
             GameList.add(itemPanel);
@@ -3627,7 +3641,7 @@ public void initProds() {
         GameList.revalidate();
         GameList.repaint();
 
-    } catch (SQLException | IOException ex) {
+    } catch (SQLException ex) {
         ex.printStackTrace();
         JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage());
     }
