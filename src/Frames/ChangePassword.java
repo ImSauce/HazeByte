@@ -22,32 +22,11 @@ public class ChangePassword extends javax.swing.JFrame {
     ResultSet rs;
     PreparedStatement pst;
     
-  
-
-    public void connect() {
-        serverCredentials sv = new serverCredentials();
-        sv.setServerIP("localhost");
-        sv.setUserID("root");
-        sv.setPass("");
-        
-        
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://"+sv.getServerIP() +"/hazebyte", sv.getUserID(), sv.getPass());
-            
-            
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Run.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(Run.class.getName()).log(Level.SEVERE, null, ex);
-        }
-       
-        
-    }
+ 
     public ChangePassword(Main mainFrame) {
         initComponents();
-        connect();
         color.UIcolor();
+        this.con = mainFrame.con;
         ImageIcon PasswordIcon = new ImageIcon ("lock.png");
         setIconImage(PasswordIcon.getImage());
         setTitle("Change Password");
@@ -261,6 +240,8 @@ public class ChangePassword extends javax.swing.JFrame {
     } catch (SQLException ex) {
         Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         Notifications.getInstance().show(Notifications.Type.ERROR, Notifications.Location.TOP_CENTER, "Database error: " + ex.getMessage());
+    }finally {
+    try { if (pst != null) pst.close(); } catch (SQLException ignored) {}
     }
 }
 

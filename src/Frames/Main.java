@@ -102,54 +102,20 @@ public class Main extends javax.swing.JFrame {
     private ImageIcon format2 = null;
     
     
-    Connection con;
+    public Connection con;
     ResultSet rs;
     PreparedStatement pst;
     
-    
-    public void forConnection(Connection conn, String serverIP,String userID ,String passwordID){
-        IP.setText(serverIP);
-        USER.setText(userID);
-        PASS.setText(passwordID);
-        
- 
-    }
-    
-    
-    public void connect() {
-        serverCredentials sv = new serverCredentials();
-        sv.setServerIP(IP.getText());
-        sv.setUserID(USER.getText());
-        sv.setPass(PASS.getText());
-        
-        
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://"+sv.getServerIP() +"/hazebyte", sv.getUserID(), sv.getPass());
-            
-            
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Run.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(Run.class.getName()).log(Level.SEVERE, null, ex);
-        }
-       
-        
-    }
+
     
     int categorystartup = 0;
  
-    public Main(Login loginInstance) {
+    public Main(Connection con) {
         initComponents();
-        
-        
-        USER.setText(loginInstance.user);
-        IP.setText(loginInstance.url);
-        PASS.setText(loginInstance.pass);
-        
         GlassPanePopup.install(this);
         
-        connect();
+        this.con = con;
+
         startup();
         ClearCart();
          
@@ -1856,6 +1822,11 @@ public class Main extends javax.swing.JFrame {
         GameSearchTXT.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         GameSearchTXT.setAA_TextHint("Search...");
         GameSearchTXT.setAB_LineColor(new java.awt.Color(51, 51, 51));
+        GameSearchTXT.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                GameSearchTXTCaretUpdate(evt);
+            }
+        });
 
         HomeSearchIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/search.png"))); // NOI18N
 
@@ -3071,6 +3042,10 @@ public class Main extends javax.swing.JFrame {
     private void HistoryCalculateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HistoryCalculateMouseClicked
        HistoryCalculate();
     }//GEN-LAST:event_HistoryCalculateMouseClicked
+
+    private void GameSearchTXTCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_GameSearchTXTCaretUpdate
+        searching();
+    }//GEN-LAST:event_GameSearchTXTCaretUpdate
   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -3687,16 +3662,9 @@ public void initProds() {
         if (!validateFields()) {
            return; // Stop execution if all textbox are not inputted
        }
-
                try {
-               serverCredentials sv = new serverCredentials();
-               sv.setServerIP("localhost");
-               sv.setUserID("root");
-               sv.setPass("");
 
-
-               String query = "INSERT INTO product(`id`,`name`, `cost`, `discount`, `category`, `description`, `imageName`, `imagePath`, `imageFile`) VALUES (?,?, ?, ?, ?, ?, ?, ?, ?)";
-               con = DriverManager.getConnection("jdbc:mysql://"+sv.getServerIP() +"/hazebyte", sv.getUserID(), sv.getPass());
+               String query = "INSERT INTO product(`id`,`name`, `cost`, `discount`, `category`, `description`, `imageName`, `imagePath`, `imageFile`) VALUES (?,?, ?, ?, ?, ?, ?, ?, ?)"; 
                pst = con.prepareStatement(query); 
                pst.setString(1, AddID.getText()); 
                pst.setString(2, AddName.getText());      
@@ -4725,7 +4693,7 @@ public void BuyCart() {
             receiptnum = generate8DigitString();
             String sql = "INSERT INTO history (id, name, cost, discount, category, description, subtotal, total, quantity, Date, Time, productID, imageName, imagePath, imageFile, receipt, status, reason) " +
                          "SELECT id, name, cost, discount, category, description, subtotal, total, quantity, ?, ?, productID, imageName, imagePath, imageFile, ?,?,? FROM cart";
-            PreparedStatement pst = con.prepareStatement(sql);
+            pst = con.prepareStatement(sql);
             pst.setString(1, formattedDate);
             pst.setString(2, formattedTime);
             pst.setString(3, receiptnum);
@@ -4773,7 +4741,8 @@ public void BuyCart() {
                 }
             }
             
-            
+            System.out.println("r_subtotal: " + receipt.r_subtotal);
+            System.out.println("qrcode: " + receipt.qrcode);
             String info = 
                     "[ HAZEBYTE ]\n"
                    +"Receipt number: " + receiptnum +"\n"
@@ -4804,7 +4773,7 @@ public void BuyCart() {
 
         } catch (SQLException e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(null, "failed");
+            JOptionPane.showMessageDialog(null, e);
         }
     } else {
         CallPopUp("Insufficient Payment", "Please enter a sufficient payment amount.");
@@ -5303,6 +5272,18 @@ public static String getFormattedDate() {
 
     } catch (SQLException e) {
         e.printStackTrace();
+    }
+}
+   
+   
+   
+   
+   
+   public static void closeQuietly(AutoCloseable... resources) {
+    for (AutoCloseable res : resources) {
+        if (res != null) {
+            try { res.close(); } catch (Exception ignored) {}
+        }
     }
 }
 

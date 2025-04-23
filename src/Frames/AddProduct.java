@@ -42,27 +42,6 @@ public class AddProduct extends javax.swing.JFrame {
     PreparedStatement pst;
     UIcolors color = new UIcolors();
     
-    public void connect() {
-        serverCredentials sv = new serverCredentials();
-        sv.setServerIP("localhost");
-        sv.setUserID("root");
-        sv.setPass("");
-        
-        
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://"+sv.getServerIP() +"/hazebyte", sv.getUserID(), sv.getPass());
-            
-            
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Run.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(Run.class.getName()).log(Level.SEVERE, null, ex);
-        }
-       
-        
-    }
-    
     public Connection getConnection() {
     return this.con;
     }
@@ -71,7 +50,7 @@ public class AddProduct extends javax.swing.JFrame {
         initComponents();
         this.main = mainFrame;
         this.con = mainFrame.con; 
-        connect();
+
         autoIncrement();
         hidden.setVisible(false);
         Add.setVisible(true);
@@ -82,7 +61,17 @@ public class AddProduct extends javax.swing.JFrame {
         setResizable(false);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         
+        
+        
+        
     }
+    
+    @Override
+        public void dispose() {
+            // Clean up anything needed, but NOT the connection
+            super.dispose();
+            System.out.println("Ovveride closed");
+        }
 
     
     @SuppressWarnings("unchecked")
@@ -685,9 +674,12 @@ public class AddProduct extends javax.swing.JFrame {
             autoIncrement();
             main.initProds();
             main.EditRefreshTable();
+            
          } catch (Exception ex) {
                    JOptionPane.showMessageDialog(null, "Error adding product: " + ex.getMessage());
-         }
+         }finally {
+            try { if (pst != null) pst.close(); System.out.println("db closed");} catch (SQLException ignored) {}
+        }
                
     }
  
@@ -735,7 +727,7 @@ public class AddProduct extends javax.swing.JFrame {
         
     } catch (SQLException ex) {
         ex.printStackTrace(); // Handle or log the exception appropriately
-    }
+    } 
 }
     
     

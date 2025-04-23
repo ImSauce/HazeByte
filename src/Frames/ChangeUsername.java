@@ -19,34 +19,14 @@ import raven.toast.Notifications;
 public class ChangeUsername extends javax.swing.JFrame {
     UIcolors color = new UIcolors();
     Connection con;
-    ResultSet rs;
     PreparedStatement pst;
     
   
 
-    public void connect() {
-        serverCredentials sv = new serverCredentials();
-        sv.setServerIP("localhost");
-        sv.setUserID("root");
-        sv.setPass("");
-        
-        
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://"+sv.getServerIP() +"/hazebyte", sv.getUserID(), sv.getPass());
-            
-            
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Run.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(Run.class.getName()).log(Level.SEVERE, null, ex);
-        }
-       
-        
-    }
+   
     public ChangeUsername(Main mainFrame) {
         initComponents();
-        connect();
+        this.con = mainFrame.con;
         color.UIcolor();
         ImageIcon PasswordIcon = new ImageIcon ("usericon.png");
         setIconImage(PasswordIcon.getImage());
@@ -195,6 +175,8 @@ public class ChangeUsername extends javax.swing.JFrame {
     } catch (SQLException ex) {
         Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         Notifications.getInstance().show(Notifications.Type.ERROR, Notifications.Location.TOP_CENTER, "Error: " + ex.getMessage());
+    }finally {
+    try { if (pst != null) pst.close(); } catch (SQLException ignored) {}
     }
 }
 

@@ -45,36 +45,12 @@ public class HistoryPreview extends javax.swing.JFrame {
     PreparedStatement pst;
     UIcolors color = new UIcolors();
     
-    public void connect() {
-        serverCredentials sv = new serverCredentials();
-        sv.setServerIP("localhost");
-        sv.setUserID("root");
-        sv.setPass("");
-        
-        
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://"+sv.getServerIP() +"/hazebyte", sv.getUserID(), sv.getPass());
-            
-            
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Run.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(Run.class.getName()).log(Level.SEVERE, null, ex);
-        }
-       
-        
-    }
-    
-    public Connection getConnection() {
-    return this.con;
-    }
     
     public HistoryPreview(Main mainFrame) {
         initComponents();
         this.main = mainFrame;
         this.con = mainFrame.con; 
-        connect();
+
         if (stat == false){
             issuescroll.setVisible(false);
             PreviewReason.setVisible(false);
@@ -494,17 +470,19 @@ public class HistoryPreview extends javax.swing.JFrame {
   public void status(int id) {
     try {
         String sql = "UPDATE history SET status=?, reason=? WHERE id=?";
-        PreparedStatement updateStmt = con.prepareStatement(sql);
+        pst = con.prepareStatement(sql);
 
         // Convert selected item to string
-        updateStmt.setString(1, status.getSelectedItem().toString());
-        updateStmt.setString(2, Issues.getText());
-        updateStmt.setInt(3, id); // Pass the ID of the item you want to update
+        pst.setString(1, status.getSelectedItem().toString());
+        pst.setString(2, Issues.getText());
+        pst.setInt(3, id); // Pass the ID of the item you want to update
 
-        updateStmt.executeUpdate();
+        pst.executeUpdate();
 
     } catch (Exception e) {
         e.printStackTrace();
+    }finally {
+    try { if (pst != null) pst.close(); } catch (SQLException ignored) {}
     }
 }
     

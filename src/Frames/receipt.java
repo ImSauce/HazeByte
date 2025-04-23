@@ -33,67 +33,29 @@ import javax.swing.table.JTableHeader;
 
 //ssadasdasdasdasd
 public class receipt extends javax.swing.JFrame {
- Connection con;
-PreparedStatement pst;
+ public Connection con;
+ PreparedStatement pst;
 
         
     public String serverIP ;
     public String userID ;
     public String passwordID ;
     
-    private final Main mainInstance;
+    private Main main;
     
    
-    public void forConnection(Connection conn, String serverIP,String userID ,String passwordID){
-        this.con = conn;
-        this.serverIP = serverIP;
-        this.userID = userID;
-        this.passwordID = passwordID;
-        
-        ip.setText(mainInstance.IP.getText());
-        user.setText(mainInstance.USER.getText());
-        pass.setText(mainInstance.PASS.getText());
-        
-    }
-    
-    private void connect(){
-   
-        forConnection(con,serverIP,userID,passwordID);
-        
-        
-    serverCredentials sv = new serverCredentials();
-    sv.setServerIP(ip.getText());
-    sv.setUserID(user.getText());
-    sv.setPass(pass.getText()); // Get password as char array and convert to String
-   System.out.println(sv.getServerIP()+"     SERVER IP ----------");
-    try {
-        
-        Class.forName("com.mysql.cj.jdbc.Driver");
-        con = DriverManager.getConnection("jdbc:mysql://" + sv.getServerIP() + "/hazebyte", sv.getUserID(), sv.getPass());
   
-        System.out.println(sv.getServerIP()+"     SERVER IP ----------");
-        
-        
-   
-    } catch (ClassNotFoundException ex) { } catch (SQLException ex) {}
-   
-    }
     
     
     
     
-    public receipt(Main mainInstance) {
+    
+    public receipt(Main main) {
     initComponents(); 
-     this.mainInstance = mainInstance;
-     
-     
-    ip.setText(mainInstance.IP.getText());
-    user.setText(mainInstance.USER.getText());
-    pass.setText(mainInstance.PASS.getText());
-    
-    
-    connect();
-   
+     this.main = main;
+     this.con = main.con;
+
+
     
     
     setResizable(false);
@@ -696,6 +658,8 @@ public void receiptInfo() {
         
     } catch (Exception ex) {
         JOptionPane.showMessageDialog(null, ex);
+    }finally {
+    try { if (pst != null) pst.close(); } catch (SQLException ignored) {}
     }
 }
 

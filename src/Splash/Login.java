@@ -29,7 +29,7 @@ public class Login extends javax.swing.JFrame {
         public String user = "root";
         public String pass= "";
         Connection con = null;
-
+        PreparedStatement pst;
 
         
         public void forConnection(Connection conn, String serverIP,String userID ,String passwordID){
@@ -40,34 +40,34 @@ public class Login extends javax.swing.JFrame {
     }
         
         
-        Main main = new Main(this);
+        public void connection (){
+         serverCredentials sv = new serverCredentials(url,user,pass);
+
+      
+         //MYSQL CODE-----------------------------------------------
+
+            try {
+                Class.forName("com.mysql.cj.jdbc.Driver");
+                con = DriverManager.getConnection("jdbc:mysql://"+sv.getServerIP() +"/hazebyte", sv.getUserID(), sv.getPassword());
+
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(Run.class.getName()).log(Level.SEVERE, null, ex);
+            }catch (SQLException ex) {
+            Logger.getLogger(Run.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            //MYSQL CODE-----------------------------------------------
+
+        }
     
    
         
     public Login() {
         initComponents();
+        connection();
         
-        serverCredentials sv = new serverCredentials();
-        sv.setServerIP(url);
-        sv.setUserID(user);
-        sv.setPass(pass); 
-        
-      
-         //MYSQL CODE-----------------------------------------------
-
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://"+sv.getServerIP() +"/hazebyte", sv.getUserID(), sv.getPass());
-            
-            
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Run.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(Run.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    
-        //MYSQL CODE-----------------------------------------------
-        
+        mainApp = new Main(con);       // Create Main
+        mainApp.setVisible(false);
+               
         
         
          ImageIcon logo = new ImageIcon("HB icon.png");   
@@ -101,20 +101,16 @@ public class Login extends javax.swing.JFrame {
     }
  
     
-    
+    private Main mainApp; // Declare at the top of the class
 
-    private void openMainApplicationFrame() {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                
-                main.setVisible(true);
-                main.setVisible(false);
-                 new Splash.SplashScreen(null, true).setVisible(true);
-                main.setVisible(false);
-                main.setVisible(true);
-            }
-        });
-    }
+private void openMainApplicationFrame() {
+    java.awt.EventQueue.invokeLater(() -> {
+             // Keep it hidden for now
+        new Splash.SplashScreen(null, true).setVisible(true);  // Show splash
+        mainApp.setVisible(true);
+    });
+}
+
 
     
     
@@ -239,7 +235,7 @@ public class Login extends javax.swing.JFrame {
 
         String sqlQuery = "SELECT username, password FROM login WHERE id=1";
         try {
-            PreparedStatement pst = con.prepareStatement(sqlQuery);
+            pst = con.prepareStatement(sqlQuery);
             ResultSet rs = pst.executeQuery();
 
             if (rs.next()) {
@@ -253,7 +249,7 @@ public class Login extends javax.swing.JFrame {
                     forConnection(con, url, user, pass);
                     openMainApplicationFrame();
                     setVisible(false);
-                    main.forConnection(con, url, user, pass);
+
                 }
             } else {
                 Notifications.getInstance().show(Notifications.Type.ERROR, "User not found in the database.");

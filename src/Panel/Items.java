@@ -20,7 +20,8 @@ import raven.toast.Notifications;
 public class Items extends javax.swing.JPanel {
 
     
-    Connection con;
+    public Connection con;
+    PreparedStatement pst;
     Functions function = new Functions();
     
     public int productID;
@@ -29,7 +30,7 @@ public class Items extends javax.swing.JPanel {
     public String productCategory;
     public Double productDiscount;
     public ImageIcon productImage;
-   private Main main;
+    private Main main;
     
     
     public String serverIP ;
@@ -37,43 +38,13 @@ public class Items extends javax.swing.JPanel {
     public String passwordID ;
     
     
-    public void forConnection(Connection conn, String serverIP,String userID ,String passwordID){
-        this.con = conn;
-        this.serverIP = serverIP;
-        this.userID = userID;
-        this.passwordID = passwordID;
-        
-        LIP.setText(main.IP.getText());
-        LUSER.setText(main.USER.getText());
-        LPASS.setText(main.PASS.getText());
-        
-    }
     
-    private void connect(){
-   
-        forConnection(con,serverIP,userID,passwordID);
-        
-        
-        serverCredentials sv = new serverCredentials();
-        sv.setServerIP(LIP.getText());
-        sv.setUserID(LUSER.getText());
-        sv.setPass(LPASS.getText()); // Get password as char array and convert to String
-
-        try {
-
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://" + sv.getServerIP() + "/hazebyte", sv.getUserID(), sv.getPass());
-
-
-        } catch (ClassNotFoundException ex) { } catch (SQLException ex) {}
-
-    }
     
  
     public Items(Main main) {
         initComponents();
         this.main = main;
-        connect();
+        this.con = main.con; 
         
         
         incrementBT.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -213,6 +184,7 @@ public class Items extends javax.swing.JPanel {
         quantityTXT.setForeground(new java.awt.Color(255, 255, 255));
         quantityTXT.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         quantityTXT.setText("1");
+        quantityTXT.setAA_TextHint("");
         quantityTXT.setFocusable(false);
         add(quantityTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 351, 50, 32));
 
@@ -396,11 +368,7 @@ public class Items extends javax.swing.JPanel {
     public void AddCart() {
     try {
         
-        
-        serverCredentials sv = new serverCredentials();
-        sv.setServerIP(LIP.getText());
-        sv.setUserID(LUSER.getText());
-        sv.setPass(LPASS.getText());
+
             
         
         String category = productCategory;
@@ -429,11 +397,12 @@ public class Items extends javax.swing.JPanel {
         String formattedDate = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         String formattedTime = now.format(DateTimeFormatter.ofPattern("HH:mm:ss"));
 
-        try (Connection con = DriverManager.getConnection("jdbc:mysql://"+sv.getServerIP()+"/hazebyte", sv.getUserID(), sv.getPass());
-             PreparedStatement fetchPst = con.prepareStatement("SELECT description, imageName, imagePath, imageFile, name FROM product WHERE id = ?")) {
+        try  {      
+            String sql = "SELECT description, imageName, imagePath, imageFile, name FROM product WHERE id = ?";
+            pst = con.prepareStatement(sql);
 
-            fetchPst.setInt(1, productID);
-            try (ResultSet rs = fetchPst.executeQuery()) {
+            pst.setInt(1, productID);
+            try (ResultSet rs = pst.executeQuery()) {
                 if (rs.next()) {
                     description = rs.getString("description");
                     imageName = rs.getString("imageName");
@@ -442,15 +411,19 @@ public class Items extends javax.swing.JPanel {
                     name = rs.getString("name");
                 }
             }
-        }
+        }catch (Exception ex) {
+        JOptionPane.showMessageDialog(null, "Add to Cart Failed: " + ex.getMessage());
+        ex.printStackTrace();
+    }finally {
+    try { if (pst != null) pst.close(); } catch (SQLException ignored) {}
+    }
 
         // Insert into cart
         String query = "INSERT INTO `cart`(`name`, `cost`, `discount`, `category`, `description`, `subtotal`, `total`, `quantity`, `Date`, `Time`, `productID`, `imageName`, `imagePath`, `imageFile`, `receipt`)" +
                        "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-        try (Connection con = DriverManager.getConnection("jdbc:mysql://"+sv.getServerIP()+"/hazebyte", sv.getUserID(), sv.getPass());
-             PreparedStatement pst = con.prepareStatement(query)) {
-
+        try{
+            pst = con.prepareStatement(query);
             pst.setString(1, name);
             pst.setDouble(2, cost);
             pst.setDouble(3, discount);
@@ -468,12 +441,19 @@ public class Items extends javax.swing.JPanel {
             pst.setString(15, "");
 
             pst.executeUpdate();
-        }
+        }catch (Exception ex) {
+        JOptionPane.showMessageDialog(null, "Add to Cart Failed: " + ex.getMessage());
+        ex.printStackTrace();
+    }finally {
+    try { if (pst != null) pst.close(); } catch (SQLException ignored) {}
+    }
         
         quantityTXT.setText("1");
     } catch (Exception ex) {
         JOptionPane.showMessageDialog(null, "Add to Cart Failed: " + ex.getMessage());
         ex.printStackTrace();
+    }finally {
+    try { if (pst != null) pst.close(); } catch (SQLException ignored) {}
     }
 }
 

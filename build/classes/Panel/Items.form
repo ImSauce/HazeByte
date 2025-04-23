@@ -119,6 +119,7 @@
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="text" type="java.lang.String" value="1"/>
+        <Property name="AA_TextHint" type="java.lang.String" value=""/>
         <Property name="focusable" type="boolean" value="false"/>
       </Properties>
       <Constraints>
