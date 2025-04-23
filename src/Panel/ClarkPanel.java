@@ -68,9 +68,9 @@ public class ClarkPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(contactme)
-                    .addComponent(facebook))
+                    .addComponent(facebook)
+                    .addComponent(title))
                 .addContainerGap(51, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(

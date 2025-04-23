@@ -27,9 +27,9 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="name" min="-2" pref="252" max="-2" attributes="0"/>
-                  <Component id="title" min="-2" pref="252" max="-2" attributes="0"/>
                   <Component id="contactme" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="facebook" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="title" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="51" max="32767" attributes="0"/>
           </Group>

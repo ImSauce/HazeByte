@@ -27,9 +27,9 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="name" min="-2" pref="252" max="-2" attributes="0"/>
-                  <Component id="title" min="-2" pref="252" max="-2" attributes="0"/>
                   <Component id="contactme" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="facebook" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="title" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="51" max="32767" attributes="0"/>
           </Group>
@@ -97,7 +97,7 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="99" green="99" red="99" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Documentaion Writer"/>
+        <Property name="text" type="java.lang.String" value="Documentaion Writer/Beta Tester"/>
       </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>

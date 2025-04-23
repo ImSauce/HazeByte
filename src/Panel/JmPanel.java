@@ -39,7 +39,7 @@ public class JmPanel extends javax.swing.JPanel {
 
         title.setFont(new java.awt.Font("OCR A Extended", 0, 14)); // NOI18N
         title.setForeground(new java.awt.Color(153, 153, 153));
-        title.setText("Project Manager");
+        title.setText("Project Manager/Beta Tester");
 
         contactme.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         contactme.setForeground(new java.awt.Color(153, 153, 153));

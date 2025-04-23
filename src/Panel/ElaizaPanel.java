@@ -39,7 +39,7 @@ public class ElaizaPanel extends javax.swing.JPanel {
 
         title.setFont(new java.awt.Font("OCR A Extended", 0, 14)); // NOI18N
         title.setForeground(new java.awt.Color(153, 153, 153));
-        title.setText("Documentaion Writer");
+        title.setText("Documentaion Writer/Beta Tester");
 
         contactme.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         contactme.setForeground(new java.awt.Color(153, 153, 153));
@@ -68,9 +68,9 @@ public class ElaizaPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(contactme)
-                    .addComponent(facebook))
+                    .addComponent(facebook)
+                    .addComponent(title))
                 .addContainerGap(51, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(

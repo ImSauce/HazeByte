@@ -116,9 +116,10 @@ public class Main extends javax.swing.JFrame {
         
         this.con = con;
 
+    
         startup();
         ClearCart();
-         
+        processlist();
         wrapLabelText(AboutQuote);
 
         if (CartTable.getRowCount() == 0) {
@@ -128,19 +129,7 @@ public class Main extends javax.swing.JFrame {
             paymentTXT.setEnabled(true);
         }
         
-        JDialog loadingDialog = createLoadingDialog();
-
-        new Thread(() -> {
-            SwingUtilities.invokeLater(() -> loadingDialog.setVisible(true));
-
-            try {
-                initProds(); // Run the heavy loading here
-            } finally {
-                loadingDialog.dispose(); // Close loading popup after loading
-            }
-
-        }).start();
-        
+                
         Hidden.setVisible(false);
         About.setVisible(false);
         
@@ -2179,7 +2168,7 @@ public class Main extends javax.swing.JFrame {
 
         EditBT.setFont(new java.awt.Font("Arial Black", 0, 28)); // NOI18N
         EditBT.setForeground(new java.awt.Color(255, 255, 255));
-        EditBT.setText("Products Menu");
+        EditBT.setText("Inventory");
         EditBT.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 EditBTMouseClicked(evt);
@@ -2650,7 +2639,12 @@ public class Main extends javax.swing.JFrame {
         showcase(false,true,false,false,false,false,false);
         MenuHighlight(false,true,false,false);
         function.MenuClicked(HomeClicked, HomePN, OptionClicked, OptionPN, HistoryClicked, HistoryPN, InfoClicked, SettingsPN ); 
+            
         EditRefreshTable();
+        EditTable.setRowSelectionInterval(0, 0);
+        EditTable.requestFocus();  
+     
+        
     }//GEN-LAST:event_Option_BTMouseClicked
     private void History_BTMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_History_BTMouseClicked
         showcase(false,false,false,true,false,false,false);
@@ -3326,7 +3320,7 @@ public class Main extends javax.swing.JFrame {
     }
 
     
-    private JDialog createLoadingDialog() {
+    public JDialog createLoadingDialog() {
     JDialog loading = new JDialog(this, "Loading...", true); // modal
     loading.setUndecorated(true);
     loading.setSize(350, 200);
@@ -4741,8 +4735,6 @@ public void BuyCart() {
                 }
             }
             
-            System.out.println("r_subtotal: " + receipt.r_subtotal);
-            System.out.println("qrcode: " + receipt.qrcode);
             String info = 
                     "[ HAZEBYTE ]\n"
                    +"Receipt number: " + receiptnum +"\n"
@@ -5286,6 +5278,36 @@ public static String getFormattedDate() {
         }
     }
 }
+   
+   
+   public void processlist(){
+   String query = "SHOW PROCESSLIST;";
+try {
+    pst = con.prepareStatement(query);
+    rs = pst.executeQuery(); // Execute the query
+
+    // Loop through the result and print each process
+    while (rs.next()) {
+        int id = rs.getInt("Id");
+        String user = rs.getString("User");
+        String host = rs.getString("Host");
+        String db = rs.getString("db");
+        String command = rs.getString("Command");
+        int time = rs.getInt("Time");
+        String state = rs.getString("State");
+        String info = rs.getString("Info");
+
+        System.out.println("ID: " + id + ", User: " + user + ", Host: " + host +
+                           ", DB: " + db + ", Command: " + command + ", Time: " + time +
+                           ", State: " + state + ", Info: " + info);
+    }
+
+    rs.close();
+    pst.close(); // Good practice to close your resources
+} catch (SQLException ex) {
+    ex.printStackTrace(); // Handle or log the exception
+}
+   }
 
 
         

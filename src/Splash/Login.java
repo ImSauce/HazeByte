@@ -16,7 +16,9 @@ import Frames.Main;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.management.Notification;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
 import raven.glasspanepopup.GlassPanePopup;
 import raven.toast.Notifications;
 
@@ -67,9 +69,8 @@ public class Login extends javax.swing.JFrame {
         
         mainApp = new Main(con);       // Create Main
         mainApp.setVisible(false);
-               
         
-        
+        cacheloading();
          ImageIcon logo = new ImageIcon("HB icon.png");   
         setIconImage(logo.getImage());
         setTitle("HazeByte Login");
@@ -272,7 +273,22 @@ private void openMainApplicationFrame() {
     private SystemOtherComps.PH_TextField username;
     // End of variables declaration//GEN-END:variables
 
-            
+        public void cacheloading() {
+            JDialog loadingDialog = mainApp.createLoadingDialog();
+
+            new Thread(() -> {
+     
+                SwingUtilities.invokeLater(() -> loadingDialog.setVisible(true));
+
+                try {
+                    mainApp.initProds(); // Run the heavy loading here
+                } finally {
+                    loadingDialog.dispose(); // Close loading popup after loading
+                }
+
+            }).start();
+        }
+    
     }
 
 
