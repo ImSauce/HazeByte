@@ -2635,6 +2635,7 @@ public class Main extends javax.swing.JFrame {
         function.MenuClicked(HomeClicked, HomePN, OptionClicked, OptionPN, HistoryClicked, HistoryPN, InfoClicked, SettingsPN ); 
         CartItemView.setVisible(false);
     }//GEN-LAST:event_Home_BTMouseClicked
+    int autoselect = 0;
     private void Option_BTMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Option_BTMouseClicked
         showcase(false,true,false,false,false,false,false);
         MenuHighlight(false,true,false,false);
@@ -2643,6 +2644,8 @@ public class Main extends javax.swing.JFrame {
         EditRefreshTable();
         EditTable.setRowSelectionInterval(0, 0);
         EditTable.requestFocus();  
+        autoselect = 0;
+        EditTableMouseClicked(null);
      
         
     }//GEN-LAST:event_Option_BTMouseClicked
@@ -4046,7 +4049,14 @@ public void emptyBlobFile(String id) {
    
    
    public void SelectEditProduct() {
-    int selectedRow = EditTable.getSelectedRow();
+    int selectedRow = 0;
+    if (autoselect == 0){
+        selectedRow = 0;
+    } else {
+        selectedRow = EditTable.getSelectedRow();
+        autoselect = 1;
+    }
+    
 
     if (selectedRow != -1) {
         String productID = EditTable.getValueAt(selectedRow, 0).toString();
@@ -4076,6 +4086,7 @@ public void emptyBlobFile(String id) {
                 edit_imagePath.setText(rs.getString("imagePath"));
             }
 
+            autoselect = 1;
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error loading product: " + ex.getMessage());
         }
