@@ -1207,9 +1207,9 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="ChangeUsernamePN" alignment="0" pref="989" max="32767" attributes="0"/>
-                          <Component id="ChangePassPN" alignment="1" pref="989" max="32767" attributes="0"/>
-                          <Component id="AboutPN" alignment="1" pref="989" max="32767" attributes="0"/>
+                          <Component id="ChangeUsernamePN" alignment="0" pref="406" max="32767" attributes="0"/>
+                          <Component id="ChangePassPN" alignment="1" pref="406" max="32767" attributes="0"/>
+                          <Component id="AboutPN" alignment="1" pref="406" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -1226,7 +1226,7 @@
                       <Component id="ChangePassPN" min="-2" pref="72" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="AboutPN" min="-2" pref="72" max="-2" attributes="0"/>
-                      <EmptySpace pref="162" max="32767" attributes="0"/>
+                      <EmptySpace pref="49" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -1308,7 +1308,7 @@
                               <Component id="ChangeusernameDesc" min="-2" max="-2" attributes="0"/>
                               <Component id="ChangeUsernameHeading" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="736" max="32767" attributes="0"/>
+                          <EmptySpace pref="153" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -1401,7 +1401,7 @@
                               <Component id="ChangepassDesc1" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="ChangePassHeading1" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="690" max="32767" attributes="0"/>
+                          <EmptySpace pref="107" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -1587,11 +1587,11 @@
                           </Group>
                           <Group type="102" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="CartTableScroll" pref="474" max="32767" attributes="0"/>
+                              <Component id="CartTableScroll" pref="467" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
+                              <EmptySpace min="-2" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="1" attributes="0">
                                   <Group type="102" attributes="0">
                                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -1606,7 +1606,7 @@
                                           <Component id="TotalDiscountHeading" min="-2" max="-2" attributes="0"/>
                                           <Component id="TotalCostHeading" alignment="0" max="32767" attributes="0"/>
                                       </Group>
-                                      <EmptySpace max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="totaldiscountTXT" alignment="1" max="32767" attributes="0"/>
                                           <Component id="totalTXT" alignment="1" max="32767" attributes="0"/>
@@ -1615,7 +1615,7 @@
                                       </Group>
                                   </Group>
                               </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Component id="CartItemView" min="-2" max="-2" attributes="0"/>

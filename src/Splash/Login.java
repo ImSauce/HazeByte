@@ -33,13 +33,14 @@ public class Login extends javax.swing.JFrame {
         Connection con = null;
         PreparedStatement pst;
 
-        
-        public void forConnection(Connection conn, String serverIP,String userID ,String passwordID){
-        this.con = conn;
-        this.url = serverIP;
-        this.user = userID;
-        this.pass = passwordID;
-    }
+  
+// USED IF INPUTTING MY OWN SERVER CONNECTION        
+//        public void forConnection(Connection conn, String serverIP,String userID ,String passwordID){
+//        this.con = conn;
+//        this.url = serverIP;
+//        this.user = userID;
+//        this.pass = passwordID;
+//    }
         
         
         public void connection (){
@@ -247,7 +248,7 @@ private void openMainApplicationFrame() {
                     Notifications.getInstance().show(Notifications.Type.ERROR, "Incorrect username or password");
                 } else {
                     // Successful login
-                    forConnection(con, url, user, pass);
+                    //forConnection(con, url, user, pass);
                     openMainApplicationFrame();
                     setVisible(false);
 
