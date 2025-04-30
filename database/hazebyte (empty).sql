@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Apr 20, 2025 at 01:17 PM
+-- Generation Time: Apr 30, 2025 at 03:45 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -68,7 +68,9 @@ CREATE TABLE `history` (
   `imageName` text NOT NULL,
   `imagePath` text NOT NULL,
   `imageFile` longblob NOT NULL,
-  `receipt` varchar(255) NOT NULL
+  `receipt` varchar(255) NOT NULL,
+  `status` varchar(255) NOT NULL,
+  `reason` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------

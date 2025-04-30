@@ -26,7 +26,8 @@ import raven.toast.Notifications;
 
 
 public class Login extends javax.swing.JFrame {
-
+        
+        private Main mainApp; 
         public String url= "localhost";
         public String user = "root";
         public String pass= "";
@@ -103,7 +104,7 @@ public class Login extends javax.swing.JFrame {
     }
  
     
-    private Main mainApp; // Declare at the top of the class
+    
 
 private void openMainApplicationFrame() {
     java.awt.EventQueue.invokeLater(() -> {
