@@ -2743,12 +2743,12 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_EditBT2MouseExited
 
     private void AddBT1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AddBT1MouseEntered
-        ImageIcon image = new ImageIcon("add.png");
+        ImageIcon image = new ImageIcon(getClass().getResource("/Images/add.png"));
         AddBT1.setIcon(image);
     }//GEN-LAST:event_AddBT1MouseEntered
 
     private void AddBT1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AddBT1MouseExited
-        ImageIcon image = new ImageIcon("add2.png");
+        ImageIcon image = new ImageIcon(getClass().getResource("/Images/add2.png"));
         AddBT1.setIcon(image);
     }//GEN-LAST:event_AddBT1MouseExited
 
@@ -2766,7 +2766,7 @@ public class Main extends javax.swing.JFrame {
             try{
                 add_imagePath.setText(""); // Clear the text
                 add_imageName.setText("");
-                AddImage.setIcon(new ImageIcon("insertimage.jpg")); // Clear the icon
+                AddImage.setIcon(new ImageIcon(getClass().getResource("/Images/insertimage.jpg"))); // Clear the icon
 
                 add_remove_image = 1;
 
@@ -2811,7 +2811,7 @@ public class Main extends javax.swing.JFrame {
     if (evt.getButton() == MouseEvent.BUTTON3) {
         try{edit_imagePath.setText(""); // Clear the text
             edit_imageName.setText("");
-            ImageIcon resetimage = new ImageIcon("insertimage.jpg");
+            ImageIcon resetimage = new ImageIcon(getClass().getResource("/Images/insertimage.jpg"));
             EditImage.setIcon(resetimage);
             edit_remove_image=1;
             }catch(Exception e){}
@@ -2875,12 +2875,12 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_CancelAllBTActionPerformed
 
     private void CartBackBTMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CartBackBTMouseEntered
-        ImageIcon image = new ImageIcon("back2.png");
+        ImageIcon image = new ImageIcon(getClass().getResource("/Images/back2.png"));
         CartBackBT.setIcon(image);
     }//GEN-LAST:event_CartBackBTMouseEntered
 
     private void CartBackBTMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CartBackBTMouseExited
-        ImageIcon image = new ImageIcon("back.png");
+        ImageIcon image = new ImageIcon(getClass().getResource("/Images/back.png"));
         CartBackBT.setIcon(image);
     }//GEN-LAST:event_CartBackBTMouseExited
 
@@ -2921,12 +2921,12 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_AboutBackBTMouseClicked
 
     private void AboutBackBTMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AboutBackBTMouseEntered
-        ImageIcon image = new ImageIcon("back2.png");
+        ImageIcon image = new ImageIcon(getClass().getResource("/Images/back2.png"));
         AboutBackBT.setIcon(image);
     }//GEN-LAST:event_AboutBackBTMouseEntered
 
     private void AboutBackBTMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AboutBackBTMouseExited
-        ImageIcon image = new ImageIcon("back.png");
+        ImageIcon image = new ImageIcon(getClass().getResource("/Images/back.png"));
         AboutBackBT.setIcon(image);
     }//GEN-LAST:event_AboutBackBTMouseExited
 
@@ -3027,12 +3027,12 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_HistoryTableMouseClicked
 
     private void HistoryCalculateMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HistoryCalculateMouseEntered
-       ImageIcon image = new ImageIcon("total2.png");
+       ImageIcon image = new ImageIcon(getClass().getResource("/Images/total2.png"));
        HistoryCalculate.setIcon(image);
     }//GEN-LAST:event_HistoryCalculateMouseEntered
 
     private void HistoryCalculateMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HistoryCalculateMouseExited
-        ImageIcon image = new ImageIcon("total.png");
+       ImageIcon image = new ImageIcon(getClass().getResource("/Images/total.png"));
        HistoryCalculate.setIcon(image);
     }//GEN-LAST:event_HistoryCalculateMouseExited
 
@@ -3219,7 +3219,7 @@ public class Main extends javax.swing.JFrame {
     
     public void startup(){
         //icon and title
-        ImageIcon Mainicon = new ImageIcon ("HB icon.png");
+        ImageIcon Mainicon = new ImageIcon(getClass().getResource("/Images/HB icon.png"));
         setIconImage(Mainicon.getImage());
         setTitle("HazeByte");
         setResizable(true);
@@ -3690,7 +3690,7 @@ public void initProds() {
             
             add_imagePath.setText(""); // Clear the text
             add_imageName.setText("");
-            AddImage.setIcon(new ImageIcon("insertimage.jpg"));           
+            AddImage.setIcon(new ImageIcon(getClass().getResource("/Images/insertimage.jpg")));         
            autoIncrement();
             
 
@@ -4037,7 +4037,7 @@ public void emptyBlobFile(String id) {
    
    public void setDefaultImage() {
         try {
-            ImageIcon ii = new ImageIcon("insertimage.jpg"); // Make sure this image exists in your project directory
+            ImageIcon ii = new ImageIcon(getClass().getResource("/Images/insertimage.jpg"));
             Image img = ii.getImage().getScaledInstance(211, 217, Image.SCALE_SMOOTH);
             EditImage.setIcon(new ImageIcon(img));
         } catch (Exception e) {
@@ -4155,7 +4155,7 @@ public void emptyBlobFile(String id) {
         EditID.setText("");
         edit_imageName.setText("");
         edit_imagePath.setText("");
-        ImageIcon resetimage = new ImageIcon("insertimage.jpg");
+        ImageIcon resetimage = new ImageIcon(getClass().getResource("/Images/insertimage.jpg"));
         EditImage.setIcon(resetimage);
  
     }

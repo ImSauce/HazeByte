@@ -59,8 +59,8 @@ public class receipt extends javax.swing.JFrame {
     
     
     setResizable(false);
-    ImageIcon Mainicon = new ImageIcon("transparentHB.jpg");
-    setIconImage(Mainicon.getImage());
+    ImageIcon RecieptIcon = new ImageIcon(getClass().getResource("/Images/transparentHB.jpg"));
+    setIconImage(RecieptIcon.getImage());
     setTitle("receipt");
 
     format_JTable();

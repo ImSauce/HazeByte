@@ -27,7 +27,7 @@ public class ChangePassword extends javax.swing.JFrame {
         initComponents();
         color.UIcolor();
         this.con = mainFrame.con;
-        ImageIcon PasswordIcon = new ImageIcon ("lock.png");
+        ImageIcon PasswordIcon = new ImageIcon(getClass().getResource("/Images/lock.png"));
         setIconImage(PasswordIcon.getImage());
         setTitle("Change Password");
         setResizable(false);

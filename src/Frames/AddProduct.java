@@ -55,8 +55,8 @@ public class AddProduct extends javax.swing.JFrame {
         hidden.setVisible(false);
         Add.setVisible(true);
         color.UIcolor();
-        ImageIcon PasswordIcon = new ImageIcon ("transparentHB.jpg");
-        setIconImage(PasswordIcon.getImage());
+        ImageIcon AddIcon = new ImageIcon(getClass().getResource("/Images/transparentHB.jpg"));
+        setIconImage(AddIcon.getImage());
         setTitle("Add Product");
         setResizable(false);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -499,7 +499,7 @@ public class AddProduct extends javax.swing.JFrame {
             try{
                 add_imagePath.setText(""); // Clear the text
                 add_imageName.setText("");
-                AddImage.setIcon(new ImageIcon("insertimage.jpg")); // Clear the icon
+                AddImage.setIcon(new ImageIcon(getClass().getResource("/Images/insertimage.jpg")));   
 
                 add_remove_image = 1;
 
@@ -670,7 +670,7 @@ public class AddProduct extends javax.swing.JFrame {
             
             add_imagePath.setText(""); // Clear the text
             add_imageName.setText("");
-            AddImage.setIcon(new ImageIcon("insertimage.jpg"));           
+            AddImage.setIcon(new ImageIcon(getClass().getResource("/Images/insertimage.jpg")));           
             autoIncrement();
             main.initProds();
             main.EditRefreshTable();

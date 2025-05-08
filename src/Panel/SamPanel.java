@@ -130,32 +130,32 @@ public class SamPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void githubMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_githubMouseEntered
-        ImageIcon image = new ImageIcon("github.png");
+        ImageIcon image = new ImageIcon(getClass().getResource("/Images/github.png"));
         github.setIcon(image);
     }//GEN-LAST:event_githubMouseEntered
 
     private void facebookMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_facebookMouseEntered
-        ImageIcon image = new ImageIcon("facebook.png");
+        ImageIcon image = new ImageIcon(getClass().getResource("/Images/facebook.png"));
         facebook.setIcon(image);
     }//GEN-LAST:event_facebookMouseEntered
 
     private void twitterMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_twitterMouseEntered
-        ImageIcon image = new ImageIcon("x.png");
+        ImageIcon image = new ImageIcon(getClass().getResource("/Images/x.png"));
         twitter.setIcon(image);
     }//GEN-LAST:event_twitterMouseEntered
 
     private void githubMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_githubMouseExited
-        ImageIcon image = new ImageIcon("github1.png");
+        ImageIcon image = new ImageIcon(getClass().getResource("/Images/github1.png"));
         github.setIcon(image);
     }//GEN-LAST:event_githubMouseExited
 
     private void twitterMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_twitterMouseExited
-        ImageIcon image = new ImageIcon("x1.png");
-        twitter.setIcon(image);
+        ImageIcon image = new ImageIcon(getClass().getResource("/Images/x1.png"));
+        twitter.setIcon(image);;
     }//GEN-LAST:event_twitterMouseExited
 
     private void facebookMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_facebookMouseExited
-        ImageIcon image = new ImageIcon("facebook1.png");
+        ImageIcon image = new ImageIcon(getClass().getResource("/Images/facebook1.png"));
         facebook.setIcon(image);
     }//GEN-LAST:event_facebookMouseExited
 

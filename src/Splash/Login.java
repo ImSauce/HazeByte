@@ -73,7 +73,7 @@ public class Login extends javax.swing.JFrame {
         mainApp.setVisible(false);
         
         cacheloading();
-         ImageIcon logo = new ImageIcon("HB icon.png");   
+        ImageIcon logo = new ImageIcon(getClass().getResource("/Images/HB icon.png"));
         setIconImage(logo.getImage());
         setTitle("HazeByte Login");
         setResizable(false);

@@ -42,8 +42,9 @@ public class HistoryTotal extends javax.swing.JFrame {
 
        
         color.UIcolor();
-        ImageIcon PasswordIcon = new ImageIcon ("transparentHB.jpg");
-        setIconImage(PasswordIcon.getImage());
+        
+        ImageIcon HistoryIcon = new ImageIcon(getClass().getResource("/Images/transparentHB.jpg"));
+        setIconImage(HistoryIcon.getImage());
         setTitle("Earnings");
         setResizable(false);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

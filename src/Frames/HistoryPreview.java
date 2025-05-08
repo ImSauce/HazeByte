@@ -58,8 +58,8 @@ public class HistoryPreview extends javax.swing.JFrame {
         PreviewPanel.setVisible(true);
         status.setForeground(new Color(118, 199, 102));
         color.UIcolor();
-        ImageIcon PasswordIcon = new ImageIcon ("transparentHB.jpg");
-        setIconImage(PasswordIcon.getImage());
+        ImageIcon HistoryIcon = new ImageIcon(getClass().getResource("/Images/transparentHB.jpg"));
+        setIconImage(HistoryIcon.getImage());
         setTitle("Preview");
         setResizable(false);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

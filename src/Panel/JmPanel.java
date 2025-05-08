@@ -94,12 +94,12 @@ public class JmPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void facebookMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_facebookMouseEntered
-        ImageIcon image = new ImageIcon("facebook.png");
+        ImageIcon image = new ImageIcon(getClass().getResource("/Images/facebook.png"));
         facebook.setIcon(image);
     }//GEN-LAST:event_facebookMouseEntered
 
     private void facebookMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_facebookMouseExited
-        ImageIcon image = new ImageIcon("facebook1.png");
+        ImageIcon image = new ImageIcon(getClass().getResource("/Images/facebook1.png"));
         facebook.setIcon(image);
     }//GEN-LAST:event_facebookMouseExited
 

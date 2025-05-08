@@ -28,8 +28,8 @@ public class ChangeUsername extends javax.swing.JFrame {
         initComponents();
         this.con = mainFrame.con;
         color.UIcolor();
-        ImageIcon PasswordIcon = new ImageIcon ("usericon.png");
-        setIconImage(PasswordIcon.getImage());
+        ImageIcon UserIcon = new ImageIcon(getClass().getResource("/Images/usericon.png"));
+        setIconImage(UserIcon.getImage());
         setTitle("Change Username");
         setResizable(false);
         
