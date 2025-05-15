@@ -4890,7 +4890,7 @@ public static String getFormattedDate() {
         String formattedRows = history.format(rows);
         TransactionNumber.setText(formattedRows);
             
-
+        
     } catch (Exception ex) {
         JOptionPane.showMessageDialog(null, ex);
     }
@@ -5320,6 +5320,6 @@ try {
 }
    }
 
-
+ //System.out.println("SAMUEL"); 
         
 }
