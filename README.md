@@ -6,7 +6,7 @@
 <p>A Java-based Game Shop application created using Swing GUI and SQL database integration using Xampp.</p>
 
 
-<h2>How it works</h2>
+<h2>Features</h2>
 
 <h3>Login</h3>
 <p>Login for added security to the application.</p>
@@ -35,3 +35,11 @@
 <h3>Receipt</h3>
 <p>View the bought products with a receipt.</p>
 <img src="screenshots/receipt.png" alt="Receipt"/>
+
+
+<h2>Requirements</h2>
+ - java jdk
+ - xampp sql database
+ - java IDE (preferably netbeans)
+
+ 
