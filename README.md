@@ -26,7 +26,7 @@
 
 <h3>Settings</h3>
 <p>configure settings in the settings panel.</p>
-<img src="screenshots/setttings.png" alt="Settings"/>
+<img src="screenshots/settings.png" alt="Settings"/>
 
 <h3>Cart</h3>
 <p>Proceed with the transaction by inputting payment in cart panel and buying the selected products.</p>
