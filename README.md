@@ -2,37 +2,37 @@
   <img src="HazeByteBanner.png" alt="Haze Byte"/>
 </div>
 
-<h2>Description</h2>
-<p>A Java-based Game Shop application created using Swing GUI and SQL database integration using Xampp.</p>
+## Description
+A Java-based Game Shop application created using Swing GUI and SQL database integration using Xampp.
 
 
-<h2>Features</h2>
+## Features
 
-<h3>Login</h3>
+### Login
 <p>Login for added security to the application.</p>
 <img src="screenshots/login.png" alt="Login"/>
 
-<h3>Home</h3>
+### Home
 <p>View the available games in the home panel.</p>
 <img src="screenshots/home.png" alt="Home"/>
 
-<h3>Inventory</h3>
+### Inventory
 <p>Manage your products by adding, editing, and deleting them.</p>
 <img src="screenshots/edit.png" alt="Inventory"/>
 
-<h3>Transaction</h3>
+### Transaction
 <p>Track your transaction history in the transaction panel.</p>
 <img src="screenshots/transaction.png" alt="Transaction"/>
 
-<h3>Settings</h3>
+### Settings
 <p>configure settings in the settings panel.</p>
 <img src="screenshots/settings.png" alt="Settings"/>
 
-<h3>Cart</h3>
+### Cart
 <p>Proceed with the transaction by inputting payment in cart panel and buying the selected products.</p>
 <img src="screenshots/cart.png" alt="Cart"/>
 
-<h3>Receipt</h3>
+### Receipt
 <p>View the bought products with a receipt.</p>
 <img src="screenshots/receipt.png" alt="Receipt"/>
 
