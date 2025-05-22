@@ -3,7 +3,7 @@
 </div>
 
 <h2>Description</h2>
-<p>A Java-based Game Shop application created using Swing GUI and SQL database integration.</p>
+<p>A Java-based Game Shop application created using Swing GUI and SQL database integration using Xampp.</p>
 
 
 <h2>How it works</h2>
