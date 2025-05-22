@@ -10,8 +10,8 @@
 
 <h3>Login</h3>
 <p>Login in for added security to the application.</p>
-<img src="login.png" alt="Login"/>
+<img src="screenshots/login.png" alt="Login"/>
 
 <h3>Home Panel</h3>
 <p>View the available games in the home panel.</p>
-<img src="home.png" alt="Home"/>
+<img src="screenshots/home.png" alt="Home"/>
