@@ -37,9 +37,12 @@
 <img src="screenshots/receipt.png" alt="Receipt"/>
 
 
-<h2>Requirements</h2>
- - java jdk
- - xampp sql database
- - java IDE (preferably netbeans)
+## Requirements
+
+- Python 3.x
+- SQLite (automatically handled by the application)
+- CustomTkinter (for the UI)
+- IceCream (for debugging)
+- pandas (for exporting data)
 
  
