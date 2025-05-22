@@ -1,3 +1,3 @@
 <div align="center">
-  <img src="HazeByt.png" alt="Haze Byte" width="500"/>
+  <img src="HazeByteBanner.png" alt="Haze Byte"/>
 </div>
