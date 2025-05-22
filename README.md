@@ -38,11 +38,11 @@
 
 
 ## Requirements
+- Java JDK
+- Java IDE (preferably netbeans)
+- xampp sql database
 
-- Python 3.x
-- SQLite (automatically handled by the application)
-- CustomTkinter (for the UI)
-- IceCream (for debugging)
-- pandas (for exporting data)
+
+
 
  
