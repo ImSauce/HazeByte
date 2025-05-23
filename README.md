@@ -3,10 +3,25 @@
 </div>
 
 ## Description
-A Java-based Game Shop application created using Swing GUI and SQL database integration using Xampp.
+A Java-based Game Shop Inventory manangement System created using Swing GUI and SQL database integration using Xampp.
 
 
 ## Features
+- User Authentication
+- Product Catalog Viewing
+- Product Purchasing Module
+- Product Management
+- Transaction History
+- Settings Configuration
+
+
+## Requirements
+- Java JDK
+- Java IDE (preferably netbeans)
+- xampp sql database
+
+
+## Screenshots
 
 ### Login
 Login for added security to the application.
@@ -43,11 +58,6 @@ View the bought products with a receipt.
 
 <img src="screenshots/receipt.png" alt="Receipt"/>
 
-
-## Requirements
-- Java JDK
-- Java IDE (preferably netbeans)
-- xampp sql database
 
 
 ## How to contribute
