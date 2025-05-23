@@ -29,16 +29,16 @@ Login for added security to the application.
 <img src="screenshots/login.png" alt="Login"/>
 
 ### Home
-View the available games in the home panel.
+View and select the available products in the home panel.
 
 <img src="screenshots/home.png" alt="Home"/>
 
-### Inventory
+### Inventory Management
 Manage your products by adding, editing, and deleting them.
 
 <img src="screenshots/edit.png" alt="Inventory"/>
 
-### Transaction
+### Transaction History
 Track your transaction history in the transaction panel.
 
 <img src="screenshots/transaction.png" alt="Transaction"/>
