@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="HazeByteBanner.png" alt="Haze Byte"/>
+  <img src="screenshots/HazeByteBanner.png" alt="Haze Byte"/>
 </div>
 
 ## Description
