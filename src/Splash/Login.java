@@ -14,6 +14,7 @@ import java.sql.SQLException;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import Frames.Main;
+import java.io.File;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.management.Notification;
@@ -32,24 +33,15 @@ public class Login extends javax.swing.JFrame {
         Connection con = null;
         PreparedStatement pst;
 
-  
-// USED IF INPUTTING MY OWN SERVER CONNECTION        
-//        public void forConnection(Connection conn, String serverIP,String userID ,String passwordID){
-//        this.con = conn;
-//        this.url = serverIP;
-//        this.user = userID;
-//        this.pass = passwordID;
-//    }
-        
         
         public void connection (){
         //MYSQL CODE-----------------------------------------------
         try 
         {
-            Class.forName("org.sqlite.JDBC"); // Make sure sqlite-jdbc is in your lib and classpath
-
-            // Use relative path to the SQLite file
+            Class.forName("org.sqlite.JDBC");
             String dbPath = "database/hazebyteLITE.db";
+            File dbFile = new File(dbPath);
+            System.out.println("Using database at: " + dbFile.getAbsolutePath());
             con = DriverManager.getConnection("jdbc:sqlite:" + dbPath);
             
             
