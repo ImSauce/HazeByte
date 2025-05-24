@@ -3,7 +3,7 @@
 </div>
 
 ## Description
-A Java-based Game Shop Inventory manangement System created using Swing GUI and SQL database integration using Xampp.
+A Java-based Game Shop Inventory manangement System created using Swing GUI and SQL lite database integration.
 
 
 ## Features
