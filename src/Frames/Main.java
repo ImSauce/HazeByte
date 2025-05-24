@@ -37,6 +37,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
@@ -78,8 +79,7 @@ public class Main extends javax.swing.JFrame {
     private ChangeUsername ChangeUser;
     public HistoryPreview preview;
     public HistoryTotal historytotal;
-    
-    
+    private receipt_info Receipt;
     
     
     //variables for detecting if a menu button is clicked
@@ -251,9 +251,9 @@ public class Main extends javax.swing.JFrame {
         AboutDesc = new javax.swing.JLabel();
         AboutHeading = new javax.swing.JLabel();
         Settings_BT3 = new javax.swing.JLabel();
-        ChangePassPN1 = new SystemOtherComps.PH_Panel();
-        ChangepassDesc2 = new javax.swing.JLabel();
-        ChangePassHeading2 = new javax.swing.JLabel();
+        ReceiptPN = new SystemOtherComps.PH_Panel();
+        ReceiptDesc = new javax.swing.JLabel();
+        ReceiptHeading = new javax.swing.JLabel();
         Settings_BT4 = new javax.swing.JLabel();
         Cart = new javax.swing.JPanel();
         CartBar = new javax.swing.JPanel();
@@ -1244,60 +1244,60 @@ public class Main extends javax.swing.JFrame {
                 .addGap(14, 14, 14))
         );
 
-        ChangePassPN1.setBackground(new java.awt.Color(24, 23, 23));
-        ChangePassPN1.setForeground(new java.awt.Color(24, 23, 23));
-        ChangePassPN1.setAAA_ImageBoundArcSize(30);
-        ChangePassPN1.setAAA_roundBottomLeft(30);
-        ChangePassPN1.setAAA_roundBottomRight(30);
-        ChangePassPN1.setAAA_roundTopLeft(30);
-        ChangePassPN1.setAAA_roundTopRight(30);
-        ChangePassPN1.setAA_ArcSize(30);
-        ChangePassPN1.addMouseListener(new java.awt.event.MouseAdapter() {
+        ReceiptPN.setBackground(new java.awt.Color(24, 23, 23));
+        ReceiptPN.setForeground(new java.awt.Color(24, 23, 23));
+        ReceiptPN.setAAA_ImageBoundArcSize(30);
+        ReceiptPN.setAAA_roundBottomLeft(30);
+        ReceiptPN.setAAA_roundBottomRight(30);
+        ReceiptPN.setAAA_roundTopLeft(30);
+        ReceiptPN.setAAA_roundTopRight(30);
+        ReceiptPN.setAA_ArcSize(30);
+        ReceiptPN.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                ChangePassPN1MouseClicked(evt);
+                ReceiptPNMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                ChangePassPN1MouseEntered(evt);
+                ReceiptPNMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                ChangePassPN1MouseExited(evt);
+                ReceiptPNMouseExited(evt);
             }
         });
 
-        ChangepassDesc2.setBackground(new java.awt.Color(102, 102, 102));
-        ChangepassDesc2.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        ChangepassDesc2.setForeground(new java.awt.Color(102, 102, 102));
-        ChangepassDesc2.setText("Change your current password to a new one.");
+        ReceiptDesc.setBackground(new java.awt.Color(102, 102, 102));
+        ReceiptDesc.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        ReceiptDesc.setForeground(new java.awt.Color(102, 102, 102));
+        ReceiptDesc.setText("Modify your receipt information.");
 
-        ChangePassHeading2.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
-        ChangePassHeading2.setForeground(new java.awt.Color(255, 255, 255));
-        ChangePassHeading2.setText("Receipt");
+        ReceiptHeading.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        ReceiptHeading.setForeground(new java.awt.Color(255, 255, 255));
+        ReceiptHeading.setText("Receipt Info");
 
-        Settings_BT4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/lock.png"))); // NOI18N
+        Settings_BT4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/receipt.png"))); // NOI18N
         Settings_BT4.setToolTipText("Developer Info");
 
-        javax.swing.GroupLayout ChangePassPN1Layout = new javax.swing.GroupLayout(ChangePassPN1);
-        ChangePassPN1.setLayout(ChangePassPN1Layout);
-        ChangePassPN1Layout.setHorizontalGroup(
-            ChangePassPN1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ChangePassPN1Layout.createSequentialGroup()
+        javax.swing.GroupLayout ReceiptPNLayout = new javax.swing.GroupLayout(ReceiptPN);
+        ReceiptPN.setLayout(ReceiptPNLayout);
+        ReceiptPNLayout.setHorizontalGroup(
+            ReceiptPNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ReceiptPNLayout.createSequentialGroup()
                 .addGap(12, 12, 12)
                 .addComponent(Settings_BT4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(ChangePassPN1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ChangepassDesc2)
-                    .addComponent(ChangePassHeading2))
-                .addContainerGap(107, Short.MAX_VALUE))
+                .addGroup(ReceiptPNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ReceiptDesc)
+                    .addComponent(ReceiptHeading))
+                .addContainerGap(758, Short.MAX_VALUE))
         );
-        ChangePassPN1Layout.setVerticalGroup(
-            ChangePassPN1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ChangePassPN1Layout.createSequentialGroup()
+        ReceiptPNLayout.setVerticalGroup(
+            ReceiptPNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ReceiptPNLayout.createSequentialGroup()
                 .addContainerGap(11, Short.MAX_VALUE)
-                .addGroup(ChangePassPN1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ChangePassHeading2)
+                .addGroup(ReceiptPNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ReceiptHeading)
                     .addComponent(Settings_BT4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ChangepassDesc2)
+                .addComponent(ReceiptDesc)
                 .addGap(14, 14, 14))
         );
 
@@ -1309,10 +1309,10 @@ public class Main extends javax.swing.JFrame {
             .addGroup(SettingsLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(SettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ChangeUsernamePN, javax.swing.GroupLayout.DEFAULT_SIZE, 406, Short.MAX_VALUE)
-                    .addComponent(ChangePassPN, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 406, Short.MAX_VALUE)
-                    .addComponent(AboutPN, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 406, Short.MAX_VALUE)
-                    .addComponent(ChangePassPN1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 406, Short.MAX_VALUE))
+                    .addComponent(ChangeUsernamePN, javax.swing.GroupLayout.DEFAULT_SIZE, 989, Short.MAX_VALUE)
+                    .addComponent(ChangePassPN, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 989, Short.MAX_VALUE)
+                    .addComponent(AboutPN, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 989, Short.MAX_VALUE)
+                    .addComponent(ReceiptPN, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 989, Short.MAX_VALUE))
                 .addContainerGap())
         );
         SettingsLayout.setVerticalGroup(
@@ -1324,11 +1324,11 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(ChangeUsernamePN, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ChangePassPN, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(6, 6, 6)
+                .addComponent(ReceiptPN, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(AboutPN, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(6, 6, 6)
-                .addComponent(ChangePassPN1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(166, Short.MAX_VALUE))
+                .addContainerGap(304, Short.MAX_VALUE))
         );
 
         layers.add(Settings, "card5");
@@ -3109,17 +3109,18 @@ public class Main extends javax.swing.JFrame {
         searching();
     }//GEN-LAST:event_GameSearchTXTCaretUpdate
 
-    private void ChangePassPN1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ChangePassPN1MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ChangePassPN1MouseClicked
+    private void ReceiptPNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ReceiptPNMouseClicked
+        Receipt = new receipt_info(this);
+        Receipt.setVisible(true);
+    }//GEN-LAST:event_ReceiptPNMouseClicked
 
-    private void ChangePassPN1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ChangePassPN1MouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ChangePassPN1MouseEntered
+    private void ReceiptPNMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ReceiptPNMouseEntered
+        function.SettingsHoverIn(ReceiptPN);
+    }//GEN-LAST:event_ReceiptPNMouseEntered
 
-    private void ChangePassPN1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ChangePassPN1MouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ChangePassPN1MouseExited
+    private void ReceiptPNMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ReceiptPNMouseExited
+        function.SettingsHoverOut(ReceiptPN);
+    }//GEN-LAST:event_ReceiptPNMouseExited
   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -3174,13 +3175,10 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel Cart_txt;
     private javax.swing.JLabel ChangeHeading;
     public javax.swing.JLabel ChangePassHeading1;
-    public javax.swing.JLabel ChangePassHeading2;
     private SystemOtherComps.PH_Panel ChangePassPN;
-    private SystemOtherComps.PH_Panel ChangePassPN1;
     public javax.swing.JLabel ChangeUsernameHeading;
     private SystemOtherComps.PH_Panel ChangeUsernamePN;
     public javax.swing.JLabel ChangepassDesc1;
-    public javax.swing.JLabel ChangepassDesc2;
     public javax.swing.JLabel ChangeusernameDesc;
     private javax.swing.JLabel CostIcon;
     private javax.swing.JPanel Edit;
@@ -3237,6 +3235,9 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel Option_BT;
     public javax.swing.JLabel PASS;
     private javax.swing.JLabel PaymentHeading;
+    public javax.swing.JLabel ReceiptDesc;
+    public javax.swing.JLabel ReceiptHeading;
+    private SystemOtherComps.PH_Panel ReceiptPN;
     private javax.swing.JPanel Settings;
     private javax.swing.JPanel SettingsBar;
     private javax.swing.JPanel SettingsBar1;
@@ -4790,6 +4791,11 @@ public void BuyCart() {
                 }
             }
             
+            String receipt_warranty = getWarranty();
+            String receipt_company = getCompany();
+            String receipt_address = getAddress();
+            
+            
             String info = 
                     "[ HAZEBYTE ]\n"
                    +"Receipt number: " + receiptnum +"\n"
@@ -4799,8 +4805,10 @@ public void BuyCart() {
                    +"Discount: " + receipt.r_tax.getText().replace("-", "").replace("₱", "") + "\n"
                    +"Total: " + receipt.r_total.getText().replace("-", "").replace("₱", "")  +"\n\n"
                    +"Payment: " + receipt.r_payment.getText().replace("-", "").replace("₱", "")  +"\n"
-                   +"Change: " + receipt.r_change.getText().replace("-", "").replace("₱", "")  +"\n"
-                   +"\n 14 days warranty!"
+                   +"Change: " + receipt.r_change.getText().replace("-", "").replace("₱", "")  +"\n\n"
+                   + receipt_company +"\n"
+                   + receipt_address +"\n"
+                   + receipt_warranty +" day/s warranty!"
                     ;
             
             receipt.r_date.setText(formattedDate);
@@ -5334,6 +5342,62 @@ public static String getFormattedDate() {
         }
     }
 }
+   
+   
+   
+   public String getWarranty() {
+        String sql = "SELECT warranty FROM receipts WHERE id = 1";
+        String warranty = "";
+
+        try (
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(sql)
+        ) {
+            if (rs.next()) {
+                warranty = rs.getString("warranty");
+            }
+        } catch (SQLException e) {
+            System.out.println("Failed to fetch warranty: " + e.getMessage());
+        }
+
+        return warranty;
+    }
+   
+   public String getCompany() {
+        String sql = "SELECT company FROM receipts WHERE id = 1";
+        String Company = "";
+
+        try (
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(sql)
+        ) {
+            if (rs.next()) {
+                Company = rs.getString("company");
+            }
+        } catch (SQLException e) {
+            System.out.println("Failed to fetch company: " + e.getMessage());
+        }
+
+        return Company;
+    }
+   
+   public String getAddress() {
+        String sql = "SELECT address FROM receipts WHERE id = 1";
+        String Address = "";
+
+        try (
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(sql)
+        ) {
+            if (rs.next()) {
+                Address = rs.getString("address");
+            }
+        } catch (SQLException e) {
+            System.out.println("Failed to fetch Address: " + e.getMessage());
+        }
+
+        return Address;
+    }
    
    
 

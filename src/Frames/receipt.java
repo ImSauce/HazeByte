@@ -15,6 +15,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.DecimalFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -54,10 +55,8 @@ public class receipt extends javax.swing.JFrame {
     initComponents(); 
      this.main = main;
      this.con = main.con;
-
-
-    
-    
+     
+    receipt_information();
     setResizable(false);
     ImageIcon RecieptIcon = new ImageIcon(getClass().getResource("/Images/transparentHB.jpg"));
     setIconImage(RecieptIcon.getImage());
@@ -88,7 +87,7 @@ public class receipt extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        Address = new javax.swing.JLabel();
         r_date = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         receiptTablePane = new javax.swing.JScrollPane();
@@ -122,16 +121,17 @@ public class receipt extends javax.swing.JFrame {
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         qrcode = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
+        Warranty = new javax.swing.JLabel();
+        CompanyName = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(457, 576));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel2.setFont(new java.awt.Font("Berlin Sans FB", 0, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel2.setText("<html>Haze Corp <br> 16th avenue Kivotos Main St. </html>");
+        Address.setFont(new java.awt.Font("Berlin Sans FB", 0, 14)); // NOI18N
+        Address.setForeground(new java.awt.Color(0, 0, 0));
+        Address.setText("16th avenue Kivotos Main St.");
 
         r_date.setFont(new java.awt.Font("Berlin Sans FB", 0, 14)); // NOI18N
         r_date.setForeground(new java.awt.Color(0, 0, 0));
@@ -348,9 +348,13 @@ public class receipt extends javax.swing.JFrame {
         qrcode.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         qrcode.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel20.setFont(new java.awt.Font("Berlin Sans FB", 0, 14)); // NOI18N
-        jLabel20.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel20.setText("Warranty: 14 days");
+        Warranty.setFont(new java.awt.Font("Berlin Sans FB", 0, 14)); // NOI18N
+        Warranty.setForeground(new java.awt.Color(0, 0, 0));
+        Warranty.setText("Warranty: 14 days");
+
+        CompanyName.setFont(new java.awt.Font("Berlin Sans FB", 0, 14)); // NOI18N
+        CompanyName.setForeground(new java.awt.Color(0, 0, 0));
+        CompanyName.setText("Haze Corp");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -362,21 +366,21 @@ public class receipt extends javax.swing.JFrame {
                     .addComponent(receiptTablePane)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(32, 32, 32)
-                                .addComponent(jLabel5)
-                                .addGap(49, 49, 49)
-                                .addComponent(jLabel19)
-                                .addGap(44, 44, 44)
-                                .addComponent(jLabel7))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(r_number, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(r_date, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGap(32, 32, 32)
+                                    .addComponent(jLabel5)
+                                    .addGap(49, 49, 49)
+                                    .addComponent(jLabel19)
+                                    .addGap(44, 44, 44)
+                                    .addComponent(jLabel7))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jLabel4)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(r_number, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(r_date, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(Address, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(CompanyName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(40, 40, 40)
@@ -440,20 +444,23 @@ public class receipt extends javax.swing.JFrame {
                         .addComponent(qrcode, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel20)))
+                        .addComponent(Warranty)))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
                         .addComponent(Cart_txt1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
                         .addComponent(Cart_txt2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(14, 14, 14)
+                        .addComponent(CompanyName)
+                        .addGap(0, 0, 0)
+                        .addComponent(Address)
                         .addGap(0, 0, 0)
                         .addComponent(r_date)
                         .addGap(0, 0, 0)
@@ -461,7 +468,7 @@ public class receipt extends javax.swing.JFrame {
                             .addComponent(jLabel4)
                             .addComponent(r_number))))
                 .addGap(0, 0, 0)
-                .addComponent(jLabel20)
+                .addComponent(Warranty)
                 .addGap(8, 8, 8)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
@@ -538,8 +545,11 @@ public class receipt extends javax.swing.JFrame {
   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JLabel Address;
     private javax.swing.JLabel Cart_txt1;
     private javax.swing.JLabel Cart_txt2;
+    public javax.swing.JLabel CompanyName;
+    public javax.swing.JLabel Warranty;
     private javax.swing.JLabel ip;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -551,8 +561,6 @@ public class receipt extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -575,6 +583,30 @@ public class receipt extends javax.swing.JFrame {
     private javax.swing.JScrollPane receiptTablePane;
     private javax.swing.JLabel user;
     // End of variables declaration//GEN-END:variables
+
+public void receipt_information() {
+        String sql = "SELECT * FROM receipts";
+        String company = "";
+        String address = "";
+        String warranty = "";
+       try (
+           Statement st = con.createStatement();
+           ResultSet rs = st.executeQuery(sql)
+       ) {
+           while (rs.next()) {
+               company = rs.getString("company");
+               address = rs.getString("address");
+               warranty = rs.getString("warranty");
+
+           }
+           CompanyName.setText(company);
+           Address.setText(address);
+           Warranty.setText(warranty+ " day/s warranty");
+
+       } catch (SQLException e) {
+           System.out.println("Failed to fetch users: " + e.getMessage());
+       }
+    }
 
 
 

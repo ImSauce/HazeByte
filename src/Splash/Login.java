@@ -51,6 +51,8 @@ public class Login extends javax.swing.JFrame {
             // Use relative path to the SQLite file
             String dbPath = "database/hazebyteLITE.db";
             con = DriverManager.getConnection("jdbc:sqlite:" + dbPath);
+            
+            
 
         } catch (ClassNotFoundException | SQLException ex) {
             ex.printStackTrace();

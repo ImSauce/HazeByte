@@ -1210,7 +1210,7 @@
                           <Component id="ChangeUsernamePN" alignment="0" pref="989" max="32767" attributes="0"/>
                           <Component id="ChangePassPN" alignment="1" pref="989" max="32767" attributes="0"/>
                           <Component id="AboutPN" alignment="1" pref="989" max="32767" attributes="0"/>
-                          <Component id="ChangePassPN1" alignment="1" pref="989" max="32767" attributes="0"/>
+                          <Component id="ReceiptPN" alignment="1" pref="989" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -1225,11 +1225,11 @@
                       <Component id="ChangeUsernamePN" min="-2" pref="72" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="ChangePassPN" min="-2" pref="72" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                      <Component id="ReceiptPN" min="-2" pref="72" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="AboutPN" min="-2" pref="72" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                      <Component id="ChangePassPN1" min="-2" pref="72" max="-2" attributes="0"/>
-                      <EmptySpace pref="166" max="32767" attributes="0"/>
+                      <EmptySpace pref="304" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -1558,7 +1558,7 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Container class="SystemOtherComps.PH_Panel" name="ChangePassPN1">
+            <Container class="SystemOtherComps.PH_Panel" name="ReceiptPN">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="17" green="17" red="18" type="rgb"/>
@@ -1574,9 +1574,9 @@
                 <Property name="AA_ArcSize" type="int" value="30"/>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="ChangePassPN1MouseClicked"/>
-                <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="ChangePassPN1MouseEntered"/>
-                <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="ChangePassPN1MouseExited"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="ReceiptPNMouseClicked"/>
+                <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="ReceiptPNMouseEntered"/>
+                <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="ReceiptPNMouseExited"/>
               </Events>
 
               <Layout>
@@ -1587,10 +1587,10 @@
                           <Component id="Settings_BT4" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="ChangepassDesc2" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="ChangePassHeading2" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="ReceiptDesc" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="ReceiptHeading" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="107" max="32767" attributes="0"/>
+                          <EmptySpace pref="758" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -1599,18 +1599,18 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace pref="11" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="ChangePassHeading2" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="ReceiptHeading" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="Settings_BT4" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="ChangepassDesc2" min="-2" max="-2" attributes="0"/>
+                          <Component id="ReceiptDesc" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JLabel" name="ChangepassDesc2">
+                <Component class="javax.swing.JLabel" name="ReceiptDesc">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="66" green="66" red="66" type="rgb"/>
@@ -1621,13 +1621,13 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="66" green="66" red="66" type="rgb"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Change your current password to a new one."/>
+                    <Property name="text" type="java.lang.String" value="Modify your receipt information."/>
                   </Properties>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
                   </AuxValues>
                 </Component>
-                <Component class="javax.swing.JLabel" name="ChangePassHeading2">
+                <Component class="javax.swing.JLabel" name="ReceiptHeading">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Calibri" size="18" style="1"/>
@@ -1635,7 +1635,7 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Receipt"/>
+                    <Property name="text" type="java.lang.String" value="Receipt Info"/>
                   </Properties>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
@@ -1644,7 +1644,7 @@
                 <Component class="javax.swing.JLabel" name="Settings_BT4">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/Images/lock.png"/>
+                      <Image iconType="3" name="/Images/receipt.png"/>
                     </Property>
                     <Property name="toolTipText" type="java.lang.String" value="Developer Info"/>
                   </Properties>

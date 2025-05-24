@@ -9,6 +9,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -20,6 +21,7 @@ public class ChangeUsername extends javax.swing.JFrame {
     UIcolors color = new UIcolors();
     Connection con;
     PreparedStatement pst;
+
     
   
 
@@ -32,6 +34,8 @@ public class ChangeUsername extends javax.swing.JFrame {
         setIconImage(UserIcon.getImage());
         setTitle("Change Username");
         setResizable(false);
+        
+        user();
         
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         
@@ -54,8 +58,8 @@ public class ChangeUsername extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         ChangeUsernameBT = new SystemOtherComps.PH_Button();
-        ChangeUsernameTXT = new SystemOtherComps.PH_PasswordField();
         changepusernametext = new javax.swing.JLabel();
+        ChangeUsernameTXT = new SystemOtherComps.PH_TextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(24, 23, 23));
@@ -81,12 +85,6 @@ public class ChangeUsername extends javax.swing.JFrame {
             }
         });
 
-        ChangeUsernameTXT.setForeground(new java.awt.Color(255, 255, 255));
-        ChangeUsernameTXT.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        ChangeUsernameTXT.setAA_TextHint("New Username");
-        ChangeUsernameTXT.setAB_HintColor(new java.awt.Color(153, 153, 153));
-        ChangeUsernameTXT.setAB_LineColor(new java.awt.Color(102, 102, 102));
-
         changepusernametext.setFont(new java.awt.Font("Arial Black", 0, 30)); // NOI18N
         changepusernametext.setForeground(new java.awt.Color(255, 255, 255));
         changepusernametext.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -94,30 +92,33 @@ public class ChangeUsername extends javax.swing.JFrame {
         changepusernametext.setMaximumSize(new java.awt.Dimension(125, 43));
         changepusernametext.setMinimumSize(new java.awt.Dimension(1235, 43));
 
+        ChangeUsernameTXT.setForeground(new java.awt.Color(255, 255, 255));
+        ChangeUsernameTXT.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        ChangeUsernameTXT.setAA_TextHint("New Username");
+        ChangeUsernameTXT.setAB_HintColor(new java.awt.Color(153, 153, 153));
+        ChangeUsernameTXT.setAB_LineColor(new java.awt.Color(51, 51, 51));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(9, 9, 9)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(changepusernametext, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(14, 14, 14))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(ChangeUsernameTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(84, 84, 84))))
+                        .addComponent(changepusernametext, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(147, 147, 147)
-                        .addComponent(ChangeUsernameBT, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(ChangeUsernameBT, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(92, 92, 92)
+                        .addComponent(ChangeUsernameTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(16, Short.MAX_VALUE)
+                .addContainerGap(10, Short.MAX_VALUE)
                 .addComponent(changepusernametext, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(ChangeUsernameTXT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -147,11 +148,30 @@ public class ChangeUsername extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private SystemOtherComps.PH_Button ChangeUsernameBT;
-    private SystemOtherComps.PH_PasswordField ChangeUsernameTXT;
+    private SystemOtherComps.PH_TextField ChangeUsernameTXT;
     private javax.swing.JLabel changepusernametext;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 
+    
+    public void user() {
+        String sql = "SELECT * FROM login";
+        String user = "";
+       try (
+           Statement st = con.createStatement();
+           ResultSet rs = st.executeQuery(sql)
+       ) {
+           while (rs.next()) {
+               user = rs.getString("username");
+
+           }
+           ChangeUsernameTXT.setText(user);
+
+       } catch (SQLException e) {
+           System.out.println("Failed to fetch users: " + e.getMessage());
+       }
+    }
+    
     
     public void ChangeUsername() {
     String newUsername = ChangeUsernameTXT.getText();
