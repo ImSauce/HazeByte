@@ -113,6 +113,7 @@ public class Main extends javax.swing.JFrame {
     public Main(Connection con) {
         initComponents();
         GlassPanePopup.install(this);
+        ProductImage.preloadAllImages(con);
         
         this.con = con;
 
@@ -3409,6 +3410,7 @@ public class Main extends javax.swing.JFrame {
     loading.setSize(350, 200);
     loading.setLocationRelativeTo(null);
 
+
     // Get cache directory location
     String userHome = System.getProperty("user.home");
     File cacheDir = new File(userHome + "/HazeByteCache/");
@@ -5168,7 +5170,7 @@ public static String getFormattedDate() {
                 // Show preview
                 preview = new HistoryPreview(this);
                 preview.prevID = dbId;
-                ProductImage.loadHistoryImageAndSetToLabel(dbId, preview.PreviewImage, con);
+                //ProductImage.loadHistoryImageAndSetToLabel(dbId, preview.PreviewImage, con);
                 PreviewLoadImageID(dbId,preview.PreviewImage);
                 preview.receipt.setText(receipt);
                 preview.Title.setText(name);

@@ -1207,10 +1207,10 @@
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="ChangeUsernamePN" alignment="0" pref="406" max="32767" attributes="0"/>
-                          <Component id="ChangePassPN" alignment="1" pref="406" max="32767" attributes="0"/>
-                          <Component id="AboutPN" alignment="1" pref="406" max="32767" attributes="0"/>
-                          <Component id="ChangePassPN1" alignment="1" pref="406" max="32767" attributes="0"/>
+                          <Component id="ChangeUsernamePN" alignment="0" pref="989" max="32767" attributes="0"/>
+                          <Component id="ChangePassPN" alignment="1" pref="989" max="32767" attributes="0"/>
+                          <Component id="AboutPN" alignment="1" pref="989" max="32767" attributes="0"/>
+                          <Component id="ChangePassPN1" alignment="1" pref="989" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>

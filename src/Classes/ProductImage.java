@@ -36,6 +36,7 @@ public class ProductImage {
             }
 
             while (rs.next()) {
+                
                 int productId = rs.getInt("id");
                 byte[] imageData = rs.getBytes("imageFile");
 
