@@ -1,1 +1,5 @@
 /dist/
+/database/data.sqlite
+/database/hazebyte(clean).sql
+/database/hazebyte(with products).sql
+/database/product.csv
