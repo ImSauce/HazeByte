@@ -119,7 +119,6 @@ public class Main extends javax.swing.JFrame {
     
         startup();
         ClearCart();
-        processlist();
         wrapLabelText(AboutQuote);
 
         if (CartTable.getRowCount() == 0) {
@@ -251,6 +250,10 @@ public class Main extends javax.swing.JFrame {
         AboutDesc = new javax.swing.JLabel();
         AboutHeading = new javax.swing.JLabel();
         Settings_BT3 = new javax.swing.JLabel();
+        ChangePassPN1 = new SystemOtherComps.PH_Panel();
+        ChangepassDesc2 = new javax.swing.JLabel();
+        ChangePassHeading2 = new javax.swing.JLabel();
+        Settings_BT4 = new javax.swing.JLabel();
         Cart = new javax.swing.JPanel();
         CartBar = new javax.swing.JPanel();
         Cart_txt = new javax.swing.JLabel();
@@ -1240,6 +1243,63 @@ public class Main extends javax.swing.JFrame {
                 .addGap(14, 14, 14))
         );
 
+        ChangePassPN1.setBackground(new java.awt.Color(24, 23, 23));
+        ChangePassPN1.setForeground(new java.awt.Color(24, 23, 23));
+        ChangePassPN1.setAAA_ImageBoundArcSize(30);
+        ChangePassPN1.setAAA_roundBottomLeft(30);
+        ChangePassPN1.setAAA_roundBottomRight(30);
+        ChangePassPN1.setAAA_roundTopLeft(30);
+        ChangePassPN1.setAAA_roundTopRight(30);
+        ChangePassPN1.setAA_ArcSize(30);
+        ChangePassPN1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ChangePassPN1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                ChangePassPN1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                ChangePassPN1MouseExited(evt);
+            }
+        });
+
+        ChangepassDesc2.setBackground(new java.awt.Color(102, 102, 102));
+        ChangepassDesc2.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        ChangepassDesc2.setForeground(new java.awt.Color(102, 102, 102));
+        ChangepassDesc2.setText("Change your current password to a new one.");
+
+        ChangePassHeading2.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        ChangePassHeading2.setForeground(new java.awt.Color(255, 255, 255));
+        ChangePassHeading2.setText("Receipt");
+
+        Settings_BT4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/lock.png"))); // NOI18N
+        Settings_BT4.setToolTipText("Developer Info");
+
+        javax.swing.GroupLayout ChangePassPN1Layout = new javax.swing.GroupLayout(ChangePassPN1);
+        ChangePassPN1.setLayout(ChangePassPN1Layout);
+        ChangePassPN1Layout.setHorizontalGroup(
+            ChangePassPN1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ChangePassPN1Layout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addComponent(Settings_BT4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(ChangePassPN1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ChangepassDesc2)
+                    .addComponent(ChangePassHeading2))
+                .addContainerGap(107, Short.MAX_VALUE))
+        );
+        ChangePassPN1Layout.setVerticalGroup(
+            ChangePassPN1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ChangePassPN1Layout.createSequentialGroup()
+                .addContainerGap(11, Short.MAX_VALUE)
+                .addGroup(ChangePassPN1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ChangePassHeading2)
+                    .addComponent(Settings_BT4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ChangepassDesc2)
+                .addGap(14, 14, 14))
+        );
+
         javax.swing.GroupLayout SettingsLayout = new javax.swing.GroupLayout(Settings);
         Settings.setLayout(SettingsLayout);
         SettingsLayout.setHorizontalGroup(
@@ -1250,7 +1310,8 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(SettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(ChangeUsernamePN, javax.swing.GroupLayout.DEFAULT_SIZE, 406, Short.MAX_VALUE)
                     .addComponent(ChangePassPN, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 406, Short.MAX_VALUE)
-                    .addComponent(AboutPN, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 406, Short.MAX_VALUE))
+                    .addComponent(AboutPN, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 406, Short.MAX_VALUE)
+                    .addComponent(ChangePassPN1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 406, Short.MAX_VALUE))
                 .addContainerGap())
         );
         SettingsLayout.setVerticalGroup(
@@ -1264,7 +1325,9 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(ChangePassPN, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(AboutPN, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addGap(6, 6, 6)
+                .addComponent(ChangePassPN1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(166, Short.MAX_VALUE))
         );
 
         layers.add(Settings, "card5");
@@ -1669,7 +1732,7 @@ public class Main extends javax.swing.JFrame {
                         .addGap(20, 20, 20))
                     .addGroup(CartLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(CartTableScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 467, Short.MAX_VALUE)
+                        .addComponent(CartTableScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 474, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CartLayout.createSequentialGroup()
                         .addContainerGap()
@@ -2793,6 +2856,7 @@ public class Main extends javax.swing.JFrame {
        SelectEditProduct();
         LoadImageID();
         edit_remove_image=0;
+       
     }//GEN-LAST:event_EditTableMouseClicked
 
     private void EditDeleteBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditDeleteBTActionPerformed
@@ -3043,6 +3107,18 @@ public class Main extends javax.swing.JFrame {
     private void GameSearchTXTCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_GameSearchTXTCaretUpdate
         searching();
     }//GEN-LAST:event_GameSearchTXTCaretUpdate
+
+    private void ChangePassPN1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ChangePassPN1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ChangePassPN1MouseClicked
+
+    private void ChangePassPN1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ChangePassPN1MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ChangePassPN1MouseEntered
+
+    private void ChangePassPN1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ChangePassPN1MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ChangePassPN1MouseExited
   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -3097,10 +3173,13 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel Cart_txt;
     private javax.swing.JLabel ChangeHeading;
     public javax.swing.JLabel ChangePassHeading1;
+    public javax.swing.JLabel ChangePassHeading2;
     private SystemOtherComps.PH_Panel ChangePassPN;
+    private SystemOtherComps.PH_Panel ChangePassPN1;
     public javax.swing.JLabel ChangeUsernameHeading;
     private SystemOtherComps.PH_Panel ChangeUsernamePN;
     public javax.swing.JLabel ChangepassDesc1;
+    public javax.swing.JLabel ChangepassDesc2;
     public javax.swing.JLabel ChangeusernameDesc;
     private javax.swing.JLabel CostIcon;
     private javax.swing.JPanel Edit;
@@ -3167,6 +3246,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel Settings_BT1;
     private javax.swing.JLabel Settings_BT2;
     private javax.swing.JLabel Settings_BT3;
+    private javax.swing.JLabel Settings_BT4;
     private javax.swing.JLabel SubtotalHeading;
     private javax.swing.JLabel TotalCostHeading;
     private javax.swing.JLabel TotalDiscountHeading;
@@ -3995,22 +4075,10 @@ public void emptyBlobFile(String id) {
     
     public void LoadImageID() {
         try {
-            String ID = EditID.getText();
-            pst = con.prepareStatement("SELECT imageFile FROM product WHERE id = ?");
-            pst.setString(1, ID);
-
-            rs = pst.executeQuery();
-
-            if (rs.next()) {
-                LoadImage();
-            } else {
-                // Set default image if no imageFile found
-                setDefaultImage();
-            }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-            setDefaultImage();
+            int productId = Integer.parseInt(EditID.getText());
+            ProductImage.loadImageAndSetToLabel(productId, EditImage, con);
+        } catch (NumberFormatException e) {
+            setDefaultImage(); // If ID is not a valid number
         }
     }
 
@@ -4529,34 +4597,8 @@ public void SelectCartItem() {
             discountTXT.setVisible(false);
         }
         
-        // Now fetch the image from the database using the ID
-        try {
-            String sql = "SELECT imageFile FROM product WHERE id = ?";
-            PreparedStatement pst = con.prepareStatement(sql);
-            pst.setInt(1, id);
-            ResultSet rs = pst.executeQuery();
-
-            if (rs.next()) {
-                byte[] imgBytes = rs.getBytes("imageFile");
-
-                if (imgBytes != null) {
-                    ImageIcon icon = new ImageIcon(imgBytes);
-                    Image img = icon.getImage().getScaledInstance(211, 211, Image.SCALE_SMOOTH);
-                    CartImageTXT.setIcon(new ImageIcon(img));
-                    CartImageTXT.setText("");
-                } else {
-                    CartImageTXT.setIcon(null);
-                    CartImageTXT.setText("No Image");
-                }
-            }
-
-            rs.close();
-            pst.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-            CartImageTXT.setIcon(null);
-            CartImageTXT.setText("Error loading image");
-        }
+        ProductImage.loadImageAndSetToLabel(id, CartImageTXT, con);
+        
     } 
 }
 
@@ -5126,6 +5168,7 @@ public static String getFormattedDate() {
                 // Show preview
                 preview = new HistoryPreview(this);
                 preview.prevID = dbId;
+                ProductImage.loadHistoryImageAndSetToLabel(dbId, preview.PreviewImage, con);
                 PreviewLoadImageID(dbId,preview.PreviewImage);
                 preview.receipt.setText(receipt);
                 preview.Title.setText(name);
@@ -5291,35 +5334,6 @@ public static String getFormattedDate() {
 }
    
    
-   public void processlist(){
-   String query = "SHOW PROCESSLIST;";
-try {
-    pst = con.prepareStatement(query);
-    rs = pst.executeQuery(); // Execute the query
 
-    // Loop through the result and print each process
-    while (rs.next()) {
-        int id = rs.getInt("Id");
-        String user = rs.getString("User");
-        String host = rs.getString("Host");
-        String db = rs.getString("db");
-        String command = rs.getString("Command");
-        int time = rs.getInt("Time");
-        String state = rs.getString("State");
-        String info = rs.getString("Info");
-
-        System.out.println("ID: " + id + ", User: " + user + ", Host: " + host +
-                           ", DB: " + db + ", Command: " + command + ", Time: " + time +
-                           ", State: " + state + ", Info: " + info);
-    }
-
-    rs.close();
-    pst.close(); // Good practice to close your resources
-} catch (SQLException ex) {
-    ex.printStackTrace(); // Handle or log the exception
-}
-   }
-
- //System.out.println("SAMUEL"); 
         
 }
