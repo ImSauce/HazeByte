@@ -18,7 +18,6 @@ A Java-based Game Shop Inventory manangement System created using Swing GUI and 
 ## Requirements
 - Java JDK
 - Java IDE (preferably netbeans)
-- xampp sql database
 
 
 ## Screenshots
