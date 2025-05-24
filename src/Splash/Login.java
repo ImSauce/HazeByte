@@ -5,6 +5,7 @@ import Classes.Run;
 import Classes.serverCredentials;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import org.sqlite.SQLiteDataSource;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -28,9 +29,6 @@ import raven.toast.Notifications;
 public class Login extends javax.swing.JFrame {
         
         private Main mainApp; 
-        public String url= "localhost";
-        public String user = "root";
-        public String pass= "";
         Connection con = null;
         PreparedStatement pst;
 
@@ -45,21 +43,19 @@ public class Login extends javax.swing.JFrame {
         
         
         public void connection (){
-         serverCredentials sv = new serverCredentials(url,user,pass);
+        //MYSQL CODE-----------------------------------------------
+        try 
+        {
+            Class.forName("org.sqlite.JDBC"); // Make sure sqlite-jdbc is in your lib and classpath
 
-      
-         //MYSQL CODE-----------------------------------------------
+            // Use relative path to the SQLite file
+            String dbPath = "database/hazebyteLITE.db";
+            con = DriverManager.getConnection("jdbc:sqlite:" + dbPath);
 
-            try {
-                Class.forName("com.mysql.cj.jdbc.Driver");
-                con = DriverManager.getConnection("jdbc:mysql://"+sv.getServerIP() +"/hazebyte", sv.getUserID(), sv.getPassword());
-
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(Run.class.getName()).log(Level.SEVERE, null, ex);
-            }catch (SQLException ex) {
-            Logger.getLogger(Run.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            //MYSQL CODE-----------------------------------------------
+        } catch (ClassNotFoundException | SQLException ex) {
+            ex.printStackTrace();
+        }
+        //MYSQL CODE-----------------------------------------------
 
         }
     
