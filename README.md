@@ -18,14 +18,6 @@ A Java-based Game Shop Inventory manangement System created using Swing GUI and 
 ## Requirements
 - Java JDK
 - Java IDE (preferably netbeans)
-
-
-## How to use
-- Download the file
-- Open with your chosen IDE (preferably netbeans)
-- Run the "Run.java" file located at the "Classes" package
-- Type the default username/password "user" in the login panel.
-- Have fun with the application
   
 
 ## Screenshots
