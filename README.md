@@ -24,7 +24,7 @@ A Java-based Game Shop Inventory manangement System created using Swing GUI and 
 - Download the file
 - Open with your chosen IDE (preferably netbeans)
 - Run the "Run.java" file located at the "Classes" package
-- Type the default username/password "root" in the login panel.
+- Type the default username/password "user" in the login panel.
 - Have fun with the application
   
 
