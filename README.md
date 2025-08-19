@@ -18,8 +18,9 @@ A Java-based Game Shop Inventory manangement System created using Swing GUI and 
 ## Requirements
 - Java JDK
 - Java IDE (preferably netbeans)
-  
 
+## Download
+download the installer containing the HazeByte .exe file [Download](https://github.com/ImSauce/HazeByte/releases/tag/v1)
 ## Screenshots
 
 ### Login
