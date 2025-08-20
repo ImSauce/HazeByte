@@ -19,9 +19,9 @@ download the zip file containing the HazeByte.exe [Click to Download](https://gi
 - Settings Configuration
 
 
-## Requirements
+## Software Used
 - Java JDK
-- Java IDE (preferably netbeans)
+- Java IDE (netbeans)
 
 
 ## Screenshots
